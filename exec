@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+docker-compose exec --user developer web_backend "$@"
+exit 0

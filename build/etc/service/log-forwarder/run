@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ "$KODI_COMMON_APPLICATION" == "frontend" ]; then
+  tail --follow --retry --lines 0 /srv/kodi/frontend/runtime/logs/app.log
+fi
+if [ "$KODI_COMMON_APPLICATION" == "backend" ]; then
+  tail --follow --retry --lines 0 /srv/kodi/backend/runtime/logs/app.log
+fi
+if [ "$KODI_COMMON_APPLICATION" == "api" ]; then
+  tail --follow --retry --lines 0 /srv/kodi/api/runtime/logs/app.log
+fi

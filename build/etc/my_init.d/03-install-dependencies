@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# For local development setup only
+if [ ! -f "/srv/kodi/automated_build" ]; then
+
+    # Do not repeat for stopped/resumed containers
+    if [ ! -f "/var/log/03-install-dependencies" ]; then
+
+        # Make sure Composer cache is available in every container
+        cp -R /root/.composer /home/developer
+        chown -R developer:developer /home/developer/.composer
+
+        echo "true" >> /var/log/03-install-dependencies
+    fi
+
+    # Install missing dependencies
+    if [ "$KODI_COMMON_APPLICATION" == "gulp" ]; then
+        cd /srv/kodi
+        if [ ! -d "/srv/kodi/vendor" ]; then
+            echo 'Composer dependencies are missing. Installing...'
+            setuser developer composer install --prefer-dist --optimize-autoloader --no-progress --no-interaction
+        fi
+    fi
+
+fi
+

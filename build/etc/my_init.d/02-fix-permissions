@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# For local development setup only
+if [ ! -f "/srv/kodi/automated_build" ]; then
+
+    # Fix permissions for folders mounted from the host
+    TARGET_UID=$(stat -c "%u" /srv/kodi)
+    TARGET_GID=$(stat -c "%g" /srv/kodi)
+    if [ "${TARGET_UID}" != $(id -u developer) ]; then
+        echo "UID mismatch, changing container UID to ${TARGET_UID}..."
+        usermod -u ${TARGET_UID} developer
+    fi
+    if [ "${TARGET_GID}" != $(id -g developer) ]; then
+        echo "GID mismatch, changing container GID to ${TARGET_GID}..."
+        groupmod -g ${TARGET_GID} developer
+    fi
+    chown -R developer:developer /home/developer
+
+    # Make sure all required directories are writable
+    if [ "$KODI_COMMON_APPLICATION" == "gulp" ]; then
+        echo "Making sure required folders are writable..."
+        chmod -R 0775 \
+            /srv/kodi/api/runtime \
+            /srv/kodi/console/runtime \
+            /srv/kodi/frontend/runtime \
+            /srv/kodi/frontend/web/assets \
+            /srv/kodi/backend/runtime \
+            /srv/kodi/backend/web/assets
+    fi
+fi

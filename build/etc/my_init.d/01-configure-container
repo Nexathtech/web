@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# Do not reconfigure stopped/resumed containers
+if [ ! -f "/var/log/01-configure-container" ]; then
+
+    # Detect environment we are running
+    if [ ! -f "/srv/kodi/automated_build" ]; then
+        echo 'Setup for local development is recognized. Configuring container...'
+        echo -e "\n user developer developer;" >> /etc/nginx/common/nginx.conf
+        echo -e "\n access_log off;" >> /etc/nginx/common/http.conf
+        echo -e "\n user = developer" >> /etc/php/7.0/fpm/pool.d/www.conf
+        echo -e "\n group = developer" >> /etc/php/7.0/fpm/pool.d/www.conf
+    else
+        echo 'Regular setup is recognized. Configuring container...'
+        echo -e "\n user nobody nogroup;" >> /etc/nginx/common/nginx.conf
+        echo -e "\n access_log /dev/stdout cloudlog;" >> /etc/nginx/common/http.conf
+        echo -e "\n user = nobody" >> /etc/php/7.0/fpm/pool.d/www.conf
+        echo -e "\n group = nogroup" >> /etc/php/7.0/fpm/pool.d/www.conf
+    fi
+    echo "true" >> /var/log/01-configure-container
+fi
+
+# Detect application to run
+rm -f /etc/nginx/current.conf
+if [ "$KODI_COMMON_APPLICATION" == "frontend" ]; then
+  echo 'Applying configuration for "frontend" application...'
+  ln -s /etc/nginx/frontend.conf /etc/nginx/current.conf
+  exit 0
+fi
+if [ "$KODI_COMMON_APPLICATION" == "backend" ]; then
+  echo 'Applying configuration for "backend" application...'
+  ln -s /etc/nginx/backend.conf /etc/nginx/current.conf
+  exit 0
+fi
+if [ "$KODI_COMMON_APPLICATION" == "api" ]; then
+  echo 'Applying configuration for "api" application...'
+  ln -s /etc/nginx/api.conf /etc/nginx/current.conf
+  exit 0
+fi
+echo 'Application to run is not selected. Entering "cli" mode...'
+rm -rf \
+    /etc/service/nginx \
+    /etc/service/php-fpm

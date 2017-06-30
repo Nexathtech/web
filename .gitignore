@@ -1,0 +1,15 @@
+# IDE files and folders
+.idea/
+
+# Project dependencies
+vendor/
+
+# Runtime files
+*/runtime/*
+*/web/assets/*
+
+# Local files
+.env
+
+# Other
+composer.lock
