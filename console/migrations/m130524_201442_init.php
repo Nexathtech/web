@@ -67,6 +67,8 @@ class m130524_201442_init extends Migration
             'photo' => $this->string(255),
             'status' => $statusField,
             'access_token' => $this->string(64)->notNull(),
+            'location_latitude' => $this->string(64),
+            'location_longitude' => $this->string(64),
             'created_at' => $createdAtField,
             'updated_at' => $updatedAtField,
             'PRIMARY KEY(`id`)',
@@ -100,6 +102,20 @@ class m130524_201442_init extends Migration
             'PRIMARY KEY(`id`)',
         ], $tableOptions);
         $this->createIndex('social_user_uuid_idx', '{{%social_user}}', 'uuid');
+
+        // Table "action"
+        $this->createTable('{{%action}}', [
+            'id' => $primaryKeyField,
+            'initiator' => $this->string(64)->notNull(),
+            'initiator_id' => $this->string(64),
+            'type' => $this->string(64)->notNull(),
+            'data' => $this->text(),
+            'promo_code' => $this->string(8),
+            'created_at' => $createdAtField,
+            'PRIMARY KEY(`id`)',
+        ], $tableOptions);
+        $this->createIndex('action_type_idx', '{{%action}}', 'type');
+        $this->createIndex('action_initiator_idx', '{{%action}}', 'initiator');
 
 
         /**
@@ -161,5 +177,8 @@ class m130524_201442_init extends Migration
 
         // Table "social_user"
         $this->dropTable('{{%social_user}}');
+
+        // Table "action"
+        $this->dropTable('{{%action}}');
     }
 }

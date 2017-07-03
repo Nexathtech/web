@@ -25,14 +25,20 @@ class AuthController extends Controller
      * @throws ErrorException
      */
     public function actionIndex($id) {
-        if (empty(Device::findIdentityByAccessToken($id))) {
+        $device = Device::findIdentityByAccessToken($id);
+        if (empty($device)) {
             throw new ErrorException('Invalid token');
         }
 
         $signer = new Sha256();
         $secret = ArrayHelper::getValue(Yii::$app->params, 'security.jwt.secret');
         $expiration = ArrayHelper::getValue(Yii::$app->params, 'security.jwt.expiration');
-        $token = (new Builder())->setExpiration(time() + $expiration)->sign($signer, $secret)->getToken();
-        return (string)$token;
+        $expiresAt = time() + $expiration;
+        $token = (new Builder())->setExpiration($expiresAt)->sign($signer, $secret)->getToken();
+        return [
+            'token' => (string)$token,
+            'expiresAt' => $expiresAt,
+            'deviceId' => $device->id,
+        ];
     }
 }

@@ -42,6 +42,7 @@ class PromoCodeController extends Controller
 
     /**
      * Creates promo code and social user if needed
+     *
      * @return PromoCode|SocialUser
      * @throws ErrorException|ForbiddenHttpException
      */
@@ -55,24 +56,27 @@ class PromoCodeController extends Controller
         if (!empty($params['identity'])) {
             $identity = $params['identity'];
             // Check if user has already been used promo codes and return error
-            if (!empty($identity['uuid'])) {
-                if (!empty(SocialUser::findOne(['uuid' => $identity['uuid']]))) {
-                    throw new ForbiddenHttpException('You have been already used promo codes.');
+            if (!empty($identity['id'])) {
+                if (!empty(PromoCode::findOne(['identity_id' => $identity['id'], 'status' => PromoCode::STATUS_USED]))) {
+                    throw new ForbiddenHttpException('You have already been used promo codes.');
                 }
             }
-            $identityModel = new SocialUser();
-            $identityModel->uuid = ArrayHelper::getValue($identity, 'id');
-            $identityModel->name = ArrayHelper::getValue($identity, 'name');
-            $identityModel->photo = ArrayHelper::getValue($identity, 'photo');
-            $identityModel->gender = ArrayHelper::getValue($identity, 'gender');
-            $identityModel->profile_url = ArrayHelper::getValue($identity, 'profile_url');
-            $identityModel->type = ArrayHelper::getValue($identity, 'type', SocialUser::TYPE_FACEBOOK);
 
-            if ($identityModel->save()) {
-                $model->identity_id = $identityModel->uuid;
-            } else {
-                return $identityModel;
+            $identityModel = SocialUser::findOne(['uuid' => $identity['id']]);
+            if (empty($identityModel)) {
+                $identityModel = new SocialUser();
+                $identityModel->uuid = ArrayHelper::getValue($identity, 'id');
+                $identityModel->name = ArrayHelper::getValue($identity, 'name');
+                $identityModel->photo = ArrayHelper::getValue($identity, 'photo');
+                $identityModel->gender = ArrayHelper::getValue($identity, 'gender');
+                $identityModel->profile_url = ArrayHelper::getValue($identity, 'profileUrl');
+                $identityModel->type = ArrayHelper::getValue($identity, 'type', SocialUser::TYPE_FACEBOOK);
+
+                if (!$identityModel->save()) {
+                    return $identityModel;
+                }
             }
+            $model->identity_id = $identityModel->uuid;
         }
 
         if (!$model->save() && !$model->hasErrors()) {
@@ -97,8 +101,6 @@ class PromoCodeController extends Controller
         ]);
 
         if (!empty($promoCode) && $promoCode->expires_at > Carbon::now()->toDateTimeString()) {
-            $promoCode->status = PromoCode::STATUS_USED;
-            $promoCode->save(false);
             return $promoCode;
         } else {
             throw new NotFoundHttpException('Invalid promo code.');
