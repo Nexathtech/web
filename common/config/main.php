@@ -33,27 +33,27 @@ $config = [
         'i18n' => [
             'class' => \yii\i18n\I18N::class,
             'translations' => [
-                'kodi/common' => [
+                'common' => [
                     'class' => \yii\i18n\GettextMessageSource::class,
                     'basePath' => '@common/messages',
                     'catalog' => 'common',
                 ],
-                'kodi/console' => [
+                'console' => [
                     'class' => \yii\i18n\GettextMessageSource::class,
                     'basePath' => '@common/messages',
                     'catalog' => 'console',
                 ],
-                'kodi/frontend' => [
+                'frontend' => [
                     'class' => \yii\i18n\GettextMessageSource::class,
                     'basePath' => '@common/messages',
                     'catalog' => 'frontend',
                 ],
-                'kodi/backend' => [
+                'backend' => [
                     'class' => \yii\i18n\GettextMessageSource::class,
                     'basePath' => '@common/messages',
                     'catalog' => 'backend',
                 ],
-                'kodi/api' => [
+                'api' => [
                     'class' => \yii\i18n\GettextMessageSource::class,
                     'basePath' => '@common/messages',
                     'catalog' => 'api',

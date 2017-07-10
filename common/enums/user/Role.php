@@ -27,8 +27,8 @@ class Role extends Enum implements EnumInterface
     public static function listData(): array
     {
         return [
-            self::ADMINISTRATOR => Yii::t('kodi/common', 'Administrator'),
-            self::CUSTOMER => Yii::t('kodi/common', 'Customer'),
+            self::ADMINISTRATOR => Yii::t('common', 'Administrator'),
+            self::CUSTOMER => Yii::t('common', 'Customer'),
         ];
     }
 }

@@ -3,7 +3,7 @@
 namespace kodi\common\models\device;
 
 use kodi\common\behaviors\TimestampBehavior;
-use kodi\common\enums\user\Status;
+use kodi\common\enums\Status;
 use kodi\common\models\user\User;
 use Yii;
 use yii\db\ActiveRecord;
@@ -29,6 +29,8 @@ use yii\validators\StringValidator;
  * @property string $photo
  * @property string $status
  * @property string $access_token
+ * @property string $location_latitude
+ * @property string $location_longitude
  * @property integer $created_at
  * @property integer $updated_at
  *
@@ -60,10 +62,10 @@ class Device extends ActiveRecord
 
             // Strings validation
             [['photo'], StringValidator::class, 'max' => 255],
-            [['name', 'access_token'], StringValidator::class, 'max' => 64],
+            [['name', 'access_token', 'location_latitude', 'location_longitude'], StringValidator::class, 'max' => 64],
 
             // Range validation
-            ['status', RangeValidator::class, 'range' => Status::listData()],
+            ['status', RangeValidator::class, 'range' => array_keys(Status::listData())],
 
             // Numbers validation
             [['user_id'], NumberValidator::class, 'integerOnly' => true],
@@ -79,10 +81,12 @@ class Device extends ActiveRecord
     public function attributeLabels(): array
     {
         return [
-            'id' => Yii::t('kodi/common', 'ID'),
-            'user_id' => Yii::t('kodi/common', 'User ID'),
-            'name' => Yii::t('kodi/common', 'Full Name'),
-            'photo' => Yii::t('kodi/common', 'Avatar'),
+            'id' => Yii::t('common', 'ID'),
+            'user_id' => Yii::t('common', 'Owner ID'),
+            'name' => Yii::t('common', 'Name'),
+            'photo' => Yii::t('common', 'Photo'),
+            'location_latitude' => Yii::t('common', 'Latitude'),
+            'location_longitude' => Yii::t('common', 'Longitude'),
         ];
     }
 
@@ -102,11 +106,14 @@ class Device extends ActiveRecord
     public function beforeSave($insert): bool
     {
         // Set auto-generated fields
-        if ($insert) {
+        if (empty($this->access_token)) {
             $security = Yii::$app->getSecurity();
             $this->setAttributes([
                 'access_token' => $security->generateRandomString(64),
             ], false);
+        }
+        if (empty($this->photo)) {
+            $this->photo = null;
         }
 
         return parent::beforeSave($insert);
@@ -129,8 +136,19 @@ class Device extends ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::class, ['id' => 'user_id'])
-            ->inverseOf('device');
+        return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoto()
+    {
+        if (!empty($this->photo)) {
+            return $this->photo;
+        }
+
+        return '/img/no-photo-android.png';
     }
 
 }

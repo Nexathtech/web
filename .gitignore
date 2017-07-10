@@ -13,3 +13,4 @@ vendor/
 
 # Other
 composer.lock
+backend/web/img/uploads/*

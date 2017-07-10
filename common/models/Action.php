@@ -64,13 +64,13 @@ class Action extends ActiveRecord
     public function attributeLabels(): array
     {
         return [
-            'id' => Yii::t('kodi/common', 'ID'),
-            'initiator' => Yii::t('kodi/common', 'Initiator'),
-            'initiator_id' => Yii::t('kodi/common', 'Initiator Id'),
-            'type' => Yii::t('kodi/common', 'Type'),
-            'data' => Yii::t('kodi/common', 'Data'),
-            'promo_code' => Yii::t('kodi/common', 'Promo Code'),
-            'created_at' => Yii::t('kodi/common', 'Created At'),
+            'id' => Yii::t('common', 'ID'),
+            'initiator' => Yii::t('common', 'Initiator'),
+            'initiator_id' => Yii::t('common', 'Initiator Id'),
+            'type' => Yii::t('common', 'Type'),
+            'data' => Yii::t('common', 'Data'),
+            'promo_code' => Yii::t('common', 'Promo Code'),
+            'created_at' => Yii::t('common', 'Created At'),
         ];
     }
 

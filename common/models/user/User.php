@@ -9,6 +9,7 @@ use Yii;
 use yii\base\NotSupportedException;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 use yii\validators\RangeValidator;
 use yii\validators\RequiredValidator;
 use yii\validators\StringValidator;
@@ -37,6 +38,10 @@ use yii\web\IdentityInterface;
 class User extends ActiveRecord implements IdentityInterface
 {
     /**
+     * @var int $new_password uses to update user's current password
+     */
+    public $new_password;
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -54,10 +59,10 @@ class User extends ActiveRecord implements IdentityInterface
             [['email'], RequiredValidator::class],
 
             // Strings validation
-            [['email', 'password', 'role', 'status'], StringValidator::class, 'max' => 64],
+            [['email', 'password', 'role', 'status', 'new_password'], StringValidator::class, 'max' => 64],
 
             // Range validation
-            ['status', RangeValidator::class, 'range' => Status::listData()],
+            ['status', RangeValidator::class, 'range' => array_keys(Status::listData())],
 
             // Unique fields
             [['email'], UniqueValidator::class],
@@ -70,14 +75,15 @@ class User extends ActiveRecord implements IdentityInterface
     public function attributeLabels(): array
     {
         return [
-            'id' => Yii::t('kodi/common', 'ID'),
-            'email' => Yii::t('kodi/common', 'Email'),
-            'password' => Yii::t('kodi/common', 'Password'),
-            'auth_key' => Yii::t('kodi/common', 'Auth Key'),
-            'role' => Yii::t('kodi/common', 'Role'),
-            'status' => Yii::t('kodi/common', 'Status'),
-            'created_at' => Yii::t('kodi/common', 'Created At'),
-            'updated_at' => Yii::t('kodi/common', 'Updated At'),
+            'id' => Yii::t('common', 'ID'),
+            'email' => Yii::t('common', 'Email'),
+            'password' => Yii::t('common', 'Password'),
+            'auth_key' => Yii::t('common', 'Auth Key'),
+            'role' => Yii::t('common', 'Role'),
+            'status' => Yii::t('common', 'Status'),
+            'created_at' => Yii::t('common', 'Created At'),
+            'updated_at' => Yii::t('common', 'Updated At'),
+            'new_password' => Yii::t('common', 'New Password'),
         ];
     }
 
@@ -102,6 +108,13 @@ class User extends ActiveRecord implements IdentityInterface
             $this->setAttributes([
                 'password' => (!empty($this->password)) ? $security->generatePasswordHash($this->password) : $security->generatePasswordHash($security->generateRandomString(8)),
                 'auth_key' => $security->generateRandomString(64),
+            ], false);
+        }
+
+        if (!empty($this->new_password)) {
+            $security = Yii::$app->getSecurity();
+            $this->setAttributes([
+                'password' => $security->generatePasswordHash($this->new_password),
             ], false);
         }
 

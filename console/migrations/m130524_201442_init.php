@@ -31,7 +31,7 @@ class m130524_201442_init extends Migration
 
         // Table "user"
         $roleField = "ENUM('Administrator', 'Customer') NOT NULL";
-        $statusField = "ENUM('Active', 'Suspended') NOT NULL";
+        $statusField = "ENUM('Inactive', 'Active', 'Suspended') NOT NULL";
 
         $this->createTable('{{%user}}', [
             'id' => $primaryKeyField,
@@ -65,7 +65,7 @@ class m130524_201442_init extends Migration
             'user_id' => $this->integer()->unsigned()->notNull(),
             'name' => $this->string(64)->notNull(),
             'photo' => $this->string(255),
-            'status' => $statusField,
+            'status' => "ENUM('Inactive', 'Active') NOT NULL",
             'access_token' => $this->string(64)->notNull(),
             'location_latitude' => $this->string(64),
             'location_longitude' => $this->string(64),
@@ -117,6 +117,22 @@ class m130524_201442_init extends Migration
         $this->createIndex('action_type_idx', '{{%action}}', 'type');
         $this->createIndex('action_initiator_idx', '{{%action}}', 'initiator');
 
+        // Table "setting"
+        $settingType = "ENUM('Input', 'Textarea', 'Checkbox', 'Image') NOT NULL";
+        $this->createTable('{{%setting}}', [
+            'id' => $primaryKeyField,
+            'title' => $this->string(255)->notNull(),
+            'description' => $this->text(),
+            'name' => $this->string(64)->notNull(),
+            'value' => $this->text(),
+            'bunch' => $this->string(64)->notNull(),
+            'type' => $settingType,
+            'sort_order' => $this->integer()->defaultValue(1),
+            'updated_at' => $updatedAtField,
+            'PRIMARY KEY(`id`)',
+        ], $tableOptions);
+        $this->createIndex('system_setting_system_name_uq', '{{%system_setting}}', 'name', true);
+
 
         /**
          * ----------------
@@ -129,7 +145,7 @@ class m130524_201442_init extends Migration
         // Create root user
         $security = Yii::$app->getSecurity();
         $this->insert('{{%user}}', [
-            'email' => 'Footniko@gmail.com',
+            'email' => 'webmaster@meetkodi.com',
             'password' => $security->generatePasswordHash('12345678'),
             'auth_key' => $security->generateRandomString(64),
             'role' => Role::ADMINISTRATOR,
@@ -180,5 +196,8 @@ class m130524_201442_init extends Migration
 
         // Table "action"
         $this->dropTable('{{%action}}');
+
+        // Table "setting"
+        $this->dropTable('{{%setting}}');
     }
 }

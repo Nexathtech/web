@@ -32,16 +32,6 @@ use yii\validators\StringValidator;
 class SocialUser extends ActiveRecord
 {
     /**
-     * @var string
-     */
-    const TYPE_FACEBOOK = 'Facebook';
-
-    /**
-     * @var string
-     */
-    const TYPE_INSTAGRAM = 'Instagram';
-
-    /**
      * @inheritdoc
      */
     public static function tableName(): string
@@ -63,9 +53,6 @@ class SocialUser extends ActiveRecord
             [['photo', 'profile_url'], StringValidator::class, 'max' => 255],
             [['name', 'gender', 'type'], StringValidator::class, 'max' => 64],
 
-            // Range validation
-            ['type', RangeValidator::class, 'range' => [self::TYPE_FACEBOOK, self::TYPE_INSTAGRAM]],
-
         ];
     }
 
@@ -75,12 +62,12 @@ class SocialUser extends ActiveRecord
     public function attributeLabels(): array
     {
         return [
-            'id' => Yii::t('kodi/common', 'ID'),
-            'uuid' => Yii::t('kodi/common', 'User Unique Id'),
-            'name' => Yii::t('kodi/common', 'Full Name'),
-            'photo' => Yii::t('kodi/common', 'Photo'),
-            'gender' => Yii::t('kodi/common', 'Gender'),
-            'type' => Yii::t('kodi/common', 'Type'),
+            'id' => Yii::t('common', 'ID'),
+            'uuid' => Yii::t('common', 'User Unique Id'),
+            'name' => Yii::t('common', 'Full Name'),
+            'photo' => Yii::t('common', 'Photo'),
+            'gender' => Yii::t('common', 'Gender'),
+            'type' => Yii::t('common', 'Type'),
         ];
     }
 

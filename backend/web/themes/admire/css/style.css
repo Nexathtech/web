@@ -1,0 +1,61 @@
+.image-col img {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.filters .form-control {
+  width: 75%;
+}
+
+.col-tiny {
+  width: 3rem;
+  padding-left: 1px !important;
+  padding-right: 1px !important;
+  text-align: center;
+}
+
+.col-tiny .form-control {
+  width: 40%;
+}
+
+.table a {
+  color: #337ab7;
+}
+
+.table a:hover, .table a:active {
+  color: #23527c;
+}
+
+.table .form-control {
+  height: inherit !important;
+}
+
+div.dataTables_paginate > ul.pagination {
+  font-size: 0;
+  margin-top: 30px;
+}
+div.dataTables_paginate > ul.pagination > li {
+  font-size: 1rem;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.mx-auto {
+  float: none !important;
+}
+
+.current-photo {
+  margin-bottom: 10px;
+}
+.current-photo img {
+  display: block;
+  margin: 10px 0;
+  max-width: 175px;
+}
+
+.settings-container label {
+  text-align: right;
+  font-weight: bold;
+}

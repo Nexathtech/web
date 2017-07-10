@@ -51,8 +51,10 @@ class Profile extends ActiveRecord
             [['user_id'], RequiredValidator::class],
 
             // Strings validation
-            [['photo'], StringValidator::class, 'max' => 255],
             [['name'], StringValidator::class, 'max' => 64],
+
+            // Image validation
+            [['photo'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg'],
 
             // Numbers validation
             [['user_id'], NumberValidator::class, 'integerOnly' => true],
@@ -68,10 +70,10 @@ class Profile extends ActiveRecord
     public function attributeLabels(): array
     {
         return [
-            'id' => Yii::t('kodi/common', 'ID'),
-            'user_id' => Yii::t('kodi/common', 'User ID'),
-            'name' => Yii::t('kodi/common', 'Full Name'),
-            'photo' => Yii::t('kodi/common', 'Avatar'),
+            'id' => Yii::t('common', 'ID'),
+            'user_id' => Yii::t('common', 'User ID'),
+            'name' => Yii::t('common', 'Full Name'),
+            'photo' => Yii::t('common', 'Photo'),
         ];
     }
 
@@ -82,6 +84,30 @@ class Profile extends ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'user_id'])
             ->inverseOf('profile');
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoto()
+    {
+        if (!empty($this->photo)) {
+            return $this->photo;
+        }
+
+        return '/img/no-avatar.jpg';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName()
+    {
+        if (empty($this->name)) {
+            return '';
+        }
+
+        return explode(' ', $this->name)[0];
     }
 
 }

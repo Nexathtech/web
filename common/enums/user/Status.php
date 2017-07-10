@@ -13,9 +13,9 @@ use Yii;
  * This is a ENUM class that represents supported users' statuses.
  *
  *
- * @method static Role INACTIVE()
- * @method static Role ACTIVE()
- * @method static Role SUSPENDED()
+ * @method static Status INACTIVE()
+ * @method static Status ACTIVE()
+ * @method static Status SUSPENDED()
  */
 class Status extends Enum implements EnumInterface
 {
@@ -29,9 +29,9 @@ class Status extends Enum implements EnumInterface
     public static function listData(): array
     {
         return [
-            self::INACTIVE => Yii::t('kodi/common', 'Not Active'),
-            self::ACTIVE => Yii::t('kodi/common', 'Active'),
-            self::SUSPENDED => Yii::t('kodi/common', 'Suspended'),
+            self::INACTIVE => Yii::t('common', 'Not Active'),
+            self::ACTIVE => Yii::t('common', 'Active'),
+            self::SUSPENDED => Yii::t('common', 'Suspended'),
         ];
     }
 }

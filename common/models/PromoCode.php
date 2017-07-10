@@ -4,9 +4,10 @@ namespace kodi\common\models;
 
 use Carbon\Carbon;
 use kodi\common\behaviors\TimestampBehavior;
+use kodi\common\enums\PromoCodeStatus;
 use Yii;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
-use yii\helpers\ArrayHelper;
 use yii\validators\RangeValidator;
 use yii\validators\RequiredValidator;
 use yii\validators\StringValidator;
@@ -29,19 +30,14 @@ use yii\validators\StringValidator;
  * @property string $created_at
  * @property string $expires_at
  *
+ *
+ * Available AR relations:
+ * -----------------------
+ *
+ * @property SocialUser $identity
  */
 class PromoCode extends ActiveRecord
 {
-    /**
-     * @var string
-     */
-    const STATUS_NEW = 'New';
-
-    /**
-     * @var string
-     */
-    const STATUS_USED = 'Used';
-
     /**
      * @inheritdoc
      */
@@ -65,7 +61,7 @@ class PromoCode extends ActiveRecord
             [['expires_at'], StringValidator::class, 'max' => 64],
 
             // Range validation
-            ['status', RangeValidator::class, 'range' => [self::STATUS_NEW, self::STATUS_USED]],
+            ['status', RangeValidator::class, 'range' => array_keys(PromoCodeStatus::listData())],
 
         ];
     }
@@ -76,12 +72,12 @@ class PromoCode extends ActiveRecord
     public function attributeLabels(): array
     {
         return [
-            'id' => Yii::t('kodi/common', 'ID'),
-            'code' => Yii::t('kodi/common', 'Promo Code'),
-            'identity_id' => Yii::t('kodi/common', 'Identity Id'),
-            'description' => Yii::t('kodi/common', 'Description'),
-            'created_at' => Yii::t('kodi/common', 'Created At'),
-            'expires_at' => Yii::t('kodi/common', 'Expires At'),
+            'id' => Yii::t('common', 'ID'),
+            'code' => Yii::t('common', 'Promo Code'),
+            'identity_id' => Yii::t('common', 'Identity Id'),
+            'description' => Yii::t('common', 'Description'),
+            'created_at' => Yii::t('common', 'Created At'),
+            'expires_at' => Yii::t('common', 'Expires At'),
         ];
     }
 
@@ -111,6 +107,16 @@ class PromoCode extends ActiveRecord
         }
 
         return parent::beforeSave($insert);
+    }
+
+    /**
+     * Returns social user profile.
+     *
+     * @return ActiveQuery
+     */
+    public function getIdentity()
+    {
+        return $this->hasOne(SocialUser::class, ['uuid' => 'identity_id']);
     }
 
     /**

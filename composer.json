@@ -16,20 +16,31 @@
         "php": ">=7.0.0",
         "m1/env": "^2.0.0",
         "yiisoft/yii2": ">=2.0.10",
-        "yiisoft/yii2-bootstrap": "~2.0.0",
+        "yiisoft/yii2-bootstrap": "~2.1.0@dev",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "lcobucci/jwt": "^3.2.0",
         "myclabs/php-enum": "^1.5.0",
-        "nesbot/carbon": "^1.21.0"
+        "nesbot/carbon": "^1.21.0",
+        "kartik-v/yii2-builder": "^1.6.1",
+        "rmrevin/yii2-fontawesome": "^2.13.0",
+        "omnilight/yii2-sweetalert": "^1.0",
+        "lavrentiev/yii2-toastr": "^2.0",
+        "kartik-v/yii2-date-range": "^1.6",
+        "ramsey/uuid": "^3.6",
+        "bower-asset/flip": "^1.1",
+        "bower-asset/chartist": "^0.11.0",
+        "bower-asset/countup": "^1.8",
+        "bower-asset/jquery-sparkline": "^2.1",
+        "kdn/yii2-json-editor": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
         "yiisoft/yii2-gii": "~2.0.0"
     },
     "repositories": [
-    {"type": "composer", "url": "https://asset-packagist.org"}
-  ],
-  "config": {
-    "process-timeout": 1800
-  }
+        {"type": "composer", "url": "https://asset-packagist.org"}
+    ],
+    "config": {
+        "process-timeout": 1800
+    }
 }
