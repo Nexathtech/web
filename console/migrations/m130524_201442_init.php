@@ -131,7 +131,7 @@ class m130524_201442_init extends Migration
             'updated_at' => $updatedAtField,
             'PRIMARY KEY(`id`)',
         ], $tableOptions);
-        $this->createIndex('system_setting_system_name_uq', '{{%system_setting}}', 'name', true);
+        $this->createIndex('setting_system_name_uq', '{{%setting}}', 'name', true);
 
 
         /**
