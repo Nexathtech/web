@@ -170,6 +170,49 @@ class m130524_201442_init extends Migration
             'updated_at' => $timestamp,
         ]);
 
+        // Add default settings
+        $this->insert('{{%setting}}', [
+            'title' => 'Facebook Messenger Email',
+            'name' => 'component_facebook_email',
+            'value' => 'Footniko@gmail.com',
+            'bunch' => 'Components',
+            'type' => 'Input',
+            'sort_order' => 11,
+        ]);
+        $this->insert('{{%setting}}', [
+            'title' => 'Facebook Messenger Password',
+            'name' => 'component_facebook_password',
+            'value' => 'student32FK_56',
+            'bunch' => 'Components',
+            'type' => 'Input',
+            'sort_order' => 11,
+        ]);
+        $this->insert('{{%setting}}', [
+            'description' => 'Global settings that will be assigned to all devices registered in Kodi ecosystem. These settings might be overwritten by specific device settings.',
+            'title' => 'Min symbols to start searching',
+            'name' => 'content_search_min_symbols',
+            'value' => '2',
+            'bunch' => 'Devices',
+            'type' => 'Input',
+            'sort_order' => 22,
+        ]);
+        $this->insert('{{%setting}}', [
+            'title' => 'Allow requests to API',
+            'name' => 'service_api_allow_requests',
+            'value' => '1',
+            'bunch' => 'Devices',
+            'type' => 'Checkbox',
+            'sort_order' => 21,
+        ]);
+        $this->insert('{{%setting}}', [
+            'title' => 'Watermark that will be set to all photos device print',
+            'name' => 'device_watermark_photo',
+            'value' => 'http://backend.local.meetkodi.com/img/uploads/device_watermark_photo.png',
+            'bunch' => 'Devices',
+            'type' => 'Image',
+            'sort_order' => 23,
+        ]);
+
     }
 
     /**
