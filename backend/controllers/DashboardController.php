@@ -136,7 +136,7 @@ final class DashboardController extends BaseController
                 $feedbackData['amount'] ++;
             }
         }
-        $avg = $feedbackData['rating'] / $feedbackData['amount'];
+        $avg = ($feedbackData['rating'] <= 0 || $feedbackData['amount'] <= 0) ? 0 : $feedbackData['rating'] / $feedbackData['amount'];
         $feedbackData['avg'] = ($avg > 0) ? number_format($avg, 1) : 0;
 
         return $feedbackData;
