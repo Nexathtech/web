@@ -92,7 +92,7 @@ $this->registerJs("
                             <div class="user_font"><?= Yii::t('backend', 'Sales'); ?></div>
                             <div id="widget_countup2"><?= $salesData['total']; ?></div>
                             <div class="previous_font">
-                                <strong><?= $salesData['weeklyPercentage'] ?></strong>
+                                <strong><?= $salesData['weeklyPercentage'] ?>%</strong>
                                 <?= Yii::t('backend', 'Sales per week') ?>
                             </div>
                         </div>

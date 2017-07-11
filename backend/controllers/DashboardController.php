@@ -109,12 +109,12 @@ final class DashboardController extends BaseController
             'prints' => [
                 'total' => $totalPrints,
                 'latest' => $sparkPrints,
-                'weeklyPercentage' => intval($last7DaysPrintsAmount / $prev7DaysPrintsAmount * 100),
+                'weeklyPercentage' => ($last7DaysPrintsAmount == 0 || $prev7DaysPrintsAmount == 0) ? 0 : intval($last7DaysPrintsAmount / $prev7DaysPrintsAmount * 100),
             ],
             'sales' => [
                 'total' => count($prints),
                 'latest' => $sparkSales,
-                'weeklyPercentage' => intval($last7DaysSalesAmount / $prev7DaysSalesAmount * 100),
+                'weeklyPercentage' => ($last7DaysSalesAmount == 0 || $prev7DaysSalesAmount == 0) ? 0 : intval($last7DaysSalesAmount / $prev7DaysSalesAmount * 100),
             ],
         ];
     }
