@@ -1,6 +1,7 @@
 <?php
 
 use rmrevin\yii\fontawesome\FA;
+use yii\helpers\Url;
 
 /**
  * Partial view file for rendering top nav bar.
@@ -29,7 +30,7 @@ use rmrevin\yii\fontawesome\FA;
                     </button>
                     <div class="dropdown-menu admire_admin">
                         <a class="dropdown-item title" href="#"><?= Yii::t('app', 'Kodi Admin'); ?></a>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="<?= Url::to(['/user/update', 'id' => 1]); ?>">
                             <?= FA::i('cogs'); ?>
                             <?= Yii::t('app', 'Account Settings'); ?>
                         </a>

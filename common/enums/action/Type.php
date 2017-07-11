@@ -1,6 +1,6 @@
 <?php
 
-namespace kodi\common\enums\user;
+namespace kodi\common\enums\action;
 
 use kodi\common\enums\base\Enum;
 use kodi\common\enums\base\EnumInterface;
@@ -11,13 +11,11 @@ use Yii;
  * ============
  *
  * This is a ENUM class that represents supported actions' types.
- *
- *
- * @method static Type PRINT()
  */
 class Type extends Enum implements EnumInterface
 {
     const PRINT = 'Print';
+    const FEEDBACK = 'Feedback';
 
     /**
      * @inheritdoc
@@ -25,7 +23,8 @@ class Type extends Enum implements EnumInterface
     public static function listData(): array
     {
         return [
-            self::PRINT => Yii::t('kodi/common', 'Print'),
+            self::PRINT => Yii::t('common', 'Print'),
+            self::FEEDBACK => Yii::t('common', 'Feedback'),
         ];
     }
 }
