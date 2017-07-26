@@ -118,7 +118,7 @@ class m130524_201442_init extends Migration
         $this->createIndex('action_initiator_idx', '{{%action}}', 'initiator');
 
         // Table "setting"
-        $settingType = "ENUM('Input', 'Textarea', 'Checkbox', 'Image') NOT NULL";
+        $settingType = "ENUM('Input', 'Password', 'Textarea', 'Checkbox', 'Image') NOT NULL";
         $this->createTable('{{%setting}}', [
             'id' => $primaryKeyField,
             'title' => $this->string(255)->notNull(),
@@ -182,9 +182,9 @@ class m130524_201442_init extends Migration
         $this->insert('{{%setting}}', [
             'title' => 'Facebook Messenger Password',
             'name' => 'component_facebook_password',
-            'value' => 'student32FK_56',
+            'value' => '12345678',
             'bunch' => 'Components',
-            'type' => 'Input',
+            'type' => 'Password',
             'sort_order' => 11,
         ]);
         $this->insert('{{%setting}}', [

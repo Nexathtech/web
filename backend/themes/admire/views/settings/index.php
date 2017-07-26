@@ -75,6 +75,9 @@ $this->registerJs("
                             if ($field->type === Type::INPUT) {
                                 echo $form->field($field, "[{$field->name}]value")->label($label);
                             }
+                            if ($field->type === Type::PASSWORD) {
+                                echo $form->field($field, "[{$field->name}]value")->passwordInput()->label($label);
+                            }
                             if ($field->type === Type::TEXTAREA) {
                                 echo $form->field($field, "[{$field->name}]value")->textarea()->label($label);
                             }
