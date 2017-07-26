@@ -3,6 +3,8 @@ namespace kodi\api\controllers;
 
 use app\components\auth\JwtAuth;
 use Carbon\Carbon;
+use kodi\common\enums\PromoCodeStatus;
+use kodi\common\enums\SocialUserType;
 use kodi\common\models\PromoCode;
 use kodi\common\models\SocialUser;
 use Yii;
@@ -57,7 +59,7 @@ class PromoCodeController extends Controller
             $identity = $params['identity'];
             // Check if user has already been used promo codes and return error
             if (!empty($identity['id'])) {
-                if (!empty(PromoCode::findOne(['identity_id' => $identity['id'], 'status' => PromoCode::STATUS_USED]))) {
+                if (!empty(PromoCode::findOne(['identity_id' => $identity['id'], 'status' => PromoCodeStatus::USED]))) {
                     throw new ForbiddenHttpException('You have already been used promo codes.');
                 }
             }
@@ -70,7 +72,7 @@ class PromoCodeController extends Controller
                 $identityModel->photo = ArrayHelper::getValue($identity, 'photo');
                 $identityModel->gender = ArrayHelper::getValue($identity, 'gender');
                 $identityModel->profile_url = ArrayHelper::getValue($identity, 'profileUrl');
-                $identityModel->type = ArrayHelper::getValue($identity, 'type', SocialUser::TYPE_FACEBOOK);
+                $identityModel->type = ArrayHelper::getValue($identity, 'type', SocialUserType::FACEBOOK);
 
                 if (!$identityModel->save()) {
                     return $identityModel;
@@ -97,7 +99,7 @@ class PromoCodeController extends Controller
     {
         $promoCode = PromoCode::findOne([
             'code' => $id,
-            'status' => PromoCode::STATUS_NEW
+            'status' => PromoCodeStatus::NEW,
         ]);
 
         if (!empty($promoCode) && $promoCode->expires_at > Carbon::now()->toDateTimeString()) {

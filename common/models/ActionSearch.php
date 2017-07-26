@@ -45,6 +45,7 @@ class ActionSearch extends Action
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['created_at' => SORT_DESC]],
             //'pagination' => ['pageSize' => 20],
         ]);
 

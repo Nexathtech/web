@@ -2,7 +2,9 @@
 
 namespace kodi\api\controllers;
 
+use kodi\common\enums\setting\Bunch;
 use kodi\common\models\device\Device;
+use kodi\common\models\Setting;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Yii;
@@ -35,10 +37,23 @@ class AuthController extends Controller
         $expiration = ArrayHelper::getValue(Yii::$app->params, 'security.jwt.expiration');
         $expiresAt = time() + $expiration;
         $token = (new Builder())->setExpiration($expiresAt)->sign($signer, $secret)->getToken();
+        $settingsData = Setting::find()->all();
+        $settings = [];
+        $allowedBunches = [Bunch::COMPONENTS, Bunch::DEVICES];
+        foreach ($settingsData as $setting) {
+            // Set only allowed settings
+            if (in_array($setting->bunch, $allowedBunches)) {
+                $settings += [$setting->name => $setting->value];
+            }
+        }
+
         return [
-            'token' => (string)$token,
-            'expiresAt' => $expiresAt,
-            'deviceId' => $device->id,
+            'token' => [
+                'value' => (string)$token,
+                'expiresAt' => $expiresAt,
+                'deviceId' => $device->id,
+            ],
+            'settings' => $settings,
         ];
     }
 }

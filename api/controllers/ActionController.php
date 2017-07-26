@@ -2,6 +2,7 @@
 namespace kodi\api\controllers;
 
 use app\components\auth\JwtAuth;
+use kodi\common\enums\PromoCodeStatus;
 use kodi\common\models\Action;
 use kodi\common\models\PromoCode;
 use Yii;
@@ -55,8 +56,8 @@ class ActionController extends Controller
             if ($code = ArrayHelper::getValue($params, 'promo_code')) {
                 // Update promo code in case the action was related with promo code
                 $promoCode = PromoCode::findOne(['code' => $code]);
-                if (!empty($promoCode) && $promoCode->status !== PromoCode::STATUS_USED) {
-                    $promoCode->status = PromoCode::STATUS_USED;
+                if (!empty($promoCode) && $promoCode->status !== PromoCodeStatus::USED) {
+                    $promoCode->status = PromoCodeStatus::USED;
                     $promoCode->save(false);
                 }
             }
