@@ -17,7 +17,7 @@
         "m1/env": "^2.0.0",
         "yiisoft/yii2": ">=2.0.10",
         "yiisoft/yii2-bootstrap": "~2.1.0@dev",
-        "yiisoft/yii2-swiftmailer": "~2.0.0",
+        "yiisoft/yii2-swiftmailer": "~2.1.0",
         "lcobucci/jwt": "^3.2.0",
         "myclabs/php-enum": "^1.5.0",
         "nesbot/carbon": "^1.21.0",

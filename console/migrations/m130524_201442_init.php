@@ -59,14 +59,46 @@ class m130524_201442_init extends Migration
         $this->createIndex('user_profile_user_idx', '{{%user_profile}}', 'user_id');
         $this->addForeignKey('user_profile_user_fk', '{{%user_profile}}', 'user_id', '{{%user}}', 'id', 'CASCADE');
 
+        // Table "user_auth_token"
+        $this->createTable('{{%user_auth_token}}', [
+            'id' => $primaryKeyField,
+            'user_id' => $this->integer()->unsigned()->notNull(),
+            'device_id' => $this->integer()->unsigned(),
+            'token' => $this->string(128)->notNull(),
+            'token_refresh' => $this->string(128),
+            'type' => $this->string(64)->notNull(),
+            'created_at' => $createdAtField,
+            'expires_at' => $createdAtField,
+            'PRIMARY KEY(`id`)',
+        ], $tableOptions);
+        $this->createIndex('user_auth_token_user_idx', '{{%user_auth_token}}', 'user_id');
+        $this->addForeignKey('user_auth_token_user_fk', '{{%user_auth_token}}', 'user_id', '{{%user}}', 'id', 'CASCADE');
+
+        // Table "user_auth_provider"
+        $this->createTable('{{%user_auth_provider}}', [
+            'id' => $primaryKeyField,
+            'user_id' => $this->integer()->unsigned()->notNull(),
+            'type' => "ENUM('Google', 'Facebook') NOT NULL",
+            'external_id' => $this->string(64)->notNull(),
+            'external_email' => $this->string(64)->notNull(),
+            'external_image' => $this->string(255)->notNull(),
+            'created_at' => $createdAtField,
+            'updated_at' => $updatedAtField,
+            'PRIMARY KEY(`id`)',
+        ], $tableOptions);
+        $this->createIndex('user_auth_provider_user_idx', '{{%user_auth_provider}}', 'user_id');
+        $this->createIndex('user_auth_provider_type_external_id_idx', '{{%user_auth_provider}}', ['type', 'external_id']);
+        $this->addForeignKey('user_auth_provider_user_fk', '{{%user_auth_provider}}', 'user_id', '{{%user}}', 'id', 'CASCADE');
+
         // Table "device"
         $this->createTable('{{%device}}', [
             'id' => $primaryKeyField,
+            'uuid' => $this->string(64)->notNull(),
             'user_id' => $this->integer()->unsigned()->notNull(),
-            'name' => $this->string(64)->notNull(),
+            'type' => "ENUM('Mobile', 'Kiosk') NOT NULL",
+            'name' => $this->string(64),
             'photo' => $this->string(255),
             'status' => "ENUM('Inactive', 'Active') NOT NULL",
-            'access_token' => $this->string(64)->notNull(),
             'location_latitude' => $this->string(64),
             'location_longitude' => $this->string(64),
             'created_at' => $createdAtField,
@@ -160,24 +192,30 @@ class m130524_201442_init extends Migration
             'name' => 'Mykola Popko',
         ]);
 
-        // Add device
-        $this->insert('{{%device}}', [
-            'user_id' => $userId,
-            'name' => 'First device',
-            'status' => Status::ACTIVE,
-            'access_token' => $security->generateRandomString(64),
-            'created_at' => $timestamp,
-            'updated_at' => $timestamp,
-        ]);
-
         // Add default settings
+        $this->insert('{{%setting}}', [
+            'title' => 'Sender Email',
+            'name' => 'system_email_sender',
+            'value' => 'webmaster@meetkodi.com',
+            'bunch' => 'System',
+            'type' => 'Input',
+            'sort_order' => 11,
+        ]);
+        $this->insert('{{%setting}}', [
+            'title' => 'Require email confirmation',
+            'name' => 'system_email_confirmation_require',
+            'value' => '1',
+            'bunch' => 'System',
+            'type' => 'Checkbox',
+            'sort_order' => 12,
+        ]);
         $this->insert('{{%setting}}', [
             'title' => 'Facebook Messenger Email',
             'name' => 'component_facebook_email',
-            'value' => 'Footniko@gmail.com',
+            'value' => 'webmaster@meetkodi.com',
             'bunch' => 'Components',
             'type' => 'Input',
-            'sort_order' => 11,
+            'sort_order' => 21,
         ]);
         $this->insert('{{%setting}}', [
             'title' => 'Facebook Messenger Password',
@@ -185,7 +223,15 @@ class m130524_201442_init extends Migration
             'value' => '12345678',
             'bunch' => 'Components',
             'type' => 'Password',
-            'sort_order' => 11,
+            'sort_order' => 21,
+        ]);
+        $this->insert('{{%setting}}', [
+            'title' => 'Allow requests to API',
+            'name' => 'service_api_allow_requests',
+            'value' => '1',
+            'bunch' => 'Devices',
+            'type' => 'Checkbox',
+            'sort_order' => 31,
         ]);
         $this->insert('{{%setting}}', [
             'description' => 'Global settings that will be assigned to all devices registered in Kodi ecosystem. These settings might be overwritten by specific device settings.',
@@ -194,15 +240,7 @@ class m130524_201442_init extends Migration
             'value' => '2',
             'bunch' => 'Devices',
             'type' => 'Input',
-            'sort_order' => 22,
-        ]);
-        $this->insert('{{%setting}}', [
-            'title' => 'Allow requests to API',
-            'name' => 'service_api_allow_requests',
-            'value' => '1',
-            'bunch' => 'Devices',
-            'type' => 'Checkbox',
-            'sort_order' => 21,
+            'sort_order' => 32,
         ]);
         $this->insert('{{%setting}}', [
             'title' => 'Watermark that will be set to all photos device print',
@@ -210,7 +248,7 @@ class m130524_201442_init extends Migration
             'value' => 'http://backend.local.meetkodi.com/img/uploads/device_watermark_photo.png',
             'bunch' => 'Devices',
             'type' => 'Image',
-            'sort_order' => 23,
+            'sort_order' => 33,
         ]);
 
     }
@@ -223,6 +261,14 @@ class m130524_201442_init extends Migration
         // Table "device"
         $this->dropForeignKey('device_user_fk', '{{%device}}');
         $this->dropTable('{{%device}}');
+
+        // Table "user_auth_provider"
+        $this->dropForeignKey('user_auth_provider_user_fk', '{{%user_auth_provider}}');
+        $this->dropTable('{{%user_auth_provider}}');
+
+        // Table "user_auth_token"
+        $this->dropForeignKey('user_auth_token_user_fk', '{{%user_auth_token}}');
+        $this->dropTable('{{%user_auth_token}}');
 
         // Table "user_profile"
         $this->dropForeignKey('user_profile_user_fk', '{{%user_profile}}');

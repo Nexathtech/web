@@ -3,6 +3,7 @@
 namespace kodi\common\models;
 
 use kodi\common\behaviors\TimestampBehavior;
+use kodi\common\enums\setting\Bunch;
 use kodi\common\enums\setting\Type;
 use yii\db\ActiveRecord;
 use yii\validators\NumberValidator;
@@ -53,10 +54,11 @@ class Setting extends ActiveRecord
 
             // Strings validation
             [['title', 'description', 'value'], StringValidator::class],
-            [['name', 'bunch'], StringValidator::class, 'max' => 64],
+            [['name'], StringValidator::class, 'max' => 64],
 
             // Range validation
             [['type'], RangeValidator::class, 'range' => array_keys(Type::listData())],
+            [['bunch'], RangeValidator::class, 'range' => array_keys(Bunch::listData())],
 
             // Integer validation
             [['sort_order'], NumberValidator::class],
@@ -75,6 +77,49 @@ class Setting extends ActiveRecord
                 'createdAtAttribute' => false,
             ],
         ];
+    }
+
+    /**
+     * Retrieves data from setting by given key name
+     *
+     * @param $key
+     * @param null $default
+     * @return mixed|null
+     */
+    public function get($key, $default = null) {
+        /** @var $model self */
+        $model = self::find()->where(['name' => $key])->one();
+        if (!empty($model)) {
+            return $model->value;
+        }
+
+        return $default;
+    }
+
+    /**
+     * Sets setting value by given key
+     *
+     * @param $key
+     * @param $value
+     * @param null $title
+     * @param null $bunch
+     * @param null $type
+     * @return bool
+     */
+    public function set($key, $value, $title = null, $bunch = null, $type = null) {
+        $model = self::find()->where(['name' => $key])->one();
+        if (empty($model)) {
+            $model = new self;
+            $model->title = $title ?: $key;
+            $model->name = $key;
+            $model->bunch = $bunch ?: Bunch::SYSTEM;
+            $model->type = $type ?: Type::INPUT;
+        }
+        $model->value = $value;
+        if ($model->save()) {
+            return true;
+        }
+        return false;
     }
 
 }

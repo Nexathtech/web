@@ -12,9 +12,6 @@ use Yii;
  *
  * This is a ENUM class that represents supported common statuses.
  *
- *
- * @method static Status INACTIVE()
- * @method static Status ACTIVE()
  */
 class Status extends Enum implements EnumInterface
 {

@@ -29,6 +29,23 @@ $config = [
             'class' => \yii\caching\FileCache::class,
         ],
 
+        // System Settings (stores in DB)
+        'settings' => [
+            'class' => \kodi\common\models\Setting::class,
+        ],
+
+        // System Security
+        'security' => [
+            'class' => \kodi\common\components\Security::class,
+        ],
+
+        // Mailing
+        'mailer' => [
+            'class' => \yii\swiftmailer\Mailer::class,
+            'useFileTransport' => YII_ENV_LOCAL ? true : false,
+            'viewPath' => '@kodi/common/mail',
+        ],
+
         // Internationalization
         'i18n' => [
             'class' => \yii\i18n\I18N::class,

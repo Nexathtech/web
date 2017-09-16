@@ -31,10 +31,10 @@ class AlertType extends Enum implements EnumInterface
     public static function listData(): array
     {
         return [
-            self::INFO => Yii::t('fae/common', 'Info'),
-            self::SUCCESS => Yii::t('fae/common', 'Success'),
-            self::WARNING => Yii::t('fae/common', 'Warning'),
-            self::ERROR => Yii::t('fae/common', 'Error'),
+            self::INFO => Yii::t('common', 'Info'),
+            self::SUCCESS => Yii::t('common', 'Success'),
+            self::WARNING => Yii::t('common', 'Warning'),
+            self::ERROR => Yii::t('common', 'Error'),
         ];
     }
 }

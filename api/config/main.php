@@ -75,11 +75,6 @@ return [
                     'class' => \yii\rest\UrlRule::class,
                     'controller' => 'auth',
                     'pluralize' => false,
-                    'tokens' => ['{id}' => '<id:[\w-=]+>'],
-                    'patterns' => [
-                        'GET,HEAD {id}' => 'index',
-                        '' => 'options',
-                    ],
                 ],
                 [
                     'class' => \yii\rest\UrlRule::class,

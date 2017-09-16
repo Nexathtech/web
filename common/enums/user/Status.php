@@ -12,10 +12,6 @@ use Yii;
  *
  * This is a ENUM class that represents supported users' statuses.
  *
- *
- * @method static Status INACTIVE()
- * @method static Status ACTIVE()
- * @method static Status SUSPENDED()
  */
 class Status extends Enum implements EnumInterface
 {
