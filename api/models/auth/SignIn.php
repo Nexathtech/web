@@ -2,11 +2,13 @@
 
 namespace kodi\api\models\auth;
 
+use kodi\common\enums\DeviceType;
 use kodi\common\enums\user\Status;
 use kodi\common\models\user\User;
 use Yii;
 use yii\base\Model;
 use yii\validators\EmailValidator;
+use yii\validators\RangeValidator;
 use yii\validators\RequiredValidator;
 use yii\validators\StringValidator;
 use yii\web\IdentityInterface;
@@ -63,11 +65,12 @@ class SignIn extends Model
         return [
 
             // Required fields
-            [['email', 'password', 'uuid'], RequiredValidator::class],
+            [['email', 'password', 'uuid', 'type'], RequiredValidator::class],
 
             // Strings validation
             [['email'], EmailValidator::class],
-            [['password', 'uuid', 'type'], StringValidator::class, 'max' => 64],
+            [['password', 'uuid'], StringValidator::class, 'max' => 64],
+            ['type', RangeValidator::class, 'range' => array_keys(DeviceType::listData())],
 
             // Authenticate user
             [['password'], function () {
