@@ -42,10 +42,17 @@ class Security extends \yii\base\Security
         ]);
         if ($model->save()) {
             return base64_encode(Json::encode([
-                'id' => $model->id,
-                'token' => $token,
-                'token_refresh' => $tokenRefresh,
-                'expiresAt' => $model->expires_at,
+                'user' => [
+                    'id' => $model->user->id,
+                    'email' => $model->user->email,
+                    'name' => $model->user->profile->name,
+                ],
+                'session' => [
+                    'id' => $model->id,
+                    'token' => $token,
+                    'token_refresh' => $tokenRefresh,
+                    'expiresAt' => $model->expires_at,
+                ],
             ]));
         }
 
