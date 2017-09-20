@@ -51,7 +51,7 @@ class Security extends \yii\base\Security
                     'id' => $model->id,
                     'token' => $token,
                     'token_refresh' => $tokenRefresh,
-                    'expiresAt' => $model->expires_at,
+                    'expires_at' => $model->expires_at,
                 ],
             ]));
         }
@@ -120,10 +120,17 @@ class Security extends \yii\base\Security
 
             if ($authToken->save(false)) {
                 return base64_encode(Json::encode([
-                    'id' => $authToken->id,
-                    'token' => $token,
-                    'token_refresh' => $tokenRefresh,
-                    'expiresAt' => $authToken->expires_at,
+                    'user' => [
+                        'id' => $authToken->user->id,
+                        'email' => $authToken->user->email,
+                        'name' => $authToken->user->profile->name,
+                    ],
+                    'session' => [
+                        'id' => $authToken->id,
+                        'token' => $token,
+                        'token_refresh' => $tokenRefresh,
+                        'expires_at' => $authToken->expires_at,
+                    ],
                 ]));
             }
         }
