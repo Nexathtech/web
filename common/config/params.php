@@ -20,7 +20,7 @@ return [
         // Custom tokens
         'token' => [
             'access' => [
-                'expiration' => 60 * 60 * 12 // 12 hours. Token expiration period. Note, it was increased from 1 hour because on the client side there may be different time
+                'expiration' => 60 * 60 * 1 // 1 hour. Token expiration period
             ],
             'refresh' => [
                 'expiration' => 60 * 60 * 24 * 10 // 10 days. It applies only to refresh tokens

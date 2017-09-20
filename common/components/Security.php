@@ -7,7 +7,6 @@ use kodi\common\enums\user\TokenType;
 use kodi\common\models\user\AuthToken;
 use Yii;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -24,11 +23,11 @@ class Security extends \yii\base\Security
      * @param int $userId
      * @param string $type
      * @param null $deviceId
-     * @param null $expiresAt
+     * @param int $expiresIn 1 day by default
      * @param bool $genRefreshToken
      * @return null|array
      */
-    public function generateToken($userId, $type = TokenType::EMAIL_CONFIRMATION, $deviceId = null, $expiresAt = null, $genRefreshToken = false)
+    public function generateToken($userId, $type = TokenType::EMAIL_CONFIRMATION, $deviceId = null, $expiresIn = 86400, $genRefreshToken = false)
     {
         $token = $this->generateRandomString();
         $tokenRefresh = $this->generateRandomString();
@@ -38,7 +37,7 @@ class Security extends \yii\base\Security
             'type' => $type,
             'token' => $this->maskToken($token), // store encrypted tokens in DB
             'token_refresh' => $genRefreshToken ? $this->maskToken($tokenRefresh) : null,
-            'expires_at' => $expiresAt ?: Carbon::now()->addDays(1)->toDateTimeString(),
+            'expires_at' => Carbon::now()->addSeconds($expiresIn)->toDateTimeString(),
         ]);
         if ($model->save()) {
             return [
@@ -51,7 +50,7 @@ class Security extends \yii\base\Security
                     'id' => $model->id,
                     'token' => $token,
                     'token_refresh' => $tokenRefresh,
-                    'expires_at' => $model->expires_at,
+                    'expires_in' => $expiresIn,
                 ],
             ];
         }
@@ -89,11 +88,11 @@ class Security extends \yii\base\Security
      * Refreshes current token by token refresh
      *
      * @param $tokenData
-     * @param null $expiresAt
-     * @return null|array New token data
+     * @param int $expiresIn 1 day by default
+     * @return array|null New token data
      * @throws NotFoundHttpException
      */
-    public function refreshToken($tokenData, $expiresAt = null)
+    public function refreshToken($tokenData, $expiresIn = 86400)
     {
         if (empty($tokenData) || empty($tokenData['id']) || empty($tokenData['token'])) {
             throw new NotFoundHttpException('Invalid refresh token.');
@@ -114,7 +113,7 @@ class Security extends \yii\base\Security
             $authToken->token = $this->maskToken($token);
             $authToken->token_refresh = $this->maskToken($tokenRefresh);
             $authToken->created_at = Carbon::now()->toDateTimeString();
-            $authToken->expires_at = $expiresAt ?: Carbon::now()->addDays(1)->toDateTimeString();
+            $authToken->expires_at = Carbon::now()->addSeconds($expiresIn)->toDateTimeString();
 
             if ($authToken->save(false)) {
                 return [
@@ -127,7 +126,7 @@ class Security extends \yii\base\Security
                         'id' => $authToken->id,
                         'token' => $token,
                         'token_refresh' => $tokenRefresh,
-                        'expires_at' => $authToken->expires_at,
+                        'expires_in' => $expiresIn,
                     ],
                 ];
             }

@@ -15,6 +15,7 @@ use kodi\common\models\user\User;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\rest\Controller;
 use yii\web\BadRequestHttpException;
@@ -91,10 +92,9 @@ class AuthController extends Controller
             }
 
             // Authenticate the device by issuing an access token
-            $tokenExpiration = ArrayHelper::getValue(Yii::$app->params, 'security.token.access.expiration');
-            $expiresAt = Carbon::now()->addSeconds($tokenExpiration)->toDateTimeString();
+            $expiresIn = ArrayHelper::getValue(Yii::$app->params, 'security.token.access.expiration');
 
-            return Yii::$app->security->generateToken($device->user_id, TokenType::ACCESS, $device->id, $expiresAt, true);
+            return Yii::$app->security->generateToken($device->user_id, TokenType::ACCESS, $device->id, $expiresIn, true);
 
         } else {
             $response = Yii::$app->response;
@@ -137,6 +137,7 @@ class AuthController extends Controller
                     if ($confirmationRequired) {
                         // Send welcome email with confirmation
                         $token = Yii::$app->security->generateToken($user->id, TokenType::EMAIL_CONFIRMATION);
+                        $token = base64_encode(Json::encode($token));
                         $confirmationUrl = str_replace('api.', '', Url::to(["/auth/activate/$token"], true));
 
                         Yii::$app->mailer->compose('welcome', [
