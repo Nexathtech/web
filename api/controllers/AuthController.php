@@ -182,7 +182,8 @@ class AuthController extends Controller
             throw new BadRequestHttpException('No token provided.');
         }
 
-        return Yii::$app->security->revokeToken($token);
+        $tokenData = json_decode(base64_decode($token), true);
+        return Yii::$app->security->revokeToken($tokenData);
     }
 
     /**
@@ -190,7 +191,7 @@ class AuthController extends Controller
      * Basically uses by a third part to refresh access token that's about to expire.
      * In order to keep the third part authenticated
      *
-     * @return null|string
+     * @return null|array
      * @throws BadRequestHttpException
      */
     public function actionTokenRefresh() {
@@ -202,6 +203,7 @@ class AuthController extends Controller
         $tokenExpiration = ArrayHelper::getValue(Yii::$app->params, 'security.token.access.expiration');
         $expiresAt = Carbon::now()->addSeconds($tokenExpiration)->toDateTimeString();
 
-        return Yii::$app->security->refreshToken($token, $expiresAt);
+        $tokenData = json_decode(base64_decode($token), true);
+        return Yii::$app->security->refreshToken($tokenData, $expiresAt);
     }
 }

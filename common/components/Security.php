@@ -62,13 +62,12 @@ class Security extends \yii\base\Security
     /**
      * Finds record by given token and expiration date
      *
-     * @param $token
+     * @param $tokenData
      * @return array|AuthToken|null
      * @throws NotFoundHttpException
      */
-    public function findToken($token)
+    public function findToken($tokenData)
     {
-        $tokenData = json_decode(base64_decode($token), true);
         if (empty($tokenData) || empty($tokenData['id']) || empty($tokenData['token'])) {
             throw new NotFoundHttpException('The token not found.');
         }
@@ -89,14 +88,13 @@ class Security extends \yii\base\Security
     /**
      * Refreshes current token by token refresh
      *
-     * @param $tokenRefresh
+     * @param $tokenData
      * @param null $expiresAt
      * @return null|array New token data
      * @throws NotFoundHttpException
      */
-    public function refreshToken($tokenRefresh, $expiresAt = null)
+    public function refreshToken($tokenData, $expiresAt = null)
     {
-        $tokenData = json_decode(base64_decode($tokenRefresh), true);
         if (empty($tokenData) || empty($tokenData['id']) || empty($tokenData['token'])) {
             throw new NotFoundHttpException('Invalid refresh token.');
         }
@@ -141,13 +139,12 @@ class Security extends \yii\base\Security
     /**
      * Removes current token
      *
-     * @param $token
+     * @param $tokenData
      * @return bool
      * @throws NotFoundHttpException
      */
-    public function revokeToken($token)
+    public function revokeToken($tokenData)
     {
-        $tokenData = json_decode(base64_decode($token), true);
         if (empty($tokenData) || empty($tokenData['id']) || empty($tokenData['token'])) {
             throw new NotFoundHttpException('Invalid token.');
         }
