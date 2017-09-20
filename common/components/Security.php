@@ -26,7 +26,7 @@ class Security extends \yii\base\Security
      * @param null $deviceId
      * @param null $expiresAt
      * @param bool $genRefreshToken
-     * @return null|string
+     * @return null|array
      */
     public function generateToken($userId, $type = TokenType::EMAIL_CONFIRMATION, $deviceId = null, $expiresAt = null, $genRefreshToken = false)
     {
@@ -41,7 +41,7 @@ class Security extends \yii\base\Security
             'expires_at' => $expiresAt ?: Carbon::now()->addDays(1)->toDateTimeString(),
         ]);
         if ($model->save()) {
-            return base64_encode(Json::encode([
+            return [
                 'user' => [
                     'id' => $model->user->id,
                     'email' => $model->user->email,
@@ -53,7 +53,7 @@ class Security extends \yii\base\Security
                     'token_refresh' => $tokenRefresh,
                     'expires_at' => $model->expires_at,
                 ],
-            ]));
+            ];
         }
 
         return null;
@@ -91,7 +91,7 @@ class Security extends \yii\base\Security
      *
      * @param $tokenRefresh
      * @param null $expiresAt
-     * @return null|string New token data
+     * @return null|array New token data
      * @throws NotFoundHttpException
      */
     public function refreshToken($tokenRefresh, $expiresAt = null)
@@ -119,7 +119,7 @@ class Security extends \yii\base\Security
             $authToken->expires_at = $expiresAt ?: Carbon::now()->addDays(1)->toDateTimeString();
 
             if ($authToken->save(false)) {
-                return base64_encode(Json::encode([
+                return [
                     'user' => [
                         'id' => $authToken->user->id,
                         'email' => $authToken->user->email,
@@ -131,7 +131,7 @@ class Security extends \yii\base\Security
                         'token_refresh' => $tokenRefresh,
                         'expires_at' => $authToken->expires_at,
                     ],
-                ]));
+                ];
             }
         }
 

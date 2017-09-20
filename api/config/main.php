@@ -49,7 +49,7 @@ return [
                 if ($response->data !== null) {
                     $response->data = [
                         'success' => $response->isSuccessful,
-                        'data' => $response->data,
+                        'data' => base64_encode(\yii\helpers\Json::encode($response->data)),
                     ];
                 }
             },
