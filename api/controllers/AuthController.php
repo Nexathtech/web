@@ -6,6 +6,7 @@ use Exception;
 use kodi\api\models\auth\SignIn;
 use kodi\api\models\auth\SignUp;
 use kodi\common\enums\Status;
+use kodi\common\enums\user\Role;
 use kodi\common\enums\user\TokenType;
 use kodi\common\models\device\Device;
 use kodi\common\models\user\AuthToken;
@@ -122,6 +123,7 @@ class AuthController extends Controller
                 User::getDb()->transaction(function () use ($model, $confirmationRequired) {
                     $user = new User([
                         'status' => $confirmationRequired ? Status::INACTIVE : Status::ACTIVE,
+                        'role' => Role::CUSTOMER,
                         'email' => $model->email,
                         'password' => $model->password,
                     ]);
