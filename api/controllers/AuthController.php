@@ -94,7 +94,7 @@ class AuthController extends Controller
             // Authenticate the device by issuing an access token
             $expiresIn = ArrayHelper::getValue(Yii::$app->params, 'security.token.access.expiration');
 
-            return Yii::$app->security->generateToken($device->user_id, TokenType::ACCESS, $device->id, $expiresIn, true);
+            return Yii::$app->security->generateToken($device->user_id, TokenType::ACCESS, $device->id, $expiresIn, true, true);
 
         } else {
             $response = Yii::$app->response;
@@ -204,6 +204,6 @@ class AuthController extends Controller
 
         $expiresIn = ArrayHelper::getValue(Yii::$app->params, 'security.token.access.expiration');
 
-        return Yii::$app->security->refreshToken($tokenData, $expiresIn);
+        return Yii::$app->security->refreshToken($tokenData, $expiresIn, true);
     }
 }

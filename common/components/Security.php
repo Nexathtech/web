@@ -25,9 +25,10 @@ class Security extends \yii\base\Security
      * @param null $deviceId
      * @param int $expiresIn 1 day by default
      * @param bool $genRefreshToken
-     * @return null|array
+     * @param bool $extendedInfo
+     * @return array|null
      */
-    public function generateToken($userId, $type = TokenType::EMAIL_CONFIRMATION, $deviceId = null, $expiresIn = 86400, $genRefreshToken = false)
+    public function generateToken($userId, $type = TokenType::EMAIL_CONFIRMATION, $deviceId = null, $expiresIn = 86400, $genRefreshToken = false, $extendedInfo = false)
     {
         $token = $this->generateRandomString();
         $tokenRefresh = $this->generateRandomString();
@@ -40,15 +41,24 @@ class Security extends \yii\base\Security
             'expires_at' => Carbon::now()->addSeconds($expiresIn)->toDateTimeString(),
         ]);
         if ($model->save()) {
-            return [
-                'user' => $model->user->profile,
-                'session' => [
+            if ($extendedInfo) {
+                return [
+                    'user' => $model->user->profile,
+                    'session' => [
+                        'id' => $model->id,
+                        'token' => $token,
+                        'token_refresh' => $tokenRefresh,
+                        'expires_in' => $expiresIn,
+                    ],
+                ];
+            } else {
+                return [
                     'id' => $model->id,
                     'token' => $token,
                     'token_refresh' => $tokenRefresh,
                     'expires_in' => $expiresIn,
-                ],
-            ];
+                ];
+            }
         }
 
         return null;
@@ -63,7 +73,7 @@ class Security extends \yii\base\Security
      */
     public function findToken($tokenData)
     {
-        if (empty($tokenData) || empty($tokenData['id']) || empty($tokenData['token'])) {
+        if (empty($tokenData['id']) || empty($tokenData['token'])) {
             throw new NotFoundHttpException('The token not found.');
         }
 
@@ -85,12 +95,13 @@ class Security extends \yii\base\Security
      *
      * @param $tokenData
      * @param int $expiresIn 1 day by default
+     * @param bool $extendedInfo
      * @return array|null New token data
      * @throws NotFoundHttpException
      */
-    public function refreshToken($tokenData, $expiresIn = 86400)
+    public function refreshToken($tokenData, $expiresIn = 86400, $extendedInfo = false)
     {
-        if (empty($tokenData) || empty($tokenData['id']) || empty($tokenData['token'])) {
+        if (empty($tokenData['id']) || empty($tokenData['token'])) {
             throw new NotFoundHttpException('Invalid refresh token.');
         }
 
@@ -112,15 +123,24 @@ class Security extends \yii\base\Security
             $authToken->expires_at = Carbon::now()->addSeconds($expiresIn)->toDateTimeString();
 
             if ($authToken->save(false)) {
-                return [
-                    'user' => $authToken->user->profile,
-                    'session' => [
+                if ($extendedInfo) {
+                    return [
+                        'user' => $authToken->user->profile,
+                        'session' => [
+                            'id' => $authToken->id,
+                            'token' => $token,
+                            'token_refresh' => $tokenRefresh,
+                            'expires_in' => $expiresIn,
+                        ],
+                    ];
+                } else {
+                    return [
                         'id' => $authToken->id,
                         'token' => $token,
                         'token_refresh' => $tokenRefresh,
                         'expires_in' => $expiresIn,
-                    ],
-                ];
+                    ];
+                }
             }
         }
 
