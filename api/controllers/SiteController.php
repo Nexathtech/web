@@ -14,6 +14,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        Yii::$app->mailer->compose()
+            ->setFrom('admin@meetkodi.com')
+            ->setTo('Footniko@gmail.com')
+            ->setSubject('This is a test message')
+            ->setTextBody('This is a plain text message content')
+            ->setHtmlBody('<b>HTML content</b>')
+            ->send();
+
         return Yii::t('app', 'It works!');
     }
 }
