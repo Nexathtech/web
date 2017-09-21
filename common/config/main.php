@@ -42,7 +42,7 @@ $config = [
         // Mailing
         'mailer' => [
             'class' => \yii\swiftmailer\Mailer::class,
-            //'useFileTransport' => YII_ENV_LOCAL ? true : false,
+            'useFileTransport' => false,
             'viewPath' => '@kodi/common/mail',
         ],
 
