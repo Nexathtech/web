@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $user \kodi\common\models\user\User */
 /* @var $token string */
 
-$resetLink = Yii::$app->urlManager->createAbsoluteUrl(["/auth/password-reset/$token"]);
+$resetLink = 'cc';
 
 ?>
 <div class="password-reset">
