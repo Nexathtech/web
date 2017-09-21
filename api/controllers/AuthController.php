@@ -113,6 +113,7 @@ class AuthController extends Controller
     public function actionSignUp() {
         $data = Yii::$app->getRequest()->getBodyParams();
         $confirmationRequired = Yii::$app->settings->get('system_email_confirmation_require');
+        $successMessage = $confirmationRequired ? Yii::t('api', 'New user account is successfully created. Please confirm your email address.') : Yii::t('api', 'Thank you for your registration. Now you can sign in using your credentials.');
         $model = new SignUp();
         $model->load($data, '');
         if ($model->validate()) {
@@ -153,7 +154,7 @@ class AuthController extends Controller
                 });
 
                 // Show success notification
-                return Yii::t('api', 'New user account is successfully created. Please confirm your email address.');
+                return $successMessage;
 
             } catch (\Exception $exception) {
                 $response = Yii::$app->response;
