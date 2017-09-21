@@ -12,6 +12,7 @@ use kodi\common\models\device\Device;
 use kodi\common\models\user\AuthToken;
 use kodi\common\models\user\Profile;
 use kodi\common\models\user\User;
+use kodi\frontend\models\forms\ResetPasswordRequestForm;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -45,6 +46,7 @@ class AuthController extends Controller
                 'sign-up' => ['post'],
                 'sign-out' => ['post'],
                 'token-refresh' => ['post'],
+                'password-reset' => ['post'],
             ],
         ];
 
@@ -205,5 +207,23 @@ class AuthController extends Controller
         $expiresIn = ArrayHelper::getValue(Yii::$app->params, 'security.token.access.expiration');
 
         return Yii::$app->security->refreshToken($tokenData, $expiresIn, true);
+    }
+
+    /**
+     * @return array|bool
+     * @throws BadRequestHttpException
+     */
+    public function actionPasswordReset() {
+        $email = ArrayHelper::getValue(Yii::$app->getRequest()->getBodyParams(), 'email');
+        if (empty($email)) {
+            throw new BadRequestHttpException('No email provided.');
+        }
+
+        $model = new ResetPasswordRequestForm(['email' => $email]);
+        if ($model->validate()) {
+            return $model->sendEmail();
+        } else {
+            return $model->errors;
+        }
     }
 }
