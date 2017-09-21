@@ -178,12 +178,12 @@ class AuthController extends Controller
      * @throws BadRequestHttpException
      */
     public function actionSignOut() {
-        $token = ArrayHelper::getValue(Yii::$app->getRequest()->getBodyParams(), 'token');
-        if (!$token) {
+        $tokenData = Yii::$app->getRequest()->getBodyParams();
+        if (empty($tokenData['id']) || empty($tokenData['token'])) {
             throw new BadRequestHttpException('No token provided.');
         }
 
-        return Yii::$app->security->revokeToken($token);
+        return Yii::$app->security->revokeToken($tokenData);
     }
 
     /**
@@ -195,14 +195,14 @@ class AuthController extends Controller
      * @throws BadRequestHttpException
      */
     public function actionTokenRefresh() {
-        $token = ArrayHelper::getValue(Yii::$app->getRequest()->getBodyParams(), 'token');
-        if (!$token) {
+        $tokenData = Yii::$app->getRequest()->getBodyParams();
+        if (empty($tokenData['id']) || empty($tokenData['token'])) {
             throw new BadRequestHttpException('No token provided.');
         }
 
         $tokenExpiration = ArrayHelper::getValue(Yii::$app->params, 'security.token.access.expiration');
         $expiresAt = Carbon::now()->addSeconds($tokenExpiration)->toDateTimeString();
 
-        return Yii::$app->security->refreshToken($token, $expiresAt);
+        return Yii::$app->security->refreshToken($tokenData, $expiresAt);
     }
 }
