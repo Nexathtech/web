@@ -4,9 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $user \kodi\common\models\user\User */
-/* @var $token string */
-
-$resetLink = 'cc';
+/* @var $resetLink string Absolute url */
 
 ?>
 <div class="password-reset">

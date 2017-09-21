@@ -6,6 +6,7 @@ use kodi\common\enums\user\TokenType;
 use kodi\common\models\user\User;
 use Yii;
 use yii\base\Model;
+use yii\helpers\Json;
 use yii\helpers\Url;
 
 /**
@@ -51,11 +52,14 @@ class ResetPasswordRequestForm extends Model
         if (!$user) {
             return false;
         }
-        $token = Yii::$app->security->generateToken($user->id, TokenType::PASSWORD_RESET);
+
+        $tokenData = Yii::$app->security->generateToken($user->id, TokenType::PASSWORD_RESET);
+        $token = base64_encode(Json::encode($tokenData));
+        $resetTokenUrl = str_replace('api.', '', Url::to(["/auth/password-reset/$token"], true));
 
         return Yii::$app->mailer->compose('password-reset-token', [
             'user' => $user,
-            'token' => $token,
+            'resetLink' => $resetTokenUrl,
         ])
             ->setFrom([Yii::$app->settings->get('system_email_sender') => Yii::$app->name])
             ->setTo($this->email)
