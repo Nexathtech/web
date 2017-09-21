@@ -77,6 +77,17 @@ $config = [
                 ],
             ]
         ],
+
+        // Logging
+        'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'targets' => [
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning'],
+                ],
+            ],
+        ],
     ],
 
     // Custom params
@@ -90,14 +101,6 @@ if (YII_ENV_LOCAL) {
     $config['modules']['gii'] = [
         'class' => \yii\gii\Module::class,
         'allowedIPs' => ['*']
-    ];
-
-    // Local mode logging
-    $config['components']['log']['targets'][] = [
-        'class' => \yii\log\FileTarget::class,
-        'levels' => ['warning', 'error'],
-        'except' => ['yii\web\HttpException'],
-        'logVars' => ['_GET', '_POST']
     ];
 }
 
