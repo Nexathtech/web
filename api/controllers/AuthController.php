@@ -210,7 +210,7 @@ class AuthController extends Controller
     }
 
     /**
-     * @return array|bool
+     * @return string|\yii\console\Response|\yii\web\Response
      * @throws BadRequestHttpException
      */
     public function actionPasswordReset() {
@@ -223,7 +223,10 @@ class AuthController extends Controller
         if ($model->validate()) {
             return $model->sendEmail();
         } else {
-            return $model->errors;
+            $response = Yii::$app->response;
+            $response->statusCode = 400;
+            $response->data = $model->errors;
+            return $response;
         }
     }
 }
