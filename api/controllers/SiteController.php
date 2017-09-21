@@ -21,7 +21,7 @@ class SiteController extends Controller
             'Reply-To: webmaster@meetkodi.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
-        mail($to, $subject, $message);
+        mail($to, $subject, $message, $headers);
 
         return Yii::$app->mailer->compose()
             ->setFrom('admin@meetkodi.com')
