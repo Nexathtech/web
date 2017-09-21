@@ -80,7 +80,7 @@ $config = [
 
         // Logging
         'log' => [
-            'traceLevel' => 0,
+            'traceLevel' => 3,
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
