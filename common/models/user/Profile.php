@@ -115,11 +115,7 @@ class Profile extends ActiveRecord
      */
     public function getFirstName()
     {
-        if (empty($this->name)) {
-            return '';
-        }
-
-        return explode(' ', $this->name)[0];
+        return $this->name;
     }
 
 }
