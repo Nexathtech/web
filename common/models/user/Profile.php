@@ -22,7 +22,13 @@ use yii\validators\StringValidator;
  * @property integer $id
  * @property integer $user_id
  * @property string $name
+ * @property string $surname
  * @property string $photo
+ * @property string $country
+ * @property string $city
+ * @property string $state
+ * @property string $address
+ * @property string $postcode
  *
  * Available AR relations:
  * -----------------------
@@ -51,7 +57,7 @@ class Profile extends ActiveRecord
             [['user_id'], RequiredValidator::class],
 
             // Strings validation
-            [['name'], StringValidator::class, 'max' => 64],
+            [['name', 'surname', 'country', 'city', 'state', 'address', 'postcode'], StringValidator::class, 'max' => 64],
 
             // Image validation
             [['photo'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg'],
@@ -72,8 +78,14 @@ class Profile extends ActiveRecord
         return [
             'id' => Yii::t('common', 'ID'),
             'user_id' => Yii::t('common', 'User ID'),
-            'name' => Yii::t('common', 'Full Name'),
+            'name' => Yii::t('common', 'Name'),
+            'surname' => Yii::t('common', 'Surname'),
             'photo' => Yii::t('common', 'Photo'),
+            'country' => Yii::t('common', 'Country'),
+            'city' => Yii::t('common', 'City'),
+            'state' => Yii::t('common', 'State'),
+            'address' => Yii::t('common', 'Address'),
+            'postcode' => Yii::t('common', 'Postcode'),
         ];
     }
 

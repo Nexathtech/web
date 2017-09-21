@@ -41,11 +41,7 @@ class Security extends \yii\base\Security
         ]);
         if ($model->save()) {
             return [
-                'user' => [
-                    'id' => $model->user->id,
-                    'email' => $model->user->email,
-                    'name' => $model->user->profile->name,
-                ],
+                'user' => $model->user->profile,
                 'session' => [
                     'id' => $model->id,
                     'token' => $token,
@@ -117,11 +113,7 @@ class Security extends \yii\base\Security
 
             if ($authToken->save(false)) {
                 return [
-                    'user' => [
-                        'id' => $authToken->user->id,
-                        'email' => $authToken->user->email,
-                        'name' => $authToken->user->profile->name,
-                    ],
+                    'user' => $authToken->user->profile,
                     'session' => [
                         'id' => $authToken->id,
                         'token' => $token,

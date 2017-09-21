@@ -54,6 +54,12 @@ class m130524_201442_init extends Migration
             'user_id' => $this->integer()->unsigned()->notNull(),
             'name' => $this->string(64)->notNull(),
             'photo' => $this->string(255),
+            'surname' => $this->string(64),
+            'country' => $this->string(64),
+            'city' => $this->string(64),
+            'state' => $this->string(64),
+            'address' => $this->string(255),
+            'postcode' => $this->string(64),
             'PRIMARY KEY(`id`)',
         ], $tableOptions);
         $this->createIndex('user_profile_user_idx', '{{%user_profile}}', 'user_id');
