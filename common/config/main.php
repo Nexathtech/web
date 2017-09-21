@@ -1,5 +1,6 @@
 <?php
 $config = [
+    'name' => 'KODI',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
 
     // Path aliases
