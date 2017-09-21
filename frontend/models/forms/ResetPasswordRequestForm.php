@@ -51,10 +51,10 @@ class ResetPasswordRequestForm extends Model
         if (!$user) {
             return false;
         }
+        return true;
         
         $token = Yii::$app->security->generateToken($user->id, TokenType::PASSWORD_RESET);
         $resetTokenUrl = str_replace('api.', '', Url::to(["/auth/password-reset/$token"], true));
-        return true;
 
         return Yii::$app->mailer->compose('password-reset-token', [
             'user' => $user,
