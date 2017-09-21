@@ -2,7 +2,6 @@
 
 namespace kodi\api\controllers;
 
-use Carbon\Carbon;
 use Exception;
 use kodi\api\models\auth\SignIn;
 use kodi\api\models\auth\SignUp;
@@ -200,9 +199,8 @@ class AuthController extends Controller
             throw new BadRequestHttpException('No token provided.');
         }
 
-        $tokenExpiration = ArrayHelper::getValue(Yii::$app->params, 'security.token.access.expiration');
-        $expiresAt = Carbon::now()->addSeconds($tokenExpiration)->toDateTimeString();
+        $expiresIn = ArrayHelper::getValue(Yii::$app->params, 'security.token.access.expiration');
 
-        return Yii::$app->security->refreshToken($tokenData, $expiresAt);
+        return Yii::$app->security->refreshToken($tokenData, $expiresIn);
     }
 }
