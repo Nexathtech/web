@@ -14,6 +14,7 @@ use kodi\common\models\user\Profile;
 use kodi\common\models\user\User;
 use kodi\frontend\models\forms\ResetPasswordRequestForm;
 use Yii;
+use yii\base\ErrorException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
@@ -212,6 +213,7 @@ class AuthController extends Controller
     /**
      * @return string|\yii\console\Response|\yii\web\Response
      * @throws BadRequestHttpException
+     * @throws ErrorException
      */
     public function actionPasswordReset() {
         $email = ArrayHelper::getValue(Yii::$app->getRequest()->getBodyParams(), 'email');
@@ -221,7 +223,11 @@ class AuthController extends Controller
 
         $model = new ResetPasswordRequestForm(['email' => $email]);
         if ($model->validate()) {
-            return $model->sendEmail();
+            if ($model->sendEmail()) {
+                return Yii::t('api', 'We sent instructions to your email address.');
+            }
+
+            throw new ErrorException('An error occurred while sending email.');
         } else {
             $response = Yii::$app->response;
             $response->statusCode = 400;
