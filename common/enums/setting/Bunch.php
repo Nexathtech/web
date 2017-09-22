@@ -17,6 +17,7 @@ class Bunch extends Enum implements EnumInterface
     const COMPONENTS = 'Components';
     const DEVICES = 'Devices';
     const SYSTEM = 'System';
+    const OTHER = 'Other';
 
     /**
      * @inheritdoc
@@ -27,6 +28,7 @@ class Bunch extends Enum implements EnumInterface
             self::COMPONENTS => Yii::t('common', 'Components'),
             self::DEVICES => Yii::t('common', 'Devices'),
             self::SYSTEM => Yii::t('common', 'System'),
+            self::OTHER => Yii::t('common', 'Other'),
         ];
     }
 }

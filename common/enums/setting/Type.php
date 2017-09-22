@@ -17,6 +17,8 @@ class Type extends Enum implements EnumInterface
     const INPUT = 'Input';
     const TEXTAREA = 'Textarea';
     const CHECKBOX = 'Checkbox';
+    const SELECT = 'Select';
+    const TAG = 'Tag';
     const IMAGE = 'Image';
     const PASSWORD = 'Password';
 
@@ -30,6 +32,8 @@ class Type extends Enum implements EnumInterface
             self::PASSWORD => Yii::t('common', 'Input password'),
             self::TEXTAREA => Yii::t('common', 'Text area'),
             self::CHECKBOX => Yii::t('common', 'Checkbox'),
+            self::SELECT => Yii::t('common', 'Select'),
+            self::TAG => Yii::t('common', 'Tag'),
             self::IMAGE => Yii::t('common', 'Input file'),
         ];
     }

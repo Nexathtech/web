@@ -1,5 +1,6 @@
 <?php
 
+use dosamigos\selectize\SelectizeTextInput;
 use kartik\form\ActiveForm;
 use kodi\common\enums\setting\Type;
 use rmrevin\yii\fontawesome\FA;
@@ -74,6 +75,14 @@ $this->registerJs("
 
                             if ($field->type === Type::INPUT) {
                                 echo $form->field($field, "[{$field->name}]value")->label($label);
+                            }
+                            if ($field->type === Type::TAG) {
+                                echo $form->field($field, "[{$field->name}]value")->widget(SelectizeTextInput::class, [
+                                    'clientOptions' => [
+                                        'persist' => false,
+                                        'create' => true,
+                                    ]
+                                ])->label($label);
                             }
                             if ($field->type === Type::PASSWORD) {
                                 echo $form->field($field, "[{$field->name}]value")->passwordInput()->label($label);

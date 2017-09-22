@@ -156,7 +156,7 @@ class m130524_201442_init extends Migration
         $this->createIndex('action_initiator_idx', '{{%action}}', 'initiator');
 
         // Table "setting"
-        $settingType = "ENUM('Input', 'Password', 'Textarea', 'Checkbox', 'Image') NOT NULL";
+        $settingType = "ENUM('Input', 'Password', 'Textarea', 'Checkbox', 'Select', 'Tag', 'Image') NOT NULL";
         $this->createTable('{{%setting}}', [
             'id' => $primaryKeyField,
             'title' => $this->string(255)->notNull(),
@@ -251,10 +251,18 @@ class m130524_201442_init extends Migration
         $this->insert('{{%setting}}', [
             'title' => 'Watermark that will be set to all photos device print',
             'name' => 'device_watermark_photo',
-            'value' => 'http://backend.local.meetkodi.com/img/uploads/device_watermark_photo.png',
+            'value' => 'http://backend.meetkodi.com/img/uploads/device_watermark_photo.png',
             'bunch' => 'Devices',
             'type' => 'Image',
             'sort_order' => 33,
+        ]);
+        $this->insert('{{%setting}}', [
+            'title' => 'List of countries user can select when use the mobile app',
+            'name' => 'device_countries_support',
+            'value' => 'Italy,Poland,Russia,Turkey,Ukraine,United Kingdom',
+            'bunch' => 'Devices',
+            'type' => 'Tag',
+            'sort_order' => 34,
         ]);
 
     }

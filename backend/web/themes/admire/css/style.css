@@ -59,3 +59,7 @@ div.dataTables_paginate > ul.pagination > li {
   text-align: right;
   font-weight: bold;
 }
+
+form .row {
+  margin-bottom: 10px;
+}
