@@ -2,6 +2,7 @@
 
 namespace app\components\auth;
 
+use kodi\common\models\user\User;
 use Yii;
 use yii\filters\auth\AuthMethod;
 use yii\helpers\Json;
@@ -21,8 +22,10 @@ class KodiAuth extends AuthMethod
         $authHeader = $request->getHeaders()->get('Authorization');
         if ($authHeader !== null && preg_match('/^Bearer\s+(.*?)$/', $authHeader, $matches)) {
             $tokenData = Json::decode(base64_decode((string)$matches[1]));
-            if (Yii::$app->security->findToken($tokenData)) {
-                return true;
+            $identity = User::findIdentityByAccessToken($tokenData);
+            if (!empty($identity)) {
+                $user->switchIdentity($identity);
+                return $identity;
             }
         }
 

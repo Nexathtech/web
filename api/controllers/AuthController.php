@@ -107,6 +107,11 @@ class AuthController extends Controller
         }
     }
 
+    public function actionSignInExternal()
+    {
+        $data = Yii::$app->getRequest()->getBodyParams();
+    }
+
     /**
      * Signs user up, not third part
      * Note. Unlike sign-in method, this one is for users who use third party apps not for devices

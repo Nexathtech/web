@@ -2,18 +2,20 @@
 namespace kodi\api\controllers;
 
 use app\components\auth\KodiAuth;
+use kodi\common\models\user\Profile;
 use Yii;
+use yii\base\ErrorException;
 use yii\filters\VerbFilter;
 use yii\rest\Controller;
 use yii\web\NotFoundHttpException;
 
 /**
- * Class UserController
- * ====================
+ * Class AccountController
+ * =======================
  *
  * @package kodi\api\controllers
  */
-class UserController extends Controller
+class AccountController extends Controller
 {
     /**
      * @inheritdoc
@@ -32,6 +34,25 @@ class UserController extends Controller
         ];
 
         return $behaviors;
+    }
+
+    /**
+     * Saves profile info
+     *
+     * @return Profile
+     * @throws ErrorException
+     */
+    public function actionSaveProfile()
+    {
+        $userId = Yii::$app->user->identity->getId();
+        $data = Yii::$app->getRequest()->getBodyParams();
+        $profile = Profile::findOne(['user_id' => $userId]);
+        $profile->load($data, '');
+        if ($profile->save()) {
+            return $profile;
+        }
+
+        throw new ErrorException('Unable to save user information.');
     }
 
     /**

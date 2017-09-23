@@ -135,9 +135,11 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
-    public static function findIdentityByAccessToken($token, $type = null)
+    public static function findIdentityByAccessToken($tokenData, $type = null)
     {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+        $authToken = Yii::$app->security->findToken($tokenData);
+
+        return self::findOne(['id' => $authToken->user_id]);
     }
 
     /**
