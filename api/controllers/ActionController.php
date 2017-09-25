@@ -2,6 +2,7 @@
 namespace kodi\api\controllers;
 
 use app\components\auth\KodiAuth;
+use kodi\common\enums\action\Status;
 use kodi\common\enums\PromoCodeStatus;
 use kodi\common\models\Action;
 use kodi\common\models\PromoCode;
@@ -52,6 +53,7 @@ class ActionController extends Controller
         }
         $model->load($params, '');
         $model->user_id = Yii::$app->user->getId();
+        $model->status = ArrayHelper::getValue($params, 'status', Status::NEW);
 
         if ($model->save()) {
             if ($code = ArrayHelper::getValue($params, 'promo_code')) {
