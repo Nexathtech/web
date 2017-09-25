@@ -3,9 +3,9 @@
 namespace kodi\common\models;
 
 use kodi\common\behaviors\TimestampBehavior;
+use kodi\common\enums\action\Status;
 use kodi\common\enums\action\Type;
 use kodi\common\enums\DeviceType;
-use kodi\common\enums\Status;
 use kodi\common\models\user\User;
 use Yii;
 use yii\db\ActiveRecord;
