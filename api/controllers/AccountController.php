@@ -63,7 +63,9 @@ class AccountController extends Controller
      */
     public function actionGetCountries()
     {
-        return Yii::$app->settings->get('device_countries_support');
+        $countriesStr = Yii::$app->settings->get('device_countries_support');
+        $countries = explode(',', $countriesStr);
+        return $countries;
     }
 
 }
