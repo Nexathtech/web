@@ -15,6 +15,7 @@ use Yii;
 class Type extends Enum implements EnumInterface
 {
     const PRINT = 'Print';
+    const PRINT_SHIPMENT = 'PrintShipment';
     const FEEDBACK = 'Feedback';
 
     /**
@@ -24,6 +25,7 @@ class Type extends Enum implements EnumInterface
     {
         return [
             self::PRINT => Yii::t('common', 'Print'),
+            self::PRINT_SHIPMENT => Yii::t('common', 'Print with shipment'),
             self::FEEDBACK => Yii::t('common', 'Feedback'),
         ];
     }

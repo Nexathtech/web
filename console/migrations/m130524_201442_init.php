@@ -150,6 +150,7 @@ class m130524_201442_init extends Migration
             'data' => $this->text(),
             'promo_code' => $this->string(8),
             'created_at' => $createdAtField,
+            'status' => $this->string(64)->notNull(),
             'PRIMARY KEY(`id`)',
         ], $tableOptions);
         $this->createIndex('action_type_idx', '{{%action}}', 'type');

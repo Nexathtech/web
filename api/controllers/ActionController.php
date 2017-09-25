@@ -1,7 +1,7 @@
 <?php
 namespace kodi\api\controllers;
 
-use app\components\auth\JwtAuth;
+use app\components\auth\KodiAuth;
 use kodi\common\enums\PromoCodeStatus;
 use kodi\common\models\Action;
 use kodi\common\models\PromoCode;
@@ -26,10 +26,10 @@ class ActionController extends Controller
     {
         $behaviors = parent::behaviors();
         $behaviors['authenticator'] = [
-            'class' => JwtAuth::className(),
+            'class' => KodiAuth::class,
         ];
         $behaviors['verbs'] = [
-            'class' => VerbFilter::className(),
+            'class' => VerbFilter::class,
             'actions' => [
                 'register' => ['post'],
             ],

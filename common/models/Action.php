@@ -3,8 +3,11 @@
 namespace kodi\common\models;
 
 use kodi\common\behaviors\TimestampBehavior;
+use kodi\common\enums\action\Type;
+use kodi\common\enums\Status;
 use Yii;
 use yii\db\ActiveRecord;
+use yii\validators\RangeValidator;
 use yii\validators\RequiredValidator;
 use yii\validators\SafeValidator;
 use yii\validators\StringValidator;
@@ -25,6 +28,7 @@ use yii\validators\StringValidator;
  * @property string $type
  * @property string $data
  * @property string $promo_code
+ * @property string $status
  * @property string $created_at
  *
  */
@@ -51,6 +55,8 @@ class Action extends ActiveRecord
             // Strings validation
             [['data'], StringValidator::class],
             [['initiator', 'type', 'promo_code'], StringValidator::class, 'max' => 64],
+            ['type', RangeValidator::class, 'range' => array_keys(Type::listData())],
+            ['status', RangeValidator::class, 'range' => array_keys(Status::listData())],
 
             // Safe validation
             [['initiator_id'], SafeValidator::class],
@@ -70,6 +76,7 @@ class Action extends ActiveRecord
             'type' => Yii::t('common', 'Type'),
             'data' => Yii::t('common', 'Data'),
             'promo_code' => Yii::t('common', 'Promo Code'),
+            'status' => Yii::t('common', 'Status'),
             'created_at' => Yii::t('common', 'Created At'),
         ];
     }
