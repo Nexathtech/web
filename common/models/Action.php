@@ -4,9 +4,13 @@ namespace kodi\common\models;
 
 use kodi\common\behaviors\TimestampBehavior;
 use kodi\common\enums\action\Type;
+use kodi\common\enums\DeviceType;
 use kodi\common\enums\Status;
+use kodi\common\models\user\User;
 use Yii;
 use yii\db\ActiveRecord;
+use yii\validators\ExistValidator;
+use yii\validators\NumberValidator;
 use yii\validators\RangeValidator;
 use yii\validators\RequiredValidator;
 use yii\validators\SafeValidator;
@@ -23,14 +27,18 @@ use yii\validators\StringValidator;
  * ------------------------
  *
  * @property integer $id
- * @property string $initiator
- * @property string $initiator_id
+ * @property string $user_id
  * @property string $type
+ * @property string $agent
  * @property string $data
  * @property string $promo_code
  * @property string $status
  * @property string $created_at
  *
+ *
+ * Available AR relations:
+ * -----------------------
+ * @property User $user
  */
 class Action extends ActiveRecord
 {
@@ -50,16 +58,20 @@ class Action extends ActiveRecord
         return [
 
             // Required fields
-            [['initiator', 'type'], RequiredValidator::class],
+            [['agent', 'type', 'user_id'], RequiredValidator::class],
 
             // Strings validation
             [['data'], StringValidator::class],
-            [['initiator', 'type', 'promo_code'], StringValidator::class, 'max' => 64],
+            [['promo_code'], StringValidator::class, 'max' => 64],
             ['type', RangeValidator::class, 'range' => array_keys(Type::listData())],
+            ['agent', RangeValidator::class, 'range' => array_keys(DeviceType::listData())],
             ['status', RangeValidator::class, 'range' => array_keys(Status::listData())],
 
-            // Safe validation
-            [['initiator_id'], SafeValidator::class],
+            // Numbers validation
+            [['user_id'], NumberValidator::class, 'integerOnly' => true],
+
+            // Existence validation
+            [['user_id'], ExistValidator::class, 'targetClass' => User::class, 'targetAttribute' => 'id'],
 
         ];
     }
@@ -71,9 +83,9 @@ class Action extends ActiveRecord
     {
         return [
             'id' => Yii::t('common', 'ID'),
-            'initiator' => Yii::t('common', 'Initiator'),
-            'initiator_id' => Yii::t('common', 'Initiator Id'),
+            'user_id' => Yii::t('common', 'Initiator Id'),
             'type' => Yii::t('common', 'Type'),
+            'agent' => Yii::t('common', 'Device type'),
             'data' => Yii::t('common', 'Data'),
             'promo_code' => Yii::t('common', 'Promo Code'),
             'status' => Yii::t('common', 'Status'),

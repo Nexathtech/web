@@ -101,7 +101,7 @@ class m130524_201442_init extends Migration
             'id' => $primaryKeyField,
             'uuid' => $this->string(64)->notNull(),
             'user_id' => $this->integer()->unsigned()->notNull(),
-            'type' => "ENUM('Mobile', 'Kiosk') NOT NULL",
+            'type' => "ENUM('Mobile', 'Kiosk', 'Browser') NOT NULL",
             'name' => $this->string(64),
             'photo' => $this->string(255),
             'status' => "ENUM('Inactive', 'Active') NOT NULL",
@@ -144,9 +144,9 @@ class m130524_201442_init extends Migration
         // Table "action"
         $this->createTable('{{%action}}', [
             'id' => $primaryKeyField,
-            'initiator' => $this->string(64)->notNull(),
-            'initiator_id' => $this->string(64),
+            'user_id' => $this->integer()->unsigned()->notNull(),
             'type' => $this->string(64)->notNull(),
+            'agent' => $this->string(64)->notNull(),
             'data' => $this->text(),
             'promo_code' => $this->string(8),
             'created_at' => $createdAtField,
@@ -154,7 +154,8 @@ class m130524_201442_init extends Migration
             'PRIMARY KEY(`id`)',
         ], $tableOptions);
         $this->createIndex('action_type_idx', '{{%action}}', 'type');
-        $this->createIndex('action_initiator_idx', '{{%action}}', 'initiator');
+        $this->createIndex('action_user_idx', '{{%action}}', 'user_id');
+        $this->addForeignKey('action_user_fk', '{{%action}}', 'user_id', '{{%user}}', 'id', 'CASCADE');
 
         // Table "setting"
         $settingType = "ENUM('Input', 'Password', 'Textarea', 'Checkbox', 'Select', 'Tag', 'Image') NOT NULL";
@@ -277,6 +278,10 @@ class m130524_201442_init extends Migration
         $this->dropForeignKey('device_user_fk', '{{%device}}');
         $this->dropTable('{{%device}}');
 
+        // Table "action"
+        $this->dropForeignKey('action_user_fk', '{{%action}}');
+        $this->dropTable('{{%action}}');
+
         // Table "user_auth_provider"
         $this->dropForeignKey('user_auth_provider_user_fk', '{{%user_auth_provider}}');
         $this->dropTable('{{%user_auth_provider}}');
@@ -297,9 +302,6 @@ class m130524_201442_init extends Migration
 
         // Table "social_user"
         $this->dropTable('{{%social_user}}');
-
-        // Table "action"
-        $this->dropTable('{{%action}}');
 
         // Table "setting"
         $this->dropTable('{{%setting}}');

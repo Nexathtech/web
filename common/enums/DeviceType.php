@@ -16,6 +16,7 @@ class DeviceType extends Enum implements EnumInterface
 {
     const MOBILE = 'Mobile';
     const KIOSK = 'Kiosk';
+    const BROWSER = 'Browser';
 
     /**
      * @inheritdoc
