@@ -13,7 +13,6 @@ use yii\validators\ExistValidator;
 use yii\validators\NumberValidator;
 use yii\validators\RangeValidator;
 use yii\validators\RequiredValidator;
-use yii\validators\SafeValidator;
 use yii\validators\StringValidator;
 
 /**
@@ -27,7 +26,7 @@ use yii\validators\StringValidator;
  * ------------------------
  *
  * @property integer $id
- * @property string $user_id
+ * @property integer $user_id
  * @property string $type
  * @property string $agent
  * @property string $data
@@ -104,6 +103,14 @@ class Action extends ActiveRecord
                 'updatedAtAttribute' => false,
             ],
         ];
+    }
+
+    /**
+     * Returns related user.
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
 }

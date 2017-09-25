@@ -46,12 +46,12 @@ class ActionController extends Controller
     public function actionRegister()
     {
         $model = new Action();
-        $model->user_id = Yii::$app->user->getId();
         $params = Yii::$app->getRequest()->getBodyParams();
         if (!empty($params['data'])) {
             $params['data'] = Json::encode($params['data']);
         }
         $model->load($params, '');
+        $model->user_id = Yii::$app->user->getId();
 
         if ($model->save()) {
             if ($code = ArrayHelper::getValue($params, 'promo_code')) {
