@@ -8,6 +8,7 @@ use kodi\common\models\user\AuthToken;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
+use yii\web\UnauthorizedHttpException;
 
 /**
  * Class `Security`
@@ -69,12 +70,12 @@ class Security extends \yii\base\Security
      *
      * @param $tokenData
      * @return array|AuthToken|null
-     * @throws NotFoundHttpException
+     * @throws UnauthorizedHttpException
      */
     public function findToken($tokenData)
     {
         if (empty($tokenData['id']) || empty($tokenData['token'])) {
-            throw new NotFoundHttpException('The token not found.');
+            throw new UnauthorizedHttpException('The token not found.');
         }
 
         /** @var $authToken AuthToken */
@@ -87,7 +88,7 @@ class Security extends \yii\base\Security
             return $authToken;
         }
 
-        throw new NotFoundHttpException('The token not found.');
+        throw new UnauthorizedHttpException('The token not found.');
     }
 
     /**
