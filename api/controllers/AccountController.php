@@ -2,12 +2,18 @@
 namespace kodi\api\controllers;
 
 use app\components\auth\KodiAuth;
+use kodi\common\models\ImageFile;
 use kodi\common\models\user\Profile;
+use Ramsey\Uuid\Uuid;
 use Yii;
 use yii\base\ErrorException;
 use yii\filters\VerbFilter;
+use yii\helpers\FileHelper;
+use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\rest\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 
 /**
  * Class AccountController
@@ -23,9 +29,9 @@ class AccountController extends Controller
     public function behaviors()
     {
         $behaviors = parent::behaviors();
-        $behaviors['authenticator'] = [
+        /*$behaviors['authenticator'] = [
             'class' => KodiAuth::class
-        ];
+        ];*/
         $behaviors['verbs'] = [
             'class' => VerbFilter::class,
             'actions' => [
@@ -66,6 +72,32 @@ class AccountController extends Controller
         $countriesStr = Yii::$app->settings->get('device_countries_support');
         $countries = explode(',', $countriesStr);
         return $countries;
+    }
+
+    /**
+     * Uploads images to internal server
+     *
+     * @return array|null|\yii\console\Response|\yii\web\Response
+     * @throws ErrorException
+     */
+    public function actionUploadImages()
+    {
+        //return $_FILES;
+        $model = new ImageFile();
+        $model->images = UploadedFile::getInstances($model, 'images');
+
+        if ($model->validate()) {
+            if ($uploadedImages = $model->upload()) {
+                return $uploadedImages;
+            }
+        } else {
+            $response = Yii::$app->response;
+            $response->statusCode = 400;
+            $response->data = $model->errors;
+            return $response;
+        }
+
+        throw new ErrorException('Could not upload the file(s).');
     }
 
 }

@@ -38,6 +38,7 @@ return [
             'enableCsrfValidation' => false,
             'parsers' => [
                 'application/json' => \yii\web\JsonParser::class,
+                //'multipart/form-data' => \yii\web\MultipartFormDataParser::class,
             ]
         ],
 
