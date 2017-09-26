@@ -30,7 +30,7 @@ class ImageFile extends Model
     {
         return [
             // Image validator. Max file size: 5MB
-            [['images'], FileValidator::class, 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'mimeTypes' => 'image/jpeg, image/png', 'maxFiles' => 0, 'maxSize' => 1024*1024*5],
+            [['images'], FileValidator::class, 'skipOnEmpty' => false, 'mimeTypes' => 'image/jpeg, image/png', 'maxFiles' => 0, 'maxSize' => 1024*1024*5],
         ];
     }
 
