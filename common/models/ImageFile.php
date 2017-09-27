@@ -2,7 +2,6 @@
 
 namespace kodi\common\models;
 
-use Ramsey\Uuid\Uuid;
 use Yii;
 use yii\base\Model;
 use yii\helpers\FileHelper;
@@ -45,9 +44,7 @@ class ImageFile extends Model
             $userId = Yii::$app->user->getId() || 'guest';
             $savedFiles = [];
             foreach ($this->images as $file) {
-                $extension = pathinfo($file->name, PATHINFO_EXTENSION);
-                $fileName = Uuid::uuid4();
-                $fileName = "$fileName.$extension";
+                $fileName = basename($file->name);
                 $dir = Yii::getAlias('@webroot') . "/uploads/$userId";
                 $filePath = "$dir/$fileName";
                 if (FileHelper::createDirectory($dir)) {
