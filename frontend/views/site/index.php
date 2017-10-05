@@ -12,7 +12,7 @@ $homeUrl = Yii::$app->homeUrl;
 ?>
 
 <div class="content">
-    <video id="video1" preload="auto" autoplay muted>
+    <video id="video1" preload="auto" autoplay muted playsinline webkit-playsinline>
         <source src="<?= $homeUrl; ?>styles/video/kodicomingsoon-h264.mp4" type="video/mp4">
         <div class="content-text"></div>
     </video>
