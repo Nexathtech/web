@@ -9,13 +9,10 @@ use yii\widgets\ActiveForm;
 $this->title = 'Kodi';
 $homeUrl = Yii::$app->homeUrl;
 
-/*$this->registerJs("
-    document.getElementById('video1').play();
-");*/
 ?>
 
 <div class="content">
-    <video id="video1" autoplay preload="auto">
+    <video id="video1" preload="auto" autoplay muted>
         <source src="<?= $homeUrl; ?>styles/video/kodicomingsoon-h264.mp4" type="video/mp4">
         <div class="content-text"></div>
     </video>
