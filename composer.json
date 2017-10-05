@@ -32,7 +32,8 @@
         "bower-asset/countup": "^1.8",
         "bower-asset/jquery-sparkline": "^2.1",
         "kdn/yii2-json-editor": "^1.0",
-        "2amigos/yii2-selectize-widget": "~1.0"
+        "2amigos/yii2-selectize-widget": "~1.0",
+        "sammaye/yii2-yiichimp": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -27,4 +27,10 @@ return [
             ],
         ]
     ],
+
+    'services' => [
+        'mailChimp' => [
+            'listId' => '6ec902994a',
+        ],
+    ],
 ];

@@ -1,0 +1,323 @@
+@font-face {
+    font-family: 'HKNova';
+    src: url('fonts/HKNova-Medium.eot'); /* IE9 Compat Modes */
+    src: url('fonts/HKNova-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('fonts/HKNova-Medium.woff2') format('woff2'), /* Super Modern Browsers */
+    url('fonts/HKNova-Medium.woff') format('woff'), /* Pretty Modern Browsers */
+    url('fonts/HKNova-Medium.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+html {
+    font-family: 'HKNova', 'sans-serif';
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * Vendor-prefixed and regular ::selection selectors cannot be combined:
+ * https://stackoverflow.com/a/16982510/7133471
+ *
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+*:focus {
+    outline: none;
+}
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+.logo {
+    display: block;
+    width: 143px;
+    height: 73px;
+    margin: 0 auto;
+    padding-top: 10px;
+    background: url('img/logo.png') no-repeat;
+    background-size: 100%;
+}
+
+.content {
+    position: relative;
+    text-align: center;
+}
+.content-text {
+    width: 990px;
+    height: 318px;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+    position: absolute;
+    background: url('img/content-text.png') no-repeat 0 0;
+}
+.content video {
+    position: relative;
+    width: 990px;
+    max-width: 100%;
+    z-index: 1;
+}
+
+.subscribe-container {
+    position: absolute;
+    left: 0;
+    bottom: 70px;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    color: #4c2768;
+    z-index: 5;
+}
+.subscribe-container .help-block {
+    display: none;
+}
+
+input.subscribe-email {
+    display: block;
+    width: 300px;
+    margin: 0 auto 10px;
+    border: none;
+    background: none;
+    font-family: 'HKNova', 'sans-serif';
+    font-size: 1em;
+    text-align: center;
+    color: #4c2768;
+    text-decoration: underline;
+}
+.has-error input.subscribe-email {
+    color: #ff0000;
+}
+
+.subscribe-button {
+    display: inline-block;
+    padding: 10px 40px;
+    background: #cd3f48;
+    border: none;
+    font-family: 'HKNova', 'sans-serif';
+    font-size: 1em;
+    color: #ece0d6;
+    cursor: pointer;
+}
+.subscribe-button:hover {
+    background: #cd5d58;
+}
+.subscribe-button:active {
+    box-shadow: inset 0 0 8px rgba(0,0,0, .5);
+}
+
+.footer {
+    position: fixed;
+    width: 100%;
+    height: 54px;
+    bottom: 0;
+    left: 0;
+    background: url('img/footer-waves.jpg') repeat-x left bottom;
+    background-size: 55px 54px;
+    z-index: 10;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: #4c2768;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #4c2768;
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #4c2768;
+    opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #4c2768;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #4c2768;
+}
+
+@media screen and (max-width: 1600px) {
+    .content video {
+        width: 800px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .content video {
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .logo {
+        width: 95px;
+        height: 48px;
+        padding-top: 5px;
+    }
+
+    .footer {
+        background-size: 37px 36px;
+    }
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   http://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster:
+                                   http://www.sanbeiji.com/archives/953 */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre {
+        white-space: pre-wrap !important;
+    }
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /*
+     * Printing Tables:
+     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}

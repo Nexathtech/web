@@ -16,6 +16,7 @@ class Yii extends \yii\BaseYii
  * @property yii\db\Connection $db
  * @property kodi\common\models\Setting $settings
  * @property kodi\common\components\Security $security
+ * @property \sammaye\yiichimp\Chimp $mailchimp
  * @property yii\i18n\I18N $i18n
  * @property yii\log\Dispatcher $log
  * @property yii\web\Request $request

@@ -47,6 +47,11 @@ $config = [
             'viewPath' => '@kodi/common/mail',
         ],
 
+        'mailchimp' => [
+            'class' => \sammaye\yiichimp\Chimp::class,
+            'apikey' => getenv('KODI_SERVICE_MAILCHIMP_API_KEY'),
+        ],
+
         // Internationalization
         'i18n' => [
             'class' => \yii\i18n\I18N::class,

@@ -1,13 +1,13 @@
 <?php
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 use kodi\backend\themes\admire\assets\ThemeAsset;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
+
+/* @var $this \yii\web\View */
+/* @var $content string */
 
 ThemeAsset::register($this);
 $user = Yii::$app->user->identity;
