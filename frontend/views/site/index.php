@@ -10,8 +10,11 @@ $this->title = 'Kodi';
 $homeUrl = Yii::$app->homeUrl;
 
 $this->registerJs("
-    var video = document.getElementById('video1');
-    video.muted = false;
+    if(! /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        // if not mobile device, unmute the video
+        var video = document.getElementById('video1');
+        video.muted = false;
+    }
 ");
 ?>
 
