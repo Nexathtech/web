@@ -9,6 +9,10 @@ use yii\widgets\ActiveForm;
 $this->title = 'Kodi';
 $homeUrl = Yii::$app->homeUrl;
 
+$this->registerJs("
+    var video = document.getElementById('video1');
+    video.muted = false;
+");
 ?>
 
 <div class="content">
