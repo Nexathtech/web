@@ -3,6 +3,8 @@
 use kartik\daterange\DateRangePicker;
 use kodi\backend\themes\admire\widgets\grid\ActionColumn;
 use kodi\backend\themes\admire\widgets\grid\GridView;
+use kodi\common\enums\action\Status;
+use kodi\common\enums\action\Type;
 use kodi\common\enums\PromoCodeStatus;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\FormatConverter;
@@ -79,10 +81,18 @@ $dateRangePickerEvents = [
                                 'contentOptions' => ['class' => 'col-tiny'],
                             ],
                             'user_id',
-                            'type',
+                            [
+                                'attribute' => 'type',
+                                'format' => 'raw',
+                                'filter' => Type::listData(),
+                            ],
                             'agent',
                             'promo_code',
-                            'status',
+                            [
+                                'attribute' => 'status',
+                                'format' => 'raw',
+                                'filter' => Status::listData(),
+                            ],
                             [
                                 'attribute' => 'created_at',
                                 'filter' => DateRangePicker::widget([
