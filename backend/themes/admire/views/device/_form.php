@@ -35,7 +35,6 @@ if (!$model->isNewRecord) {
 <?= $form->errorSummary($model); ?>
 <div class="card-header bg-white"><?= Yii::t('backend', 'Record details') ?></div>
 <div class="card-block m-t-35">
-    <?= $form->field($model, 'name')->textInput() ?>
     <? if (!empty($model->photo)): ?>
         <div class="current-photo">
             <img src="<?= $model->photo; ?>">

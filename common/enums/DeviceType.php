@@ -26,6 +26,7 @@ class DeviceType extends Enum implements EnumInterface
         return [
             self::MOBILE => Yii::t('common', 'Mobile'),
             self::KIOSK => Yii::t('common', 'Kiosk'),
+            self::BROWSER => Yii::t('common', 'Browser'),
         ];
     }
 }
