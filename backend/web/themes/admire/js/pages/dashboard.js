@@ -55,8 +55,12 @@ var initWidgets = function(printsData, salesData) {
   /* Main chart (Chartist) */
   var prints = [];
   var sales = [];
+  var chartHeigh = 10; // height of the chart
   printsData.latest.digits.forEach(function(item) {
       prints.push({meta: 'Prints', value: item});
+      if (item > chartHeigh) {
+        chartHeigh = item;
+      }
   });
   salesData.latest.digits.forEach(function(item) {
     sales.push({meta: 'Sales', value: item});
@@ -78,7 +82,7 @@ var initWidgets = function(printsData, salesData) {
     height: 300,
     fullWidth: true,
     low: 0,
-    high: 7,
+    high: chartHeigh,
     showArea: true,
     axisY: {
       onlyInteger: true,
