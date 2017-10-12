@@ -37,9 +37,9 @@ $this->params['breadcrumbs'] = [
                         'model' => $model,
                         'attributes' => [
                             'id',
-                            'initiator',
-                            'initiator_id',
+                            'user_id',
                             'type',
+                            'agent',
                             [
                                 'attribute' => 'data',
                                 'format' => 'raw',
@@ -54,6 +54,7 @@ $this->params['breadcrumbs'] = [
                                 ),
                             ],
                             'promo_code',
+                            'status',
                             'created_at:datetime',
                         ]
                     ]);

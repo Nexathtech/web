@@ -197,7 +197,7 @@ class m130524_201442_init extends Migration
         $userId = $this->db->getLastInsertID();
         $this->insert('{{%user_profile}}', [
             'user_id' => $userId,
-            'name' => 'Mykola Popko',
+            'name' => 'Admin',
         ]);
 
         // Add default settings

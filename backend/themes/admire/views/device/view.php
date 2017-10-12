@@ -36,16 +36,18 @@ $this->params['breadcrumbs'] = [
                         'model' => $model,
                         'attributes' => [
                             'id',
-                            [
-                                'attribute' => 'photo',
-                                'format' => ['image', ['style' => 'max-width: 120px;']],
-                            ],
-                            'name',
+                            'uuid',
                             [
                                 'attribute' => 'user_id',
                                 'label' => Yii::t('backend', 'Owner'),
                                 'format' => 'raw',
                                 'value' => Html::a("{$model->user->profile->name} ({$model->user->email})", ['/user', 'id' => $model->user_id], ['target' => '_blank']),
+                            ],
+                            'type',
+                            'name',
+                            [
+                                'attribute' => 'photo',
+                                'format' => ['image', ['style' => 'max-width: 120px;']],
                             ],
                             [
                                 'label' => $model->getAttributeLabel('status'),
@@ -54,7 +56,6 @@ $this->params['breadcrumbs'] = [
                                     'class' => ($model->status == Status::ACTIVE) ? 'label label-success' : 'label label-default',
                                 ]),
                             ],
-                            'access_token',
                             'location_latitude',
                             'location_longitude',
                             'created_at:datetime',

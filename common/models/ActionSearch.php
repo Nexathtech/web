@@ -18,8 +18,8 @@ class ActionSearch extends Action
     public function rules(): array
     {
         return [
-            [['id'], 'integer'],
-            [['initiator_id', 'initiator', 'type', 'created_at', 'data', 'promo_code'], 'safe'],
+            [['id', 'user_id'], 'integer'],
+            [['type', 'agent', 'data', 'promo_code', 'status', 'created_at'], 'safe'],
         ];
     }
 
@@ -60,11 +60,12 @@ class ActionSearch extends Action
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'initiator' => $this->initiator,
+            'user_id' => $this->user_id,
             'type' => $this->type,
+            'agent' => $this->agent,
+            'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'initiator_id', $this->initiator_id]);
         $query->andFilterWhere(['like', 'promo_code', $this->promo_code]);
 
         // filter by expires date range

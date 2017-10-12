@@ -78,10 +78,11 @@ $dateRangePickerEvents = [
                                 'filterOptions' => ['class' => 'col-tiny'],
                                 'contentOptions' => ['class' => 'col-tiny'],
                             ],
-                            'initiator',
-                            'initiator_id',
+                            'user_id',
                             'type',
+                            'agent',
                             'promo_code',
+                            'status',
                             [
                                 'attribute' => 'created_at',
                                 'filter' => DateRangePicker::widget([

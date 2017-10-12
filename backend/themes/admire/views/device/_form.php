@@ -1,5 +1,6 @@
 <?php
 
+use kodi\common\enums\DeviceType;
 use kodi\common\enums\Status;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
@@ -46,8 +47,9 @@ if (!$model->isNewRecord) {
     <? endif; ?>
     <?= $form->field($model, 'photo')->fileInput() ?>
     <?= $form->field($model, 'user_id')->textInput() ?>
+    <?= $form->field($model, 'type')->dropDownList(DeviceType::listData()) ?>
+    <?= $form->field($model, 'name')->textInput() ?>
     <?= $form->field($model, 'status')->dropDownList(Status::listData()) ?>
-    <?= $form->field($model, 'access_token')->textInput() ?>
     <?= $form->field($model, 'location_latitude')->textInput() ?>
     <?= $form->field($model, 'location_longitude')->textInput() ?>
 </div>

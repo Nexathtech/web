@@ -1,7 +1,9 @@
 <?php
 
+use kartik\daterange\DateRangePicker;
 use kodi\backend\themes\admire\widgets\grid\ActionColumn;
 use kodi\backend\themes\admire\widgets\grid\GridView;
+use kodi\common\enums\DeviceType;
 use kodi\common\enums\Status;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\FormatConverter;
@@ -81,10 +83,17 @@ $dateRangePickerEvents = [
                                 'filterOptions' => ['class' => 'col-tiny'],
                                 'contentOptions' => ['class' => 'col-tiny'],
                             ],
+                            'uuid',
+                            [
+                                'attribute' => 'type',
+                                'format' => 'raw',
+                                'filter' => DeviceType::listData(),
+                            ],
                             [
                                 'attribute' => 'photo',
                                 'format' => 'raw',
                                 'value' => function ($data) {
+                                    /* @var $data \kodi\common\models\device\Device */
                                     return Html::img($data->getPhoto());
                                 },
                                 'contentOptions' => ['class' => 'image-col']
@@ -97,7 +106,6 @@ $dateRangePickerEvents = [
                                     return Html::a(Html::encode($data->user->email), ['view', 'id' => $data->id]);
                                 }
                             ],
-                            'name',
                             [
                                 'attribute' => 'status',
                                 'format' => 'raw',
@@ -110,7 +118,7 @@ $dateRangePickerEvents = [
                             ],
                             [
                                 'attribute' => 'created_at',
-                                'filter' => \kartik\daterange\DateRangePicker::widget([
+                                'filter' => DateRangePicker::widget([
                                     'model' => $searchModel,
                                     'attribute' => 'created_at',
                                     'convertFormat' => true,

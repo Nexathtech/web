@@ -34,7 +34,7 @@ class Device extends DeviceModel
     {
         return [
             [['id', 'user_id'], 'integer'],
-            [['name', 'status', 'location_latitude', 'location_longitude', 'created_at', 'updated_at', 'user.email'], 'safe'],
+            [['uuid', 'type', 'name', 'status', 'location_latitude', 'location_longitude', 'created_at', 'updated_at', 'user.email'], 'safe'],
         ];
     }
 
@@ -83,6 +83,8 @@ class Device extends DeviceModel
         // grid filtering conditions
         $query->andFilterWhere([
             'device.id' => $this->id,
+            'device.uuid' => $this->uuid,
+            'device.type' => $this->type,
             'device.status' => $this->status,
         ]);
 
