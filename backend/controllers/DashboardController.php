@@ -41,8 +41,8 @@ final class DashboardController extends BaseController
     public function actionIndex()
     {
         $daysLimit = 30;
-        $prints = Action::find()->where(['or', ['type' => Type::PRINT], ['type' => Type::PRINT_SHIPMENT]])->all();
-        $lastDaysPrints = Action::find()->select('DATE(created_at) created_at, COUNT(id) id, data')->where(['or', ['type' => Type::PRINT], ['type' => Type::PRINT_SHIPMENT]])->orderBy('created_at DESC')->groupBy('DATE(created_at), id')->limit($daysLimit)->all();
+        $prints = Action::find()->where(['or', ['action_type' => Type::PRINT], ['action_type' => Type::PRINT_SHIPMENT]])->all();
+        $lastDaysPrints = Action::find()->select('DATE(created_at) created_at, COUNT(id) id, data')->where(['or', ['action_type' => Type::PRINT], ['action_type' => Type::PRINT_SHIPMENT]])->orderBy('created_at DESC')->groupBy('DATE(created_at), id')->limit($daysLimit)->all();
         $lastDaysPrints = array_reverse($lastDaysPrints);
         $printSalesData = $this->getPrintSalesData($prints, $lastDaysPrints, $daysLimit);
 

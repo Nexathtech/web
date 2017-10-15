@@ -18,8 +18,8 @@ class ActionSearch extends Action
     public function rules(): array
     {
         return [
-            [['id', 'user_id'], 'integer'],
-            [['type', 'agent', 'data', 'promo_code', 'status', 'created_at'], 'safe'],
+            [['id', 'user_id', 'device_id'], 'integer'],
+            [['action_type', 'device_type', 'data', 'promo_code', 'status', 'created_at'], 'safe'],
         ];
     }
 
@@ -61,8 +61,9 @@ class ActionSearch extends Action
         $query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,
-            'type' => $this->type,
-            'agent' => $this->agent,
+            'action_type' => $this->action_type,
+            'device_type' => $this->device_type,
+            'device_id' => $this->device_id,
             'status' => $this->status,
         ]);
 

@@ -43,6 +43,12 @@ class User extends ActiveRecord implements IdentityInterface
      * @var int $new_password uses to update user's current password
      */
     public $new_password;
+
+    /**
+     * @var Device that was the initiator of any action
+     */
+    public $device;
+
     /**
      * @inheritdoc
      */
@@ -136,12 +142,18 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * @inheritdoc
+     *
+     * @var $includeDevice bool whether to include device (the initiator of action) to identity or not
      */
-    public static function findIdentityByAccessToken($tokenData, $type = null)
+    public static function findIdentityByAccessToken($tokenData, $type = null, $includeDevice = false)
     {
         $authToken = Yii::$app->security->findToken($tokenData);
+        $user = self::findOne(['id' => $authToken->user_id]);
+        if ($includeDevice && $authToken->device_id) {
+            $user->device = Device::findOne(['id' => $authToken->device_id]);
+        }
 
-        return self::findOne(['id' => $authToken->user_id]);
+        return $user;
     }
 
     /**

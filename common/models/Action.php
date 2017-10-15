@@ -6,6 +6,7 @@ use kodi\common\behaviors\TimestampBehavior;
 use kodi\common\enums\action\Status;
 use kodi\common\enums\action\Type;
 use kodi\common\enums\DeviceType;
+use kodi\common\models\device\Device;
 use kodi\common\models\user\User;
 use Yii;
 use yii\db\ActiveRecord;
@@ -27,8 +28,9 @@ use yii\validators\StringValidator;
  *
  * @property integer $id
  * @property integer $user_id
- * @property string $type
- * @property string $agent
+ * @property integer $device_id
+ * @property string $action_type
+ * @property string $device_type
  * @property string $data
  * @property string $promo_code
  * @property string $status
@@ -38,6 +40,7 @@ use yii\validators\StringValidator;
  * Available AR relations:
  * -----------------------
  * @property User $user
+ * @property Device $device
  */
 class Action extends ActiveRecord
 {
@@ -57,17 +60,17 @@ class Action extends ActiveRecord
         return [
 
             // Required fields
-            [['agent', 'type', 'user_id'], RequiredValidator::class],
+            [['device_type', 'action_type', 'user_id'], RequiredValidator::class],
 
             // Strings validation
             [['data'], StringValidator::class],
             [['promo_code'], StringValidator::class, 'max' => 64],
-            ['type', RangeValidator::class, 'range' => array_keys(Type::listData())],
-            ['agent', RangeValidator::class, 'range' => array_keys(DeviceType::listData())],
+            ['action_type', RangeValidator::class, 'range' => array_keys(Type::listData())],
+            ['device_type', RangeValidator::class, 'range' => array_keys(DeviceType::listData())],
             ['status', RangeValidator::class, 'range' => array_keys(Status::listData())],
 
             // Numbers validation
-            [['user_id'], NumberValidator::class, 'integerOnly' => true],
+            [['user_id', 'device_id'], NumberValidator::class, 'integerOnly' => true],
 
             // Existence validation
             [['user_id'], ExistValidator::class, 'targetClass' => User::class, 'targetAttribute' => 'id'],
@@ -83,8 +86,9 @@ class Action extends ActiveRecord
         return [
             'id' => Yii::t('common', 'ID'),
             'user_id' => Yii::t('common', 'Initiator Id'),
-            'type' => Yii::t('common', 'Type'),
-            'agent' => Yii::t('common', 'Device type'),
+            'device_id' => Yii::t('common', 'Device Id'),
+            'action_type' => Yii::t('common', 'Action type'),
+            'device_type' => Yii::t('common', 'Device type'),
             'data' => Yii::t('common', 'Data'),
             'promo_code' => Yii::t('common', 'Promo Code'),
             'status' => Yii::t('common', 'Status'),
@@ -111,6 +115,14 @@ class Action extends ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    /**
+     * Returns related device (if set).
+     */
+    public function getDevice()
+    {
+        return $this->hasOne(Device::class, ['id' => 'device_id']);
     }
 
 }

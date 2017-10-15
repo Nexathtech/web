@@ -145,15 +145,16 @@ class m130524_201442_init extends Migration
         $this->createTable('{{%action}}', [
             'id' => $primaryKeyField,
             'user_id' => $this->integer()->unsigned()->notNull(),
-            'type' => $this->string(64)->notNull(),
-            'agent' => $this->string(64)->notNull(),
+            'device_id' => $this->integer()->unsigned(),
+            'device_type' => $this->string(64)->notNull(),
+            'action_type' => $this->string(64)->notNull(),
             'data' => $this->text(),
             'promo_code' => $this->string(8),
-            'created_at' => $createdAtField,
             'status' => $this->string(64)->notNull(),
+            'created_at' => $createdAtField,
             'PRIMARY KEY(`id`)',
         ], $tableOptions);
-        $this->createIndex('action_type_idx', '{{%action}}', 'type');
+        $this->createIndex('action_type_idx', '{{%action}}', 'action_type');
         $this->createIndex('action_user_idx', '{{%action}}', 'user_id');
         $this->addForeignKey('action_user_fk', '{{%action}}', 'user_id', '{{%user}}', 'id', 'CASCADE');
 

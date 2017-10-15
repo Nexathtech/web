@@ -38,8 +38,9 @@ $this->params['breadcrumbs'] = [
                         'attributes' => [
                             'id',
                             'user_id',
-                            'type',
-                            'agent',
+                            'device_id',
+                            'device_type',
+                            'action_type',
                             [
                                 'attribute' => 'data',
                                 'format' => 'raw',

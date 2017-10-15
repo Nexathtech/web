@@ -82,11 +82,11 @@ $dateRangePickerEvents = [
                             ],
                             'user_id',
                             [
-                                'attribute' => 'type',
+                                'attribute' => 'action_type',
                                 'format' => 'raw',
                                 'filter' => Type::listData(),
                             ],
-                            'agent',
+                            'device_type',
                             'promo_code',
                             [
                                 'attribute' => 'status',
