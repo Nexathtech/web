@@ -85,7 +85,7 @@ class Action extends ActiveRecord
     {
         return [
             'id' => Yii::t('common', 'ID'),
-            'user_id' => Yii::t('common', 'Initiator Id'),
+            'user_id' => Yii::t('common', 'User Id'),
             'device_id' => Yii::t('common', 'Device Id'),
             'action_type' => Yii::t('common', 'Action type'),
             'device_type' => Yii::t('common', 'Device type'),

@@ -5,6 +5,7 @@ use kodi\backend\themes\admire\widgets\grid\ActionColumn;
 use kodi\backend\themes\admire\widgets\grid\GridView;
 use kodi\common\enums\action\Status;
 use kodi\common\enums\action\Type;
+use kodi\common\enums\DeviceType;
 use kodi\common\enums\PromoCodeStatus;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\FormatConverter;
@@ -81,12 +82,17 @@ $dateRangePickerEvents = [
                                 'contentOptions' => ['class' => 'col-tiny'],
                             ],
                             'user_id',
+                            'device_id',
                             [
                                 'attribute' => 'action_type',
                                 'format' => 'raw',
                                 'filter' => Type::listData(),
                             ],
-                            'device_type',
+                            [
+                                'attribute' => 'device_type',
+                                'format' => 'raw',
+                                'filter' => DeviceType::listData(),
+                            ],
                             'promo_code',
                             [
                                 'attribute' => 'status',

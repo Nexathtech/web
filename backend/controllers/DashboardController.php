@@ -126,7 +126,7 @@ final class DashboardController extends BaseController
      */
     public function getFeedbackData()
     {
-        $feedbacks = Action::find()->where(['type' => Type::FEEDBACK])->all();
+        $feedbacks = Action::find()->where(['action_type' => Type::FEEDBACK])->all();
         $feedbackData['rating'] = 0;
         $feedbackData['amount'] = 0;
         foreach ($feedbacks as $feedback) {
