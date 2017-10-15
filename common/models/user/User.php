@@ -2,9 +2,11 @@
 namespace kodi\common\models\user;
 
 use kodi\common\behaviors\TimestampBehavior;
+use kodi\common\enums\setting\Bunch;
 use kodi\common\enums\user\Role;
 use kodi\common\enums\user\Status;
 use kodi\common\models\device\Device;
+use kodi\common\models\Setting;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\db\ActiveQuery;
@@ -213,5 +215,21 @@ class User extends ActiveRecord implements IdentityInterface
     public function getIsAdmin()
     {
         return $this->role == Role::ADMINISTRATOR;
+    }
+
+    /**
+     * Returns user-specific settings
+     *
+     * @return array|ActiveRecord[]
+     */
+    public function getSettings()
+    {
+        /* @TODO: implement ability to get settings for particular user */
+        // get settings with restricted bunches only
+        return Setting::find()->select(['name', 'value'])->where([
+            'or',
+            ['bunch' => Bunch::DEVICES],
+            ['bunch' => Bunch::COMPONENTS],
+        ])->all();
     }
 }

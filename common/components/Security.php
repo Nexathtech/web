@@ -5,6 +5,7 @@ namespace kodi\common\components;
 use Carbon\Carbon;
 use kodi\common\enums\user\TokenType;
 use kodi\common\models\user\AuthToken;
+use kodi\common\models\user\User;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
@@ -26,10 +27,10 @@ class Security extends \yii\base\Security
      * @param null $deviceId
      * @param int $expiresIn 1 day by default
      * @param bool $genRefreshToken
-     * @param bool $extendedInfo
+     * @param bool $extendInfo
      * @return array|null
      */
-    public function generateToken($userId, $type = TokenType::EMAIL_CONFIRMATION, $deviceId = null, $expiresIn = 86400, $genRefreshToken = false, $extendedInfo = false)
+    public function generateToken($userId, $type = TokenType::EMAIL_CONFIRMATION, $deviceId = null, $expiresIn = 86400, $genRefreshToken = false, $extendInfo = false)
     {
         $token = $this->generateRandomString();
         $tokenRefresh = $this->generateRandomString();
@@ -42,24 +43,7 @@ class Security extends \yii\base\Security
             'expires_at' => Carbon::now()->addSeconds($expiresIn)->toDateTimeString(),
         ]);
         if ($model->save()) {
-            if ($extendedInfo) {
-                return [
-                    'user' => $model->user->profile,
-                    'session' => [
-                        'id' => $model->id,
-                        'token' => $token,
-                        'token_refresh' => $tokenRefresh,
-                        'expires_in' => $expiresIn,
-                    ],
-                ];
-            } else {
-                return [
-                    'id' => $model->id,
-                    'token' => $token,
-                    'token_refresh' => $tokenRefresh,
-                    'expires_in' => $expiresIn,
-                ];
-            }
+            return $this->generateTokenContent($model, $token, $tokenRefresh, $expiresIn, $extendInfo);
         }
 
         return null;
@@ -96,11 +80,11 @@ class Security extends \yii\base\Security
      *
      * @param $tokenData
      * @param int $expiresIn 1 day by default
-     * @param bool $extendedInfo
+     * @param bool $extendInfo
      * @return array|null New token data
      * @throws NotFoundHttpException
      */
-    public function refreshToken($tokenData, $expiresIn = 86400, $extendedInfo = false)
+    public function refreshToken($tokenData, $expiresIn = 86400, $extendInfo = false)
     {
         if (empty($tokenData['id']) || empty($tokenData['token'])) {
             throw new NotFoundHttpException('Invalid refresh token.');
@@ -124,24 +108,7 @@ class Security extends \yii\base\Security
             $authToken->expires_at = Carbon::now()->addSeconds($expiresIn)->toDateTimeString();
 
             if ($authToken->save(false)) {
-                if ($extendedInfo) {
-                    return [
-                        'user' => $authToken->user->profile,
-                        'session' => [
-                            'id' => $authToken->id,
-                            'token' => $token,
-                            'token_refresh' => $tokenRefresh,
-                            'expires_in' => $expiresIn,
-                        ],
-                    ];
-                } else {
-                    return [
-                        'id' => $authToken->id,
-                        'token' => $token,
-                        'token_refresh' => $tokenRefresh,
-                        'expires_in' => $expiresIn,
-                    ];
-                }
+                return $this->generateTokenContent($authToken, $token, $tokenRefresh, $expiresIn, $extendInfo);
             }
         }
 
@@ -174,5 +141,34 @@ class Security extends \yii\base\Security
         }
 
         throw new NotFoundHttpException('Invalid token.');
+    }
+
+    /**
+     * @param $model AuthToken
+     * @param $token
+     * @param $tokenRefresh
+     * @param $expiresIn
+     * @param $extendInfo
+     * @return array
+     */
+    protected function generateTokenContent($model, $token, $tokenRefresh, $expiresIn, $extendInfo)
+    {
+        $session = [
+            'id' => $model->id,
+            'token' => $token,
+            'token_refresh' => $tokenRefresh,
+            'expires_in' => $expiresIn,
+        ];
+        if ($extendInfo) {
+            return [
+                'user' => [
+                    'info' => $model->user->profile,
+                    'settings' => $model->user->getSettings(),
+                ],
+                'session' => $session,
+            ];
+        }
+
+        return $session;
     }
 }
