@@ -25,9 +25,9 @@ class AccountController extends Controller
     public function behaviors()
     {
         $behaviors = parent::behaviors();
-        /*$behaviors['authenticator'] = [
+        $behaviors['authenticator'] = [
             'class' => KodiAuth::class
-        ];*/
+        ];
         $behaviors['verbs'] = [
             'class' => VerbFilter::class,
             'actions' => [
