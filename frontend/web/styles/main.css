@@ -2198,9 +2198,6 @@ a.s-i-ln {
     float: left;
     text-align: right;
 }
-.f-left {
-    margin-right: 100px;
-}
 .f-right {
     float: right;
 }
@@ -3502,6 +3499,10 @@ a.a-d-ios:hover, a.a-d-android:hover {
 @media screen and (max-width: 1000px) {
     .section-main video {
         width: 600px;
+    }
+
+    .footer {
+        padding: 50px 20px 40px;
     }
 }
 
