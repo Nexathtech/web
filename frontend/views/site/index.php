@@ -1,35 +1,21 @@
 <?php
+use kodi\frontend\assets\SkrollrAsset;
 
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+/**
+ * The view file for the "site/index" action.
+ *
+ * @var \yii\web\View $this Current view instance.
+ * @var $content \kodi\common\models\page\Page content
+ * @see \kodi\frontend\controllers\SiteController::actionIndex()
+ */
 
-/* @var $this yii\web\View */
-/* @var $subscribeModel \kodi\frontend\models\forms\SubscribeForm */
+SkrollrAsset::register($this);
 
 $this->title = 'Kodi';
-$homeUrl = Yii::$app->homeUrl;
-
-$this->registerJs("
-    if(! /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        // if not mobile device, unmute the video
-        var video = document.getElementById('video1');
-        video.muted = false;
-    }
-");
+$this->registerJs($content->script);
+$this->registerCss(".footer {display: none;}");
 ?>
 
-<div class="content">
-    <video id="video1" preload="auto" autoplay muted playsinline webkit-playsinline>
-        <source src="<?= $homeUrl; ?>styles/video/kodicomingsoon-h264.mp4" type="video/mp4">
-        <div class="content-text"></div>
-    </video>
-</div>
-<div class="subscribe-container">
-    <? $form = ActiveForm::begin(); ?>
-    <?= $form->field($subscribeModel, 'email')->textInput([
-        'placeholder' => Yii::t('frontend', 'your email'),
-        'class' => 'subscribe-email',
-    ])->label(false); ?>
-    <?= Html::submitButton('stay tuned', ['class' => 'subscribe-button']); ?>
-    <? $form->end() ?>
+<div class="page-home">
+    <?= $content->text; ?>
 </div>

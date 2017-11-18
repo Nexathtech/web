@@ -1,9 +1,12 @@
 <?php
 namespace kodi\frontend\controllers;
 
+use kodi\common\enums\Status;
+use kodi\common\models\page\Page;
 use kodi\frontend\models\forms\SubscribeForm;
 use Yii;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 /**
  * Site controller
@@ -29,17 +32,33 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $model = new SubscribeForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $subscriptionRes = $model->subscribe();
-            $alertType = 'error';
-            if ($subscriptionRes['success']) {
-                $alertType = 'success';
-            }
-            Yii::$app->session->addFlash($alertType, ['message' => $subscriptionRes['message']]);
+        $page = Page::find()->where(['alias' => 'homepage', 'status' => Status::ACTIVE])->one();
+
+        return $this->render('index', ['content' => $page]);
+    }
+
+    /**
+     * Displays a page with slug given.
+     *
+     * @param string $slug
+     *
+     * @return mixed
+     * @throws NotFoundHttpException
+     */
+    public function actionView($slug)
+    {
+        // Do not allow homepage to show on page different from home page
+        if ($slug !== 'homepage') {
+            $page = Page::find()->where(['alias' => $slug, 'status' => Status::ACTIVE])->one();
         }
 
-        return $this->render('index', ['subscribeModel' => $model]);
+        if (empty($page)) {
+            throw new NotFoundHttpException;
+        }
+
+        return $this->render('view', [
+            'content' => $page,
+        ]);
     }
 
     /**

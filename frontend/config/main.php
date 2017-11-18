@@ -47,6 +47,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                //'about' => 'site/about',
+                '<slug:[\w-]+>' => 'site/view',
             ],
         ],
     ],

@@ -43,7 +43,7 @@ $controller = $this->context;
         <li class="<?= ($controller->id === 'device') ? 'active' : '' ?>">
             <a href="<?= Url::to(['/device']); ?>">
                 <?= FA::i('android'); ?>
-                <span class="link-title menu_hide"><?= Yii::t('backend', 'Kiosk Devices'); ?></span>
+                <span class="link-title menu_hide"><?= Yii::t('backend', 'Devices'); ?></span>
             </a>
         </li>
         <li class="<?= ($controller->id === 'action') ? 'active' : '' ?>">
@@ -52,6 +52,23 @@ $controller = $this->context;
                 <span class="link-title menu_hide"><?= Yii::t('backend', 'Actions'); ?></span>
             </a>
         </li>
+
+        <li class="dropdown_menu <?= ($controller->id === 'page') ? 'active' : '' ?>">
+            <a href="javascript:;">
+                <?= FA::i('edit'); ?>
+                <span class="link-title menu_hide"><?= Yii::t('backend', 'Content'); ?></span>
+                <span class="fa arrow menu_hide"></span>
+            </a>
+            <ul class="collapse">
+                <li class="<?= ($controller->id === 'page') ? 'active' : ''; ?>">
+                    <a href="<?= Url::to(['/page']); ?>">
+                        <?= FA::i('file-text'); ?>
+                        <?= Yii::t('backend', 'Pages'); ?>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
         <li class="dropdown_menu <?= ($controller->id === 'promo-code' || $controller->id === 'social-user') ? 'active' : '' ?>">
             <a href="javascript:;">
                 <?= FA::i('bullhorn'); ?>
