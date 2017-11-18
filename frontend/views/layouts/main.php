@@ -1,11 +1,11 @@
 <?php
-
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 use yii\helpers\Html;
 use kodi\frontend\assets\AppAsset;
-use yii\helpers\Url;
+use yii\web\View;
+
+/* @var $this View */
+/* @var $content string */
+
 
 AppAsset::register($this);
 
@@ -21,6 +21,16 @@ $slug = Yii::$app->request->get('slug');
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <? $this->registerJs("
+      function openTopNav() {
+        var x = document.getElementById('top-nav');
+        if (x.className === 'top-nav') {
+          x.className += ' responsive';
+        } else {
+          x.className = 'top-nav';
+        }
+      }
+    ", View::POS_END); ?>
 </head>
 <body>
 <?php $this->beginBody() ?>

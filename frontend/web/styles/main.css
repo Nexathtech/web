@@ -181,6 +181,7 @@ textarea {
     left: 0;
     top: 0;
     background: #fff;
+    z-index: 1;
 }
 .btn-plus::before {
     content: "";

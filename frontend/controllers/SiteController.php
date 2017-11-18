@@ -27,12 +27,15 @@ class SiteController extends Controller
 
     /**
      * Displays homepage with subscribe form.
-     *
      * @return mixed
+     * @throws NotFoundHttpException
      */
     public function actionIndex()
     {
         $page = Page::find()->where(['alias' => 'homepage', 'status' => Status::ACTIVE])->one();
+        if (empty($page)) {
+            throw new NotFoundHttpException;
+        }
 
         return $this->render('index', ['content' => $page]);
     }
