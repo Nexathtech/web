@@ -475,6 +475,9 @@ a.s-p-title::after {
     font-size: 30px;
     line-height: 50px;
 }
+.s-s-desc-4 {
+    bottom: 20%;
+}
 .s-s-desc-2::after, .s-s-desc-4::after {
     content: " ";
     display: block;
@@ -500,7 +503,8 @@ a.s-p-title::after {
     line-height: 33px;
 }
 .s-s-desc-3::after {
-    bottom: 76px;
+    bottom: auto;
+    top: 108px;
     margin-left: -150px;
 }
 .s-s-desc-4::after {
@@ -1062,10 +1066,10 @@ ul.about-menu a:hover, ul.about-menu a.active {
 .about-title::before, .contact-title::before {
     content: "";
     display: block;
-    width: 100px;
+    width: 140px;
     height: 10px;
     position: absolute;
-    bottom: 40px;
+    bottom: 10px;
     right: 105px;
     background: #ffcf46;
 }
@@ -1464,6 +1468,9 @@ a.s-i-ln {
 .centered-description.align-right {
     margin-top: -40px;
 }
+.centered-description.c-d-wide {
+    max-width: 540px;
+}
 
 .portrait-family {
     max-width: 1180px;
@@ -1823,7 +1830,7 @@ a.s-i-ln {
 .desk-board {
     position: relative;
     max-width: 1152px;
-    height: 975px;
+    height: 990px;
     margin: 50px auto;
     overflow: hidden;
     background: url('img/desk-board.jpg') no-repeat center top;
@@ -1922,10 +1929,10 @@ a.s-i-ln {
 
 .square-inside {
     position: relative;
-    width: 700px;
+    width: 740px;
     height: 320px;
     margin: 100px auto 80px;
-    padding: 30px 40px 20px 20px;
+    padding: 30px 10px 20px;
     border: 10px solid #ffcf46;
     text-align: right;
 }
@@ -2001,7 +2008,7 @@ a.s-i-ln {
     text-align: right;
 }
 .o-s-description {
-    margin: 50px 0 0 150px;
+    margin: 50px 0 0 50px;
 }
 
 .rectangle-slim {
@@ -2591,7 +2598,6 @@ img.m-sword {
     background: #68c34e;
 }
 .i-s-desc {
-    margin-top: 140px;
     text-align: left;
     color: #323232;
 }
@@ -2815,7 +2821,7 @@ div.c-l-pink {
     background: #ffa895;
 }
 .p-p-desc {
-    width: 340px;
+    width: 380px;
     float: right;
     margin-right: 60px;
     clear: both;
@@ -2947,7 +2953,7 @@ a.a-d-ios:hover, a.a-d-android:hover {
 
 .p-p-bottom {
     position: relative;
-    height: 250px;
+    margin-bottom: -250px;
     background: #fff;
 }
 .p-p-bottom::before {
@@ -3294,7 +3300,7 @@ a.a-d-ios:hover, a.a-d-android:hover {
 }
 .write-us-desc .btn {
     float: right;
-    margin-top: -20px;
+    margin-top: -50px;
 }
 
 .directly-to-public {
@@ -3330,7 +3336,7 @@ a.a-d-ios:hover, a.a-d-android:hover {
 .dtp-right {
     width: 25%;
     float: left;
-    padding-top: 180px;
+    padding-top: 38px;
     line-height: 24px;
     color: #3b3b3b;
 }
