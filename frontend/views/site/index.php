@@ -13,7 +13,7 @@ SkrollrAsset::register($this);
 
 $this->title = 'Kodi';
 $this->registerJs($content->script);
-$this->registerCss(".footer {display: none;}");
+$this->registerCss(".footer {position: relative; top: 17800px;}");
 ?>
 
 <div class="page-home">
