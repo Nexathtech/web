@@ -1,109 +1,154 @@
 <?php
 
-/* @var $this yii\web\View */
+/**
+ * The view file for the "site/about" action.
+ *
+ * @var \yii\web\View $this Current view instance.
+ * @var $model \kodi\frontend\models\forms\ContactForm content
+ * @see \kodi\frontend\controllers\SiteController::actionAbout()
+ */
+
 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
+
+$this->registerJs("
+$(document).ready(function() {
+    checkHash();
+});
+
+$(document).on('click', '.about-menu a', function() {
+    if (!$(this).hasClass('active')) {
+        var section = $(this).attr('href').replace('#', '');
+        prepareContent(section);
+    }
+
+    return false;
+});
+
+function checkHash() {
+    var target = location.hash.replace('#', '');
+    if (target) {
+        prepareContent(target);
+    }
+}
+
+function prepareContent(section) {
+    $('.about-menu a').removeClass('active');
+    $('.about-menu a[data-section=\"'+section+'\"]').addClass('active');
+    $('.section-block').hide();
+    $('.section-' + section).fadeIn(500);
+}
+");
 ?>
 
 <div class="page-about">
-    <div class="which-koder">
-        <div class="w-k-title">which koder are you?</div>
-        <div class="figure-col">
-            <div class="arch arch-blue"></div>
-            <div class="arch arch-yellow"></div>
-            <div class="teeth"></div>
+    <ul class="about-menu">
+        <li><a href="#about" data-section="about" class="active">.about kodi</a></li>
+        <li><a href="#contact" data-section="contact">.contact</a></li>
+        <li><a href="#team" data-section="team">.the team</a></li>
+    </ul>
+    <div class="section-block section-about">
+        <div class="about-title">
+            connecting<br>everything you<br>love
         </div>
-        <div class="figure-col">
-            <div class="arch arch-red"></div>
-            <div class="recv recv-violette"></div>
-            <div class="mustache"></div>
-        </div>
-        <div class="figure-col">
-            <div class="rech rech-pink"></div>
-            <div class="arch arch-green"></div>
-            <div class="eye eye-left"></div>
-            <div class="eye eye-right"></div>
-        </div>
-        <div class="figure-col">
-            <div class="arch arch-blue-light"></div>
-            <div class="rech rech-violette"></div>
-            <div class="nose"></div>
+        <div class="about-content">
+            Kodi is an open source platform that allows users to interact easily and directly with applications within the world of Kodi.<br>
+            Each product within the project is interconnected to allow a safe and simple flow.<br>
+            The system is oriented for interactivity, flexibility and diverse values: the Kodi philosophy allows each user to find their own path within the possibilities offered.<br>
+            Creatives, startups, innovators, students and entrepreneurs can redesign an idea through the channels offered by the Kodi system.<br>
+            Thanks to the infinite possibilities of printing and the open system technology, Kodi Stations, Kodi Plus and the Kodi community, Kodi is a diverse mixture of creative opportunities that are constantly evolving.
         </div>
     </div>
-
-    <div class="work-annoying">
-        <div class="w-a-title">who say work<br>is annooooying time??</div>
-        <div class="work-figures">
-            <div class="w-f-col">
-                <div class="arch arch-pink"></div>
-                <div class="arch arch-pink"></div>
-                <div class="arch arch-black"></div>
-                <div class="time-arrows"></div>
-                <div class="basement-lines"></div>
-                work when<br>you want
+    <div class="section-block section-contact">
+        <div class="contact-title">
+            don't<br>be shy
+            <div class="content-title-desc">
+                if you need some information, if you want just to say hi, or if you want to know our favourite pizza, just fill in the form on the left and submit your request
             </div>
-            <div class="w-f-col">
-                <div class="arch arch-yellow"></div>
-                <div class="milkshake"></div>
-                drink super<br>milkshake
-            </div>
-            <div class="w-f-col">
-                <div class="w-f-chart"></div>
-                <div class="w-f-chart-2"></div>
-                <div>work where<br>you want</div>
-            </div>
-            <div class="w-f-col w-f-col-4">
-                <div class="arch arch-yellow"></div>
-                <div class="arch arch-green-light"></div>
-                <div class="arch arch-dark"></div>
-                receive direct<br>your money
+        </div>
+        <div class="contact-content">
+            Dear Kodi,
+            <div class="contact-form">
+                <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+                <div class="row">
+                    <?= $form->field($model, 'body')->textarea([
+                        'placeholder' => Yii::t('frontend', 'enter your text here'),
+                    ])->label(false); ?>
+                </div>
+                <div class="row align-right">
+                    <?= $form->field($model, 'email')->textInput([
+                        'class' => 'contact-email',
+                        'placeholder' => Yii::t('frontend', 'your email'),
+                    ])->label(false); ?>
+                </div>
+                <div class="row align-right">
+                    <?= Html::submitButton('send', ['class' => 'btn btn-submit']) ?>
+                </div>
+                <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>
-
-    <div class="write-us-desc">
-        maximum flexibility to work. we are looking for curious<br>
-        people that wanna dummy dummy dummy dummy
-        <a class="btn btn-md" href="about.html">write us</a>
-    </div>
-
-    <div class="directly-to-public">
-        <div class="dtp-cont">
-            <div class="dtp-left">
-                <div class="dtp-title">directly<div>to</div>your public</div>
-                <a class="btn btn-md" href="#">explore</a>
+    <div class="section-block section-team">
+        <div class="team-member">
+            <div class="member-photo"><img src="/styles/img/member-photo-1.jpg">
             </div>
-            <div class="dtp-middle">
-                <div class="dtp-monitor"></div>
-                <img class="dtp-1" src="styles/img/dtp-1.jpg">
-                <img class="dtp-2" src="styles/img/dtp-2.jpg">
-                <img class="dtp-3" src="styles/img/dtp-3.jpg">
+            <div class="member-photo"><img src="/styles/img/member-photo-2.jpg">
             </div>
-            <div class="dtp-right">
-                Tired of classic postcards?<br>
-                We do.<br>
-                Kodi wants to connect<br>
-                creatives from all over<br>
-                the world to create<br>
-                something new and let<br>
-                people choose the postcard.
+            <div class="member-photo"><img src="/styles/img/member-photo-3.jpg">
+            </div>
+            <div class="member-info">
+                alex<br>specchio// founder
             </div>
         </div>
+        <div class="team-member">
+            <div class="member-photo"><img src="/styles/img/member-photo-1.jpg">
+            </div>
+            <div class="member-photo"><img src="/styles/img/member-photo-2.jpg">
+            </div>
+            <div class="member-photo"><img src="/styles/img/member-photo-3.jpg">
+            </div>
+            <div class="member-info">
+                ivan<br>specchio// founder
+            </div>
+        </div>
+        <div class="team-member">
+            <div class="member-photo"><img src="/styles/img/member-photo-1.jpg">
+            </div>
+            <div class="member-photo"><img src="/styles/img/member-photo-2.jpg">
+            </div>
+            <div class="member-photo"><img src="/styles/img/member-photo-3.jpg">
+            </div>
+            <div class="member-info">
+                alise<br>sozonik// designer
+            </div>
+        </div>
+        <div class="team-member">
+            <div class="member-photo"><img src="/styles/img/member-photo-1.jpg">
+            </div>
+            <div class="member-photo"><img src="/styles/img/member-photo-2.jpg">
+            </div>
+            <div class="member-photo"><img src="/styles/img/member-photo-3.jpg">
+            </div>
+            <div class="member-info">
+                mykola<br>popko// developer
+            </div>
+        </div>
+        <div class="team-description">
+            We are young (some younger than others)<br>
+            good-looking (this one is disputable)<br>
+            diverse (to the extreme)<br>
+            and<br>
+            <strong>we all love pizza</strong>
+        </div>
     </div>
-
-    <div class="b-i-block">
-        <div class="b-i-title">what is exactly a<br>kodi station?</div>
-        or you just want to have more information,<br>
-        you can easily ask us what you want.<br>
-        <a class="btn" href="station.html">kodi station</a>
-    </div>
-    <div class="b-i-block">
-        <div class="b-i-title">there is no a kodi station?<br>no problem</div>
-        or you just want to have more information,<br>
-        you can easily ask us what you want.<br>
-        <a class="btn text-blue" href="plus.html">kodi plus</a>
+    <div class="social-icons">
+        <a href="#" class="s-i-fk"></a>
+        <a href="#" class="s-i-im"></a>
+        <a href="#" class="s-i-yb"></a>
+        <a href="#" class="s-i-ln"></a>
     </div>
 </div>

@@ -34,7 +34,6 @@ $slug = Yii::$app->request->get('slug');
 </head>
 <body>
 <?php $this->beginBody() ?>
-<!-- Display flash messages -->
 <?= $this->render('includes/_flash_messages') ?>
 
 <div class="header">

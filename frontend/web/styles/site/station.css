@@ -1,0 +1,135 @@
+.rocket-section {
+  -skrollr-animation-name: rocketSection;
+}
+
+.rocket-middle {
+  -skrollr-animation-name: rocketMiddle;
+}
+
+.curve.curve-yellow {
+  -skrollr-animation-name: curveCurveYellow;
+}
+
+.rocket-curves .curve.curve-blue {
+  -skrollr-animation-name: curveCurveBlue;
+}
+
+.earn-money-title {
+  -skrollr-animation-name: earnMoneyTitle;
+}
+
+.kiosk-left {
+  -skrollr-animation-name: kioskLeft;
+}
+.kiosk-middle {
+  -skrollr-animation-name: kioskMiddle;
+}
+.kiosk-right {
+  -skrollr-animation-name: kioskRight;
+}
+
+.curve.curve-orange {
+  -skrollr-animation-name: curveCurveOrange;
+}
+
+.portrait-family {
+  -skrollr-animation-name: portraitFamily;
+}
+.portrait-family-colored {
+  -skrollr-animation-name: portraitFamilyColored;
+}
+
+.old-title-section {
+  -skrollr-animation-name: oldTitleSection;
+}
+
+
+@-skrollr-keyframes rocketSection {
+  0 {
+    position: fixed;
+    left: 0px;
+    top: 20%;
+    width: 100%;
+    z-index: 4;
+  }
+  500 {top: -20%;}
+  1400 {top: -20%;}
+  1800 {top: -200%;}
+}
+
+@-skrollr-keyframes rocketMiddle {
+  0 {
+    margin-top: 0%;
+    transform: scale(1);
+  }
+  400 {margin-top: 0%;}
+  800 {margin-top: 10%;
+    transform: scale(0.6);
+  }
+}
+
+@-skrollr-keyframes curveCurveYellow {
+  0 {top: 0px; opacity: 1;}
+  400 {top: 0px;}
+  800 {top: -600px;}
+  900 {opacity: 0;}
+}
+
+@-skrollr-keyframes curveCurveBlue {
+  0 {top: 45px; opacity: 1;}
+  400 {top: 45px;}
+  800 {top: 600px;}
+  900 {opacity: 0;}
+}
+
+@-skrollr-keyframes earnMoneyTitle {
+  0 {position: fixed; right: -100%; top: 0%; width: 100%;}
+  800 {top: 0%;}
+  1000 {right: 0%;}
+  1400 {right: 0%;}
+  1800 {top: -200%;}
+}
+
+@-skrollr-keyframes kioskLeft {
+  0 {position: fixed; left: -50%; top: 0%; transform: scale(0.8);}
+  400 {top: 0%;}
+  800 {left: 0%;}
+  1400 {left: 0%;}
+  2000 {top: -200%;}
+}
+
+@-skrollr-keyframes kioskMiddle {
+  0 {display: none;}
+}
+
+@-skrollr-keyframes kioskRight {
+  0 {position: fixed; right: -50%; top: 0%; transform: scale(0.8);}
+  400 {top: 0%;}
+  800 {right: 0%;}
+  1400 {right: 0%;}
+  2000 {top: -200%;}
+}
+
+@-skrollr-keyframes curveCurveOrange {
+  0 {margin-top: 1800px;}
+}
+
+@-skrollr-keyframes portraitFamily {
+  0 {position: fixed; width: 1180px; top: 100%; left: 50%; margin-left: -590px;}
+  2800 {top: 100%;}
+  3200 {top: 10%;}
+  4500 {top: 10%;}
+  5200 {top: -100%;}
+}
+
+@-skrollr-keyframes portraitFamilyColored {
+  0 {left: 420px; top: 20px; background-position: -435px -35px;}
+  3400 {top: 20px;}
+  3700 {left: 750px; background-position: -765px -35px;}
+  4000 {top: 20px;}
+  4300 {left: 540px; top: 200px; background-position: -555px -215px;}
+}
+
+@-skrollr-keyframes oldTitleSection {
+  0 {position: relative; width: 100%; padding-top: 1900px;}
+}
