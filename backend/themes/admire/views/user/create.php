@@ -36,11 +36,17 @@ $this->params['breadcrumbs'] = [
             <div class="card-header bg-white"><?= Yii::t('backend', 'Record details') ?></div>
             <div class="card-block m-t-35">
                 <?= $form->field($profileModel, 'name')->textInput() ?>
+                <?= $form->field($profileModel, 'surname')->textInput() ?>
                 <?= $form->field($profileModel, 'photo')->fileInput() ?>
                 <?= $form->field($model, 'email')->textInput() ?>
                 <?= $form->field($model, 'password')->passwordInput() ?>
                 <?= $form->field($model, 'role')->dropDownList(Role::listData()) ?>
                 <?= $form->field($model, 'status')->dropDownList(Status::listData()) ?>
+                <?= $form->field($profileModel, 'country')->textInput() ?>
+                <?= $form->field($profileModel, 'city')->textInput() ?>
+                <?= $form->field($profileModel, 'state')->textInput() ?>
+                <?= $form->field($profileModel, 'address')->textInput() ?>
+                <?= $form->field($profileModel, 'postcode')->textInput() ?>
             </div>
             <div class="card-footer">
                 <a class="btn btn-sm btn-white" href="<?= Url::to(['index']) ?>">

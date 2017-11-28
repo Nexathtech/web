@@ -21,7 +21,7 @@ foreach ($flashMessages as $type => $messages) {
                 $title = Yii::t('frontend', 'Information');
                 break;
             case AlertType::SUCCESS:
-                $title = Yii::t('frontend', 'Success!');
+                $title = Yii::t('frontend', 'Thank you!');
                 break;
             case AlertType::WARNING:
                 $title = Yii::t('frontend', 'Warning!');

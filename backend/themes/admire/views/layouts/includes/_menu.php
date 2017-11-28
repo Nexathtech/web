@@ -1,5 +1,6 @@
 <?php
 
+use kodi\common\models\Action;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Url;
 
@@ -50,6 +51,9 @@ $controller = $this->context;
             <a href="<?= Url::to(['/action']); ?>">
                 <?= FA::i('bullseye'); ?>
                 <span class="link-title menu_hide"><?= Yii::t('backend', 'Actions'); ?></span>
+                <? if (($printShipmentAmount = Action::getPrintShipmentAmount()) > 0): ?>
+                    <span class="label label-info m-l-10" title="<?= Yii::t('backend', 'New actions with shipment') ?>" data-toggle="tooltip"><?= $printShipmentAmount; ?></span>
+                <? endif; ?>
             </a>
         </li>
 

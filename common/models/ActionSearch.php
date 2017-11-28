@@ -2,8 +2,13 @@
 
 namespace kodi\common\models;
 
+use kodi\common\models\user\Profile;
+use kodi\common\models\user\User;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use yii\db\ActiveQuery;
+use yii\validators\NumberValidator;
+use yii\validators\SafeValidator;
 
 /**
  * Class ActionSearch
@@ -13,13 +18,24 @@ use yii\data\ActiveDataProvider;
 class ActionSearch extends Action
 {
     /**
+     * @return mixed
+     */
+    public function attributes()
+    {
+        $attributes = [
+            'user.profile.name',
+        ];
+        return array_merge(parent::attributes(), $attributes);
+    }
+
+    /**
      * @inheritdoc
      */
     public function rules(): array
     {
         return [
-            [['id', 'user_id', 'device_id'], 'integer'],
-            [['action_type', 'device_type', 'data', 'promo_code', 'status', 'created_at'], 'safe'],
+            [['id'], NumberValidator::class, 'integerOnly' => true],
+            [['action_type', 'device_type', 'promo_code', 'status', 'user.profile.name'], SafeValidator::class],
         ];
     }
 
@@ -41,13 +57,25 @@ class ActionSearch extends Action
      */
     public function search($params)
     {
-        $query = Action::find();
+        $query = Action::find()
+            ->from(['action' => Action::tableName()])
+            ->joinWith(['user' => function(ActiveQuery $query) {
+                $query->from(['user' => User::tableName()])
+                ->joinWith(['profile' => function(ActiveQuery $query) {
+                    $query->from(['profile' => Profile::tableName()]);
+                }]);
+            }]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['created_at' => SORT_DESC]],
+            'sort'=> ['defaultOrder' => ['status' => SORT_DESC, 'action_type' => SORT_DESC]],
             //'pagination' => ['pageSize' => 20],
         ]);
+
+        $dataProvider->sort->attributes['user.profile.name'] = [
+            'asc' => ['profile.name' => SORT_ASC],
+            'desc' => ['profile.name' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -59,15 +87,16 @@ class ActionSearch extends Action
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'user_id' => $this->user_id,
+            'action.id' => $this->id,
             'action_type' => $this->action_type,
             'device_type' => $this->device_type,
             'device_id' => $this->device_id,
-            'status' => $this->status,
+            'action.status' => $this->status,
         ]);
 
         $query->andFilterWhere(['like', 'promo_code', $this->promo_code]);
+        // filter by user's email
+        $query->andWhere('profile.name LIKE "%' . $this->getAttribute('user.profile.name') . '%" OR profile.surname LIKE "%' . $this->getAttribute('user.profile.name') . '%"');
 
         // filter by expires date range
         if (!empty($this->created_at) && strpos($this->created_at, ' - ') !== false) {

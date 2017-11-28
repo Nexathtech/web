@@ -94,7 +94,7 @@ $dateRangePickerEvents = [
                                 'attribute' => 'profile.name',
                                 'format' => 'raw',
                                 'value' => function ($data) {
-                                    return Html::a(Html::encode($data->profile->name), ['view', 'id' => $data->id]);
+                                    return Html::a(Html::encode($data->profile->getFullName()), ['view', 'id' => $data->id]);
                                 }
                             ],
                             'email:email',

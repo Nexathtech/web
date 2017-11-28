@@ -118,4 +118,12 @@ class Profile extends ActiveRecord
         return $this->name;
     }
 
+    /**
+     * @return string
+     */
+    public function getFullName()
+    {
+        return trim("{$this->name} {$this->surname}");
+    }
+
 }

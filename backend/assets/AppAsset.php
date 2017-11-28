@@ -31,6 +31,7 @@ class AppAsset extends AssetBundle
      * @inheritdoc
      */
     public $js = [
+        'js/main.js',
     ];
 
     /**

@@ -101,7 +101,7 @@ function prepareContent(section) {
             <div class="member-photo"><img src="/styles/img/member-photo-3.jpg">
             </div>
             <div class="member-info">
-                alex<br>specchio// founder
+                alex<br>specchio// <span>founder</span>
             </div>
         </div>
         <div class="team-member">
@@ -112,7 +112,7 @@ function prepareContent(section) {
             <div class="member-photo"><img src="/styles/img/member-photo-3.jpg">
             </div>
             <div class="member-info">
-                ivan<br>specchio// founder
+                ivan<br>specchio// <span>founder</span>
             </div>
         </div>
         <div class="team-member">
@@ -123,7 +123,7 @@ function prepareContent(section) {
             <div class="member-photo"><img src="/styles/img/member-photo-3.jpg">
             </div>
             <div class="member-info">
-                alise<br>sozonik// designer
+                alise<br>sozonik// <span>designer</span>
             </div>
         </div>
         <div class="team-member">
@@ -134,7 +134,7 @@ function prepareContent(section) {
             <div class="member-photo"><img src="/styles/img/member-photo-3.jpg">
             </div>
             <div class="member-info">
-                mykola<br>popko// developer
+                mykola<br>popko// <span>developer</span>
             </div>
         </div>
         <div class="team-description">

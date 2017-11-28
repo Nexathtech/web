@@ -320,6 +320,10 @@ button.full-width {
     display: none;
 }
 
+#toast-container {
+    top: 60px;
+}
+
 /************
  * Home page
  */
@@ -437,6 +441,7 @@ a.s-s-title {
     display: block;
     margin-bottom: 20px;
     padding-top: 10px;
+    font-family: 'COCOGOOSE DemiBold', sans-serif;
     font-size: 40px;
     line-height: 32px;
     text-decoration: none;
@@ -3713,8 +3718,8 @@ a.a-d-ios:hover, a.a-d-android:hover {
     .contact-title {
         right: 10%;
     }
-    .team-member .member-info {
-        color: #000;
+    .team-member .member-info, .team-member .member-info span {
+        color: #000 !important;
     }
     .team-member::after {
         display: none !important;
@@ -3895,6 +3900,10 @@ a.a-d-ios:hover, a.a-d-android:hover {
 @media screen and (max-width: 480px) {
     .b-i-block {
         margin: 40px 10px 20px;
+    }
+
+    .col-middle {
+        width: auto;
     }
 
     /* Station page */

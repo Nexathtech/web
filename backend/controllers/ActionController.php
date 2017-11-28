@@ -2,12 +2,15 @@
 
 namespace kodi\backend\controllers;
 
+use kodi\common\enums\action\Status;
 use kodi\common\models\Action;
 use kodi\common\models\ActionSearch;
 use Yii;
+use yii\filters\ContentNegotiator;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 /**
  * Class `ActionController`
@@ -28,7 +31,16 @@ class ActionController extends BaseController
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete, archive' => ['POST'],
+                ],
+            ],
+
+            // Negotiator filter
+            'contentNegotiator' => [
+                'class' => ContentNegotiator::class,
+                'only' => ['archive'],
+                'formats' => [
+                    'application/json' => Response::FORMAT_JSON,
                 ],
             ],
         ]);
@@ -77,6 +89,28 @@ class ActionController extends BaseController
     {
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
+    }
+
+    /**
+     * Changes the status of the action to archived
+     *
+     * @param $id
+     * @return array
+     */
+    public function actionArchive($id)
+    {
+        $action = $this->findModel($id);
+        $action->status = Status::ARCHIVED;
+        $data = [
+            'status' => 'error',
+            'message' => Yii::t('backend', 'An error occurred.'),
+        ];
+        if ($action->save(false)) {
+            $data['status'] = 'success';
+            $data['message'] = Yii::t('backend', 'Status of the action has been successfully changed!');
+        }
+
+        return $data;
     }
 
     /**

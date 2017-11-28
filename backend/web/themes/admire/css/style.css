@@ -63,3 +63,7 @@ div.dataTables_paginate > ul.pagination > li {
 form .row {
   margin-bottom: 10px;
 }
+
+.user-settings {
+  margin-right: 10px;
+}

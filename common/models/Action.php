@@ -125,4 +125,16 @@ class Action extends ActiveRecord
         return $this->hasOne(Device::class, ['id' => 'device_id']);
     }
 
+    /**
+     * Returns amount with new actions with further shipment
+     * @return int|string
+     */
+    public static function getPrintShipmentAmount()
+    {
+        return self::find()->where([
+            'action_type' => Type::PRINT_SHIPMENT,
+            'status' => Status::NEW,
+        ])->count();
+    }
+
 }

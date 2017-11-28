@@ -81,8 +81,28 @@ $dateRangePickerEvents = [
                                 'filterOptions' => ['class' => 'col-tiny'],
                                 'contentOptions' => ['class' => 'col-tiny'],
                             ],
-                            'user_id',
-                            'device_id',
+                            [
+                                'attribute' => 'user.profile.name',
+                                'label' => Yii::t('backend', 'Initiator'),
+                                'format' => 'raw',
+                                'value' => function ($data) {
+                                    $fullName = $data->user->profile->getFullName();
+                                    $name = (!empty($fullName)) ? $fullName : $data->user->email;
+                                    if (empty($data->user->profile->surname)) {
+                                        $name = "{$fullName} ({$data->user->email})";
+                                    }
+                                    $id = $data->user->id;
+                                    return Html::a(Html::encode($name), ['/user/view', 'id' => $id]);
+                                }
+                            ],
+                            [
+                                'attribute' => 'device_id',
+                                'format' => 'raw',
+                                'value' => function ($data) {
+                                    $id = $data->device_id;
+                                    return Html::a(Html::encode($id), ['/device/view', 'id' => $id]);
+                                },
+                            ],
                             [
                                 'attribute' => 'action_type',
                                 'format' => 'raw',
@@ -98,6 +118,11 @@ $dateRangePickerEvents = [
                                 'attribute' => 'status',
                                 'format' => 'raw',
                                 'filter' => Status::listData(),
+                                'value' => function ($data) {
+                                    return Html::tag('span', $data->status, [
+                                        'class' => ($data->status == Status::NEW) ? 'label label-success' : 'label label-default'
+                                    ]);
+                                }
                             ],
                             [
                                 'attribute' => 'created_at',

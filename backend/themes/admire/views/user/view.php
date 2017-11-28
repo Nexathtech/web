@@ -41,6 +41,7 @@ $this->params['breadcrumbs'] = [
                                 'format' => ['image', ['style' => 'max-width: 120px;']],
                             ],
                             'profile.name',
+                            'profile.surname',
                             'email:email',
                             'role',
                             [
@@ -50,6 +51,11 @@ $this->params['breadcrumbs'] = [
                                     'class' => ($model->status == Status::ACTIVE) ? 'label label-success' : 'label label-default',
                                 ]),
                             ],
+                            'profile.country',
+                            'profile.city',
+                            'profile.state',
+                            'profile.address',
+                            'profile.postcode',
                             'created_at:datetime',
                             'updated_at:datetime',
                             [

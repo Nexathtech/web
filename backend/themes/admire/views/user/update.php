@@ -48,6 +48,7 @@ $this->registerJs("
             <div class="card-header bg-white"><?= Yii::t('backend', 'Record details') ?></div>
             <div class="card-block m-t-35">
                 <?= $form->field($model->profile, 'name')->textInput() ?>
+                <?= $form->field($model->profile, 'surname')->textInput() ?>
                 <? if (!empty($model->profile->photo)): ?>
                     <div class="current-photo">
                         <img src="<?= $model->profile->photo; ?>">
@@ -61,6 +62,11 @@ $this->registerJs("
                 <?= $form->field($model, 'role')->dropDownList(Role::listData()) ?>
                 <?= $form->field($model, 'email')->textInput() ?>
                 <?= $form->field($model, 'status')->dropDownList(Status::listData()) ?>
+                <?= $form->field($model->profile, 'country')->textInput() ?>
+                <?= $form->field($model->profile, 'city')->textInput() ?>
+                <?= $form->field($model->profile, 'state')->textInput() ?>
+                <?= $form->field($model->profile, 'address')->textInput() ?>
+                <?= $form->field($model->profile, 'postcode')->textInput() ?>
                 <?= $form->field($model, 'new_password')->passwordInput() ?>
             </div>
             <div class="card-footer">

@@ -1,7 +1,7 @@
 <?php
 
 use kdn\yii2\JsonEditor;
-use kodi\common\enums\PromoCodeStatus;
+use kodi\common\enums\action\Status;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -29,7 +29,16 @@ $this->params['breadcrumbs'] = [
 <div class="outer">
     <div class="inner bg-container">
         <div class="card">
-            <div class="card-header bg-white"><?= Yii::t('backend', 'Actions') ?></div>
+            <div class="card-header">
+                <?= Yii::t('backend', 'Action') ?> #<?= $model->id ?>
+                <?
+                if ($model->status === Status::NEW) {
+                    echo Html::a(FA::i('archive') . Yii::t('backend', 'Mark as archived'), ['archive', 'id' => $model->id], [
+                        'class' => 'btn btn-warning btn-post pull-right'
+                    ]);
+                }
+                ?>
+            </div>
             <div class="card-block m-t-35">
                 <div class="table-responsive">
                     <?=
