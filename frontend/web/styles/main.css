@@ -131,8 +131,11 @@ textarea {
     clear: both;
 }
 
-.align-right {
+.align-right, .text-right {
     text-align: right;
+}
+.text-center {
+    text-align: center;
 }
 
 .btn {
@@ -163,9 +166,12 @@ textarea {
     box-shadow: rgba(0, 0, 0, 0.8) 2px 2px 4px;
     -webkit-box-shadow: rgba(0, 0, 0, 0.8) 2px 2px 4px inset;
 }
-.btn.btn-full-width {
+.btn.btn-full-width, .btn.full-width {
     display: block;
     margin: 0;
+}
+button.full-width {
+    width: 100%;
 }
 .btn.btn-dark {
     background: #000;
@@ -213,6 +219,22 @@ textarea {
     color: #4c2768;
 }
 
+.container {
+    padding: 50px;
+}
+
+.text-title {
+    display: inline-block;
+    padding: 10px 0;
+    border-bottom: 12px solid #ff6a6a;
+    font-size: 30px;
+}
+
+.col-middle {
+    width: 360px;
+    margin: 0 auto;
+}
+
 .error-summary {
     color: #a94442;
     background: #fdf7f7;
@@ -223,6 +245,27 @@ textarea {
 
 .site-error {
     padding: 60px;
+}
+
+.help-block {
+    font-size: 13px;
+}
+
+/* Forms */
+.form-group {
+    margin: 20px 0;
+}
+.form-group input {
+    width: 100%;
+    padding: 2px 0;
+    border: none;
+    border-bottom: 4px solid #fada00;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: #48affd;
+}
+.form-group.has-error input {
+    border-color: #ff6a6a;
 }
 
 /* ==========================================================================
@@ -1123,6 +1166,7 @@ ul.about-menu a:hover, ul.about-menu a.active {
 }
 
 .has-error .help-block {
+    margin-top: 5px;
     font-size: 12px;
     letter-spacing: 0;
     color: #ff6a6a

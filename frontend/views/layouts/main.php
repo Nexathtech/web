@@ -21,16 +21,6 @@ $slug = Yii::$app->request->get('slug');
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <? $this->registerJs("
-      function openTopNav() {
-        var x = document.getElementById('top-nav');
-        if (x.className === 'top-nav') {
-          x.className += ' responsive';
-        } else {
-          x.className = 'top-nav';
-        }
-      }
-    ", View::POS_END); ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -50,6 +40,11 @@ $slug = Yii::$app->request->get('slug');
 
 <?= $content ?>
 
+<div class="cookie-message">
+    <div class="c-m-title"><?= Yii::t('frontend', 'this website eats cookies'); ?></div>
+    <div class="c-m-text"><?= Yii::t('frontend', 'to ensure you get the best experience on our website'); ?></div>
+    <div class="c-m-close"></div>
+</div>
 <div class="footer">
     <div class="f-left">
         <a href="#">sitemap</a>

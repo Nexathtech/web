@@ -10,7 +10,7 @@ use yii\helpers\Html;
 <div class="password-reset">
     <p>Hello <?= Html::encode($user->profile->name) ?>,</p>
 
-    <p>Follow the link below to reset your password:</p>
-
+    <p>You have been requested for password reset.</p>
+    <p>Please, follow the link below to reset your password:</p>
     <p><?= Html::a(Html::encode($resetLink), $resetLink) ?></p>
 </div>

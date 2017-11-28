@@ -8,6 +8,9 @@ use Yii;
 use yii\base\Model;
 use yii\helpers\Json;
 use yii\helpers\Url;
+use yii\validators\EmailValidator;
+use yii\validators\ExistValidator;
+use yii\validators\RequiredValidator;
 
 /**
  * Class ResetPasswordRequestForm
@@ -25,13 +28,16 @@ class ResetPasswordRequestForm extends Model
     public function rules()
     {
         return [
-            ['email', 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'exist',
+
+            // Required fields
+            [['email'], RequiredValidator::class],
+
+            // Strings validation
+            [['email'], EmailValidator::class],
+            ['email', ExistValidator::class,
                 'targetClass' => User::class,
                 'filter' => ['status' => Status::ACTIVE],
-                'message' => Yii::t('frontend', 'There is no user with this email address.'),
+                'message' => Yii::t('frontend', 'There is no user with such email address.'),
             ],
         ];
     }
@@ -55,7 +61,7 @@ class ResetPasswordRequestForm extends Model
 
         $tokenData = Yii::$app->security->generateToken($user->id, TokenType::PASSWORD_RESET);
         $token = base64_encode(Json::encode($tokenData));
-        $resetTokenUrl = str_replace('api.', '', Url::to(["/auth/password-reset/$token"], true));
+        $resetTokenUrl = str_replace('api.', '', Url::to(["/auth/password-reset/{$token}"], true));
 
         return Yii::$app->mailer->compose('password-reset-token', [
             'user' => $user,

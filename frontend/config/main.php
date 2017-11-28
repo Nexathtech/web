@@ -47,8 +47,14 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'auth/activate/<token:[\w-=]+>' => 'auth/activate',
+                'auth/password-reset/<token:[\w-=]+>' => 'auth/password-reset',
                 'about' => 'site/about',
-                '<slug:[\w-]+>' => 'site/view',
+                [
+                    'class' => \kodi\frontend\routes\SiteRule::class,
+                    'pattern' => '<slug:[\w-]+>',
+                    'route' => 'site/view'
+                ],
             ],
         ],
     ],
