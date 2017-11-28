@@ -441,7 +441,6 @@ a.s-s-title {
     display: block;
     margin-bottom: 20px;
     padding-top: 10px;
-    font-family: 'COCOGOOSE DemiBold', sans-serif;
     font-size: 40px;
     line-height: 32px;
     text-decoration: none;
@@ -1282,13 +1281,15 @@ input.contact-email {
 }
 
 .social-icons {
+    padding: 30px 0;
+    background: #fada00;
     text-align: center;
 }
 .social-icons a {
     display: inline-block;
     width: 13px;
     height: 28px;
-    margin: 10px;
+    margin: 0 10px;
     background: url('img/icon-fb.png') no-repeat center;
     background-size: 100%;
     transition: opacity .2s ease;
@@ -1308,6 +1309,14 @@ a.s-i-ln {
     width: 32px;
     height: 32px;
     background-image: url('img/icon-ln.png');
+}
+a.s-i-tw {
+    width: 32px;
+    background-image: url('img/icon-tw.png');
+}
+a.s-i-md {
+    width: 32px;
+    background-image: url('img/icon-md.png');
 }
 
 /************
@@ -1898,26 +1907,35 @@ a.s-i-ln {
     position: relative;
     width: 35%;
     float: left;
-    padding: 50px 0 85px;
-    border-bottom: 18px solid #ffcd00;
+    padding: 50px 0 0;
     text-align: right;
     font-size: 38px;
     line-height: 40px;
     font-weight: bold;
 }
-.c-ch-title::before, .c-ch-title::after {
-    content: "";
-    display: block;
+.toggle-color {
     width: 50%;
     height: 18px;
     position: absolute;
     top: 180px;
     right: 0;
     background: #1287ae;
+    cursor: pointer;
+    transition: all .2s ease;
 }
-.c-ch-title::after {
+.toggle-color.t-g-yellow {
+    top: 215px;
+    background-color: #ffcd00;
+}
+.toggle-color.t-g-pink {
     top: 250px;
     background-color: #ffbbb5;
+}
+.toggle-color.active {
+    width: 100%;
+}
+.toggle-color:hover {
+    opacity: .8;
 }
 .c-ch-image {
     width: 30%;
@@ -2302,30 +2320,34 @@ a.s-i-ln {
 
 .footer {
     margin-top: 100px;
-    padding: 50px 20% 40px;
-    background: #460360;
+    text-align: center;
 }
-.footer a {
-    font-size: 18px;
-    line-height: 32px;
-    text-decoration: none;
-    color: #fff;
-    transition: color .2s ease;
-}
-.footer a:hover {
-    color: #ddd;
-}
-.footer a::after {
+.footer::before {
     content: "";
     display: block;
+    position: relative;
+    height: 65px;
+    background: url('img/footer-waves.jpg') repeat-x left top;
+    background-size: 60px 126px;
 }
-.f-left, .f-right {
-    width: 300px;
-    float: left;
-    text-align: right;
+.footer-links {
+    padding: 40px 0;
+    background: #8cb0e6;
 }
-.f-right {
-    float: right;
+.footer-links a {
+    display: inline-block;
+    margin: 0 4px;
+    text-decoration: none;
+    color: #fff;
+    letter-spacing: 3px;
+    transition: color .2s ease;
+}
+.footer-links a:hover {
+    color: #000;
+}
+.footer-copyright {
+    padding: 20px 0;
+    font-size: 18px;
 }
 
 /************
@@ -3664,7 +3686,7 @@ a.a-d-ios:hover, a.a-d-android:hover {
     }
 
     .footer {
-        padding: 50px 20px 40px;
+        padding: 50px 20px 0;
     }
 
     /* Station page */
@@ -4016,12 +4038,14 @@ a.a-d-ios:hover, a.a-d-android:hover {
         line-height: 20px;
         border-width: 12px;
     }
-    .c-ch-title::before, .c-ch-title::after {
+    .toggle-color {
         height: 12px;
-        width: 70%;
         top: 50px;
     }
-    .c-ch-title::after {
+    .toggle-color.t-g-yellow {
+        top: 75px;
+    }
+    .toggle-color.t-g-pink {
         top: 100px;
     }
 
@@ -4177,12 +4201,6 @@ a.a-d-ios:hover, a.a-d-android:hover {
     }
     .take-me {
         margin-bottom: 60px;
-    }
-
-    .f-left, .f-right {
-        float: none;
-        width: 80%;
-        margin: 0 auto;
     }
 
     .rectangle-slim {

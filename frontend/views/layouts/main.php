@@ -1,4 +1,5 @@
 <?php
+use Carbon\Carbon;
 use yii\helpers\Html;
 use kodi\frontend\assets\AppAsset;
 use yii\web\View;
@@ -46,20 +47,24 @@ $slug = Yii::$app->request->get('slug');
     <div class="c-m-close"></div>
 </div>
 <div class="footer">
-    <div class="f-left">
-        <a href="#">sitemap</a>
-        <a href="#">info</a>
-        <a href="#">jobs opportunity</a>
-        <a href="#">events</a>
+    <div class="social-icons">
+        <a href="#" class="s-i-fk" target="_blank"></a>
+        <a href="#" class="s-i-im" target="_blank"></a>
+        <a href="#" class="s-i-yb" target="_blank"></a>
+        <a href="#" class="s-i-ln" target="_blank"></a>
+        <a href="#" class="s-i-tw" target="_blank"></a>
+        <a href="#" class="s-i-md" target="_blank"></a>
     </div>
-    <div class="f-right">
-        <a href="#">terms and conditions</a>
-        <a href="#">contact</a>
-        <a href="#">ads with kodi</a>
-        <a href="#">kodi accessories</a>
-        <a href="#">privacy policy</a>
+    <div class="footer-links">
+        <a href="https://medium.com/@meetkodi" target="_blank">Blog</a>
+        <a href="/about#contact">Contacts</a>
+        <a href="#">Press</a>
+        <a href="#">Privacy policy</a><br>
+        <a href="#">Purchase agreement</a>
+        <a href="#">T&C</a>
+        <a href="#">Service level agreement</a>
     </div>
-    <div class="clear"></div>
+    <div class="footer-copyright"><?= Carbon::now()->year; ?> Kodi LLC</div>
 </div>
 
 <?php $this->endBody() ?>

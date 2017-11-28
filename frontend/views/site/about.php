@@ -145,10 +145,4 @@ function prepareContent(section) {
             <strong>we all love pizza</strong>
         </div>
     </div>
-    <div class="social-icons">
-        <a href="#" class="s-i-fk"></a>
-        <a href="#" class="s-i-im"></a>
-        <a href="#" class="s-i-yb"></a>
-        <a href="#" class="s-i-ln"></a>
-    </div>
 </div>

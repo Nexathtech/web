@@ -107,6 +107,9 @@ $dateRangePickerEvents = [
                                 'attribute' => 'action_type',
                                 'format' => 'raw',
                                 'filter' => Type::listData(),
+                                'value' => function ($data) {
+                                    return Type::listData()[$data->action_type];
+                                }
                             ],
                             [
                                 'attribute' => 'device_type',
