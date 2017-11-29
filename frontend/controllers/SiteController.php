@@ -1,10 +1,9 @@
 <?php
 namespace kodi\frontend\controllers;
 
-use kodi\common\enums\Status;
-use kodi\common\models\page\Page;
 use kodi\frontend\models\forms\ContactForm;
 use Yii;
+use yii\base\ViewNotFoundException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -26,41 +25,31 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays homepage with subscribe form.
+     * Displays homepage.
      * @return mixed
      * @throws NotFoundHttpException
      */
     public function actionIndex()
     {
-        $page = Page::find()->where(['alias' => 'homepage', 'status' => Status::ACTIVE])->one();
-        if (empty($page)) {
-            throw new NotFoundHttpException;
-        }
 
-        return $this->render('index', ['content' => $page]);
+        return $this->render('index');
     }
 
     /**
      * Displays a page with slug given.
+     * Currently - station, printing, plus and koders pages
      *
      * @param string $slug
-     *
      * @return mixed
      * @throws NotFoundHttpException
      */
     public function actionView($slug)
     {
-        // Do not allow homepage to show on page different from home page
-        if ($slug !== 'homepage' && $slug !== 'about') {
-            $page = Page::find()->where(['alias' => $slug, 'status' => Status::ACTIVE])->one();
-        }
-        if (empty($page)) {
+        try {
+            return $this->render($slug);
+        } catch (ViewNotFoundException $e) {
             throw new NotFoundHttpException;
         }
-
-        return $this->render('view', [
-            'content' => $page,
-        ]);
     }
 
     /**

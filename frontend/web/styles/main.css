@@ -243,10 +243,6 @@ button.full-width {
     margin: 0 0 15px 0;
 }
 
-.site-error {
-    padding: 60px;
-}
-
 .help-block {
     font-size: 13px;
 }
@@ -3529,6 +3525,76 @@ a.a-d-ios:hover, a.a-d-android:hover {
 }
 
 
+/************
+ * Kodi regular pages
+ */
+.page-regular {
+    padding: 100px 10% 0;
+}
+.page-regular::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.page-content {
+    width: 60%;
+    float: left;
+    margin: 50px 40px;
+    padding: 20px;
+    border: 2px solid #fd969b;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+.page-content p {
+    margin-top: 0;
+}
+.page-title {
+    width: 20%;
+    float: left;
+    margin-top: 60px;
+    text-align: right;
+    font-size: 30px;
+    line-height: 32px;
+    text-transform: capitalize;
+    color: #6f6f6f;
+}
+.page-title .br {
+    display: block;
+}
+.page-title a {
+    text-decoration: none;
+    color: #6f6f6f;
+}
+.page-title .passive {
+    opacity: .25
+}
+.title-delimiter {
+    position: relative;
+    height: 2px;
+    margin: 20px 0;
+}
+.title-delimiter::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 3px;
+    background: #969696;
+}
+.page-close {
+    display: block;
+    width: 45px;
+    height: 45px;
+    float: left;
+    background: url('img/close.png') no-repeat;
+    background-size: 100%;
+}
+.page-close:hover {
+    opacity: .8;
+}
+
+
 /* ==========================================================================
    Responsive corrections
    ========================================================================== */
@@ -3676,6 +3742,11 @@ a.a-d-ios:hover, a.a-d-android:hover {
     }
     .app-download {
         width: 600px;
+    }
+
+    /* Regular page */
+    .page-content {
+        width: 58%;
     }
 }
 
@@ -3915,6 +3986,20 @@ a.a-d-ios:hover, a.a-d-android:hover {
     .m-m-title {
         float: left;
         margin: -320px 0 0;
+    }
+
+    /* Regular page */
+    .page-regular {
+        padding: 80px 20px 0;
+    }
+    .page-content {
+        width: 60%;
+    }
+    .page-regular .page-close {
+        display: none;
+    }
+    .page-title {
+        width: 160px;
     }
 }
 
@@ -4687,6 +4772,26 @@ a.a-d-ios:hover, a.a-d-android:hover {
     .member-photo {
         width: 32%;
         margin: 0;
+    }
+
+    /* Regular page */
+    .page-title {
+        width: auto;
+        margin: 0;
+        float: none;
+        font-size: 24px;
+    }
+    .page-title .br {
+        display: inline-block;
+        margin: 0 5px;
+    }
+    .title-delimiter {
+        margin: 10px 0;
+    }
+    .page-content {
+        width: auto;
+        margin: 40px 0 0;
+        float: none;
     }
 }
 
