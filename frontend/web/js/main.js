@@ -1,3 +1,7 @@
+$(document).on('click', '.disabled', function(e) {
+  e.preventDefault();
+});
+
 if (!getCookie('cookies_caution')) {
   setTimeout(function () {
     $('.cookie-message').fadeIn(800);

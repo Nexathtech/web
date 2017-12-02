@@ -56,6 +56,10 @@ $this->registerJs("
                 <? $i++; ?>
                 <? endforeach; ?>
                 </ul>
+                <a href="create" class="btn btn-primary pull-right">
+                    <?= FA::i('plus'); ?>
+                    <?= Yii::t('backend', 'Add variable'); ?>
+                </a>
             </div>
 
             <div class="card-block m-t-15">

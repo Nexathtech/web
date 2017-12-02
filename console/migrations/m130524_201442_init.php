@@ -260,12 +260,21 @@ class m130524_201442_init extends Migration
             'sort_order' => 33,
         ]);
         $this->insert('{{%setting}}', [
-            'title' => 'List of countries user can select when use the mobile app',
+            'title' => 'Supported countries',
+            'description' => 'List of countries user can select (i.e. when use the mobile app)',
             'name' => 'device_countries_support',
             'value' => 'Italy,Poland,Russia,Turkey,Ukraine,United Kingdom',
             'bunch' => 'Devices',
             'type' => 'Tag',
             'sort_order' => 34,
+        ]);
+        $this->insert('{{%setting}}', [
+            'title' => 'Cost of Kodi Station',
+            'name' => 'device_station_cost',
+            'value' => '6000',
+            'bunch' => 'Devices',
+            'type' => 'Input',
+            'sort_order' => 35,
         ]);
 
     }

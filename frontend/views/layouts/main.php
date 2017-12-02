@@ -48,23 +48,24 @@ $slug = Yii::$app->request->get('slug');
 </div>
 <div class="footer">
     <div class="social-icons">
-        <a href="#" class="s-i-fk" target="_blank"></a>
-        <a href="#" class="s-i-im" target="_blank"></a>
-        <a href="#" class="s-i-yb" target="_blank"></a>
-        <a href="#" class="s-i-ln" target="_blank"></a>
-        <a href="#" class="s-i-tw" target="_blank"></a>
+        <a href="https://www.facebook.com/meetkodi" class="s-i-fk" target="_blank"></a>
+        <a href="https://www.instagram.com/meetkodi/" class="s-i-im" target="_blank"></a>
+        <a href="https://www.youtube.com/channel/UCaXsr3XpyHqwOXHGXan5dRw" class="s-i-yb" target="_blank"></a>
+        <a href="https://www.linkedin.com/company/meetkodi" class="s-i-ln" target="_blank"></a>
+        <a href="https://twitter.com/meetkodi" class="s-i-tw" target="_blank"></a>
         <a href="#" class="s-i-md" target="_blank"></a>
     </div>
     <div class="footer-links">
         <a href="https://medium.com/@meetkodi" target="_blank">Blog</a>
+        <a href="/about">About</a>
         <a href="/about#contact">Contacts</a>
         <a href="/press">Press</a>
-        <a href="/privacy-policy">Privacy policy</a><br>
+        <a href="/privacy-policy">Privacy policy</a>
+        <a href="/terms-and-conditions">T&C</a><br>
         <a href="/purchase-agreement">Purchase agreement</a>
-        <a href="/terms-and-conditions">T&C</a>
         <a href="/service-level-agreement">Service level agreement</a>
     </div>
-    <div class="footer-copyright"><?= Carbon::now()->year; ?> Kodi LLC</div>
+    <div class="footer-copyright">&copy; <?= Carbon::now()->year; ?> Kodi LLC</div>
 </div>
 
 <?php $this->endBody() ?>

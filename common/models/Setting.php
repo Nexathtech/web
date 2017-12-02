@@ -10,6 +10,7 @@ use yii\validators\NumberValidator;
 use yii\validators\RangeValidator;
 use yii\validators\RequiredValidator;
 use yii\validators\StringValidator;
+use yii\validators\UniqueValidator;
 
 /**
  * Class `Setting`
@@ -52,13 +53,16 @@ class Setting extends ActiveRecord
             // Required fields
             [['title', 'name', 'bunch', 'type'], RequiredValidator::class],
 
+            // Unique fields
+            [['name'], UniqueValidator::class],
+
             // Strings validation
             [['title', 'description', 'value'], StringValidator::class],
-            [['name'], StringValidator::class, 'max' => 64],
+            [['name', 'bunch'], StringValidator::class, 'max' => 64],
 
             // Range validation
             [['type'], RangeValidator::class, 'range' => array_keys(Type::listData())],
-            [['bunch'], RangeValidator::class, 'range' => array_keys(Bunch::listData())],
+            //[['bunch'], RangeValidator::class, 'range' => array_keys(Bunch::listData())],
 
             // Integer validation
             [['sort_order'], NumberValidator::class],

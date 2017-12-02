@@ -55,6 +55,7 @@ return [
                 'auth/activate/<token:[\w-=]+>' => 'auth/activate',
                 'auth/password-reset/<token:[\w-=]+>' => 'auth/password-reset',
                 'about' => 'site/about',
+                'order' => 'order',
                 '<slug:[\w-]+>' => 'site/view',
             ],
         ],

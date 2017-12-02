@@ -11,7 +11,7 @@ use kodi\frontend\assets\SkrollrAsset;
 
 $this->title = 'Kodi';
 
-$this->registerJsFile('@web/js/site/index.js', ['depends' => [SkrollrAsset::class, AppAsset::class]]);
+$this->registerJsFile('@web/js/site.js', ['depends' => [SkrollrAsset::class, AppAsset::class]]);
 $this->registerCss(".footer {position: relative; top: 17800px;}");
 ?>
 

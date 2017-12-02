@@ -5,6 +5,7 @@ namespace kodi\api\controllers;
 use Exception;
 use kodi\api\models\auth\SignIn;
 use kodi\api\models\auth\SignUp;
+use kodi\common\enums\DeviceType;
 use kodi\common\enums\Status;
 use kodi\common\enums\user\Role;
 use kodi\common\enums\user\TokenType;
@@ -96,6 +97,9 @@ class AuthController extends Controller
 
             // Authenticate the device by issuing an access token
             $expiresIn = ArrayHelper::getValue(Yii::$app->params, 'security.token.access.expiration');
+            if ($device->type === DeviceType::MOBILE) {
+                $expiresIn = $expiresIn * 50; // 50 days for mobile application
+            }
 
             return Yii::$app->security->generateToken($device->user_id, TokenType::ACCESS, $device->id, $expiresIn, true, true);
 

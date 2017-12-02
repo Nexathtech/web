@@ -101,6 +101,37 @@ final class SettingsController extends BaseController
     }
 
     /**
+     * Creates a new settings variable
+     *
+     * @return string|\yii\web\Response
+     */
+    public function actionCreate()
+    {
+        $model = new Setting();
+        $bunches = Setting::find()->select('bunch')->distinct()->asArray()->column();
+        $bunchesData = [];
+        foreach ($bunches as $bunch) {
+            $bunchesData[$bunch] = $bunch;
+        }
+
+        // Form data received
+        $postData = Yii::$app->request->post();
+        if ($model->load($postData) && $model->save()) {
+            // Record saved
+            Yii::$app->session->addFlash(AlertType::SUCCESS, [
+                'message' => Yii::t('backend', 'New variable has been successfully created.'),
+            ]);
+            return $this->redirect(['index']);
+        }
+
+        // Render page
+        return $this->render('create', [
+            'model' => $model,
+            'bunches' => $bunchesData,
+        ]);
+    }
+
+    /**
      * Finds instance model based on its primary key value.
      *
      * If the model is not found, a 404 HTTP exception will be thrown.
