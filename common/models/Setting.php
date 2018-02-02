@@ -6,6 +6,7 @@ use kodi\common\behaviors\TimestampBehavior;
 use kodi\common\enums\setting\Bunch;
 use kodi\common\enums\setting\Type;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 use yii\validators\NumberValidator;
 use yii\validators\RangeValidator;
 use yii\validators\RequiredValidator;
@@ -84,17 +85,20 @@ class Setting extends ActiveRecord
     }
 
     /**
-     * Retrieves data from setting by given key name
+     * Retrieves data from setting by given key(s) name
      *
-     * @param $key
+     * @param $key string|array
      * @param null $default
      * @return mixed|null
      */
     public function get($key, $default = null) {
-        /** @var $model self */
-        $model = self::find()->where(['name' => $key])->one();
-        if (!empty($model)) {
-            return $model->value;
+        $items = self::find()->select(['name', 'value'])->where(['name' => $key])->asArray()->all();
+        if (!empty($items)) {
+            if (is_array($key)) {
+                return ArrayHelper::map($items, 'name', 'value');
+            } else {
+                return ArrayHelper::getColumn($items, 'value')[0];
+            }
         }
 
         return $default;

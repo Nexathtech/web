@@ -3,10 +3,15 @@ namespace kodi\api\controllers;
 
 use app\components\auth\KodiAuth;
 use kodi\common\enums\action\Status;
+use kodi\common\enums\action\Type;
+use kodi\common\enums\order\OrderType;
+use kodi\common\enums\order\PaymentType;
+use kodi\common\enums\order\Status as PaymentStatus;
 use kodi\common\enums\PromoCodeStatus;
 use kodi\common\models\Action;
-use kodi\common\models\device\Device;
+use kodi\common\models\Order;
 use kodi\common\models\PromoCode;
+use kodi\common\models\user\User;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -47,9 +52,11 @@ class ActionController extends Controller
      */
     public function actionRegister()
     {
-        $model = new Action();
+        /* @var $user User */
         $user = Yii::$app->user->identity;
+        $model = new Action();
         $params = Yii::$app->getRequest()->getBodyParams();
+        $details = $params;
         if (!empty($params['data'])) {
             $params['data'] = Json::encode($params['data']);
         }
@@ -69,6 +76,27 @@ class ActionController extends Controller
                     $promoCode->status = PromoCodeStatus::USED;
                     $promoCode->save(false);
                 }
+            }
+
+            // If photos to be printed, need to consider it as an order
+            if ($model->action_type === Type::PRINT_SHIPMENT) {
+                $order = new Order([
+                    'type' => OrderType::PHOTO,
+                    'name' => ArrayHelper::getValue($details, 'shipping.name'),
+                    'surname' => ArrayHelper::getValue($details, 'shipping.surname'),
+                    'email' => $model->user->email,
+                    'country' => ArrayHelper::getValue($details, 'shipping.country'),
+                    'city' => ArrayHelper::getValue($details, 'shipping.city'),
+                    'state' => ArrayHelper::getValue($details, 'shipping.state'),
+                    'address' => ArrayHelper::getValue($details, 'shipping.address'),
+                    'postcode' => ArrayHelper::getValue($details, 'shipping.postcode'),
+                    'color' => 'yellow',
+                    'quantity' => 1,
+                    'payment_type' => PaymentType::NONE,
+                    'order_data' => Json::encode(['action_id' => $model->id]),
+                    'status' => PaymentStatus::PENDING,
+                ]);
+                $order->save();
             }
         }
 

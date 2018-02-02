@@ -1,5 +1,6 @@
 <?php
 
+use kodi\frontend\assets\AppAsset;
 use kodi\frontend\assets\SkrollrAsset;
 
 /**
@@ -13,21 +14,27 @@ use kodi\frontend\assets\SkrollrAsset;
 $this->title = 'Kodi Plus';
 $this->params['breadcrumbs'][] = $this->title;
 
-SkrollrAsset::register($this);
 // Note, we do not support skrollr on non-desktop devices
 $this->registerCssFile('/styles/site/plus.css', [
     'media' => 'only screen and (min-width: 1001px)',
     'data-skrollr-stylesheet' => '',
 ]);
-$this->registerJs("
-if (!(/Android|iPhone|iPad|iPod|BlackBerry/i).test(navigator.userAgent || navigator.vendor || window.opera)) {
-  var s = skrollr.init({forceHeight: false});
-}   
-");
+$this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsset::class]]);
 ?>
 
 <div class="page-plus">
+    <div class="s-s-name">
+        <a href="#" class="s-s-title s-pl-title">kodi <span>plus</span></a>
+    </div>
+    <div class="p-pl-title">Plus</div>
+    <div class="people-jump"></div>
+    <div class="p-p-heading">
+        <div class="p-p-heading-cont">
+            is the<br>minimum
+        </div>
+    </div>
     <div class="colored-lines">
+        <div class="c-l-beige"></div>
         <div class="c-l-red"></div>
         <div class="c-l-blue"></div>
         <div class="c-l-pink"></div>
@@ -35,9 +42,9 @@ if (!(/Android|iPhone|iPad|iPod|BlackBerry/i).test(navigator.userAgent || naviga
     </div>
     <div class="p-p-main">
         <div class="p-p-m-cont">
-            <div class="iphone-mockup i-m-search"></div>
-            <div class="iphone-mockup i-m-preview"></div>
-            <div class="iphone-mockup i-m-shipping"></div>
+            <div class="iphone-mockup i-m-search i-m-major"></div>
+            <div class="iphone-mockup i-m-preview i-m-major"></div>
+            <div class="iphone-mockup i-m-shipping i-m-major"></div>
             <div class="p-p-block">
                 <div class="p-p-title p-p-t-1">direct from<br>instagram</div>
                 <div class="p-p-line p-p-l-1"></div>

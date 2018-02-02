@@ -1,11 +1,8 @@
 <?php
-
 namespace kodi\common\enums\user;
-
 use kodi\common\enums\base\Enum;
 use kodi\common\enums\base\EnumInterface;
 use Yii;
-
 /**
  * Class `Status`
  * =============
@@ -18,7 +15,6 @@ class Status extends Enum implements EnumInterface
     const INACTIVE = 'Inactive';
     const ACTIVE = 'Active';
     const SUSPENDED = 'Suspended';
-
     /**
      * @inheritdoc
      */

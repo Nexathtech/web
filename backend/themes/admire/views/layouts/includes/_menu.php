@@ -1,6 +1,6 @@
 <?php
 
-use kodi\common\models\Action;
+use kodi\common\models\Order;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Url;
 
@@ -35,6 +35,15 @@ $controller = $this->context;
                 <span class="link-title menu_hide"><?= Yii::t('backend', 'Dashboard'); ?></span>
             </a>
         </li>
+        <li class="<?= ($controller->id === 'order') ? 'active' : '' ?>">
+            <a href="<?= Url::to(['/order']); ?>">
+                <?= FA::i('shopping-cart'); ?>
+                <span class="link-title menu_hide"><?= Yii::t('backend', 'Orders'); ?></span>
+                <? if (($printShipmentAmount = Order::getPendingAmount()) > 0): ?>
+                    <span class="label label-danger m-l-10" title="<?= Yii::t('backend', 'Pending orders') ?>" data-toggle="tooltip"><?= $printShipmentAmount; ?></span>
+                <? endif; ?>
+            </a>
+        </li>
         <li class="<?= ($controller->id === 'user') ? 'active' : '' ?>">
             <a href="<?= Url::to(['/user']); ?>">
                 <?= FA::i('users'); ?>
@@ -51,9 +60,6 @@ $controller = $this->context;
             <a href="<?= Url::to(['/action']); ?>">
                 <?= FA::i('bullseye'); ?>
                 <span class="link-title menu_hide"><?= Yii::t('backend', 'Actions'); ?></span>
-                <? if (($printShipmentAmount = Action::getPrintShipmentAmount()) > 0): ?>
-                    <span class="label label-info m-l-10" title="<?= Yii::t('backend', 'New actions with shipment') ?>" data-toggle="tooltip"><?= $printShipmentAmount; ?></span>
-                <? endif; ?>
             </a>
         </li>
 

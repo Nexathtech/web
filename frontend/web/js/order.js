@@ -52,3 +52,10 @@ $('.o-agreement input[type="checkbox"]').on('click', function() {
     $btnSubmit.addClass('disabled');
   }
 });
+
+/* Payment type checkboxes */
+$('.o-payment-check input[type="checkbox"]').on('click', function() {
+  $('.o-payment-check input[type="checkbox"]').prop('checked', false);
+  $(this).prop('checked', true);
+  $btnSubmit.removeClass('disabled');
+});

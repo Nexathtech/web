@@ -1,11 +1,8 @@
 <?php
-
 namespace kodi\common\enums\user;
-
 use kodi\common\enums\base\Enum;
 use kodi\common\enums\base\EnumInterface;
 use Yii;
-
 /**
  * Class `ProviderType`
  * ====================
@@ -17,7 +14,6 @@ class ProviderType extends Enum implements EnumInterface
 {
     const GOOGLE = 'Google';
     const FACEBOOK = 'Facebook';
-
     /**
      * @inheritdoc
      */

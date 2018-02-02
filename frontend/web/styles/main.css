@@ -166,7 +166,7 @@ textarea {
     margin: 2px 0 0 2px;
     background-color: #ffcf46;
     color: #fff;
-    box-shadow: rgba(0, 0, 0, 0.8) 2px 2px 4px;
+    box-shadow: rgba(0, 0, 0, 0.8) 2px 2px 4px inset;
     -webkit-box-shadow: rgba(0, 0, 0, 0.8) 2px 2px 4px inset;
 }
 .btn.btn-full-width, .btn.full-width {
@@ -332,8 +332,8 @@ input[type="checkbox"]:checked::after {
 .top-nav {
     position: absolute;
     top: 16px;
-    right: 0;
-    width: 35%;
+    right: 125px;
+    width: 320px;
     overflow: hidden;
 }
 .top-nav a {
@@ -352,6 +352,28 @@ input[type="checkbox"]:checked::after {
 }
 .top-nav a.top-nav-icon {
     display: none;
+}
+.top-nav a.nav-about {
+    display: none;
+}
+
+.pre-order-btn {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: #5b9dff;
+    text-decoration: none;
+    color: #fcfcfc;
+    transition: background .2s;
+}
+.pre-order-btn:hover {
+    background: #00c700;
+}
+.pre-order-btn:active {
+    box-shadow: rgba(0, 0, 0, 0.8) 2px 2px 4px inset;
 }
 
 #toast-container {
@@ -2860,17 +2882,89 @@ img.m-sword {
     overflow: hidden;
 }
 
+.p-pl-title {
+    position: relative;
+    padding-right: 15%;
+    margin-bottom: -295px;
+    font-size: 180px;
+    text-align: right;
+    text-transform: uppercase;
+    color: #fff;
+    z-index: 3;
+}
+.people-jump {
+    position: relative;
+    margin-top: 660px;
+    z-index: 1;
+}
+.people-jump::before {
+    content: "";
+    display: block;
+    width: 100%;
+    padding-right: 10%;
+    height: 180px;
+    position: absolute;
+    left: 0;
+    top: -630px;
+    background: #e8b0b2;
+}
+.people-jump::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 600px;
+    position: absolute;
+    left: 0;
+    top: -350px;
+    border-bottom: 120px solid #0e0f0f;
+    border-radius: 0 0 90% 70% / 0 0 135% 160%;
+    background: url('img/people-jump.png') center top;
+    background-size: 77%;
+    transform: scale(1.3);
+    -webkit-transform: scale(1.3);
+    -moz-transform: scale(1.3);
+}
+
+.p-p-heading {
+    position: relative;
+    padding-top: 400px;
+    background: #0e0f0f;
+}
+.p-p-heading-cont {
+    position: relative;
+    width: 435px;
+    margin: 0 auto;
+    text-align: right;
+    font-size: 100px;
+    line-height: 80px;
+    color: #fff;
+    z-index: 1;
+}
+.p-p-heading-cont::before {
+    content: "";
+    display: block;
+    width: 220px;
+    height: 25px;
+    position: absolute;
+    right: 0;
+    top: -50px;
+    background: #fe5156;
+}
 .colored-lines {
-    height: 580px;
-    margin-top: -80px;
+    height: 650px;
+    padding-top: 110px;
     background: #0e0f0f;
 }
 .colored-lines > div {
     width: 110%;
     height: 30px;
     margin-bottom: 35px;
+    margin-left: -5%;
     background: #ffce46;
     transform: rotate(10deg);
+}
+div.c-l-beige {
+    background-color: #f8c773;
 }
 div.c-l-red {
     background-color: #bd3450;
@@ -2919,6 +3013,7 @@ div.c-l-pink {
 .p-p-m-cont {
     position: relative;
     width: 80%;
+    min-height: 1700px;
     margin: 0 auto;
     top: -300px;
 }
@@ -2934,6 +3029,12 @@ div.c-l-pink {
     width: 360px;
     height: 600px;
     overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+.iphone-mockup.hidden {
+    opacity: 0;
 }
 .iphone-mockup::before {
     content: "";
@@ -2963,23 +3064,18 @@ div.c-l-pink {
     background: url('img/i-m-home.jpg') no-repeat 0 -1px;
 }
 .iphone-mockup.i-m-search {
-    top: 60px;
     transform: scale(0.73);
 }
 .iphone-mockup.i-m-preview {
-    left: 100px;
-    top: 25px;
-    transform: scale(0.88);
-}
-.iphone-mockup.i-m-shipping {
-    left: 200px;
+    transform: scale(0.88) translateZ(0);
 }
 
 .p-p-block {
     width: 380px;
     margin-top: 100px;
-    position: relative;
-    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 .p-p-title {
     position: relative;
@@ -2988,6 +3084,8 @@ div.c-l-pink {
     font-size: 42px;
     line-height: 44px;
     font-weight: bold;
+    opacity: 1;
+    transition: opacity 1s ease;
 }
 .p-p-line {
     width: 260px;
@@ -2995,14 +3093,21 @@ div.c-l-pink {
     float: right;
     margin: 0 220px 20px 0;
     background: #ffa895;
+    opacity: 1;
+    transition: opacity 1s ease;
 }
 .p-p-desc {
     clear: both;
-    margin-bottom: 40px;
+    margin-bottom: 320px;
     padding-right: 60px;
     font-size: 18px;
     letter-spacing: 3px;
     color: #3e3e3e;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+.p-p-title.active, .p-p-line, .p-p-desc.active {
+    opacity: 1;
 }
 
 .moments-matter {
@@ -3597,9 +3702,6 @@ a.a-d-ios:hover, a.a-d-android:hover {
     text-transform: capitalize;
     color: #6f6f6f;
 }
-.page-title .br {
-    display: block;
-}
 .page-title a {
     text-decoration: none;
     color: #6f6f6f;
@@ -3946,6 +4048,27 @@ form.order-info .help-block {
     cursor: pointer;
 }
 
+.order-thank-page .page-title {
+    color: #000;
+}
+
+.table-order {
+    width: 100%;
+    margin: 30px auto;
+    border-spacing: unset;
+    font-size: 16px;
+}
+.table-order th {
+    padding: 10px;
+    text-align: right;
+}
+.table-order td {
+    padding: 10px;
+}
+.table-order.table-striped tr:nth-child(2n+1) {
+    background: #f2f2f2;
+}
+
 
 /* ==========================================================================
    Responsive corrections
@@ -3971,31 +4094,6 @@ form.order-info .help-block {
 
 /* === Landscape tablets and medium desktops === */
 @media screen and (max-width: 1200px) {
-    .top-nav {
-        top: 8px;
-        width: 30%;
-        min-width: 50px;
-        padding-top: 40px;
-    }
-    .top-nav a {
-        display: none;
-        float: none;
-        margin: 0;
-        text-align: right;
-        padding: 8px 20px;
-    }
-    .top-nav a.top-nav-icon {
-        display: block;
-        padding: 0;
-        position: absolute;
-        top: 0;
-        right: 20px;
-        font-size: 30px;
-    }
-    .top-nav.responsive a {
-        display: block;
-    }
-
     /* Station page */
     .o-s-description {
         width: 30%;
@@ -4068,27 +4166,15 @@ form.order-info .help-block {
 
     /* Plus page */
     .p-p-m-cont {
-        width: 750px;
+        width: 920px;
     }
     .p-p-line {
         margin-right: 100px;
     }
     .iphone-mockup.i-m-search, .iphone-mockup.i-m-preview, .iphone-mockup.i-m-shipping {
-        position: relative;
-        left: 0;
-        top: 0;
         transform: scale(1);
     }
-    .p-p-block {
-        margin-top: -1700px;
-    }
-    .p-p-desc {
-        margin-bottom: 240px;
-    }
 
-    .moments-matter {
-        margin-top: -400px;
-    }
     .m-m-cont {
         width: 960px;
     }
@@ -4110,6 +4196,35 @@ form.order-info .help-block {
 @media screen and (max-width: 1000px) {
     .section-main video {
         width: 600px;
+    }
+
+    /* Top menu */
+    .btn-plus {
+        display: none;
+    }
+    .top-nav {
+        top: 8px;
+        right: auto;
+        left: 0;
+        min-width: 50px;
+        padding-top: 40px;
+    }
+    .top-nav a {
+        display: none;
+        float: none;
+        margin: 0;
+        padding: 8px 20px;
+    }
+    .top-nav a.top-nav-icon {
+        display: block;
+        padding: 0;
+        position: absolute;
+        top: 0;
+        left: 20px;
+        font-size: 30px;
+    }
+    .top-nav.responsive a {
+        display: block;
     }
 
     /* Station page */
@@ -4174,6 +4289,11 @@ form.order-info .help-block {
     .page-order .page-content {
         width: calc(100% - 210px);
         margin: 50px 0 50px 20px;
+    }
+
+    /* Plus page */
+    .people-jump::before {
+        top: -615px;
     }
 }
 
@@ -4345,6 +4465,12 @@ form.order-info .help-block {
         float: left;
         margin: -320px 0 0;
     }
+    .people-jump::after {
+        height: 470px;
+    }
+    .p-p-m-cont {
+        width: auto;
+    }
 
     /* Regular page */
     .page-regular {
@@ -4393,10 +4519,22 @@ form.order-info .help-block {
     .order-payment .o-submit-form {
         text-align: center;
     }
+
+    .o-agreement input[type="checkbox"] {
+        float: none;
+    }
 }
 
 /* ===== Portrait phones and smaller ===== */
 @media screen and (max-width: 480px) {
+    /* Top menu */
+    .pre-order-btn {
+        right: 10px;
+    }
+    .top-nav a.top-nav-icon {
+        left: 10px;
+    }
+
     .b-i-block {
         margin: 40px 10px 20px;
     }
@@ -4991,23 +5129,13 @@ form.order-info .help-block {
         height: 200px;
         top: -300px;
     }
-
     .p-p-m-cont {
-        width: auto;
+        min-height: 1400px;
     }
+
     .iphone-mockup.i-m-search, .iphone-mockup.i-m-preview, .iphone-mockup.i-m-shipping {
-        top: -120px;
-        left: -100px;
+        margin-top: -120px;
         transform: scale(0.5);
-    }
-    .iphone-mockup.i-m-preview {
-        top: -360px;
-    }
-    .iphone-mockup.i-m-shipping {
-        top: -610px;
-    }
-    .p-p-block {
-        margin-top: -1800px;
     }
     .p-p-title {
         margin: 0 50px 10px;
@@ -5021,14 +5149,12 @@ form.order-info .help-block {
     }
     .p-p-desc {
         padding: 0 20px 0 180px;
-        margin-bottom: 50px;
         font-size: 16px;
         letter-spacing: 0;
     }
 
     .moments-matter {
-        margin-top: -1000px;
-        margin-bottom: 280px;
+        margin-bottom: 180px;
     }
     .moments-matter::before {
         height: 250px;
@@ -5166,6 +5292,46 @@ form.order-info .help-block {
         margin: 0;
     }
 
+    .people-jump {
+        margin-top: 470px;
+    }
+    .people-jump::before {
+        top: -415px;
+    }
+    .p-pl-title {
+        font-size: 140px;
+    }
+    .people-jump::after {
+        height: 200px;
+        top: -200px;
+    }
+    .p-p-heading {
+        padding-top: 100px;
+    }
+    .p-p-heading-cont {
+        width: 350px;
+        font-size: 80px;
+    }
+    .colored-lines {
+        height: 500px;
+        margin-top: -50px;
+    }
+
+    .p-p-heading-cont::before {
+        top: -30px;
+        height: 15px;
+    }
+
+    .p-p-block {
+        top: -80px;
+    }
+
+    .iphone-mockup {
+        left: -100px;
+        top: -120px;
+    }
+
+
     /* Regular page */
     .page-title {
         width: auto;
@@ -5173,8 +5339,8 @@ form.order-info .help-block {
         float: none;
         font-size: 24px;
     }
-    .page-title .br {
-        display: inline-block;
+    .page-title {
+        white-space: nowrap;
         margin: 0 5px;
     }
     .title-delimiter {
@@ -5318,7 +5484,7 @@ form.order-info .help-block {
     .o-submit-form {
         text-align: center;
     }
-    .page-order .page-close {
+    .page-regular .page-close {
         top: auto;
         bottom: -60px;
         left: 50%;

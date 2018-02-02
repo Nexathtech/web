@@ -268,14 +268,6 @@ class m130524_201442_init extends Migration
             'type' => 'Tag',
             'sort_order' => 34,
         ]);
-        $this->insert('{{%setting}}', [
-            'title' => 'Cost of Kodi Station',
-            'name' => 'device_station_cost',
-            'value' => '6000',
-            'bunch' => 'Devices',
-            'type' => 'Input',
-            'sort_order' => 35,
-        ]);
 
     }
 

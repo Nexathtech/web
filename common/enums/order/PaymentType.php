@@ -16,7 +16,8 @@ use Yii;
 class PaymentType extends Enum implements EnumInterface
 {
     const BITCOIN = 'Bitcoin';
-    const TRANSFERWISE = 'TransferWise';
+    const WIRETRANSFER = 'Wire Transfer';
+    const NONE = 'None';
 
     /**
      * @inheritdoc
@@ -25,7 +26,8 @@ class PaymentType extends Enum implements EnumInterface
     {
         return [
             self::BITCOIN => Yii::t('common', 'Bitcoin'),
-            self::TRANSFERWISE => Yii::t('common', 'Transfer Wise'),
+            self::WIRETRANSFER => Yii::t('common', 'Wire Transfer'),
+            self::NONE => Yii::t('common', 'None'),
         ];
     }
 }

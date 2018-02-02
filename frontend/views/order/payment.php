@@ -1,7 +1,7 @@
 <?
 
+use kodi\frontend\assets\AppAsset;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 
 /**
  * The view file for the "order/payment" action.
@@ -14,6 +14,7 @@ use yii\widgets\ActiveForm;
 
 $this->title = Yii::t('frontend', 'Kodi Order payment');
 
+$this->registerJsFile('@web/js/order.js', ['depends' => AppAsset::class]);
 ?>
 
 <div class="page-order order-payment page-regular">
@@ -61,8 +62,8 @@ $this->title = Yii::t('frontend', 'Kodi Order payment');
             <div class="o-payment-check">
                 <?= Html::checkbox('payment_bitcoin', false, ['id' => 'payment-bitcoin']); ?>
                 <?= Html::label(Yii::t('frontend', 'Bitcoin'), 'payment-bitcoin'); ?>
-                <?= Html::checkbox('payment_transferwise', false, ['id' => 'payment-transferwise']); ?>
-                <?= Html::label(Yii::t('frontend', 'Wiretransfer'), 'payment-transferwise'); ?>
+                <?= Html::checkbox('payment_wiretransfer', false, ['id' => 'payment-wiretransfer']); ?>
+                <?= Html::label(Yii::t('frontend', 'Wire Transfer'), 'payment-wiretransfer'); ?>
             </div>
             <?= Html::submitButton(Yii::t('frontend', 'Proceed'), ['class' => 'btn btn-md disabled']); ?>
         </div>

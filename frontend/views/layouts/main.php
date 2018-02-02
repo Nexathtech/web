@@ -31,12 +31,14 @@ $slug = Yii::$app->request->get('slug');
     <a class="btn-plus <?= $slug === 'about' ? 'active' : '' ?>" href="<?= $slug === 'about' ? '/' : '/about' ?>" title="About us"></a>
     <a class="logo" href="/"></a>
     <div class="top-nav" id="top-nav">
-        <a href="/station" class="<?= $slug === 'station' ? 'active' : '' ?>">kodi station</a>
+        <a href="/station" class="<?= $slug === 'station' ? 'active' : '' ?>">station</a>
         <a href="/printing" class="<?= $slug === 'printing' ? 'active' : '' ?>">kodi printing</a>
-        <a href="/plus" class="<?= $slug === 'plus' ? 'active' : '' ?>">kodi plus</a>
+        <a href="/plus" class="<?= $slug === 'plus' ? 'active' : '' ?>">plus</a>
         <a href="/koders" class="<?= $slug === 'koders' ? 'active' : '' ?>">koders</a>
+        <a href="/about" class="nav-about <?= $slug === 'about' ? 'active' : '' ?>">about</a>
         <a href="javascript:void(0);" class="top-nav-icon" onclick="openTopNav()">&#9776;</a>
     </div>
+    <a class="pre-order-btn" href="/order"><?= Yii::t('frontend', 'pre-order'); ?></a>
 </div>
 
 <?= $content ?>

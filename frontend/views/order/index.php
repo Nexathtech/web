@@ -1,6 +1,6 @@
 <?
 
-use kodi\backend\assets\AppAsset;
+use kodi\frontend\assets\AppAsset;
 use yii\helpers\Html;
 
 /**

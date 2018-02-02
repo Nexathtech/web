@@ -26,6 +26,7 @@ class m171130_114649_order_table extends Migration
 
         $this->createTable('{{%order}}', [
             'id' => $primaryKeyField,
+            'type' => $this->string(64)->defaultValue('Kiosk'),
             'name' => $this->string(64)->notNull(),
             'surname' => $this->string(64)->notNull(),
             'email' => $this->string(64)->notNull(),
@@ -37,7 +38,10 @@ class m171130_114649_order_table extends Migration
             'postcode' => $this->string(64),
             'color' => $this->string(64)->notNull(),
             'quantity' => $this->integer()->unsigned()->notNull(),
+            'total' => $this->float(),
             'payment_type' => $this->string(255)->notNull(),
+            'payment_data' => $this->text()->null(),
+            'order_data' => $this->text()->null(),
             'status' => $statusField,
             'created_at' => $createdAtField,
             'updated_at' => $updatedAtField,

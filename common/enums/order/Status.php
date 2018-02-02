@@ -28,7 +28,7 @@ class Status extends Enum implements EnumInterface
         return [
             self::WAITING => Yii::t('common', 'Waiting for payment'),
             self::PENDING => Yii::t('common', 'Pending'),
-            self::CANCELED => Yii::t('common', 'Completed'),
+            self::COMPLETED => Yii::t('common', 'Completed'),
             self::CANCELED => Yii::t('common', 'Canceled'),
         ];
     }

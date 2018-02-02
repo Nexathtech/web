@@ -24,7 +24,7 @@ class AppAsset extends AssetBundle
      * @inheritdoc
      */
     public $css = [
-        'styles/main.css',
+        'css/main.css',
     ];
 
     /**

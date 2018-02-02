@@ -2,6 +2,10 @@
 
 namespace kodi\frontend\controllers;
 
+use kodi\common\enums\AlertType;
+use kodi\common\enums\order\OrderType;
+use kodi\common\enums\order\PaymentType;
+use kodi\common\enums\order\Status;
 use kodi\common\models\Order;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -86,19 +90,61 @@ class OrderController extends Controller
         ]);
     }
 
+    /**
+     * Displays the page with payment method picking
+     *
+     * @return string|\yii\web\Response
+     */
     public function actionPayment()
     {
         $model = new Order();
         $order = Yii::$app->request->cookies->getValue('order');
         $model->setAttributes($order);
-        $productCost = Yii::$app->settings->get('device_station_cost') * $model->quantity;
-        $shippingCost = 240;
+        $model->type = OrderType::KIOSK;
 
+        if (!$model->validate()) {
+            return $this->redirect(['/order/info']);
+        }
+
+        $productCostData = Yii::$app->settings->get(['device_station_cost', 'device_station_shipping_cost']);
+        $productCost = $productCostData['device_station_cost'] * $model->quantity;
+        $shippingCost = $productCostData['device_station_shipping_cost'];
         $price = [
             'product' => $productCost,
             'shipping' => $shippingCost,
             'total' => $productCost + $shippingCost,
         ];
+
+        $model->total = $price['total'];
+
+        // Handle Wire Transfer choice
+        if (Yii::$app->request->post('payment_wiretransfer')) {
+            $model->payment_type = PaymentType::WIRETRANSFER;
+            $model->status = Status::WAITING;
+            if ($model->save()) {
+                $bankDetails = Yii::$app->settings->get([
+                    'bank_beneficiary',
+                    'bank_account_number',
+                    'bank_swift_code',
+                    'bank_name',
+                    'bank_address',
+                ]);
+
+                return $this->render('payment-wire-success', [
+                    'model' => $model,
+                    'bankDetails' => $bankDetails,
+                ]);
+            } else {
+                Yii::$app->session->addFlash(AlertType::ERROR, [
+                    'message' => Yii::t('frontend', 'Try again later.')
+                ]);
+            }
+        }
+
+        // Handle Bitcoin choice
+        if (Yii::$app->request->post('payment_bitcoin')) {
+
+        }
 
         return $this->render('payment', [
             'model' => $model,

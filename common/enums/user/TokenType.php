@@ -1,11 +1,8 @@
 <?php
-
 namespace kodi\common\enums\user;
-
 use kodi\common\enums\base\Enum;
 use kodi\common\enums\base\EnumInterface;
 use Yii;
-
 /**
  * Class `TokenType`
  * =================
@@ -20,7 +17,6 @@ class TokenType extends Enum implements EnumInterface
     const EMAIL_CONFIRMATION = 'Email confirmation';
     const ACCESS = 'Access';
     const EXTERNAL_LOGIN = 'External login';
-
     /**
      * @inheritdoc
      */
