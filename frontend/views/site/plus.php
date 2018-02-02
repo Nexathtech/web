@@ -95,9 +95,15 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
             <div class="iphone-mockup i-m-home"></div>
             <div class="a-d-desc">
                 <div class="a-d-title">it's already in your hands</div>
-                download<br>now<br>
-                <a href="#" class="a-d-ios" title="Download Kodi on App Store"></a>
-                <a href="#" class="a-d-android" title="Download Kodi on Play Store"></a>
+                <div class="subscribe-container">
+                    <? $form = ActiveForm::begin(); ?>
+                    <?= $form->field($subscribeModel, 'email')->textInput([
+                        'placeholder' => Yii::t('frontend', 'Enter your email'),
+                        'class' => 'subscribe-email',
+                    ])->label(false); ?>
+                    <?= Html::submitButton('Get Early Access', ['class' => 'btn btn-block btn-green']); ?>
+                    <? $form->end() ?>
+                </div>
             </div>
         </div>
     </div>
@@ -107,15 +113,6 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
             Kodi Plus is constantly evolving.<br>
             Stay up to date to see all the latest service innovations that we’ve got in store for you.<br>
             Your phone will be the key to managing the digital kiosk of tomorrow.
-            <div class="subscribe-container">
-                <? $form = ActiveForm::begin(); ?>
-                <?= $form->field($subscribeModel, 'email')->textInput([
-                    'placeholder' => Yii::t('frontend', 'Enter your email'),
-                    'class' => 'subscribe-email',
-                ])->label(false); ?>
-                <?= Html::submitButton('Get Early Access', ['class' => 'btn btn-block text-blue']); ?>
-                <? $form->end() ?>
-            </div>
         </div>
     </div>
     <div class="p-p-bottom">

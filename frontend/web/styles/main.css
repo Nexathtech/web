@@ -181,6 +181,16 @@ button.full-width {
     color: #fff;
     font-weight: normal;
 }
+.btn.btn-green {
+    background: #05bc45;
+    border-color: #05bc45;
+    color: #fff;
+    font-weight: normal;
+}
+.btn.btn-green:hover {
+    background-color: transparent;
+    color: #05bc45;
+}
 .btn.disabled {
     opacity: .25;
     cursor: default;
@@ -3229,7 +3239,7 @@ a.a-d-ios:hover, a.a-d-android:hover {
 }
 
 .phone-key {
-    height: 680px;
+    height: 540px;
     padding-top: 360px;
     background: #0e0f0f;
     text-align: center;
@@ -3244,7 +3254,7 @@ a.a-d-ios:hover, a.a-d-android:hover {
 .subscribe-container {
     position: relative;
     width: 240px;
-    margin: 0 auto;
+    margin: 50px auto 0;
 }
 
 .p-p-bottom {
@@ -5232,7 +5242,7 @@ form.order-info .help-block {
     }
 
     .phone-key {
-        height: 780px;
+        height: 640px;
         padding: 160px 60px 0;
         font-size: 32px;
     }
@@ -5242,6 +5252,13 @@ form.order-info .help-block {
     }
     .p-p-bottom .b-i-block {
         top: -200px;
+    }
+
+    .subscribe-container {
+        position: absolute;
+        left: 50%;
+        margin-left: -120px;
+        bottom: -60px;
     }
 
     /* About page */
