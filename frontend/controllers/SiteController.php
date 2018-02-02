@@ -53,9 +53,15 @@ class SiteController extends Controller
         }
     }
 
+    /**
+     * Temporary action. Landing home page
+     *
+     * @return string
+     */
     public function actionPlus()
     {
         $model = new SubscribeForm();
+
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $subscriptionRes = $model->subscribe();
             $alertType = 'error';
