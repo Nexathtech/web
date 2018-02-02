@@ -2394,6 +2394,7 @@ a.s-i-md {
 }
 
 .footer {
+    position: relative;
     margin-top: 100px;
     text-align: center;
 }
