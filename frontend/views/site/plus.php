@@ -95,16 +95,18 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
             <div class="iphone-mockup i-m-home"></div>
             <div class="a-d-desc">
                 <div class="a-d-title">it's already in your hands</div>
-                <div class="subscribe-container">
-                    <? $form = ActiveForm::begin(); ?>
-                    <?= $form->field($subscribeModel, 'email')->textInput([
-                        'placeholder' => Yii::t('frontend', 'Enter your email'),
-                        'class' => 'subscribe-email',
-                    ])->label(false); ?>
-                    <?= Html::submitButton('Get Early Access', ['class' => 'btn btn-block btn-green']); ?>
-                    <? $form->end() ?>
-                </div>
+                <a href="#" class="a-d-ios disabled" title="Coming soon on App Store"></a>
+                <a href="#" class="a-d-android disabled" title="Coming soon on Play Store"></a>
             </div>
+        </div>
+        <div class="subscribe-container">
+            <? $form = ActiveForm::begin(); ?>
+            <?= $form->field($subscribeModel, 'email')->textInput([
+                'placeholder' => Yii::t('frontend', 'Enter your email'),
+                'class' => 'subscribe-email',
+            ])->label(false); ?>
+            <?= Html::submitButton('Get Early Access', ['class' => 'btn btn-block btn-green']); ?>
+            <? $form->end() ?>
         </div>
     </div>
     <div class="phone-key">

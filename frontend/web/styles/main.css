@@ -206,6 +206,10 @@ button.full-width {
     width: 100%;
 }
 
+.disabled {
+    cursor: default;
+}
+
 .btn-plus {
     display: block;
     width: 55px;
@@ -3253,8 +3257,10 @@ a.a-d-ios:hover, a.a-d-android:hover {
 }
 .subscribe-container {
     position: relative;
+    top: 200px;
     width: 240px;
-    margin: 50px auto 0;
+    margin: 0 auto;
+    z-index: 1;
 }
 
 .p-p-bottom {
@@ -5255,10 +5261,7 @@ form.order-info .help-block {
     }
 
     .subscribe-container {
-        position: absolute;
-        left: 50%;
-        margin-left: -120px;
-        bottom: -60px;
+        top: 0;
     }
 
     /* About page */
