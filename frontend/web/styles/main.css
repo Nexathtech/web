@@ -181,6 +181,16 @@ button.full-width {
     color: #fff;
     font-weight: normal;
 }
+.btn.btn-green {
+    background: #05bc45;
+    border-color: #05bc45;
+    color: #fff;
+    font-weight: normal;
+}
+.btn.btn-green:hover {
+    background-color: transparent;
+    color: #05bc45;
+}
 .btn.disabled {
     opacity: .25;
     cursor: default;
@@ -189,8 +199,15 @@ button.full-width {
 .btn.disabled:hover, .btn.disabled:active {
     background: inherit !important;
     border-color: inherit !important;
-    margin: 0;
     box-shadow: none;
+}
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.disabled {
+    cursor: default;
 }
 
 .btn-plus {
@@ -271,9 +288,11 @@ button.full-width {
 }
 .form-group input {
     width: 100%;
-    padding: 2px 0;
+    box-sizing: border-box;
+    padding: 10px;
     border: none;
     border-bottom: 4px solid #fada00;
+    font-size: 14px;
     font-weight: bold;
     letter-spacing: 3px;
     color: #48affd;
@@ -2375,6 +2394,7 @@ a.s-i-md {
 }
 
 .footer {
+    position: relative;
     margin-top: 100px;
     text-align: center;
 }

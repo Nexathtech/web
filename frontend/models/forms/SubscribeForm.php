@@ -36,7 +36,7 @@ class SubscribeForm extends Model
         $params = ['email_address' => $this->email, 'status' => 'subscribed'];
         $result = [
             'success' => true,
-            'message' => Yii::t('frontend', 'Thanks! You have been successfully subscribed to our newsletter.')
+            'message' => Yii::t('frontend', 'You have been successfully subscribed to our newsletter.')
         ];
         try {
             Yii::$app->mailchimp->post("/lists/{$listId}/members", $params);
