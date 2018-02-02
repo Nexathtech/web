@@ -2,12 +2,15 @@
 
 use kodi\frontend\assets\AppAsset;
 use kodi\frontend\assets\SkrollrAsset;
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 /**
  * The view file for the "site/view" action.
  *
  * @var \yii\web\View $this Current view instance.
  * @var $model \kodi\frontend\models\forms\ContactForm content
+ * @var $subscribeModel \kodi\frontend\models\forms\SubscribeForm
  * @see \kodi\frontend\controllers\SiteController::actionView()
  */
 
@@ -100,22 +103,31 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
     </div>
     <div class="phone-key">
         your phone<br>is the key
-    </div>
-    <div class="p-p-bottom">
-        <div class="b-i-block">
+        <div class="p-k-desc">
             Kodi Plus is constantly evolving.<br>
             Stay up to date to see all the latest service innovations that we’ve got in store for you.<br>
             Your phone will be the key to managing the digital kiosk of tomorrow.
+            <div class="subscribe-container">
+                <? $form = ActiveForm::begin(); ?>
+                <?= $form->field($subscribeModel, 'email')->textInput([
+                    'placeholder' => Yii::t('frontend', 'Enter your email'),
+                    'class' => 'subscribe-email',
+                ])->label(false); ?>
+                <?= Html::submitButton('Get Early Access', ['class' => 'btn btn-block text-blue']); ?>
+                <? $form->end() ?>
+            </div>
         </div>
+    </div>
+    <div class="p-p-bottom">
         <div class="b-i-block">
             <div class="b-i-title">discover the future<br>of printing</div>
             From your phone or a Kodi station, the digital printing revolution with personalized content is a world of infinite possibilities, which you can’t do without.<br>
-            <a class="btn" href="/printing">kodi printing</a>
+            <a class="btn disabled" href="#">coming soon...</a>
         </div>
         <div class="b-i-block">
             <div class="b-i-title">a digital app for a real<br>kiosk</div>
             With Kodi Plus, you can make payments, find the nearest Kodi station and manage your count. Now you just have to find a Kodi station for yourself to see how this works.<br>
-            <a class="btn text-blue" href="/station">kodi station</a>
+            <a class="btn text-blue disabled" href="#">coming soon...</a>
         </div>
     </div>
 </div>

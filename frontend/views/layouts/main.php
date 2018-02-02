@@ -28,17 +28,7 @@ $slug = Yii::$app->request->get('slug');
 <?= $this->render('includes/_flash_messages') ?>
 
 <div class="header">
-    <a class="btn-plus <?= $slug === 'about' ? 'active' : '' ?>" href="<?= $slug === 'about' ? '/' : '/about' ?>" title="About us"></a>
     <a class="logo" href="/"></a>
-    <div class="top-nav" id="top-nav">
-        <a href="/station" class="<?= $slug === 'station' ? 'active' : '' ?>">station</a>
-        <a href="/printing" class="<?= $slug === 'printing' ? 'active' : '' ?>">kodi printing</a>
-        <a href="/plus" class="<?= $slug === 'plus' ? 'active' : '' ?>">plus</a>
-        <a href="/koders" class="<?= $slug === 'koders' ? 'active' : '' ?>">koders</a>
-        <a href="/about" class="nav-about <?= $slug === 'about' ? 'active' : '' ?>">about</a>
-        <a href="javascript:void(0);" class="top-nav-icon" onclick="openTopNav()">&#9776;</a>
-    </div>
-    <a class="pre-order-btn" href="/order"><?= Yii::t('frontend', 'pre-order'); ?></a>
 </div>
 
 <?= $content ?>
@@ -56,16 +46,6 @@ $slug = Yii::$app->request->get('slug');
         <a href="https://www.linkedin.com/company/meetkodi" class="s-i-ln" target="_blank"></a>
         <a href="https://twitter.com/meetkodi" class="s-i-tw" target="_blank"></a>
         <a href="#" class="s-i-md" target="_blank"></a>
-    </div>
-    <div class="footer-links">
-        <a href="https://medium.com/@meetkodi" target="_blank">Blog</a>
-        <a href="/about">About</a>
-        <a href="/about#contact">Contacts</a>
-        <a href="/press">Press</a>
-        <a href="/privacy-policy">Privacy policy</a>
-        <a href="/terms-and-conditions">T&C</a><br>
-        <a href="/purchase-agreement">Purchase agreement</a>
-        <a href="/service-level-agreement">Service level agreement</a>
     </div>
     <div class="footer-copyright">&copy; <?= Carbon::now()->year; ?> Kodi LLC</div>
 </div>

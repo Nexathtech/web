@@ -189,8 +189,11 @@ button.full-width {
 .btn.disabled:hover, .btn.disabled:active {
     background: inherit !important;
     border-color: inherit !important;
-    margin: 0;
     box-shadow: none;
+}
+.btn-block {
+    display: block;
+    width: 100%;
 }
 
 .btn-plus {
@@ -271,9 +274,11 @@ button.full-width {
 }
 .form-group input {
     width: 100%;
-    padding: 2px 0;
+    box-sizing: border-box;
+    padding: 10px;
     border: none;
     border-bottom: 4px solid #fada00;
+    font-size: 14px;
     font-weight: bold;
     letter-spacing: 3px;
     color: #48affd;
@@ -3224,12 +3229,22 @@ a.a-d-ios:hover, a.a-d-android:hover {
 }
 
 .phone-key {
-    height: 580px;
-    padding-top: 380px;
+    height: 680px;
+    padding-top: 360px;
     background: #0e0f0f;
     text-align: center;
-    font-size: 72px;
+    font-size: 32px;
     color: #fff;
+}
+.p-k-desc {
+    margin-top: 30px;
+    font-size: 18px;
+    color: #43a1e8;
+}
+.subscribe-container {
+    position: relative;
+    width: 240px;
+    margin: 0 auto;
 }
 
 .p-p-bottom {
@@ -5217,9 +5232,9 @@ form.order-info .help-block {
     }
 
     .phone-key {
-        height: 480px;
-        padding: 140px 60px 0;
-        font-size: 52px;
+        height: 780px;
+        padding: 160px 60px 0;
+        font-size: 32px;
     }
 
     .p-p-bottom {

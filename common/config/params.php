@@ -30,7 +30,7 @@ return [
 
     'services' => [
         'mailChimp' => [
-            'listId' => '6ec902994a',
+            'listId' => 'af6368bc4b',
         ],
     ],
 ];

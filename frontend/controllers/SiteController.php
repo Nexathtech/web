@@ -2,6 +2,7 @@
 namespace kodi\frontend\controllers;
 
 use kodi\frontend\models\forms\ContactForm;
+use kodi\frontend\models\forms\SubscribeForm;
 use Yii;
 use yii\base\ViewNotFoundException;
 use yii\web\Controller;
@@ -50,6 +51,21 @@ class SiteController extends Controller
         } catch (ViewNotFoundException $e) {
             throw new NotFoundHttpException;
         }
+    }
+
+    public function actionPlus()
+    {
+        $model = new SubscribeForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $subscriptionRes = $model->subscribe();
+            $alertType = 'error';
+            if ($subscriptionRes['success']) {
+                $alertType = 'success';
+            }
+            Yii::$app->session->addFlash($alertType, ['message' => $subscriptionRes['message']]);
+        }
+
+        return $this->render('plus', ['subscribeModel' => $model]);
     }
 
     /**

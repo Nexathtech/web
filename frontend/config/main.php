@@ -10,6 +10,7 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'kodi\frontend\controllers',
     'bootstrap' => ['log'],
+    'defaultRoute' => 'site/plus',
     'components' => [
         'request' => [
             'class' => \yii\web\Request::class,
