@@ -2905,7 +2905,7 @@ img.m-sword {
 .p-pl-title {
     position: relative;
     padding-right: 15%;
-    margin-bottom: -295px;
+    margin: 20px 0 -295px 0;
     font-size: 180px;
     text-align: right;
     text-transform: uppercase;

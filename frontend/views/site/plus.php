@@ -26,9 +26,6 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
 ?>
 
 <div class="page-plus">
-    <div class="s-s-name">
-        <a href="#" class="s-s-title s-pl-title">kodi <span>plus</span></a>
-    </div>
     <div class="p-pl-title">Plus</div>
     <div class="people-jump"></div>
     <div class="p-p-heading">

@@ -48,32 +48,32 @@
 
 @-skrollr-keyframes ppmCont {
   0 {position: fixed; left: 10%; top: 120%;}
-  1200 {top: 120%}
-  1700 {top: 10%}
-  3100 {top: 10%}
-  3700 {top: -120%;}
+  1100 {top: 120%}
+  1600 {top: 10%}
+  3000 {top: 10%}
+  3600 {top: -120%;}
 }
 
 @-skrollr-keyframes imSearch {
   0 {top: 0px; left: 200px; transform: scale(1);}
-  1900 {top: 0px;}
-  2100 {left: 100px; top: 25px; transform: scale(0.88);}
-  2400 {top: 25px;}
-  2600 {left: 0px; top: 60px; transform: scale(0.73);}
+  1800 {top: 0px;}
+  2000 {left: 100px; top: 25px; transform: scale(0.88);}
+  2300 {top: 25px;}
+  2500 {left: 0px; top: 60px; transform: scale(0.73);}
 }
 
 @-skrollr-keyframes imPreview {
   0 {top: -2000px; left: 200px; transform: scale(1);}
-  1900 {left: 200px;}
-  2100 {top: 0px;}
-  2400 {top: 0px;}
-  2600 {left: 100px; top: 25px; transform: scale(0.88);}
+  1800 {left: 200px;}
+  2000 {top: 0px;}
+  2300 {top: 0px;}
+  2500 {left: 100px; top: 25px; transform: scale(0.88);}
 }
 
 @-skrollr-keyframes imShipping {
   0 {top: -2000px; left: 200px;}
-  2400 {left: 200px;}
-  2600 {top: 0px;}
+  2300 {left: 200px;}
+  2500 {top: 0px;}
 }
 
 @-skrollr-keyframes momentsMatter {
@@ -82,12 +82,12 @@
 
 @-skrollr-keyframes ppLine {
   0 {width: 260px;}
-  1900 {width: 260px;}
-  2000 {width: 280px;}
-  2100 {width: 260px;}
-  2400 {width: 260px;}
-  2500 {width: 280px;}
-  2600 {width: 260px;}
+  1800 {width: 260px;}
+  1900 {width: 280px;}
+  2000 {width: 260px;}
+  2300 {width: 260px;}
+  2400 {width: 280px;}
+  2500 {width: 260px;}
 }
 
 @-skrollr-keyframes ppLineNone {
@@ -96,36 +96,36 @@
 
 @-skrollr-keyframes ppTitle1 {
   0 {opacity: 1;}
-  2050 {opacity: 1;}
-  2150 {opacity: 0;}
+  1950 {opacity: 1;}
+  2050 {opacity: 0;}
 }
 @-skrollr-keyframes ppTitle2 {
   0 {position: absolute; right: 0px; top: 0px; opacity: 0;}
-  2050 {opacity: 0;}
-  2150 {opacity: 1;}
-  2550 {opacity: 1;}
-  2650 {opacity: 0;}
+  1950 {opacity: 0;}
+  2050 {opacity: 1;}
+  2450 {opacity: 1;}
+  2550 {opacity: 0;}
 }
 @-skrollr-keyframes ppTitle3 {
   0 {position: absolute; right: 0px; top: 0px; opacity: 0;}
-  2550 {opacity: 0;}
-  2650 {opacity: 1;}
+  2450 {opacity: 0;}
+  2550 {opacity: 1;}
 }
 
 @-skrollr-keyframes ppDesc1 {
   0 {opacity: 1;}
-  2050 {opacity: 1;}
-  2150 {opacity: 0;}
+  1950 {opacity: 1;}
+  2050 {opacity: 0;}
 }
 @-skrollr-keyframes ppDesc2 {
   0 {position: absolute; left: 0px; top: 143px; opacity: 0;}
-  2050 {opacity: 0;}
-  2150 {opacity: 1;}
-  2550 {opacity: 1;}
-  2650 {opacity: 0;}
+  1950 {opacity: 0;}
+  2050 {opacity: 1;}
+  2450 {opacity: 1;}
+  2550 {opacity: 0;}
 }
 @-skrollr-keyframes ppDesc3 {
   0 {position: absolute; left: 0px; top: 143px; opacity: 0;}
-  2550 {opacity: 0;}
-  2650 {opacity: 1;}
+  2450 {opacity: 0;}
+  2550 {opacity: 1;}
 }
