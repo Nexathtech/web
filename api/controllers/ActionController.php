@@ -56,7 +56,7 @@ class ActionController extends Controller
         $user = Yii::$app->user->identity;
         $model = new Action();
         $params = Yii::$app->getRequest()->getBodyParams();
-        $details = $params;
+        $details = $params['data'];
         if (!empty($params['data'])) {
             $params['data'] = Json::encode($params['data']);
         }
