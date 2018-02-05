@@ -79,12 +79,12 @@ class ActionController extends Controller
             }
 
             // If photos to be printed, need to consider it as an order
-            if ($model->action_type === Type::PRINT_SHIPMENT) {
+            if ($model->action_type == Type::PRINT_SHIPMENT) {
                 $order = new Order([
                     'type' => OrderType::PHOTO,
                     'name' => ArrayHelper::getValue($details, 'shipping.name'),
                     'surname' => ArrayHelper::getValue($details, 'shipping.surname'),
-                    'email' => $model->user->email,
+                    'email' => $user->email,
                     'country' => ArrayHelper::getValue($details, 'shipping.country'),
                     'city' => ArrayHelper::getValue($details, 'shipping.city'),
                     'state' => ArrayHelper::getValue($details, 'shipping.state'),
