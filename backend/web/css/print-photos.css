@@ -20,6 +20,9 @@
   max-width: 100%;
   max-height: 100%;
 }
+.p-img.rotate {
+  transform: rotate(90deg);
+}
 
 @page {
   size: 15cm 10cm;

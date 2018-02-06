@@ -30,6 +30,11 @@ $this->params['breadcrumbs'] = [
 
 $this->registerCssFile('/css/print-photos.css');
 $this->registerJs("
+var img = $('img.p-img-original');
+if (img.width() > img.height()) {
+  img.addClass('rotate');
+}
+
 $('.print-btn').on('click', function(e) {
   e.preventDefault();
   
@@ -103,7 +108,7 @@ $('.print-btn').on('click', function(e) {
                                                 $actionData = Json::decode($action->data);
                                                 $images = ArrayHelper::getValue($actionData, 'images', []);
                                                 foreach ($images as $image) {
-                                                    $img = Html::img($image['path'], ['class' => 'p-img']);
+                                                    $img = Html::img($image['path'], ['class' => 'p-img p-img-original']);
                                                     $html .= Html::tag('div', $img, ['class' => 'p-item']);
                                                 }
 
