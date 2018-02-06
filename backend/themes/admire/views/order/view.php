@@ -33,6 +33,7 @@ $this->registerJs("
 var img = $('img.p-img-original');
 if (img.width() > img.height()) {
   img.addClass('rotate');
+  img.width(img.parent().height());
 }
 
 $('.print-btn').on('click', function(e) {
