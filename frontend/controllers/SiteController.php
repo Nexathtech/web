@@ -69,7 +69,7 @@ class SiteController extends Controller
             'user' => $user,
             'confirmationUrl' => $confirmationUrl,
         ])
-            ->setFrom([Yii::$app->settings->get('system_email_sender') => Yii::$app->name])
+            ->setFrom([Yii::$app->name => Yii::$app->settings->get('system_email_sender')])
             ->setTo($user->email)
             ->setSubject(Yii::t('api', 'Account activation'))
             ->send();
