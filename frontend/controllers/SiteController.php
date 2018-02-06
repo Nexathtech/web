@@ -1,12 +1,10 @@
 <?php
 namespace kodi\frontend\controllers;
 
-use kodi\common\models\user\User;
 use kodi\frontend\models\forms\ContactForm;
 use kodi\frontend\models\forms\SubscribeForm;
 use Yii;
 use yii\base\ViewNotFoundException;
-use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -62,19 +60,6 @@ class SiteController extends Controller
      */
     public function actionPlus()
     {
-        $user = User::findOne(['id' => 5]);
-        $confirmationUrl = str_replace('api.', '', Url::to(["/auth/activate/sdfsd"], true));
-
-        Yii::$app->mailer->compose('welcome', [
-            'user' => $user,
-            'confirmationUrl' => $confirmationUrl,
-        ])
-            ->setFrom([Yii::$app->settings->get('system_email_sender') => Yii::$app->name])
-            ->setTo($user->email)
-            ->setSubject(Yii::t('frontend', 'Welcome to MeetKodi!'))
-            ->send();
-
-
         $model = new SubscribeForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
