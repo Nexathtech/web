@@ -158,7 +158,7 @@ class AuthController extends Controller
                             'user' => $user,
                             'confirmationUrl' => $confirmationUrl,
                         ])
-                            ->setFrom(Yii::$app->settings->get('system_email_sender'))
+                            ->setFrom([Yii::$app->settings->get('system_email_sender') => Yii::$app->name])
                             ->setTo($user->email)
                             ->setSubject(Yii::t('api', 'KODI: Account activation'))
                             ->send();

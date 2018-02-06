@@ -30,6 +30,9 @@ $homeUrl = str_replace('api.', '', Url::to(['/'], true));
 
     <?= $this->render('includes/_social_links', ['homeUrl' => $homeUrl]) ?>
     <div class="footer" style="width: 100%;height: 110px;background: url(<?= $homeUrl ?>/styles/img/footer-waves2.png) repeat-x;"></div>
+    <div style="margin-top: 20px; text-align: center; font-size: 11px; color: #606060;">
+        You received this email because you have been registered on <a href="<?= $homeUrl ?>">meetkodi.com</a>
+    </div>
     <?php $this->endBody() ?>
 </body>
 </html>

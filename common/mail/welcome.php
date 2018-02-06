@@ -18,7 +18,7 @@ $homeUrl = str_replace('api.', '', Url::to(['/'], true));
     <p>Thanks for your registration! In order to activate your account, please follow this link:</p>
     <p>
         <?= Html::a('Activate my account', $confirmationUrl, [
-            'style' => 'display: inline-block; padding: 10px 20px; background: #05bc45; color: #fff;'
+            'style' => 'display: inline-block; padding: 10px 20px; background: #05bc45; color: #fff; text-decoration: none;'
         ]); ?>
     </p>
 </div>
