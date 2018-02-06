@@ -69,9 +69,9 @@ class SiteController extends Controller
             'user' => $user,
             'confirmationUrl' => $confirmationUrl,
         ])
-            ->setFrom([Yii::$app->name => Yii::$app->settings->get('system_email_sender')])
+            ->setFrom([Yii::$app->settings->get('system_email_sender') => Yii::$app->name])
             ->setTo($user->email)
-            ->setSubject(Yii::t('api', 'Account activation'))
+            ->setSubject(Yii::t('frontend', 'Welcome to MeetKodi!'))
             ->send();
 
 
