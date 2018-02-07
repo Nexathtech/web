@@ -101,7 +101,13 @@ class AuthController extends Controller
                 $expiresIn = $expiresIn * 50; // 50 days for mobile application
             }
 
-            return Yii::$app->security->generateToken($device->user_id, TokenType::ACCESS, $device->id, $expiresIn, true, true);
+            /**
+             * Note, we may use $device->user_id since each device can belong only to one user.
+             * However there may be some cons:
+             * When user logs in with different valid credentials he will succeed
+             * but user info will be returned of original user that is bound to the device initially.
+             */
+            return Yii::$app->security->generateToken($model->_identity->getId(), TokenType::ACCESS, $device->id, $expiresIn, true, true);
 
         } else {
             $response = Yii::$app->response;
