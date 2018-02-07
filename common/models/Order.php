@@ -189,7 +189,7 @@ class Order extends ActiveRecord
     {
         $subject = Yii::$app->name . ': ' . Yii::t('frontend', 'Order');
         if (!$sender) {
-            $sender = [Yii::$app->settings->get('system_email_sender') => Yii::$app->name];
+            $sender = [Yii::$app->settings->get('system_email_sender') => 'Kodi Team'];
         }
 
         return Yii::$app->mailer->compose($template, [
