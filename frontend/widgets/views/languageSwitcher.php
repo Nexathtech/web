@@ -21,7 +21,7 @@ $currentUrl = $_SERVER['REQUEST_URI'];
         <? foreach ($languages as $lang): ?>
             <? if (!$lang['active']): ?>
                 <li>
-                    <a href="<?= Url::to([$currentUrl, 'language' => $lang['alias']]); ?>">
+                    <a href="<?= Url::to(['/', 'language' => $lang['alias']]); ?>">
                         <?= $lang['title']; ?>
                     </a>
                 </li>
