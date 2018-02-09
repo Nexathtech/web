@@ -164,7 +164,7 @@ class AuthController extends Controller
                             'user' => $user,
                             'confirmationUrl' => $confirmationUrl,
                         ])
-                            ->setFrom([Yii::$app->settings->get('system_email_sender') => 'Kodi Team'])
+                            ->setFrom([Yii::$app->settings->get('system_email_sender') => Yii::t('api', 'Kodi Team')])
                             ->setTo($user->email)
                             ->setSubject(Yii::t('api', 'Welcome on Kodiplus!'))
                             ->send();

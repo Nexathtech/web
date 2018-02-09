@@ -34,7 +34,7 @@ class ContactForm extends Model
      */
     public function sendEmail()
     {
-        $subject = Yii::$app->name . ': ' . Yii::t('frontend', 'Contact form');
+        $subject = Yii::t('frontend', 'Kodi Team') . ': ' . Yii::t('frontend', 'Contact form');
 
         return Yii::$app->mailer->compose()
             ->setFrom($this->email)

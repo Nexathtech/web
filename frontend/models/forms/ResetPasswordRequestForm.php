@@ -67,7 +67,7 @@ class ResetPasswordRequestForm extends Model
             'user' => $user,
             'resetLink' => $resetTokenUrl,
         ])
-            ->setFrom([Yii::$app->settings->get('system_email_sender') => Yii::$app->name])
+            ->setFrom([Yii::$app->settings->get('system_email_sender') => Yii::t('frontend', 'Kodi Team')])
             ->setTo($this->email)
             ->setSubject('Password reset')
             ->send();
