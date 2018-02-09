@@ -1,5 +1,6 @@
 <?php
 use Carbon\Carbon;
+use kodi\frontend\widgets\LanguageSwitcher;
 use yii\helpers\Html;
 use kodi\frontend\assets\AppAsset;
 use yii\web\View;
@@ -28,6 +29,7 @@ $slug = Yii::$app->request->get('slug');
 <?= $this->render('includes/_flash_messages') ?>
 
 <div class="header">
+    <?= LanguageSwitcher::widget(); ?>
     <a class="logo" href="/"></a>
 </div>
 

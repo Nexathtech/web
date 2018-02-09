@@ -335,6 +335,45 @@ input[type="checkbox"]:checked::after {
     z-index: 100;
 }
 
+.language-switcher {
+    position: relative;
+    display: inline-block;
+    margin: 15px 0 0 40px;
+    color: #2e9cea; }
+    .language-switcher:hover ul a {
+      opacity: 1; }
+    .language-switcher .lang {
+      cursor: pointer;
+      color: white; }
+    .language-switcher ul {
+      height: 0;
+      position: absolute;
+      top: 0;
+      padding-top: 20px;
+      padding-left: 0;
+      -webkit-transition: all .5s ease;
+      transition: all .5s ease; }
+      .language-switcher ul li {
+        list-style: none; }
+        .language-switcher ul li a {
+          text-decoration: none;
+          color: #2e9cea;
+          opacity: 0;
+          -webkit-transition: all .2s ease;
+          transition: all .2s ease; }
+          .language-switcher ul li a:hover {
+            padding-left: 3px;
+            position: relative; }
+            .language-switcher ul li a:hover::after {
+              content: '';
+              position: absolute;
+              bottom: 0;
+              right: 30px;
+              display: block;
+              background-color: #E79B9F;
+              height: 3px;
+              width: 25px; }
+
 .logo {
     display: block;
     width: 70px;

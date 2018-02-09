@@ -33,7 +33,11 @@ class SubscribeForm extends Model
     public function subscribe()
     {
         $listId = ArrayHelper::getValue(Yii::$app->params, 'services.mailChimp.listId');
-        $params = ['email_address' => $this->email, 'status' => 'subscribed'];
+        $params = [
+            'email_address' => $this->email,
+            'status' => 'subscribed',
+            'language' => Yii::$app->language,
+        ];
         $result = [
             'success' => true,
             'message' => Yii::t('frontend', 'You have been successfully subscribed to our newsletter.')

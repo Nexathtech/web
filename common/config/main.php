@@ -56,30 +56,9 @@ $config = [
         'i18n' => [
             'class' => \yii\i18n\I18N::class,
             'translations' => [
-                'common' => [
-                    'class' => \yii\i18n\GettextMessageSource::class,
-                    'basePath' => '@common/messages',
-                    'catalog' => 'common',
-                ],
-                'console' => [
-                    'class' => \yii\i18n\GettextMessageSource::class,
-                    'basePath' => '@common/messages',
-                    'catalog' => 'console',
-                ],
-                'frontend' => [
-                    'class' => \yii\i18n\GettextMessageSource::class,
-                    'basePath' => '@common/messages',
-                    'catalog' => 'frontend',
-                ],
-                'backend' => [
-                    'class' => \yii\i18n\GettextMessageSource::class,
-                    'basePath' => '@common/messages',
-                    'catalog' => 'backend',
-                ],
-                'api' => [
-                    'class' => \yii\i18n\GettextMessageSource::class,
-                    'basePath' => '@common/messages',
-                    'catalog' => 'api',
+                '*' => [
+                    'class' => \yii\i18n\PhpMessageSource::class,
+                    'basePath' => '@kodi/common/messages',
                 ],
             ]
         ],

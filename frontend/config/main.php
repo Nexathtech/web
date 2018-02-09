@@ -7,6 +7,7 @@
 return [
     'id' => 'kodi-frontend',
     'name' => 'KODI',
+    'language' => 'en',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'kodi\frontend\controllers',
     'bootstrap' => ['log'],
@@ -45,6 +46,8 @@ return [
         ],
 
         'urlManager' => [
+            'class' => \codemix\localeurls\UrlManager::class,
+            'languages' => ['en', 'it'],
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
