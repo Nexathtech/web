@@ -8,9 +8,8 @@ use yii\helpers\Url;
  * @var \yii\web\View $this Current view instance.
  * @var array $languages
  */
-
-$currentUrl = $_SERVER['REQUEST_URI'];
 ?>
+
 <div class="language-switcher">
 <? foreach ($languages as $lang): ?>
     <? if ($lang['active']): ?>
@@ -21,7 +20,7 @@ $currentUrl = $_SERVER['REQUEST_URI'];
         <? foreach ($languages as $lang): ?>
             <? if (!$lang['active']): ?>
                 <li>
-                    <a href="<?= Url::to(['/', 'language' => $lang['alias']]); ?>">
+                    <a href="<?= Url::to([$lang['url'], 'language' => $lang['alias']]); ?>">
                         <?= $lang['title']; ?>
                     </a>
                 </li>

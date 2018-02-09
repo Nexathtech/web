@@ -26,11 +26,14 @@ class LanguageSwitcher extends Widget
     {
         $supportedLanguages = Yii::$app->urlManager->languages;
         $currentLang = Yii::$app->language;
+        $currentUrl = $_SERVER['REQUEST_URI'];
+
         foreach ($supportedLanguages as $sLang) {
             array_push($this->languages, [
                 'alias' => $sLang,
                 'title' => self::label($sLang),
                 'active' => $sLang === $currentLang,
+                'url' => str_replace($currentLang, '', $currentUrl),
             ]);
         }
 
