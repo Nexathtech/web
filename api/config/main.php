@@ -71,7 +71,11 @@ return [
             //'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => \yii\rest\UrlRule::class, 'controller' => ['site'], 'only' => ['get']],
+                [
+                    'class' => \yii\rest\UrlRule::class,
+                    'controller' => ['site'],
+                    'only' => ['get']
+                ],
                 [
                     'class' => \yii\rest\UrlRule::class,
                     'controller' => 'auth',
