@@ -74,7 +74,10 @@ return [
                 [
                     'class' => \yii\rest\UrlRule::class,
                     'controller' => ['site'],
-                    'only' => ['get']
+                    'only' => ['get'],
+                    'patterns' => [
+                        'POST' => 'waiting-list',
+                    ],
                 ],
                 [
                     'class' => \yii\rest\UrlRule::class,

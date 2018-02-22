@@ -6,7 +6,10 @@ use kodi\common\enums\order\OrderType;
 use kodi\common\enums\setting\Bunch;
 use kodi\common\models\Order;
 use kodi\common\models\Setting;
+use sammaye\mailchimp\exceptions\MailChimpException;
 use Yii;
+use yii\base\ErrorException;
+use yii\helpers\ArrayHelper;
 use yii\rest\Controller;
 
 class SiteController extends Controller
@@ -46,5 +49,36 @@ class SiteController extends Controller
         }
 
         return $settings;
+    }
+
+    /**
+     * Adds obtained email to MailChimp list
+     *
+     * @return array
+     * @throws ErrorException
+     */
+    public function actionWaitingList()
+    {
+        $data = Yii::$app->getRequest()->getBodyParams();
+        $message = 'Wasn\'t able to add the email to waiting list.';
+
+        if ($email = ArrayHelper::getValue($data, 'email')) {
+            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $listId = 'baa1279fda';
+                $params = [
+                    'email_address' => $email,
+                    'status' => 'subscribed',
+                    'language' => Yii::$app->language,
+                ];
+                try {
+                    Yii::$app->mailchimp->post("/lists/{$listId}/members", $params);
+                    return $data;
+                } catch (MailChimpException $exception) {
+                    $message = $exception->getMessage();
+                }
+            }
+        }
+
+        throw new ErrorException($message);
     }
 }
