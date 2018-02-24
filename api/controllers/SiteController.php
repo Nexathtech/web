@@ -54,13 +54,14 @@ class SiteController extends Controller
     /**
      * Adds obtained email to MailChimp list
      *
-     * @return array
      * @throws ErrorException
      */
     public function actionWaitingList()
     {
         $data = Yii::$app->getRequest()->getBodyParams();
         $message = 'Wasn\'t able to add the email to the waiting list.';
+        $response = Yii::$app->response;
+        $response->statusCode = 500;
 
         if ($email = ArrayHelper::getValue($data, 'email')) {
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -72,17 +73,19 @@ class SiteController extends Controller
                 ];
                 try {
                     Yii::$app->mailchimp->post("/lists/{$listId}/members", $params);
-                    return $data;
+                    $response->statusCode = 201;
+                    $message = "Thank you! The email {$email} was successfully added to the Waiting list";
                 } catch (MailChimpException $exception) {
                     $message = explode('.', $exception->getMessage());
                     $message = $message[0];
+                    $response->statusCode = 400;
                 }
             } else {
                 $message = 'Invalid email address';
             }
         }
 
-        return $message;
-        throw new ErrorException($message);
+        $response->data = ['message' => $message];
+        return $response;
     }
 }
