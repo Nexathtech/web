@@ -75,7 +75,7 @@ class SiteController extends Controller
                     return $data;
                 } catch (MailChimpException $exception) {
                     $message = $exception->getMessage();
-                    return $message;
+                    return $exception;
                 }
             } else {
                 $message = 'Invalid email address';
