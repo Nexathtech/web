@@ -60,7 +60,7 @@ class SiteController extends Controller
     public function actionWaitingList()
     {
         $data = Yii::$app->getRequest()->getBodyParams();
-        $message = 'Wasn\'t able to add the email to waiting list.';
+        $message = 'Wasn\'t able to add the email to the waiting list.';
 
         if ($email = ArrayHelper::getValue($data, 'email')) {
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -82,6 +82,7 @@ class SiteController extends Controller
             }
         }
 
+        return $message;
         throw new ErrorException($message);
     }
 }
