@@ -74,8 +74,8 @@ class SiteController extends Controller
                     Yii::$app->mailchimp->post("/lists/{$listId}/members", $params);
                     return $data;
                 } catch (MailChimpException $exception) {
-                    $message = $exception->getMessage();
-                    return ['code' => $exception->getCode(), 'message' => $message];
+                    $message = explode('.', $exception->getMessage());
+                    $message = $message[0];
                 }
             } else {
                 $message = 'Invalid email address';
