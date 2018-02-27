@@ -1,5 +1,6 @@
 <?php
 
+use kodi\backend\themes\admire\assets\ThemeAsset;
 use kodi\common\enums\order\OrderType;
 use kodi\common\enums\order\Status;
 use kodi\common\models\Action;
@@ -28,24 +29,9 @@ $this->params['breadcrumbs'] = [
     $this->title,
 ];
 
+$themeUrl = $this->theme->getBaseUrl();
 $this->registerCssFile('/css/print-photos.css');
-$this->registerJs("
-var img = $('img.p-img-original');
-if (img.width() > img.height()) {
-  img.addClass('rotate');
-  img.width(img.parent().height());
-}
-
-$('.print-btn').on('click', function(e) {
-  e.preventDefault();
-  
-  var printContents = $('.print-block').html();
-  var originalContents = document.body.innerHTML;
-  document.body.innerHTML = printContents;
-  window.print();
-  document.body.innerHTML = originalContents;
-});
-");
+$this->registerJsFile("{$themeUrl}/js/photo-print.js", ['depends' => ThemeAsset::class]);
 ?>
 
 <div class="outer">
