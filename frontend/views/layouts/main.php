@@ -49,6 +49,13 @@ $slug = Yii::$app->request->get('slug');
         <a href="https://twitter.com/meetkodi" class="s-i-tw" target="_blank"></a>
         <a href="https://medium.com/@meetkodi" class="s-i-md" target="_blank"></a>
     </div>
+    <div class="footer-links">
+        <a href="https://medium.com/@meetkodi" target="_blank">Blog</a>
+        <a href="/about#contact">Contacts</a>
+        <a href="/press">Press</a>
+        <a href="/privacy-policy">Privacy policy</a>
+        <a href="/terms-and-conditions">T&C</a><br>
+    </div>
     <div class="footer-copyright">&copy; <?= Carbon::now()->year; ?> Kodi LLC</div>
 </div>
 

@@ -17,7 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerJs("
 $(document).ready(function() {
-    checkHash();
+    //checkHash();
+    prepareContent('contact');
 });
 
 $(document).on('click', '.about-menu a', function() {
@@ -46,11 +47,11 @@ function prepareContent(section) {
 ?>
 
 <div class="page-about">
-    <ul class="about-menu">
+    <!--<ul class="about-menu">
         <li><a href="#about" data-section="about" class="active">.about kodi</a></li>
         <li><a href="#contact" data-section="contact">.contact</a></li>
         <li><a href="#team" data-section="team">.the team</a></li>
-    </ul>
+    </ul>-->
     <div class="section-block section-about">
         <div class="about-title">
             connecting<br>everything you<br>love
