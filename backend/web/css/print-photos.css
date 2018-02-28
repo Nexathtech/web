@@ -17,9 +17,8 @@ html, body {
   overflow: hidden;
   background: #fff;
   box-sizing: border-box;
-  border: 0.2cm solid #fff;
+  border: 0.25cm solid #fff;
   border-bottom-width: 2.7cm;
-  border-right-width: 0.3cm;
   text-align: center;
 }
 .p-img {
