@@ -101,7 +101,7 @@ $this->registerJsFile("{$themeUrl}/js/photo-print.js", ['depends' => ThemeAsset:
 
                                                 // Now add advertisement image
                                                 $i = rand(1, 10);
-                                                $i = 11;
+                                                $i = 10;
                                                 $iPath = "/img/print-presets/{$i}.png";
                                                 $img = Html::img($iPath, ['class' => 'p-img']);
                                                 $html .= Html::tag('div', $img, ['class' => 'p-item']);
