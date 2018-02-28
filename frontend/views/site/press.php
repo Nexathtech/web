@@ -67,15 +67,15 @@ navButton.forEach(function (elem) {
                 </div>
             </div>
             <div class="fact">
-                <div class="title">founder</div>
+                <div class="title">founders</div>
                 <div class="bottom-separator"></div>
                 <div class="description">
                     <p>Alessandro Specchio - Director & Founder</p>
-                    <p>Ivan Specchio - Lead Desin & Founder</p>
+                    <p>Ivan Specchio - Lead Desin & Co-founder</p>
                 </div>
             </div>
             <div class="fact">
-                <div class="title">headquarter</div>
+                <div class="title">headquarters</div>
                 <div class="bottom-separator"></div>
                 <div class="description">
                     <p>Rome, Italy</p>
@@ -94,7 +94,6 @@ navButton.forEach(function (elem) {
                 <div class="title">products</div>
                 <div class="bottom-separator"></div>
                 <div class="description">
-                    <p>Kodi Station - $ 6000</p>
                     <p>KodiPlus - Free</p>
                 </div>
             </div>
