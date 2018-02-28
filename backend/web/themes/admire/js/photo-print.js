@@ -14,8 +14,10 @@ $('.print-btn').on('click', function(e) {
   mywindow.document.close(); // necessary for IE >= 10
   mywindow.focus(); // necessary for IE >= 10*/
 
-  mywindow.print();
-  //mywindow.close();
+  mywindow.onload = function() {
+    mywindow.print();
+    mywindow.close();
+  }
 
 });
 
