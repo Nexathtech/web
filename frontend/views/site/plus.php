@@ -14,8 +14,11 @@ use yii\widgets\ActiveForm;
  * @see \kodi\frontend\controllers\SiteController::actionView()
  */
 
-$this->title = 'Kodi Plus';
+$this->title = Yii::t('frontend', 'Kodi Plus - Play your memories');
 $this->params['breadcrumbs'][] = $this->title;
+$metaDesc = Yii::t('frontend', 'The only application that does not require any login to print your photos directly from the social media you prefer. Print an indelible moment or give a special memory making a surprise to your beloved and receive wherever you want. Oh I forgot: NO shipping costs, NO printing costs. Totally FREE.');
+$this->registerMetaTag(['content' => $metaDesc, 'name' => 'description']);
+$this->registerMetaTag(['content' => $metaDesc, 'property' => 'og:description']);
 
 // Note, we do not support skrollr on non-desktop devices
 $this->registerCssFile('/styles/site/plus.css', [

@@ -31,5 +31,7 @@ Controllare la posta sarà un piacere maggiore.',
     'With Kodi Plus, you can make payments, find the nearest Kodi station and manage your count. Now you just have to find a Kodi station for yourself to see how this works.' => 'Con kodi plus puoi effettuare pagamenti, trovare una kodi station, e gestire il tuo account kodi.
 Ora devi solo trovare una kodi station per capire che non è magia.
 ',
+    'The only application that does not require any login to print your photos directly from the social media you prefer. Print an indelible moment or give a special memory making a surprise to your beloved and receive wherever you want. Oh I forgot: NO shipping costs, NO printing costs. Totally FREE.' => 'L’unica applicazione che non richiede alcun login per stampare le tue foto direttamente dai social media che preferisci. Stampa un momento indelebile o regala un ricordo speciale senza farti scoprire e ricevi ovunque tu vuoi. Ah dimenticavo: NO costi di spedizione, NO costi di stampa. Totalmente FREE.',
+
     '' => '',
 ];

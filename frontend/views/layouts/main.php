@@ -3,6 +3,7 @@ use Carbon\Carbon;
 use kodi\frontend\widgets\LanguageSwitcher;
 use yii\helpers\Html;
 use kodi\frontend\assets\AppAsset;
+use yii\helpers\Url;
 use yii\web\View;
 
 /* @var $this View */
@@ -18,11 +19,16 @@ $slug = Yii::$app->request->get('slug');
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
+    <title><?= Html::encode($this->title); ?></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <meta content="<?= Yii::$app->name; ?>" property="og:site_name">
+    <meta content="website" property="og:type">
+    <meta content="<?= $this->title; ?>" property="og:title">
+    <meta content="<?= Url::to('/images/kodi.png', true); ?>" property="og:image">
+    <meta content="<?= Url::home(true); ?>" property="og:url">
 </head>
 <body>
 <?php $this->beginBody() ?>
