@@ -20,7 +20,10 @@ $('.print-btn').on('click', function(e) {
 });
 
 var img = $('img.p-img-original');
-if (img.width() > img.height()) {
+//var img = document.getElementsByClassName('p-img-original')[0];
+//console.log(img.naturalWidth);
+//console.log(img.naturalHeight);
+if (img.width() > img.height() + 10) {
   img.addClass('rotate');
   img.width(img.parent().height());
 }
