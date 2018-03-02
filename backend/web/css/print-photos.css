@@ -36,18 +36,21 @@ html, body {
 }
 
 @page {
-  size: 15cm 10cm;
+  size: 15.1cm 10cm;
   margin: 0;
   padding: 0;
 }
 
 @media print {
   html, body {
-    width: 15cm;
+    width: 15.1cm;
     height: auto;
   }
 
   .p-item {
     page-break-before: avoid;
+  }
+  .p-item:nth-child(even) {
+    float: right;
   }
 }
