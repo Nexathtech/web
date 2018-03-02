@@ -96,13 +96,13 @@ $this->registerJsFile("{$themeUrl}/js/photo-print.js", ['depends' => ThemeAsset:
                                                 $images = ArrayHelper::getValue($actionData, 'images', []);
                                                 foreach ($images as $image) {
                                                     $img = Html::img($image['path'], ['class' => 'p-img p-img-original']);
-                                                    $img = Html::img('/img/print-presets/12.png', ['class' => 'p-img p-img-original']);
+                                                    $img = Html::img('/img/print-presets/13.png', ['class' => 'p-img p-img-original']);
                                                     $html .= Html::tag('div', $img, ['class' => 'p-item']);
                                                 }
 
                                                 // Now add advertisement image
                                                 $i = rand(1, 10);
-                                                $i = 12;
+                                                $i = 14;
                                                 $iPath = "/img/print-presets/{$i}.png";
                                                 $img = Html::img($iPath, ['class' => 'p-img']);
                                                 $html .= Html::tag('div', $img, ['class' => 'p-item']);
