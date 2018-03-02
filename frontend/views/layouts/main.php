@@ -29,6 +29,17 @@ $slug = Yii::$app->request->get('slug');
     <meta content="<?= $this->title; ?>" property="og:title">
     <meta content="<?= Url::to('/images/kodi.png', true); ?>" property="og:image">
     <meta content="<?= Url::home(true); ?>" property="og:url">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-89215051-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-89215051-1');
+    </script>
+
 </head>
 <body>
 <?php $this->beginBody() ?>

@@ -18,7 +18,7 @@ html, body {
   background: #fff;
   box-sizing: border-box;
   border: 0.2cm solid #fff;
-  border-bottom-width: 2.7cm;
+  /*border-bottom-width: 2.7cm;*/
   text-align: center;
 }
 .p-img {

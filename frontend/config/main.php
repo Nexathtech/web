@@ -60,6 +60,7 @@ return [
                 'auth/password-reset/<token:[\w-=]+>' => 'auth/password-reset',
                 'about' => 'site/about',
                 'order' => 'order',
+                'sitemap.xml' => 'sitemap',
                 '<slug:[\w-]+>' => 'site/view',
             ],
         ],
