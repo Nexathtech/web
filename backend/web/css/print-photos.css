@@ -50,10 +50,6 @@ html, body {
   .p-item {
     page-break-before: avoid;
   }
-  .p-item:nth-child(odd) {
-    border-left-width: 0cm;
-    border-right-width: 0.4cm;
-  }
   .p-item:nth-child(even) {
     float: right;
   }
