@@ -27,7 +27,7 @@ $slug = Yii::$app->request->get('slug');
     <meta content="<?= Yii::$app->name; ?>" property="og:site_name">
     <meta content="website" property="og:type">
     <meta content="<?= $this->title; ?>" property="og:title">
-    <meta content="<?= Url::to('/images/kodi.png', true); ?>" property="og:image">
+    <meta content="<?= Url::to('/images/kodi-pic.png', true); ?>" property="og:image">
     <meta content="<?= Url::home(true); ?>" property="og:url">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
