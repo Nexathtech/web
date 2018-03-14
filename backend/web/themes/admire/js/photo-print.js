@@ -21,10 +21,19 @@ $('.print-btn').on('click', function(e) {
 
 });
 
+$('.more-photos-btn').on('click', function (e) {
+  e.preventDefault();
+  $('.more-photos').slideToggle('show');
+});
+$('.more-photos img').on('click', function (e) {
+  e.preventDefault();
+  $('.more-photos img').removeClass('active');
+  $(this).addClass('active');
+  $('.ad-image').attr('src', $(this).attr('src'));
+
+});
+
 var img = $('img.p-img-original');
-//var img = document.getElementsByClassName('p-img-original')[0];
-//console.log(img.naturalWidth);
-//console.log(img.naturalHeight);
 if (img.width() > img.height() + 10) {
   img.addClass('rotate');
   img.width(img.parent().height());

@@ -35,6 +35,24 @@ html, body {
   max-height: none;
 }
 
+/* Additional styles */
+.more-photos {
+  display: none;
+}
+.more-photos img {
+  display: inline-block;
+  margin: 5px;
+  width: 20%;
+  padding: 5px;
+  border: 4px solid #aaa;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.more-photos img:hover, .more-photos img.active {
+  border-color: #0b8591;
+}
+/* ================= */
+
 @page {
   size: 15.1cm 10cm;
   margin: 0;

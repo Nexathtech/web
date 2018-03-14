@@ -91,6 +91,7 @@ class ActionController extends Controller
             if ($model->action_type === Type::PRINT_SHIPMENT) {
                 $order = new Order([
                     'type' => OrderType::PHOTO,
+                    'user_id' => $model->user_id,
                     'name' => ArrayHelper::getValue($details, 'shipping.name'),
                     'surname' => ArrayHelper::getValue($details, 'shipping.surname'),
                     'email' => $user->email,
@@ -99,6 +100,8 @@ class ActionController extends Controller
                     'state' => ArrayHelper::getValue($details, 'shipping.state'),
                     'address' => ArrayHelper::getValue($details, 'shipping.address'),
                     'postcode' => ArrayHelper::getValue($details, 'shipping.postcode'),
+                    'location_latitude' => ArrayHelper::getValue($details, 'location.latitude'),
+                    'location_longitude' => ArrayHelper::getValue($details, 'location.longitude'),
                     'color' => 'yellow',
                     'quantity' => 1,
                     'payment_type' => PaymentType::NONE,

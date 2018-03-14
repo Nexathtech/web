@@ -6,6 +6,8 @@ use Ramsey\Uuid\Uuid;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
+use yii\helpers\FileHelper;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\ServerErrorHttpException;
 use yii\web\UploadedFile;
@@ -52,17 +54,22 @@ abstract class BaseController extends Controller
      * @param $model
      * @param $field
      * @param null|string $currentPhoto
+     * @param string $subPath
      * @return string uploaded file url
      * @throws ServerErrorHttpException
      */
-    public function uploadFile($model, $field, $currentPhoto = null)
+    public function uploadFile($model, $field, $currentPhoto = null, $subPath = '')
     {
         $file = UploadedFile::getInstance($model, $field);
         if (!empty($file)) {
-            $uuId = Uuid::uuid4();
-            $filePath = '/img/uploads/' . $uuId . '.' . $file->extension;
-            if ($file->saveAs(Yii::getAlias('@webroot') . $filePath)) {
-                return $filePath;
+            $uuId = (string)Uuid::uuid4();
+            $fileName = "{$uuId}.{$file->extension}";
+            $dir = Yii::getAlias('@webroot') . "/img/uploads/{$subPath}";
+            $filePath = "$dir/$fileName";
+            if (FileHelper::createDirectory($dir)) {
+                if ($file->saveAs($filePath)) {
+                    return Url::to("/img/uploads/{$subPath}{$fileName}");
+                }
             }
 
             throw new ServerErrorHttpException();

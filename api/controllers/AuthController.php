@@ -133,7 +133,7 @@ class AuthController extends Controller
         if ($model->validate()) {
             try {
                 // Create DB records
-                User::getDb()->transaction(function () use ($model, $confirmationRequired) {
+                User::getDb()->transaction(function () use ($model, $confirmationRequired, $data) {
                     $user = new User([
                         'status' => $confirmationRequired ? Status::INACTIVE : Status::ACTIVE,
                         'role' => Role::CUSTOMER,
@@ -146,6 +146,8 @@ class AuthController extends Controller
 
                     $profile = new Profile([
                         'name' => $model->name ?: explode('@', $model->email)[0],
+                        'location_latitude' => ArrayHelper::getValue($data, 'latitude'),
+                        'location_longitude' => ArrayHelper::getValue($data, 'longitude'),
                     ]);
                     $profile->link('user', $user);
 

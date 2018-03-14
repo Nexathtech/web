@@ -29,6 +29,7 @@ use yii\validators\StringValidator;
  * ------------------------
  *
  * @property integer $id
+ * @property integer $user_id
  * @property string $type
  * @property string $name
  * @property string $surname
@@ -39,6 +40,8 @@ use yii\validators\StringValidator;
  * @property string $state
  * @property string $address
  * @property string $postcode
+ * @property string $location_latitude
+ * @property string $location_longitude
  * @property string $color
  * @property integer $quantity
  * @property float $total
@@ -53,7 +56,6 @@ use yii\validators\StringValidator;
  * Available AR relations:
  * -----------------------
  * @property User $user
- * @property Device $device
  */
 class Order extends ActiveRecord
 {
@@ -84,7 +86,7 @@ class Order extends ActiveRecord
 
             // number fields
             [['quantity'], NumberValidator::class, 'min' => 1, 'max' => 5],
-            [['total'], NumberValidator::class],
+            [['user_id', 'total'], NumberValidator::class],
 
             // Range validation
             ['type', RangeValidator::class, 'range' => array_keys(OrderType::listData())],
@@ -92,7 +94,7 @@ class Order extends ActiveRecord
             ['payment_type', RangeValidator::class, 'range' => array_keys(PaymentType::listData())],
 
             // safe fields
-            [['company', 'address2', 'state', 'postcode', 'payment_data', 'order_data'], StringValidator::class],
+            [['company', 'address2', 'state', 'postcode', 'payment_data', 'order_data', 'location_latitude', 'location_longitude'], StringValidator::class],
 
         ];
     }
@@ -104,6 +106,7 @@ class Order extends ActiveRecord
     {
         return [
             'id' => Yii::t('common', 'ID'),
+            'user_id' => Yii::t('common', 'User'),
             'type' => Yii::t('common', 'Type'),
             'name' => Yii::t('common', 'Name'),
             'surname' => Yii::t('common', 'Surname'),
@@ -174,6 +177,15 @@ class Order extends ActiveRecord
         }
 
         return parent::beforeSave($insert);
+    }
+
+
+    /**
+     * Returns related user.
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     /**

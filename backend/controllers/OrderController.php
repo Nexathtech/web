@@ -3,6 +3,8 @@
 namespace kodi\backend\controllers;
 
 use kodi\common\enums\AlertType;
+use kodi\common\enums\Status;
+use kodi\common\models\AdImage;
 use kodi\common\models\Order;
 use kodi\common\models\OrderSearch;
 use Yii;
@@ -46,9 +48,18 @@ class OrderController extends BaseController
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        $mLat = $model->location_latitude ?: 0;
+        $mLon = $model->location_longitude ?: 0;
+        $adImages = AdImage::find()
+            ->select("ad_image.*, (3959 * acos(cos(radians({$mLat})) * cos(radians(ad_image.location_latitude)) * cos(radians(ad_image.location_longitude) - radians({$mLon})) + sin(radians({$mLat})) * sin(radians(ad_image.location_latitude)))) AS distance")
+            ->where(['status' => Status::ACTIVE])
+            ->orderBy(['distance' => SORT_ASC])
+            ->asArray()
+            ->all();
 
         return $this->render('view', [
             'model' => $model,
+            'adImages' => $adImages,
         ]);
     }
 

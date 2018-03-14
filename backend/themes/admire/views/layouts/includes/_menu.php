@@ -107,6 +107,12 @@ $controller = $this->context;
                 <span class="fa arrow menu_hide"></span>
             </a>
             <ul class="collapse">
+                <li class="<?= ($controller->id === 'ad-image') ? 'active' : '' ?>">
+                    <a href="<?= Url::to(['/ad-image']); ?>">
+                        <?= FA::i('camera-retro'); ?>
+                        <?= Yii::t('backend', 'Advertisement images'); ?>
+                    </a>
+                </li>
                 <li class="<?= ($controller->action->id === 'server-info') ? 'active' : '' ?>">
                     <a href="<?= Url::to(['/general/server-info']); ?>">
                         <?= FA::i('info-circle'); ?>

@@ -41,7 +41,7 @@ class ImageFile extends Model
     public function upload()
     {
         if ($this->validate()) {
-            $userId = Yii::$app->user->getId() || 'guest';
+            $userId = Yii::$app->user->getId();
             $savedFiles = [];
             foreach ($this->images as $file) {
                 $fileName = basename($file->name);

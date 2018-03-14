@@ -29,6 +29,8 @@ use yii\validators\StringValidator;
  * @property string $state
  * @property string $address
  * @property string $postcode
+ * @property string $location_latitude
+ * @property string $location_longitude
  *
  * Available AR relations:
  * -----------------------
@@ -57,7 +59,7 @@ class Profile extends ActiveRecord
             [['user_id'], RequiredValidator::class],
 
             // Strings validation
-            [['name', 'surname', 'country', 'city', 'state', 'address', 'postcode'], StringValidator::class, 'max' => 64],
+            [['name', 'surname', 'country', 'city', 'state', 'address', 'postcode', 'location_latitude', 'location_longitude'], StringValidator::class, 'max' => 64],
 
             // Image validation
             [['photo'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg'],
@@ -86,6 +88,8 @@ class Profile extends ActiveRecord
             'state' => Yii::t('common', 'State'),
             'address' => Yii::t('common', 'Address'),
             'postcode' => Yii::t('common', 'Postcode'),
+            'location_latitude' => Yii::t('common', 'Latitude'),
+            'location_longitude' => Yii::t('common', 'Longitude'),
         ];
     }
 

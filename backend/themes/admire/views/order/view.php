@@ -15,6 +15,7 @@ use yii\widgets\DetailView;
  *
  * @var \yii\web\View $this
  * @var \kodi\common\models\Order $model
+ * @var array $adImages
  *
  * @see \kodi\backend\controllers\OrderController::actionView()
  */
@@ -57,6 +58,8 @@ $this->registerJsFile("{$themeUrl}/js/photo-print.js", ['depends' => ThemeAsset:
                             'state',
                             'address',
                             'postcode',
+                            'location_latitude',
+                            'location_longitude',
                             'color',
                             'quantity',
                             'total',
@@ -84,7 +87,7 @@ $this->registerJsFile("{$themeUrl}/js/photo-print.js", ['depends' => ThemeAsset:
                             [
                                 'label' => Yii::t('frontend', 'Photos'),
                                 'format' => 'html',
-                                'value' => function($data) {
+                                'value' => function($data) use ($adImages) {
                                     /* @var $data \kodi\common\models\Order */
                                     $html = '';
                                     if (!empty($data->order_data)) {
@@ -96,15 +99,11 @@ $this->registerJsFile("{$themeUrl}/js/photo-print.js", ['depends' => ThemeAsset:
                                                 $images = ArrayHelper::getValue($actionData, 'images', []);
                                                 foreach ($images as $image) {
                                                     $img = Html::img($image['path'], ['class' => 'p-img p-img-original']);
-                                                    $img = Html::img('/img/print-presets/13.png', ['class' => 'p-img p-img-original']);
                                                     $html .= Html::tag('div', $img, ['class' => 'p-item']);
                                                 }
 
-                                                // Now add advertisement image
-                                                $i = rand(1, 10);
-                                                $i = 14;
-                                                $iPath = "/img/print-presets/{$i}.png";
-                                                $img = Html::img($iPath, ['class' => 'p-img']);
+                                                // Now add advertisement image$adImages
+                                                $img = Html::img($adImages[0]['image'], ['class' => 'p-img ad-image']);
                                                 $html .= Html::tag('div', $img, ['class' => 'p-item']);
                                             }
                                         }
@@ -113,7 +112,13 @@ $this->registerJsFile("{$themeUrl}/js/photo-print.js", ['depends' => ThemeAsset:
                                     if (!empty($html)) {
                                         $html = Html::tag('div', $html, ['class' => 'print-block']);
                                         $aTitle = FA::i('print') . ' Print photos';
-                                        $html .= Html::a($aTitle, '#', ['class' => 'btn btn-primary mt-1 print-btn']);
+                                        $html .= Html::a($aTitle, '#', ['class' => 'btn btn-primary my-1 print-btn']);
+                                        $html .= Html::a(Yii::t('backend', 'More photos...'), '#', ['class' => 'btn btn-info more-photos-btn']);
+                                        $html .= Html::beginTag('div', ['class' => 'more-photos']);
+                                        foreach ($adImages as $i => $img) {
+                                            $html .= Html::img($img['image'], ['class' => $i == 0 ? 'active' : '']);
+                                        }
+                                        $html .= Html::endTag('div');
                                     }
 
                                     return $html;
