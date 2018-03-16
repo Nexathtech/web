@@ -22,6 +22,7 @@ class m180313_213430_ad_image_table extends Migration
         $primaryKeyField = 'INT UNSIGNED NOT NULL AUTO_INCREMENT';
         $createdAtField = 'TIMESTAMP NULL';
         $updatedAtField = 'TIMESTAMP NULL';
+        $typeField = "ENUM('Advertisement', 'Welcome', 'Other') NOT NULL";
         $statusField = "ENUM('Active', 'Inactive') NOT NULL";
 
         $this->createTable('{{%ad_image}}', [
@@ -30,6 +31,7 @@ class m180313_213430_ad_image_table extends Migration
             'image' => $this->text(),
             'location_latitude' => $this->string(64)->null(),
             'location_longitude' => $this->string(64)->null(),
+            'type' => $typeField,
             'status' => $statusField,
             'created_at' => $createdAtField,
             'updated_at' => $updatedAtField,

@@ -21,15 +21,29 @@ $('.print-btn').on('click', function(e) {
 
 });
 
+$('.i-filter > span').on('click', function () {
+  $('.i-filter > span').removeClass('active');
+  $(this).addClass('active');
+  var type = $(this).text();
+  $('.more-photos img').hide();
+  $('.more-photos img.' + type).show();
+});
+
 $('.more-photos-btn').on('click', function (e) {
   e.preventDefault();
   $('.more-photos').slideToggle('show');
 });
+
 $('.more-photos img').on('click', function (e) {
   e.preventDefault();
-  $('.more-photos img').removeClass('active');
-  $(this).addClass('active');
-  $('.ad-image').attr('src', $(this).attr('src'));
+
+  if ($(this).hasClass('active')) {
+    $('.ad-image[src="'+ $(this).attr('src') +'"]').parent().remove();
+    $(this).removeClass('active');
+  } else {
+    $('.print-block').append('<div class="p-item"><img class="p-img ad-image" src="'+ $(this).attr('src') +'"></div>');
+    $(this).addClass('active');
+  }
 
 });
 

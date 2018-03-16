@@ -115,9 +115,26 @@ $this->registerJsFile("{$themeUrl}/js/photo-print.js", ['depends' => ThemeAsset:
                                         $html .= Html::a($aTitle, '#', ['class' => 'btn btn-primary my-1 print-btn']);
                                         $html .= Html::a(Yii::t('backend', 'More photos...'), '#', ['class' => 'btn btn-info more-photos-btn']);
                                         $html .= Html::beginTag('div', ['class' => 'more-photos']);
-                                        foreach ($adImages as $i => $img) {
-                                            $html .= Html::img($img['image'], ['class' => $i == 0 ? 'active' : '']);
+                                        $imageTypes = [];
+                                        foreach ($adImages as $img) {
+                                            $iType = strtolower($img['type']);
+                                            if (!in_array($iType, $imageTypes)) {
+                                                array_push($imageTypes, $iType);
+                                            }
                                         }
+
+                                        $html .= Html::beginTag('div', ['class' => 'i-filter']);
+                                        foreach ($imageTypes as $iType) {
+                                            $html .= Html::tag('span', $iType);
+                                        }
+                                        $html .= Html::endTag('div');
+
+                                        foreach ($adImages as $i => $img) {
+                                            $imgClass = strtolower($img['type']);
+                                            if ($i === 0) { $imgClass .= ' active'; }
+                                            $html .= Html::img($img['image'], ['class' => $imgClass]);
+                                        }
+
                                         $html .= Html::endTag('div');
                                     }
 

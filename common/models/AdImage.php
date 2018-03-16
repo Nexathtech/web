@@ -3,6 +3,7 @@
 namespace kodi\common\models;
 
 use kodi\common\behaviors\TimestampBehavior;
+use kodi\common\enums\ImageType;
 use kodi\common\enums\Status;
 use kodi\common\models\user\User;
 use Yii;
@@ -26,6 +27,7 @@ use yii\validators\StringValidator;
  * @property integer $user_id Id of the user who owns the image
  * @property string $image
  * @property string $status
+ * @property string $type
  * @property string $location_latitude
  * @property string $location_longitude
  * @property string $created_at
@@ -62,6 +64,7 @@ class AdImage extends ActiveRecord
 
             // Range validation
             ['status', RangeValidator::class, 'range' => array_keys(Status::listData())],
+            ['type', RangeValidator::class, 'range' => array_keys(ImageType::listData())],
 
             // Numbers validation
             [['user_id'], NumberValidator::class, 'integerOnly' => true],

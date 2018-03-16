@@ -1,5 +1,6 @@
 <?php
 
+use kodi\common\enums\ImageType;
 use kodi\common\enums\Status;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
@@ -24,6 +25,7 @@ $submitButtonTitle = $model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t(
     <? endif; ?>
     <?= $model->isNewRecord ? $form->field($model, 'image')->fileInput() : '' ?>
     <?= $form->field($model, 'user_id')->textInput() ?>
+    <?= $form->field($model, 'type')->dropDownList(ImageType::listData()) ?>
     <?= $form->field($model, 'status')->dropDownList(Status::listData()) ?>
     <?= $form->field($model, 'location_latitude')->textInput() ?>
     <?= $form->field($model, 'location_longitude')->textInput() ?>

@@ -36,6 +36,10 @@ html, body {
 }
 
 /* Additional styles */
+table.detail-view th {
+  width: 100px;
+}
+
 .more-photos {
   display: none;
 }
@@ -50,6 +54,18 @@ html, body {
 }
 .more-photos img:hover, .more-photos img.active {
   border-color: #0b8591;
+}
+
+.i-filter span {
+  display: inline-block;
+  margin: 5px;
+  padding: 0 10px;
+  border-radius: 4px;
+  background: #ddd;
+  cursor: pointer;
+}
+.i-filter span:hover, .i-filter span.active {
+  background-color: #bbb;
 }
 /* ================= */
 
