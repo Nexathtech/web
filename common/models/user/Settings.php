@@ -107,7 +107,7 @@ class Settings extends ActiveRecord
             [
                 'title' => 'Max prints amount',
                 'key' => 'users_max_prints_amount',
-                'value' => 1,
+                'value' => null,
                 'type' => Type::INPUT,
                 'writable' => 0,
             ],

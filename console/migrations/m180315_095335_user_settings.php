@@ -56,7 +56,7 @@ class m180315_095335_user_settings extends Migration
                 'user_id' => $user->id,
                 'title' => 'Max prints amount',
                 'key' => 'users_max_prints_amount',
-                'value' => 1,
+                'value' => null,
                 'type' => \kodi\common\enums\setting\Type::INPUT,
                 'writable' => 0,
             ]);
@@ -84,6 +84,6 @@ class m180315_095335_user_settings extends Migration
         $this->dropForeignKey('user_settings_user_fk', '{{%user_settings}}');
         $this->dropTable('{{%user_settings}}');
 
-        $this->delete('{{%user_settings}}', ['name' => 'users_max_prints_amount']);
+        $this->delete('{{%setting}}', ['name' => 'users_max_prints_amount']);
     }
 }

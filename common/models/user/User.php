@@ -274,7 +274,16 @@ class User extends ActiveRecord implements IdentityInterface
         ])->asArray()->all();
         $externalSettings = ArrayHelper::map($externalSettings, 'name', 'value');
         $internalSettings = ArrayHelper::map($this->settings, 'key', 'value');
+        $settings = ArrayHelper::merge($externalSettings, $internalSettings);
+        foreach ($settings as $key => $setting) {
+            if (!empty($externalSettings[$key])) {
+                $settings[$key] = $externalSettings[$key];
+            }
+            if (!empty($internalSettings[$key])) {
+                $settings[$key] = $internalSettings[$key];
+            }
+        }
 
-        return ArrayHelper::merge($externalSettings, $internalSettings);
+        return $settings;
     }
 }
