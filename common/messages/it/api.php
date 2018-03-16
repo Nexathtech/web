@@ -11,5 +11,7 @@ return [
     'Your account is not activated.' => 'Il tuo account non è attivato.',
     'Your account is suspended.' => 'Il tuo account è sospeso.',
     'Name' => 'Nome',
+    'Unable to save user information.' => 'Impossibile salvare le informazioni dell\'utente.',
+    'Could not upload the file(s).' => 'Impossibile caricare il file(s).',
     '' => '',
 ];

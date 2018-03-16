@@ -3,8 +3,9 @@
 namespace kodi\api\controllers;
 
 use kodi\api\components\Controller;
+use kodi\common\enums\AccessLevel;
+use kodi\common\enums\Language;
 use kodi\common\enums\order\OrderType;
-use kodi\common\enums\setting\Bunch;
 use kodi\common\models\Order;
 use kodi\common\models\Setting;
 use sammaye\mailchimp\exceptions\MailChimpException;
@@ -25,13 +26,26 @@ class SiteController extends Controller
     }
 
     /**
-     * Returns configured settings for mobile app
+     * Returns system settings.
+     * Every setting has its access level. For guests there will be no sensible settings
      *
      * @return array|\yii\db\ActiveRecord[]
      */
-    public function actionMobileSettings()
+    public function actionSettings()
     {
-        $settings = Setting::find()->select(['name', 'value'])->where(['bunch' => Bunch::MOBILE_APP])->asArray()->all();
+        $query = Setting::find()->select(['name', 'value']);
+        if ($bunch = Yii::$app->request->get('bunch')) {
+            $query->where(['bunch' => $bunch]);
+        }
+        if ($key = Yii::$app->request->get('key')) {
+            $query->andWhere(['name' => $key]);
+        }
+
+        $accessLevel = AccessLevel::EVERYONE;
+        if (!Yii::$app->user->isGuest) {
+            $accessLevel = AccessLevel::CUSTOMER;
+        }
+        $settings = $query->andWhere(['<=', 'access_level', $accessLevel])->asArray()->all();
 
         foreach ($settings as $i => $setting) {
             if ($setting['name'] === 'mobile_app_orders_allowed') {
@@ -46,7 +60,15 @@ class SiteController extends Controller
                     $settings[$i]['value'] = true;
                 }
             }
+
+            if ($setting['name'] === 'device_countries_support') {
+                $settings[$i]['value'] = explode(',', $setting['value']);
+            }
         }
+
+        $settings = ArrayHelper::map($settings, 'name', 'value');
+        // Additional data
+        $settings['languages_support'] = Language::listData();
 
         return $settings;
     }

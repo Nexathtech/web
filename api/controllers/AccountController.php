@@ -8,7 +8,6 @@ use kodi\common\models\user\Profile;
 use Yii;
 use yii\base\ErrorException;
 use yii\filters\VerbFilter;
-use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 
 /**
@@ -54,20 +53,7 @@ class AccountController extends Controller
             return $profile;
         }
 
-        throw new ErrorException('Unable to save user information.');
-    }
-
-    /**
-     * Verifies promo code
-     *
-     * @return array
-     * @throws NotFoundHttpException
-     */
-    public function actionGetCountries()
-    {
-        $countriesStr = Yii::$app->settings->get('device_countries_support');
-        $countries = explode(',', $countriesStr);
-        return $countries;
+        throw new ErrorException(Yii::t('api', 'Unable to save user information.'));
     }
 
     /**
@@ -93,7 +79,7 @@ class AccountController extends Controller
             return $response;
         }
 
-        throw new ErrorException('Could not upload the file(s).');
+        throw new ErrorException(Yii::t('api', 'Could not upload the file(s).'));
     }
 
 }

@@ -89,13 +89,13 @@ class PromoCodeController extends Controller
     }
 
     /**
-     * Verifies promo code
+     * Verifies and use promo code
      *
      * @param $id
      * @return PromoCode
      * @throws NotFoundHttpException
      */
-    public function actionVerify($id)
+    public function actionUse($id)
     {
         $promoCode = PromoCode::findOne([
             'code' => $id,
@@ -103,6 +103,9 @@ class PromoCodeController extends Controller
         ]);
 
         if (!empty($promoCode) && $promoCode->expires_at > Carbon::now()->toDateTimeString()) {
+            $promoCode->status = PromoCodeStatus::USED;
+            $promoCode->save(false);
+
             return $promoCode;
         } else {
             throw new NotFoundHttpException('Invalid promo code.');

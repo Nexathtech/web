@@ -3,6 +3,7 @@
 use dosamigos\selectize\SelectizeDropDownList;
 use dosamigos\selectize\SelectizeTextInput;
 use kodi\common\enums\setting\Type;
+use kodi\common\enums\YesNo;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -49,6 +50,7 @@ $this->params['breadcrumbs'] = [
                     ]
                 ]) ?>
                 <?= $form->field($model, 'type')->dropDownList(Type::listData()) ?>
+                <?= $form->field($model, 'access_level')->textInput() ?>
                 <?= $form->field($model, 'sort_order')->textInput() ?>
             </div>
             <div class="card-footer">

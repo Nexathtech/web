@@ -91,7 +91,7 @@ return [
                     'pluralize' => false,
                     'tokens' => ['{id}' => '<id:\\d+>'],
                     'patterns' => [
-                        'GET verify/{id}' => 'verify',
+                        'GET use/{id}' => 'use',
                     ],
                 ],
             ],

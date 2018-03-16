@@ -2,6 +2,7 @@
 namespace kodi\common\models\user;
 
 use kodi\common\behaviors\TimestampBehavior;
+use kodi\common\enums\AccessLevel;
 use kodi\common\enums\setting\Bunch;
 use kodi\common\enums\user\Role;
 use kodi\common\enums\user\Status;
@@ -266,15 +267,17 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getVerboseSettings()
     {
+        $accessLevel = $this->getIsAdmin() ? AccessLevel::ADMIN : AccessLevel::CUSTOMER;
         $externalSettings = Setting::find()->select(['name', 'value'])->where([
-            'or',
-            ['bunch' => Bunch::DEVICES],
-            ['bunch' => Bunch::COMPONENTS],
-            ['bunch' => Bunch::USERS],
+            '<=',
+            'access_level',
+            $accessLevel,
         ])->asArray()->all();
+
         $externalSettings = ArrayHelper::map($externalSettings, 'name', 'value');
         $internalSettings = ArrayHelper::map($this->settings, 'key', 'value');
         $settings = ArrayHelper::merge($externalSettings, $internalSettings);
+
         foreach ($settings as $key => $setting) {
             if (!empty($externalSettings[$key])) {
                 $settings[$key] = $externalSettings[$key];

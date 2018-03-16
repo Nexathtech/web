@@ -3,6 +3,7 @@
 namespace kodi\common\models;
 
 use kodi\common\behaviors\TimestampBehavior;
+use kodi\common\enums\AccessLevel;
 use kodi\common\enums\setting\Bunch;
 use kodi\common\enums\setting\Type;
 use yii\db\ActiveRecord;
@@ -31,6 +32,7 @@ use yii\validators\UniqueValidator;
  * @property string $bunch
  * @property string $type
  * @property integer $sort_order
+ * @property integer $access_level
  * @property string $updated_at
  *
  */
@@ -71,7 +73,7 @@ class Setting extends ActiveRecord
             //[['bunch'], RangeValidator::class, 'range' => array_keys(Bunch::listData())],
 
             // Integer validation
-            [['sort_order'], NumberValidator::class],
+            [['sort_order', 'access_level'], NumberValidator::class],
 
         ];
     }
