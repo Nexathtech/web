@@ -42,6 +42,7 @@ Response:
             "United Kingdom"
         ],
         "mobile_app_orders_allowed": true,
+        "users_max_prints_amount": "1",
         "languages_support": {
             "en": "English",
             "it": "Italian"
