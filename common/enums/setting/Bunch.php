@@ -15,6 +15,7 @@ use Yii;
 class Bunch extends Enum implements EnumInterface
 {
     const COMPONENTS = 'Components';
+    const USERS = 'Users';
     const DEVICES = 'Devices';
     const SYSTEM = 'System';
     const CHECKOUT = 'Checkout';
@@ -28,6 +29,7 @@ class Bunch extends Enum implements EnumInterface
     {
         return [
             self::COMPONENTS => Yii::t('common', 'Components'),
+            self::USERS => Yii::t('common', 'Users'),
             self::DEVICES => Yii::t('common', 'Devices'),
             self::SYSTEM => Yii::t('common', 'System'),
             self::CHECKOUT => Yii::t('common', 'Checkout'),

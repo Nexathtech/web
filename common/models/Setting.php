@@ -37,6 +37,11 @@ use yii\validators\UniqueValidator;
 class Setting extends ActiveRecord
 {
     /**
+     * @var array $settings
+     */
+    private $settings = [];
+
+    /**
      * @inheritdoc
      */
     public static function tableName(): string
@@ -92,6 +97,10 @@ class Setting extends ActiveRecord
      * @return mixed|null
      */
     public function get($key, $default = null) {
+        if (!empty($this->settings[$key])) {
+            return $this->settings[$key];
+        }
+
         $items = self::find()->select(['name', 'value'])->where(['name' => $key])->asArray()->all();
         if (!empty($items)) {
             if (is_array($key)) {

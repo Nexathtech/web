@@ -163,7 +163,7 @@ class Security extends \yii\base\Security
             return [
                 'user' => [
                     'info' => $model->user->profile,
-                    'settings' => $model->user->getSettings(),
+                    'settings' => $model->user->getVerboseSettings(),
                 ],
                 'session' => $session,
             ];

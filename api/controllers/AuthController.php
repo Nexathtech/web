@@ -12,6 +12,7 @@ use kodi\common\enums\user\TokenType;
 use kodi\common\models\device\Device;
 use kodi\common\models\user\AuthToken;
 use kodi\common\models\user\Profile;
+use kodi\common\models\user\Settings;
 use kodi\common\models\user\User;
 use kodi\frontend\models\forms\ResetPasswordRequestForm;
 use Yii;
@@ -146,10 +147,14 @@ class AuthController extends Controller
 
                     $profile = new Profile([
                         'name' => $model->name ?: explode('@', $model->email)[0],
-                        'location_latitude' => ArrayHelper::getValue($data, 'latitude'),
-                        'location_longitude' => ArrayHelper::getValue($data, 'longitude'),
+                        'location_latitude' => ArrayHelper::getValue($data, 'info.latitude'),
+                        'location_longitude' => ArrayHelper::getValue($data, 'info.longitude'),
                     ]);
                     $profile->link('user', $user);
+
+                    // User settings
+                    $settings = ArrayHelper::getValue($data, 'settings', []);
+                    $this->collectUserSettings($user->id, $settings);
 
                     if ($confirmationRequired) {
                         // Send welcome email with confirmation
@@ -245,6 +250,32 @@ class AuthController extends Controller
             $response->statusCode = 400;
             $response->data = $model->errors;
             return $response;
+        }
+    }
+
+    /**
+     * Creates additional settings records when user registers
+     *
+     * @param integer $userId
+     * @param array $settings that are come from external
+     */
+    private function collectUserSettings($userId, $settings = []) {
+        $settingsFields = Settings::defaultFields();
+        foreach ($settingsFields as $field) {
+            $setting = new Settings();
+            $setting->isNewRecord = true;
+            $setting->user_id = $userId;
+            $setting->title = $field['title'];
+            $setting->key = $field['key'];
+            if (isset($settings[$field['key']]) && $field['writable']) {
+                $setting->value = $settings[$setting->key];
+            } else {
+                $setting->value = $field['value'];
+            }
+            $setting->type = $field['type'];
+            $setting->options = !empty($field['options']) ? $field['options'] : null;
+            $setting->writable = $field['writable'];
+            $setting->save(false);
         }
     }
 }

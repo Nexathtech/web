@@ -1,9 +1,11 @@
 <?php
 
+use kodi\common\enums\setting\Type;
 use kodi\common\enums\user\Role;
 use kodi\common\enums\user\Status;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
@@ -68,6 +70,20 @@ $this->registerJs("
                 <?= $form->field($model->profile, 'address')->textInput() ?>
                 <?= $form->field($model->profile, 'postcode')->textInput() ?>
                 <?= $form->field($model, 'new_password')->passwordInput() ?>
+                <fieldset>
+                    <h3><?= Yii::t('backend', 'Settings'); ?></h3>
+                    <?
+                    foreach ($model->settings as $field) {
+                        if ($field->type === Type::INPUT) {
+                            echo $form->field($field, "[{$field->key}]value")->label($field->title);
+                        }
+                        if ($field->type === Type::SELECT) {
+                            $options = Json::decode($field->options);
+                            echo $form->field($field, "[{$field->key}]value")->dropDownList($options)->label($field->title);
+                        }
+                    }
+                    ?>
+                </fieldset>
             </div>
             <div class="card-footer">
                 <a class="btn btn-sm btn-white" href="<?= Url::to(['index']) ?>">

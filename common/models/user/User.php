@@ -35,6 +35,7 @@ use yii\web\IdentityInterface;
  *
  * @property Profile $profile
  * @property Device[] $devices
+ * @property Settings[] $settings
  *
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -222,6 +223,15 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @return ActiveQuery
+     */
+    public function getSettings()
+    {
+        return $this->hasMany(Settings::class, ['user_id' => 'id'])
+            ->inverseOf('user');
+    }
+
+    /**
      * @return bool|true if user is admin and false if not
      */
     public function getIsAdmin()
@@ -230,18 +240,41 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Returns user's setting by key. If not set, than return global
+     *
+     * @param $key
+     * @param null $default
+     * @return mixed|null|string
+     */
+    public function getSetting($key, $default = null)
+    {
+        /* @var Settings $setting */
+        $setting = $this->getSettings()->where(['key' => $key])->one();
+        if (!empty($setting)) {
+            return $setting->value;
+        }
+
+        $globalSetting = Yii::$app->settings->get($key, $default);
+
+        return $globalSetting;
+    }
+
+    /**
      * Returns user-specific settings
      *
      * @return array|ActiveRecord[]
      */
-    public function getSettings()
+    public function getVerboseSettings()
     {
-        /* @TODO: implement ability to get settings for particular user */
-        // get settings with restricted bunches only
-        return Setting::find()->select(['name', 'value'])->where([
+        $externalSettings = Setting::find()->select(['name', 'value'])->where([
             'or',
             ['bunch' => Bunch::DEVICES],
             ['bunch' => Bunch::COMPONENTS],
-        ])->all();
+            ['bunch' => Bunch::USERS],
+        ])->asArray()->all();
+        $externalSettings = ArrayHelper::map($externalSettings, 'name', 'value');
+        $internalSettings = ArrayHelper::map($this->settings, 'key', 'value');
+
+        return ArrayHelper::merge($externalSettings, $internalSettings);
     }
 }

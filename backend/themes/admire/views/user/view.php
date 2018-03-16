@@ -64,12 +64,27 @@ $this->params['breadcrumbs'] = [
                                 'value' => function($data) {
                                     $result = '';
                                     foreach ($data->devices as $device) {
-                                        $result .= Html::tag('div', Html::a($device->name, ['/device/view', 'id' => $device->id]));
+                                        $result .= Html::tag('div', Html::a($device->uuid, ['/device/view', 'id' => $device->id]));
                                     }
 
                                     return $result;
                                 },
                             ],
+                            [
+                                'label' => Yii::t('backend', 'Settings'),
+                                'format' => 'html',
+                                'value' => function($data) {
+                                    $result = '';
+                                    foreach ($data->settings as $setting) {
+                                        $result .= Html::beginTag('div');
+                                        $result .= Html::tag('strong', $setting->title);
+                                        $result .= ": {$setting->value}";
+                                        $result .= Html::endTag('div');
+                                    }
+
+                                    return $result;
+                                }
+                            ]
                         ]
                     ]);
                     ?>

@@ -102,6 +102,16 @@ class UserController extends BaseController
             $model->profile->photo = $this->uploadFile($model->profile, 'photo', $currentPhoto);
 
             if ($model->save() && $model->profile->save()) {
+                // User settings now
+                if (Yii::$app->request->post('Settings')) {
+                    foreach ($model->settings as $setting) {
+                        if (isset($_POST['Settings'][$setting->key])) {
+                            $setting->value = $_POST['Settings'][$setting->key]['value'];
+                            $setting->save(false);
+                        }
+                    }
+                }
+
                 // Record saved
                 Yii::$app->session->addFlash(AlertType::SUCCESS, [
                     'message' => Yii::t('backend', 'User "{name}" has been successfully updated.', [

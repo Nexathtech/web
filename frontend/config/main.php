@@ -47,7 +47,7 @@ return [
 
         'urlManager' => [
             'class' => \codemix\localeurls\UrlManager::class,
-            'languages' => ['en', 'it'],
+            'languages' => array_keys(\kodi\common\enums\Language::listData()),
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [

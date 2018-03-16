@@ -2,6 +2,7 @@
 
 namespace kodi\frontend\widgets;
 
+use kodi\common\enums\Language;
 use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
@@ -24,15 +25,15 @@ class LanguageSwitcher extends Widget
      */
     public function init()
     {
-        $supportedLanguages = Yii::$app->urlManager->languages;
+        $supportedLanguages = Language::listData();
         $currentLang = Yii::$app->language;
         $currentUrl = $_SERVER['REQUEST_URI'];
 
-        foreach ($supportedLanguages as $sLang) {
+        foreach ($supportedLanguages as $key => $lang) {
             array_push($this->languages, [
-                'alias' => $sLang,
-                'title' => self::label($sLang),
-                'active' => $sLang === $currentLang,
+                'alias' => $key,
+                'title' => strtolower(substr($lang, 0, 3)),
+                'active' => $key === $currentLang,
                 'url' => str_replace($currentLang, '', $currentUrl),
             ]);
         }
@@ -47,18 +48,5 @@ class LanguageSwitcher extends Widget
         return $this->render('languageSwitcher', [
             'languages' => $this->languages,
         ]);
-    }
-
-    /**
-     * @param string $lang
-     * @return mixed
-     */
-    public static function label($lang = 'en') {
-        $labels = [
-            'en' => 'eng',
-            'it' => 'ita',
-        ];
-
-        return isset($labels[$lang]) ? $labels[$lang] : $labels['en'];
     }
 }
