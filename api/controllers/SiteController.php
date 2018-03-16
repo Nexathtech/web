@@ -2,6 +2,7 @@
 
 namespace kodi\api\controllers;
 
+use kodi\api\components\Controller;
 use kodi\common\enums\order\OrderType;
 use kodi\common\enums\setting\Bunch;
 use kodi\common\models\Order;
@@ -10,7 +11,6 @@ use sammaye\mailchimp\exceptions\MailChimpException;
 use Yii;
 use yii\base\ErrorException;
 use yii\helpers\ArrayHelper;
-use yii\rest\Controller;
 
 class SiteController extends Controller
 {
@@ -21,7 +21,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return Yii::t('app', 'It works!');
+        return Yii::t('api', 'It works!');
     }
 
     /**

@@ -2,12 +2,12 @@
 namespace kodi\api\controllers;
 
 use app\components\auth\KodiAuth;
+use kodi\api\components\Controller;
 use kodi\common\models\ImageFile;
 use kodi\common\models\user\Profile;
 use Yii;
 use yii\base\ErrorException;
 use yii\filters\VerbFilter;
-use yii\rest\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 

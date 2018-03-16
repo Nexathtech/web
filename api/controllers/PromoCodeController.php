@@ -3,6 +3,7 @@ namespace kodi\api\controllers;
 
 use app\components\auth\KodiAuth;
 use Carbon\Carbon;
+use kodi\api\components\Controller;
 use kodi\common\enums\PromoCodeStatus;
 use kodi\common\enums\SocialUserType;
 use kodi\common\models\PromoCode;
@@ -11,7 +12,6 @@ use Yii;
 use yii\base\ErrorException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-use yii\rest\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 

@@ -2,6 +2,7 @@
 namespace kodi\api\controllers;
 
 use app\components\auth\KodiAuth;
+use kodi\api\components\Controller;
 use kodi\common\enums\action\Status;
 use kodi\common\enums\action\Type;
 use kodi\common\enums\order\OrderType;
@@ -16,7 +17,6 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
-use yii\rest\Controller;
 use yii\web\ForbiddenHttpException;
 
 /**

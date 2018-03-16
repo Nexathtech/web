@@ -3,6 +3,7 @@
 namespace kodi\api\controllers;
 
 use Exception;
+use kodi\api\components\Controller;
 use kodi\api\models\auth\SignIn;
 use kodi\api\models\auth\SignUp;
 use kodi\common\enums\DeviceType;
@@ -21,7 +22,6 @@ use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\helpers\Url;
-use yii\rest\Controller;
 use yii\web\BadRequestHttpException;
 use yii\web\ForbiddenHttpException;
 

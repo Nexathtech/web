@@ -10,6 +10,10 @@ The Api is commonly related with different KODI applications launched on mobile 
   4. In order to log actions from particular device, it must have it's own unique id. In mobile applications we get it using [react-native-device-info] package. In native kiosk app we get it with `sudo cat /sys/class/dmi/id/product_uuid` command.  
   While user (on mobile app) or program (on kiosk app) authenticates on API server, they send their unique device id alongside with email/password credentials. If the device doesn't exist it will be automatically created. Then every major actions, made by the device, will be registered.  
   
+The Api also support multilingual responses (English and Italian currently supported).  
+To get response with particular language, you have to set **Content-Language** header with specific language (en or it).  
+If the header is not set, the user's default language will be used. If it's a guest, the system default language (English) will be used.
+  
   
 Supported Endpoints:
 --------------------

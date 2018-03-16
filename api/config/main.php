@@ -8,6 +8,7 @@ return [
 
     // General settings
     'id' => 'kodi-api',
+    'language' => 'en',
     'name' => getenv('KODI_MODULE_API_NAME'),
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'kodi\api\controllers',
