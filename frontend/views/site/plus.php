@@ -29,12 +29,19 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
 ?>
 
 <div class="page-plus">
-    <div class="p-pl-title">Plus</div>
+    <div class="p-pl-title">
+        <p><?= Yii::t('frontend', 'print photos for free') ?>,</p>
+        <p><?= Yii::t('frontend', 'directly from your social media') ?></p>
+    </div>
     <div class="people-jump"></div>
     <div class="p-p-heading">
-        <div class="p-p-heading-cont">
-            is the<br>minimum
-        </div>
+        <p>Print your photos</p>
+        <p>has become a game:</p>
+        <p>with kodiplus only a few clicks are enough.</p>
+        <p>Your moments are the most precious thing you have,</p>
+        <p>let them explode in reality.</p>
+        <p>Have we already said that it is</p>
+        <p>totally free?</p>
     </div>
     <div class="colored-lines">
         <div class="c-l-beige"></div>
@@ -104,21 +111,21 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
     <div class="phone-key">
         your phone<br>is the key
         <div class="p-k-desc">
-            <?= Yii::t('frontend', 'Kodi Plus is constantly evolving.{br}Stay up to date to see all the latest service innovations that we’ve got in store for you.{br}Your phone will be the key to managing the digital kiosk of tomorrow.', ['br' => '<br>']); ?>
+            <?= Yii::t('frontend', 'Kodi Plus is constantly evolving.{br}Stay up to date to see all the latest service innovations that we’ve got in store for you.', ['br' => '<br>']); ?>
         </div>
     </div>
     <div class="p-p-bottom">
         <div class="b-i-block">
-            <div class="b-i-title">discover the future<br>of printing</div>
-            <?= Yii::t('frontend', 'From your phone or a Kodi station, the digital printing revolution with personalized content is a world of infinite possibilities, which you can’t do without.'); ?>
+            <div class="b-i-title">promote your brand<br>in few minutes</div>
+            <?= Yii::t('frontend', 'discover how is easy to reach real people{br}and show how beautiful you are', ['br' => '<br>']); ?>
             <br>
-            <a class="btn disabled" href="#">coming soon...</a>
+            <a class="btn" href="#">kodi ads</a>
         </div>
         <div class="b-i-block">
-            <div class="b-i-title">a digital app for a real<br>kiosk</div>
-            <?= Yii::t('frontend', 'With Kodi Plus, you can make payments, find the nearest Kodi station and manage your count. Now you just have to find a Kodi station for yourself to see how this works.'); ?>
+            <div class="b-i-title">get your shop<br>to the next level</div>
+            <?= Yii::t('frontend', 'your shop can become a smart shop.{br}Find out how', ['br' => '<br>']); ?>
             <br>
-            <a class="btn text-blue disabled" href="#">coming soon...</a>
+            <a class="btn text-blue" href="#">kodi point</a>
         </div>
     </div>
 </div>

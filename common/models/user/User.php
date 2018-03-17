@@ -3,14 +3,12 @@ namespace kodi\common\models\user;
 
 use kodi\common\behaviors\TimestampBehavior;
 use kodi\common\enums\AccessLevel;
-use kodi\common\enums\setting\Bunch;
 use kodi\common\enums\user\Role;
 use kodi\common\enums\user\Status;
 use kodi\common\enums\user\Type;
 use kodi\common\models\device\Device;
 use kodi\common\models\Setting;
 use Yii;
-use yii\base\NotSupportedException;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;

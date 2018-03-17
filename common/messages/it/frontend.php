@@ -24,14 +24,16 @@ Controllare la posta sarà un piacere maggiore.',
     'Memory, backup and cloud...{br}If the mere mention of these words{br}is enough to make you shiver{br}or worry about losing the photos{br}that matter to you, try Kodi.{br}Kodi Station and Kodi Plus{br}will allow you to keep your memories{br}in the best and safest way possible:{br}in your hand.' => 'Memoria, backup, giga, cloud.{br}Se tutte queste parole ti fanno venire i brividi, o semplicemente hai paura{br}di perdere le immagini che per te contano, prova Kodi. Kodi station e Kodi plus ti permetteranno di conservare le tue memorienel modo{br}migliore e sicuro che c’è:{br}tra le tue mani.
 ',
 
-    'Kodi Plus is constantly evolving.{br}Stay up to date to see all the latest service innovations that we’ve got in store for you.{br}Your phone will be the key to managing the digital kiosk of tomorrow.' => 'Kodi plus è in continua l’evoluzione.{br}Resta aggiornato per scoprire tutte le novità di kodi plus e i servizi innovativi che stiamo preparando per voi.{br}Il tuo telefono sarà la chiave per gestire con comodità il digitale kiosk di ultima generazione.',
+    'Kodi Plus is constantly evolving.{br}Stay up to date to see all the latest service innovations that we’ve got in store for you.' => 'Kodi plus è in continua l’evoluzione.{br}Resta aggiornato per scoprire tutte le novità di kodi plus e i servizi innovativi che stiamo preparando per voi.',
 
-    'From your phone or a Kodi station, the digital printing revolution with personalized content is a world of infinite possibilities, which you can’t do without.' => 'Dal tuo telefono, o dalla kodi station, la rivoluzione della stampa digitale con contenuti personalizzati è un mondo infinito di cui non potrai farne a meno.',
+    'discover how is easy to reach real people{br}and show how beautiful you are' => 'scopri come è facile raggiungere persone reali{br}e mostrare quanto sei bella',
 
-    'With Kodi Plus, you can make payments, find the nearest Kodi station and manage your count. Now you just have to find a Kodi station for yourself to see how this works.' => 'Con kodi plus puoi effettuare pagamenti, trovare una kodi station, e gestire il tuo account kodi.
+    'your shop can become a smart shop.{br}Find out how' => 'il tuo negozio può diventare un negozio intelligente.{br}Scopri come.
 Ora devi solo trovare una kodi station per capire che non è magia.
 ',
     'The only application that does not require any login to print your photos directly from the social media you prefer. Print an indelible moment or give a special memory making a surprise to your beloved and receive wherever you want. Oh I forgot: NO shipping costs, NO printing costs. Totally FREE.' => 'L’unica applicazione che non richiede alcun login per stampare le tue foto direttamente dai social media che preferisci. Stampa un momento indelebile o regala un ricordo speciale senza farti scoprire e ricevi ovunque tu vuoi. Ah dimenticavo: NO costi di spedizione, NO costi di stampa. Totalmente FREE.',
 
+    'print photos for free' => 'stampa foto gratis',
+    'directly from your social media' => 'direttamente dai tuoi social media',
     '' => '',
 ];

@@ -48,36 +48,36 @@
 
 @-skrollr-keyframes ppmCont {
   0 {position: fixed; left: 10%; top: 120%;}
-  1100 {top: 120%}
-  1600 {top: 10%}
-  3000 {top: 10%}
-  3600 {top: -120%;}
+  1500 {top: 120%}
+  2000 {top: 10%}
+  3250 {top: 10%}
+  3850 {top: -120%;}
 }
 
 @-skrollr-keyframes imSearch {
   0 {top: 0px; left: 200px; transform: scale(1);}
-  1800 {top: 0px;}
-  2000 {left: 100px; top: 25px; transform: scale(0.88);}
-  2300 {top: 25px;}
-  2500 {left: 0px; top: 60px; transform: scale(0.73);}
+  2100 {top: 0px;}
+  2300 {left: 100px; top: 25px; transform: scale(0.88);}
+  2600 {top: 25px;}
+  2800 {left: 0px; top: 60px; transform: scale(0.73);}
 }
 
 @-skrollr-keyframes imPreview {
   0 {top: -2000px; left: 200px; transform: scale(1);}
-  1800 {left: 200px;}
-  2000 {top: 0px;}
+  2100 {left: 200px;}
   2300 {top: 0px;}
-  2500 {left: 100px; top: 25px; transform: scale(0.88);}
+  2600 {top: 0px;}
+  2800 {left: 100px; top: 25px; transform: scale(0.88);}
 }
 
 @-skrollr-keyframes imShipping {
   0 {top: -2000px; left: 200px;}
-  2300 {left: 200px;}
-  2500 {top: 0px;}
+  2600 {left: 200px;}
+  2800 {top: 0px;}
 }
 
 @-skrollr-keyframes momentsMatter {
-  1 {padding-top: 1700px;}
+  1 {padding-top: 1600px;}
 }
 
 @-skrollr-keyframes ppLine {
