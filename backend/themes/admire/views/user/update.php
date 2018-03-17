@@ -3,6 +3,7 @@
 use kodi\common\enums\setting\Type;
 use kodi\common\enums\user\Role;
 use kodi\common\enums\user\Status;
+use kodi\common\enums\user\Type as UserType;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
 use yii\helpers\Json;
@@ -63,6 +64,7 @@ $this->registerJs("
                 <?= $form->field($model->profile, 'photo')->fileInput() ?>
                 <?= $form->field($model, 'role')->dropDownList(Role::listData()) ?>
                 <?= $form->field($model, 'email')->textInput() ?>
+                <?= $form->field($model, 'type')->dropDownList(UserType::listData()) ?>
                 <?= $form->field($model, 'status')->dropDownList(Status::listData()) ?>
                 <?= $form->field($model->profile, 'country')->textInput() ?>
                 <?= $form->field($model->profile, 'city')->textInput() ?>

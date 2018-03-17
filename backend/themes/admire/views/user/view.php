@@ -44,6 +44,7 @@ $this->params['breadcrumbs'] = [
                             'profile.surname',
                             'email:email',
                             'role',
+                            'type',
                             [
                                 'label' => $model->getAttributeLabel('status'),
                                 'format' => 'html',

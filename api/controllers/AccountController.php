@@ -3,11 +3,17 @@ namespace kodi\api\controllers;
 
 use app\components\auth\KodiAuth;
 use kodi\api\components\Controller;
+use kodi\common\enums\user\Type;
 use kodi\common\models\ImageFile;
 use kodi\common\models\user\Profile;
+use kodi\common\models\user\User;
 use Yii;
 use yii\base\ErrorException;
 use yii\filters\VerbFilter;
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\web\BadRequestHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\web\UploadedFile;
 
 /**
@@ -80,6 +86,43 @@ class AccountController extends Controller
         }
 
         throw new ErrorException(Yii::t('api', 'Could not upload the file(s).'));
+    }
+
+    /**
+     * Requests to change user type
+     *
+     * @throws BadRequestHttpException
+     * @throws ForbiddenHttpException
+     */
+    public function actionChangeType()
+    {
+        /* @var $user User */
+        $user = Yii::$app->user->identity;
+        $type = ucfirst(Yii::$app->request->post('type'));
+        $allowedTypes = array_keys(Type::listData());
+
+        if ($user->type === $type) {
+            throw new ForbiddenHttpException(Yii::t('api', 'You are already a {type} user.', ['type' => $user->type]));
+        } else {
+            if (in_array($type, $allowedTypes)) {
+                $adminEmail = Yii::$app->settings->get('system_email_sender');
+                $urlToUpdate = Url::to(['/user/update', 'id' => $user->id], true);
+                $urlToUpdate = Html::a($user->id, str_replace('api', 'backend', $urlToUpdate));
+
+                Yii::$app->mailer->compose('clear', [
+                    'content' => "User #{$urlToUpdate} ({$user->email}) requested type change to {$type}",
+                ])
+                    ->setFrom([$adminEmail => Yii::t('api', 'Kodi Team')])
+                    ->setTo($adminEmail)
+                    ->setReplyTo($user->email)
+                    ->setSubject('Type change request')
+                    ->send();
+
+                return Yii::t('api', 'Thank you. Your request is successfully obtained. We will consider it asap.');
+            }
+        }
+
+        throw new BadRequestHttpException(Yii::t('api', 'Unsupported type.'));
     }
 
 }

@@ -266,6 +266,22 @@ Response:
 
 - **/account/upload-images**
 
+- **/account/change-type**  
+Request for changing users type.  
+Request `POST /account/change-type`:  
+```
+{
+    "type": "Brand" // could be Simple or Brand
+}
+```
+Response:  
+```
+{
+    "success": true,
+    "data": "The request is successfully sent. We will consider it asap."
+}
+```
+
 
 Action
 ------

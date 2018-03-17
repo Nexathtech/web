@@ -62,7 +62,7 @@ class m180315_095335_user_settings extends Migration
             ]);
         }
 
-        // Add a field to global settings
+        // Add a fields to global settings
         $this->insert('{{%setting}}', [
             'title' => 'Max prints amount',
             'description' => 'Amount of photos users can print by default. 0 = unlimited',
@@ -71,6 +71,16 @@ class m180315_095335_user_settings extends Migration
             'bunch' => 'Users',
             'type' => 'Input',
             'sort_order' => 61,
+        ]);
+        $this->insert('{{%setting}}', [
+            'title' => 'Max prints amount for brands',
+            'description' => 'Amount of photos Brands can print by default. 0 = unlimited',
+            'name' => 'users_max_prints_amount_brands',
+            'value' => '2',
+            'bunch' => 'Users',
+            'type' => 'Input',
+            'sort_order' => 62,
+            'access_level' => 10,
         ]);
 
     }
@@ -85,5 +95,6 @@ class m180315_095335_user_settings extends Migration
         $this->dropTable('{{%user_settings}}');
 
         $this->delete('{{%setting}}', ['name' => 'users_max_prints_amount']);
+        $this->delete('{{%setting}}', ['name' => 'users_max_prints_amount_brands']);
     }
 }

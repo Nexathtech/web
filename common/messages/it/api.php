@@ -13,5 +13,8 @@ return [
     'Name' => 'Nome',
     'Unable to save user information.' => 'Impossibile salvare le informazioni dell\'utente.',
     'Could not upload the file(s).' => 'Impossibile caricare il file(s).',
+    'You are already a {type} user.' => 'Sei già un {type} utente.',
+    'Unsupported type.' => 'Tipo non supportato.',
+    'Thank you. Your request is successfully obtained. We will consider it asap.' => 'Grazie. La tua richiesta è stata ottenuta con successo. Lo considereremo al più presto.',
     '' => '',
 ];

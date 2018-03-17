@@ -6,6 +6,7 @@ use kodi\common\enums\AccessLevel;
 use kodi\common\enums\setting\Bunch;
 use kodi\common\enums\user\Role;
 use kodi\common\enums\user\Status;
+use kodi\common\enums\user\Type;
 use kodi\common\models\device\Device;
 use kodi\common\models\Setting;
 use Yii;
@@ -27,6 +28,7 @@ use yii\web\IdentityInterface;
  * @property string $password
  * @property string $auth_key
  * @property string $role
+ * @property string $type
  * @property string $status
  * @property string $created_at
  * @property string $updated_at
@@ -72,6 +74,7 @@ class User extends ActiveRecord implements IdentityInterface
             [['email', 'password', 'role', 'status', 'new_password'], StringValidator::class, 'max' => 64],
 
             // Range validation
+            ['type', RangeValidator::class, 'range' => array_keys(Type::listData())],
             ['status', RangeValidator::class, 'range' => array_keys(Status::listData())],
 
             // Unique fields
