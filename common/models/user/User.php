@@ -242,7 +242,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Returns user's setting by key. If not set, than return global
+     * Returns user's setting by key. If not set, then return global
      *
      * @param $key
      * @param null $default

@@ -47,7 +47,7 @@ class AccountController extends Controller
     /**
      * Saves profile info
      *
-     * @return Profile
+     * @return array
      * @throws ErrorException
      */
     public function actionSaveProfile()
@@ -59,10 +59,13 @@ class AccountController extends Controller
         if ($profile->save()) {
             if (!empty($data['settings'])) {
                 foreach ($data['settings'] as $key => $setting) {
-                    Settings::updateAll(['value' => $setting], ['key' => $key]);
+                    Settings::updateAll(['value' => $setting], ['key' => $key, 'user_id' => $userId]);
                 }
             }
-            return $profile;
+            return [
+                'info' => $profile,
+                'settings' => $profile->user->getVerboseSettings(),
+            ];
         }
 
         throw new ErrorException(Yii::t('api', 'Unable to save user information.'));
