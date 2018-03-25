@@ -26,14 +26,21 @@ Controllare la posta sarà un piacere maggiore.',
 
     'Kodi Plus is constantly evolving.{br}Stay up to date to see all the latest service innovations that we’ve got in store for you.' => 'Kodi plus è in continua l’evoluzione.{br}Resta aggiornato per scoprire tutte le novità di kodi plus e i servizi innovativi che stiamo preparando per voi.',
 
-    'discover how is easy to reach real people{br}and show how beautiful you are' => 'scopri come è facile raggiungere persone reali{br}e mostrare quanto sei bella',
+    'discover how is easy to reach real people{br}and show how beautiful you are' => 'scopri come raggiungere utenti veri in maniera semplice',
 
-    'your shop can become a smart shop.{br}Find out how' => 'il tuo negozio può diventare un negozio intelligente.{br}Scopri come.
-Ora devi solo trovare una kodi station per capire che non è magia.
-',
+    'your shop can become a smart shop.{br}Find out how' => 'diventa un kodi point e scopri tutti i vantaggi che potrai avere.',
     'The only application that does not require any login to print your photos directly from the social media you prefer. Print an indelible moment or give a special memory making a surprise to your beloved and receive wherever you want. Oh I forgot: NO shipping costs, NO printing costs. Totally FREE.' => 'L’unica applicazione che non richiede alcun login per stampare le tue foto direttamente dai social media che preferisci. Stampa un momento indelebile o regala un ricordo speciale senza farti scoprire e ricevi ovunque tu vuoi. Ah dimenticavo: NO costi di spedizione, NO costi di stampa. Totalmente FREE.',
 
     'print photos for free' => 'stampa foto gratis',
     'directly from your social media' => 'direttamente dai tuoi social media',
+    'Print your photos' => 'Stampare le tue foto',
+    'has become a game:' => 'è diventato un gioco:',
+    'with kodiplus only a few clicks are enough.' => 'con kodiplus bastano solo pochi click.',
+    'Your moments are the most precious thing you have' => 'I tuoi momenti sono la cosa più preziosa che hai',
+    'let them explode in reality.' => 'lasciali esplodere nella realtà.',
+    'Have we already said that it is' => 'L’abbiamo già detto che è',
+    'totally free?' => 'totalmente gratis?',
+    'promote your brand{br}in few minutes' => 'promuovi il tuo brandi{br}in pochi istanti',
+    'get your shop{br}to the next level' => 'porta il tuo negozio{br}al livello successivo',
     '' => '',
 ];

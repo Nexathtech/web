@@ -6,6 +6,7 @@ use kodi\api\components\Controller;
 use kodi\common\enums\user\Type;
 use kodi\common\models\ImageFile;
 use kodi\common\models\user\Profile;
+use kodi\common\models\user\Settings;
 use kodi\common\models\user\User;
 use Yii;
 use yii\base\ErrorException;
@@ -56,6 +57,11 @@ class AccountController extends Controller
         $profile = Profile::findOne(['user_id' => $userId]);
         $profile->load($data, '');
         if ($profile->save()) {
+            if (!empty($data['settings'])) {
+                foreach ($data['settings'] as $key => $setting) {
+                    Settings::updateAll(['value' => $setting], ['key' => $key]);
+                }
+            }
             return $profile;
         }
 

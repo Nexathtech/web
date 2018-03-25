@@ -35,13 +35,13 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
     </div>
     <div class="people-jump"></div>
     <div class="p-p-heading">
-        <p>Print your photos</p>
-        <p>has become a game:</p>
-        <p>with kodiplus only a few clicks are enough.</p>
-        <p>Your moments are the most precious thing you have,</p>
-        <p>let them explode in reality.</p>
-        <p>Have we already said that it is</p>
-        <p>totally free?</p>
+        <p><?= Yii::t('frontend', 'Print your photos'); ?></p>
+        <p><?= Yii::t('frontend', 'has become a game:'); ?></p>
+        <p><?= Yii::t('frontend', 'with kodiplus only a few clicks are enough.'); ?></p>
+        <p><?= Yii::t('frontend', 'Your moments are the most precious thing you have'); ?>,</p>
+        <p><?= Yii::t('frontend', 'let them explode in reality.'); ?></p>
+        <p><?= Yii::t('frontend', 'Have we already said that it is'); ?></p>
+        <p><?= Yii::t('frontend', 'totally free?'); ?></p>
     </div>
     <div class="colored-lines">
         <div class="c-l-beige"></div>
@@ -116,16 +116,16 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
     </div>
     <div class="p-p-bottom">
         <div class="b-i-block">
-            <div class="b-i-title">promote your brand<br>in few minutes</div>
+            <div class="b-i-title"><?= Yii::t('frontend', 'promote your brand{br}in few minutes', ['br' => '<br>']) ?></div>
             <?= Yii::t('frontend', 'discover how is easy to reach real people{br}and show how beautiful you are', ['br' => '<br>']); ?>
             <br>
-            <a class="btn" href="#">kodi ads</a>
+            <a class="btn" href="/ads">kodi ads</a>
         </div>
         <div class="b-i-block">
-            <div class="b-i-title">get your shop<br>to the next level</div>
+            <div class="b-i-title"><?= Yii::t('frontend', 'get your shop{br}to the next level', ['br' => '<br>']); ?></div>
             <?= Yii::t('frontend', 'your shop can become a smart shop.{br}Find out how', ['br' => '<br>']); ?>
             <br>
-            <a class="btn text-blue" href="#">kodi point</a>
+            <a class="btn text-blue" href="/ads#point">kodi point</a>
         </div>
     </div>
 </div>
