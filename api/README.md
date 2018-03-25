@@ -240,7 +240,10 @@ Account
 Request `POST /account/save-profile`:  
 ```
 {
-    "city": "Lviv"
+    "city": "Lviv",
+    "settings": {
+        "users_language": "it"
+    }
 }
 ```  
 Response:  
