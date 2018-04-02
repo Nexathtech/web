@@ -352,7 +352,7 @@ input[type="checkbox"]:checked::after {
     height: 50px;
     background: #000;
     border-bottom: 1px solid #000;
-    z-index: 100;
+    z-index: 110;
 }
 
 .language-switcher {

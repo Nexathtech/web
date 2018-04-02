@@ -251,18 +251,23 @@ Response:
 {
     "success": true,
     "data": {
-        "id": 1,
-        "user_id": 1,
-        "name": "Admin",
-        "surname": "",
-        "photo": null,
-        "country": "",
-        "city": "Lviv",
-        "state": "",
-        "address": "",
-        "postcode": "",
-        "location_latitude": null,
-        "location_longitude": null
+        "info": {
+            "id": 1,
+            "user_id": 1,
+            "name": "Admin",
+            "surname": "",
+            "photo": null,
+            "country": "",
+            "city": "Lviv",
+            "state": "",
+            "address": "",
+            "postcode": "",
+            "location_latitude": null,
+            "location_longitude": null
+        },
+        "settings": {
+            "users_language": "it"
+        }
     }
 }
 ```
