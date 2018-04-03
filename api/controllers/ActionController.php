@@ -73,7 +73,7 @@ class ActionController extends Controller
         if ($model->action_type === Type::PRINT_SHIPMENT) {
             $action = Action::findOne(['action_type' => Type::PRINT_SHIPMENT, 'user_id' => $model->user_id]);
             if (!empty($action)) {
-                throw new ForbiddenHttpException('You have already been used free shipment.');
+                throw new ForbiddenHttpException(Yii::t('api', 'You have already been used free shipment.'));
             }
         }
 

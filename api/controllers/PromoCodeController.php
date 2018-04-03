@@ -60,7 +60,7 @@ class PromoCodeController extends Controller
             // Check if user has already been used promo codes and return error
             if (!empty($identity['id'])) {
                 if (!empty(PromoCode::findOne(['identity_id' => $identity['id'], 'status' => PromoCodeStatus::USED]))) {
-                    throw new ForbiddenHttpException('You have already been used promo codes.');
+                    throw new ForbiddenHttpException(Yii::t('api', 'You have already been used promo codes.'));
                 }
             }
 
@@ -82,7 +82,7 @@ class PromoCodeController extends Controller
         }
 
         if (!$model->save() && !$model->hasErrors()) {
-            throw new ErrorException('Failed to create promo code for unknown reason.');
+            throw new ErrorException(Yii::t('api', 'Failed to create promo code for unknown reason.'));
         }
 
         return $model;
@@ -108,7 +108,7 @@ class PromoCodeController extends Controller
 
             return $promoCode;
         } else {
-            throw new NotFoundHttpException('Invalid promo code.');
+            throw new NotFoundHttpException(Yii::t('api', 'Invalid promo code.'));
         }
     }
 

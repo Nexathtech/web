@@ -310,6 +310,10 @@ Request `POST /action/register`:
     		"state": null,
     		"country": "Denmark"
     	},
+    	"location": {
+    	    "latitude": "some data",
+    	    "longitude": "some data"
+    	},
     	"images": {
     		"i_1731879342130575146" :{
     			"id": "i_1731879342130575146",

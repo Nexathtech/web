@@ -202,7 +202,7 @@ class AuthController extends Controller
     public function actionSignOut() {
         $tokenData = Yii::$app->getRequest()->getBodyParams();
         if (empty($tokenData['id']) || empty($tokenData['token'])) {
-            throw new BadRequestHttpException('No token provided.');
+            throw new BadRequestHttpException(Yii::t('api', 'No token provided.'));
         }
 
         return Yii::$app->security->revokeToken($tokenData);
@@ -219,7 +219,7 @@ class AuthController extends Controller
     public function actionTokenRefresh() {
         $tokenData = Yii::$app->getRequest()->getBodyParams();
         if (empty($tokenData['id']) || empty($tokenData['token'])) {
-            throw new BadRequestHttpException('No token provided.');
+            throw new BadRequestHttpException(Yii::t('api', 'No token provided.'));
         }
 
         $expiresIn = ArrayHelper::getValue(Yii::$app->params, 'security.token.access.expiration');
@@ -235,7 +235,7 @@ class AuthController extends Controller
     public function actionPasswordReset() {
         $email = ArrayHelper::getValue(Yii::$app->getRequest()->getBodyParams(), 'email');
         if (empty($email)) {
-            throw new BadRequestHttpException('No email provided.');
+            throw new BadRequestHttpException(Yii::t('api', 'No email provided.'));
         }
 
         $model = new ResetPasswordRequestForm(['email' => $email]);
@@ -244,7 +244,7 @@ class AuthController extends Controller
                 return Yii::t('api', 'We sent instructions to your email address.');
             }
 
-            throw new ErrorException('An error occurred while sending email.');
+            throw new ErrorException(Yii::t('api', 'An error occurred while sending email.'));
         } else {
             $response = Yii::$app->response;
             $response->statusCode = 400;
