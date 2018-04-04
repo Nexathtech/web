@@ -19,7 +19,7 @@ html, body {
   box-sizing: border-box;
   border: 0.2cm solid #fff;
   /*border-bottom-width: 2.7cm;*/
-  text-align: center;
+  /*text-align: center;*/
 }
 .p-img {
   display: inline-block;
