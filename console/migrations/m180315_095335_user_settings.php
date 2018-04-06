@@ -65,7 +65,7 @@ class m180315_095335_user_settings extends Migration
         // Add a fields to global settings
         $this->insert('{{%setting}}', [
             'title' => 'Max prints amount',
-            'description' => 'Amount of photos users can print by default. 0 = unlimited',
+            'description' => 'Amount of photos users can print per month by default.',
             'name' => 'users_max_prints_amount',
             'value' => '1',
             'bunch' => 'Users',
@@ -74,7 +74,7 @@ class m180315_095335_user_settings extends Migration
         ]);
         $this->insert('{{%setting}}', [
             'title' => 'Max prints amount for brands',
-            'description' => 'Amount of photos Brands can print by default. 0 = unlimited',
+            'description' => 'Amount of photos Brands can print per month by default.',
             'name' => 'users_max_prints_amount_brands',
             'value' => '2',
             'bunch' => 'Users',

@@ -14,6 +14,7 @@ use kodi\common\models\Order;
 use kodi\common\models\PromoCode;
 use kodi\common\models\user\User;
 use Yii;
+use yii\db\Expression;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
@@ -69,11 +70,17 @@ class ActionController extends Controller
             $model->device_type = $user->device->type;
         }
 
-        // Limit free shipment to 1 per a user
         if ($model->action_type === Type::PRINT_SHIPMENT) {
-            $action = Action::findOne(['action_type' => Type::PRINT_SHIPMENT, 'user_id' => $model->user_id]);
-            if (!empty($action)) {
-                throw new ForbiddenHttpException(Yii::t('api', 'You have already been used free shipment.'));
+            // Limit free shipment to allowed per a user
+            $printsLimit = $user->getSetting('users_max_prints_amount', 1);
+            $prints = Action::find()->where([
+                'action_type' => Type::PRINT_SHIPMENT,
+                'user_id' => $model->user_id,
+            ])
+                ->andWhere(['>=', 'created_at', new Expression('NOW() - INTERVAL 1 MONTH')])
+                ->count();
+            if ($prints >= $printsLimit) {
+                throw new ForbiddenHttpException(Yii::t('api', 'You have already been used maximum free prints this month.'));
             }
         }
 

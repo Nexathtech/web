@@ -252,7 +252,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         /* @var Settings $setting */
         $setting = $this->getSettings()->where(['key' => $key])->one();
-        if (!empty($setting)) {
+        if (!empty($setting) && !empty($setting->value)) {
             return $setting->value;
         }
 
