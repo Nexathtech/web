@@ -148,7 +148,8 @@ a {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 150px; }
-  .kit .button-group button {
+  .kit .button-group a {
+    display: inline-block;
     color: white;
     border-style: none;
     width: 141px;
@@ -159,15 +160,15 @@ a {
     -ms-flex-preferred-size: calc(100% - 12px);
     flex-basis: calc(100% - 12px);
     cursor: pointer; }
-  .kit .button-group button:first-child {
+  .kit .button-group a:first-child {
     background-color: #FFD049; }
-    .kit .button-group button:first-child:hover {
+    .kit .button-group a:first-child:hover {
       background-color: white;
       color: #FFD049;
       border: 2px solid #FFD049; }
-  .kit .button-group button:last-child {
+  .kit .button-group a:last-child {
     background-color: #44047D; }
-    .kit .button-group button:last-child:hover {
+    .kit .button-group a:last-child:hover {
       background-color: white;
       color: #44047D;
       border: 2px solid #44047D;

@@ -54,8 +54,8 @@ navButton.forEach(function (elem) {
                 <img src="/styles/img/man.svg">
             </div>
             <div class="button-group">
-                <button>press image</button>
-                <button>press release</button>
+                <a href="https://www.dropbox.com/sh/eammmplwpn0kx02/AAARAtVitMAuegY6RK0gnFJJa?dl=0" target="_blank">press image</a>
+                <a href="https://www.dropbox.com/sh/eammmplwpn0kx02/AAARAtVitMAuegY6RK0gnFJJa?dl=0" target="_blank">press release</a>
             </div>
         </div>
         <div class="facts hide">
