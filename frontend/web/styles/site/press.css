@@ -154,11 +154,13 @@ a {
     border-style: none;
     width: 141px;
     height: 2.44rem;
+    padding-top: 0.44rem;
     font-size: 1rem;
     margin-right: 12px;
     margin-bottom: 12px;
     -ms-flex-preferred-size: calc(100% - 12px);
     flex-basis: calc(100% - 12px);
+    text-align: center;
     cursor: pointer; }
   .kit .button-group a:first-child {
     background-color: #FFD049; }
