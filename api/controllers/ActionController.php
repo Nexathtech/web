@@ -73,13 +73,25 @@ class ActionController extends Controller
         if ($model->action_type === Type::PRINT_SHIPMENT) {
             // Limit free shipment to allowed per a user
             $printsLimit = $user->getSetting('users_max_prints_amount', 1);
+            $printsAmount = 0;
             $prints = Action::find()->where([
                 'action_type' => Type::PRINT_SHIPMENT,
                 'user_id' => $model->user_id,
             ])
                 ->andWhere(['>=', 'created_at', new Expression('NOW() - INTERVAL 1 MONTH')])
-                ->count();
-            if ($prints >= $printsLimit) {
+                ->all();
+
+            foreach ($prints as $print) {
+                /* @var $print Action */
+                $printData = Json::decode($print->data);
+                if (!empty($printData['images'])) {
+                    foreach ($printData['images'] as $image) {
+                        $printsAmount += $image['count'];
+                    }
+                }
+            }
+
+            if ($printsAmount >= $printsLimit) {
                 throw new ForbiddenHttpException(Yii::t('api', 'You have already been used maximum free prints this month.'));
             }
         }
@@ -96,26 +108,27 @@ class ActionController extends Controller
 
             // If photos to be printed, need to consider it as an order
             if ($model->action_type === Type::PRINT_SHIPMENT) {
+                $profile = $user->profile;
                 $order = new Order([
                     'type' => OrderType::PHOTO,
                     'user_id' => $model->user_id,
-                    'name' => ArrayHelper::getValue($details, 'shipping.name'),
-                    'surname' => ArrayHelper::getValue($details, 'shipping.surname'),
+                    'name' => ArrayHelper::getValue($details, 'shipping.name', $profile->name),
+                    'surname' => ArrayHelper::getValue($details, 'shipping.surname', $profile->surname),
                     'email' => $user->email,
-                    'country' => ArrayHelper::getValue($details, 'shipping.country'),
-                    'city' => ArrayHelper::getValue($details, 'shipping.city'),
-                    'state' => ArrayHelper::getValue($details, 'shipping.state'),
-                    'address' => ArrayHelper::getValue($details, 'shipping.address'),
-                    'postcode' => ArrayHelper::getValue($details, 'shipping.postcode'),
-                    'location_latitude' => ArrayHelper::getValue($details, 'location.latitude'),
-                    'location_longitude' => ArrayHelper::getValue($details, 'location.longitude'),
+                    'country' => ArrayHelper::getValue($details, 'shipping.country', $profile->country),
+                    'city' => ArrayHelper::getValue($details, 'shipping.city', $profile->city),
+                    'state' => ArrayHelper::getValue($details, 'shipping.state', $profile->state),
+                    'address' => ArrayHelper::getValue($details, 'shipping.address', $profile->address),
+                    'postcode' => ArrayHelper::getValue($details, 'shipping.postcode', $profile->postcode),
+                    'location_latitude' => ArrayHelper::getValue($details, 'location.latitude', $profile->location_latitude),
+                    'location_longitude' => ArrayHelper::getValue($details, 'location.longitude', $profile->location_longitude),
                     'color' => 'yellow',
                     'quantity' => 1,
                     'payment_type' => PaymentType::NONE,
                     'order_data' => Json::encode(['action_id' => $model->id]),
                     'status' => PaymentStatus::PENDING,
                 ]);
-                $order->save();
+                $order->save(false);
             }
         }
 

@@ -99,7 +99,9 @@ $this->registerJsFile("{$themeUrl}/js/photo-print.js", ['depends' => ThemeAsset:
                                                 $images = ArrayHelper::getValue($actionData, 'images', []);
                                                 foreach ($images as $image) {
                                                     $img = Html::img($image['path'], ['class' => 'p-img p-img-original']);
-                                                    $html .= Html::tag('div', $img, ['class' => 'p-item']);
+                                                    for ($i=0; $i<$image['count']; $i++) {
+                                                        $html .= Html::tag('div', $img, ['class' => 'p-item']);
+                                                    }
                                                 }
 
                                                 // Now add advertisement image$adImages
