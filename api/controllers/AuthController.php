@@ -92,6 +92,7 @@ class AuthController extends Controller
                     'type' => ucfirst($model->type),
                     'name' => ArrayHelper::getValue($data, 'name'),
                     'status' => Status::ACTIVE,
+                    'info' => Json::encode(ArrayHelper::getValue($data, 'info', [])),
                 ]);
                 $device->save(false);
             }

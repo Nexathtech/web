@@ -1,5 +1,6 @@
 <?php
 
+use kdn\yii2\JsonEditor;
 use kodi\common\enums\Status;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
@@ -55,6 +56,19 @@ $this->params['breadcrumbs'] = [
                                 'value' => Html::tag('span', $model->status, [
                                     'class' => ($model->status == Status::ACTIVE) ? 'label label-success' : 'label label-default',
                                 ]),
+                            ],
+                            [
+                                'attribute' => 'info',
+                                'format' => 'raw',
+                                'value' => JsonEditor::widget(
+                                    [
+                                        'clientOptions' => ['mode' => 'view'],
+                                        'expandAll' => ['view'],
+                                        'containerOptions' => ['style' => null],
+                                        'name' => 'viewer',
+                                        'value' => $model->info,
+                                    ]
+                                ),
                             ],
                             'location_latitude',
                             'location_longitude',

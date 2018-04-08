@@ -32,6 +32,7 @@ use yii\validators\StringValidator;
  * @property string $name
  * @property string $photo
  * @property string $status
+ * @property string $info
  * @property string $location_latitude
  * @property string $location_longitude
  * @property integer $created_at
@@ -64,6 +65,7 @@ class Device extends ActiveRecord
             [['user_id', 'uuid'], RequiredValidator::class],
 
             // Strings validation
+            [['info'], StringValidator::class],
             [['photo'], StringValidator::class, 'max' => 255],
             [['name', 'location_latitude', 'location_longitude'], StringValidator::class, 'max' => 64],
 

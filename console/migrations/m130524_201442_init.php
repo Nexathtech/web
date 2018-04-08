@@ -105,6 +105,7 @@ class m130524_201442_init extends Migration
             'name' => $this->string(64),
             'photo' => $this->string(255),
             'status' => "ENUM('Inactive', 'Active') NOT NULL",
+            'info' => $this->text()->null(),
             'location_latitude' => $this->string(64),
             'location_longitude' => $this->string(64),
             'created_at' => $createdAtField,
