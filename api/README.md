@@ -82,7 +82,12 @@ Request `POST /auth/sign-in`:
     "password": "some_password",
     "uuid": "unique_devie_id",
     "type": "device_type", // Mobile or Kiosk or Browser
-    "name": "device_name" // Optional
+    "name": "device_name", // Optional
+    "info": { // Optional (any useful information)
+        "os": "Operation system of device",
+        "version": "Version of the application",
+        ...
+    }
 }
 ```  
 Response:  
