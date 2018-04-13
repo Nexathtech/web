@@ -3,15 +3,19 @@ namespace kodi\common\models\user;
 
 use kodi\common\behaviors\TimestampBehavior;
 use kodi\common\enums\AccessLevel;
+use kodi\common\enums\action\Type as ActionType;
 use kodi\common\enums\user\Role;
 use kodi\common\enums\user\Status;
 use kodi\common\enums\user\Type;
+use kodi\common\models\Action;
 use kodi\common\models\device\Device;
 use kodi\common\models\Setting;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use yii\validators\RangeValidator;
 use yii\validators\RequiredValidator;
 use yii\validators\StringValidator;
@@ -285,6 +289,30 @@ class User extends ActiveRecord implements IdentityInterface
             }
             if (!empty($internalSettings[$key])) {
                 $settings[$key] = $internalSettings[$key];
+            }
+
+            // Now calculate specific settings
+            if ($key === 'users_max_prints_amount') {
+                $printsAmount = 0;
+                $prints = Action::find()->where([
+                    'action_type' => ActionType::PRINT_SHIPMENT,
+                    'user_id' => $this->id,
+                ])
+                    ->andWhere(['>=', 'created_at', new Expression('NOW() - INTERVAL 1 MONTH')])
+                    ->all();
+
+                foreach ($prints as $print) {
+                    /* @var $print Action */
+                    $printData = Json::decode($print->data);
+                    if (!empty($printData['images'])) {
+                        foreach ($printData['images'] as $image) {
+                            $printsAmount += $image['count'];
+                        }
+                    }
+                }
+
+                $allowedPrints = $settings[$key] - $printsAmount;
+                $settings[$key] = $allowedPrints > 0 ? $allowedPrints : 0;
             }
         }
 
