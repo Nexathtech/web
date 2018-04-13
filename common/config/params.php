@@ -34,8 +34,8 @@ return [
 
     // Upload files params
     'files' => [
-        'maxFiles' => 0, // 0 for unlimited
-        'maxSize' => 1024 * 1024 * 10, // 10 MB
+        'maxFiles' => 0, // 0 for unlimited (note, it might be lower in server configuration (php.ini))
+        'maxSize' => 1024 * 1024 * 10, // 10 MB (note, it might be lower in server configuration (php.ini))
         'images' => [
             'maxWidth' => 1000, // px
             'maxHeight' => 1000, // px

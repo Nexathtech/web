@@ -56,7 +56,7 @@ class ImageFile extends Model
                         $image = $imagine->open($filePath);
                         $maxWidth = ArrayHelper::getValue(Yii::$app->params, 'files.images.maxWidth', 500);
                         $maxHeight = ArrayHelper::getValue(Yii::$app->params, 'files.images.maxHeight', 500);
-                        $image->resize(new Box($maxWidth, $maxHeight))->save($filePath, ['quality' => 80]);
+                        $image->thumbnail(new Box($maxWidth, $maxHeight))->save($filePath, ['quality' => 80]);
                         $fileUrl = Url::to("/uploads/$userId/$fileName", true);
                         array_push($savedFiles, $fileUrl);
                     }
