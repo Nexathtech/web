@@ -42,7 +42,7 @@ $this->params['breadcrumbs'] = [
                                 'attribute' => 'user_id',
                                 'label' => Yii::t('backend', 'Owner'),
                                 'format' => 'raw',
-                                'value' => Html::a("{$model->user->profile->name} ({$model->user->email})", ['/user', 'id' => $model->user_id], ['target' => '_blank']),
+                                'value' => Html::a("{$model->user->profile->name} ({$model->user->email})", ['/user/view', 'id' => $model->user_id], ['target' => '_blank']),
                             ],
                             'type',
                             'name',
