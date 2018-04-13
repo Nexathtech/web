@@ -12,6 +12,7 @@ use kodi\common\enums\PromoCodeStatus;
 use kodi\common\models\Action;
 use kodi\common\models\Order;
 use kodi\common\models\PromoCode;
+use kodi\common\models\user\Profile;
 use kodi\common\models\user\User;
 use Yii;
 use yii\db\Expression;
@@ -106,6 +107,9 @@ class ActionController extends Controller
                 }
             }
 
+            // Now update profile info if empty
+            $this->updateProfile($user->profile, $details);
+
             // If photos to be printed, need to consider it as an order
             if ($model->action_type === Type::PRINT_SHIPMENT) {
                 $profile = $user->profile;
@@ -133,6 +137,50 @@ class ActionController extends Controller
         }
 
         return $model;
+    }
+
+    /**
+     * @param Profile $profile
+     * @param $details
+     */
+    private function updateProfile(Profile $profile, $details) {
+        $updatedFields = 0;
+        if (empty($profile->surname)) {
+            $profile->surname = ArrayHelper::getValue($details, 'shipping.surname');
+            $updatedFields++;
+        }
+        if (empty($profile->country)) {
+            $profile->country = ArrayHelper::getValue($details, 'shipping.country');
+            $updatedFields++;
+        }
+        if (empty($profile->city)) {
+            $profile->city = ArrayHelper::getValue($details, 'shipping.city');
+            $updatedFields++;
+        }
+        if (empty($profile->state)) {
+            $profile->state = ArrayHelper::getValue($details, 'shipping.state');
+            $updatedFields++;
+        }
+        if (empty($profile->address)) {
+            $profile->address = ArrayHelper::getValue($details, 'shipping.address');
+            $updatedFields++;
+        }
+        if (empty($profile->postcode)) {
+            $profile->postcode = ArrayHelper::getValue($details, 'shipping.postcode');
+            $updatedFields++;
+        }
+        if (empty($profile->location_latitude)) {
+            $profile->location_latitude = ArrayHelper::getValue($details, 'location.latitude');
+            $updatedFields++;
+        }
+        if (empty($profile->location_longitude)) {
+            $profile->location_longitude = ArrayHelper::getValue($details, 'location.longitude');
+            $updatedFields++;
+        }
+
+        if ($updatedFields > 0) {
+            $profile->save(false);
+        }
     }
 
 }

@@ -37,7 +37,7 @@ class User extends UserModel
     {
         return [
             [['id'], 'integer'],
-            [['role', 'email', 'created_at', 'updated_at', 'profile.name', 'status'], 'safe'],
+            [['role', 'type', 'email', 'created_at', 'updated_at', 'profile.name', 'status'], 'safe'],
         ];
     }
 
@@ -87,6 +87,7 @@ class User extends UserModel
         $query->andFilterWhere([
             'user.id' => $this->id,
             'role' => $this->role,
+            'type' => $this->type,
             'status' => $this->status,
         ]);
 

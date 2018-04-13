@@ -4,6 +4,7 @@ use kodi\backend\themes\admire\widgets\grid\ActionColumn;
 use kodi\backend\themes\admire\widgets\grid\GridView;
 use kodi\common\enums\user\Role;
 use kodi\common\enums\user\Status;
+use kodi\common\enums\user\Type;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\FormatConverter;
 use yii\helpers\Html;
@@ -102,6 +103,11 @@ $dateRangePickerEvents = [
                                 'attribute' => 'role',
                                 'format' => 'raw',
                                 'filter' => Role::listData(),
+                            ],
+                            [
+                                'attribute' => 'type',
+                                'format' => 'raw',
+                                'filter' => Type::listData(),
                             ],
                             [
                                 'attribute' => 'status',
