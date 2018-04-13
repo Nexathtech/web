@@ -2,10 +2,13 @@
 
 namespace kodi\common\models;
 
+use Imagine\Image\Box;
 use Yii;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 use yii\helpers\Url;
+use yii\imagine\Image;
 use yii\validators\FileValidator;
 use yii\web\UploadedFile;
 
@@ -29,7 +32,7 @@ class ImageFile extends Model
     {
         return [
             // Image validator. Max file size: 5MB
-            [['images'], FileValidator::class, 'skipOnEmpty' => false, 'mimeTypes' => 'image/jpeg, image/png', 'maxFiles' => 0, 'maxSize' => 1024*1024*5],
+            [['images'], FileValidator::class, 'skipOnEmpty' => false, 'mimeTypes' => 'image/jpeg, image/png', 'maxFiles' => ArrayHelper::getValue(Yii::$app->params, 'files.maxFiles', 0), 'maxSize' => ArrayHelper::getValue(Yii::$app->params, 'files.maxSize', 1024 * 1024 * 5)],
         ];
     }
 
@@ -49,6 +52,11 @@ class ImageFile extends Model
                 $filePath = "$dir/$fileName";
                 if (FileHelper::createDirectory($dir)) {
                     if ($file->saveAs($filePath)) {
+                        $imagine = Image::getImagine();
+                        $image = $imagine->open($filePath);
+                        $maxWidth = ArrayHelper::getValue(Yii::$app->params, 'files.images.maxWidth', 500);
+                        $maxHeight = ArrayHelper::getValue(Yii::$app->params, 'files.images.maxHeight', 500);
+                        $image->resize(new Box($maxWidth, $maxHeight))->save($filePath, ['quality' => 80]);
                         $fileUrl = Url::to("/uploads/$userId/$fileName", true);
                         array_push($savedFiles, $fileUrl);
                     }
