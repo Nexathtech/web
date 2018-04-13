@@ -98,14 +98,16 @@ $this->registerJsFile("{$themeUrl}/js/photo-print.js", ['depends' => ThemeAsset:
                                                 $actionData = Json::decode($action->data);
                                                 $images = ArrayHelper::getValue($actionData, 'images', []);
                                                 foreach ($images as $image) {
-                                                    $img = Html::img($image['path'], ['class' => 'p-img p-img-original']);
+                                                    $iClass = ArrayHelper::getValue($image, 'dimensions.orientation', 'vertical');
+                                                    $img = Html::img($image['path']);
+                                                    $item = Html::tag('div', $img, ['class' => "p-img {$iClass}"]);
                                                     for ($i=0; $i<$image['count']; $i++) {
-                                                        $html .= Html::tag('div', $img, ['class' => 'p-item']);
+                                                        $html .= Html::tag('div', $item, ['class' => 'p-item']);
                                                     }
                                                 }
 
                                                 // Now add advertisement image$adImages
-                                                $img = Html::img($adImages[0]['image'], ['class' => 'p-img ad-image']);
+                                                $img = Html::img($adImages[0]['image'], ['class' => 'ad']);
                                                 $html .= Html::tag('div', $img, ['class' => 'p-item']);
                                             }
                                         }

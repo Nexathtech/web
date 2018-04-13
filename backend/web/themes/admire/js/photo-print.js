@@ -38,16 +38,16 @@ $('.more-photos img').on('click', function (e) {
   e.preventDefault();
 
   if ($(this).hasClass('active')) {
-    $('.ad-image[src="'+ $(this).attr('src') +'"]').parent().remove();
+    $('img.ad[src="'+ $(this).attr('src') +'"]').parent().remove();
     $(this).removeClass('active');
   } else {
-    $('.print-block').append('<div class="p-item"><img class="p-img ad-image" src="'+ $(this).attr('src') +'"></div>');
+    $('.print-block').append('<div class="p-item"><img class="ad" src="'+ $(this).attr('src') +'"></div>');
     $(this).addClass('active');
   }
 
 });
 
-var img = $('img.p-img-original');
+var img = $('.p-img img');
 if (img.width() > img.height() + 10) {
   img.addClass('rotate');
   img.width(img.parent().height());

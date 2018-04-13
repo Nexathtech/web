@@ -14,6 +14,7 @@ html, body {
   height: 9.8cm;
   position: relative;
   float: left;
+  margin: 0 5px 5px 0;
   overflow: hidden;
   background: #fff;
   box-sizing: border-box;
@@ -22,11 +23,25 @@ html, body {
   /*text-align: center;*/
 }
 .p-img {
+  display: flex;
+  width: 7cm;
+  height: 7cm;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+.p-img.horizontal {
+  justify-content: flex-start;
+  width: 5.7cm;
+  height: 9.4cm;
+  margin: 0;
+}
+.p-img img, img.ad {
   display: inline-block;
   max-width: 100%;
   max-height: 100%;
 }
-.p-img.rotate {
+.p-img img.rotate {
   transform: rotate(-90deg);
   transform-origin: 0 0;
   position: relative;
@@ -82,6 +97,7 @@ table.detail-view th {
   }
 
   .p-item {
+    margin: 0;
     page-break-before: avoid;
   }
   .p-item:nth-child(even) {
