@@ -126,7 +126,17 @@ class OrderController extends BaseController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $response = [
+            'status' => AlertType::ERROR,
+            'message' => Yii::t('backend', 'An error occurred.'),
+        ];
+        if ($this->findModel($id)->delete()) {
+            $response['message'] = Yii::t('backend', 'The order {id} has been successfully deleted.', [
+                'id' => $id,
+            ]);
+        }
+
+        Yii::$app->session->addFlash($response['status'], ['message' => $response['message']]);
         return $this->redirect(['index']);
     }
 
