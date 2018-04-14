@@ -131,6 +131,7 @@ class OrderController extends BaseController
             'message' => Yii::t('backend', 'An error occurred.'),
         ];
         if ($this->findModel($id)->delete()) {
+            $response['status'] = AlertType::SUCCESS;
             $response['message'] = Yii::t('backend', 'The order {id} has been successfully deleted.', [
                 'id' => $id,
             ]);
