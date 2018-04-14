@@ -5,9 +5,6 @@ namespace kodi\backend\controllers;
 use Carbon\Carbon;
 use kodi\common\enums\action\Type;
 use kodi\common\models\Action;
-use kodi\common\models\user\User;
-use Yii;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\web\ErrorAction;
 
@@ -45,13 +42,6 @@ final class DashboardController extends BaseController
         $lastDaysPrints = Action::find()->select('DATE(created_at) created_at, COUNT(id) id, data')->where(['or', ['action_type' => Type::PRINT], ['action_type' => Type::PRINT_SHIPMENT]])->orderBy('created_at DESC')->groupBy('DATE(created_at), id')->limit($daysLimit)->all();
         $lastDaysPrints = array_reverse($lastDaysPrints);
         $printSalesData = $this->getPrintSalesData($prints, $lastDaysPrints, $daysLimit);
-
-
-        $user = User::findOne(['id' => 30]);
-        echo '<pre>';
-        print_r($user->getVerboseSettings());
-        echo '</pre>';
-
 
         return $this->render('index', [
             'printsData' => $printSalesData['prints'],
