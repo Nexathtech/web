@@ -39,7 +39,23 @@ $this->registerJsFile("{$themeUrl}/js/photo-print.js", ['depends' => ThemeAsset:
     <div class="inner bg-container">
         <div class="card">
             <div class="card-header bg-white">
-                <?= Yii::t('backend', 'Order #{id}', ['id' => $model->id]) ?>
+            <?
+                echo Yii::t('backend', 'Order #{id}', ['id' => $model->id]);
+                if ($model->status === Status::PENDING || $model->status === Status::WAITING) {
+                    echo Html::a(FA::i('check') . Yii::t('backend', 'Complete'), ['mark', 'id' => $model->id], [
+                        'class' => 'btn btn-success btn-post pull-right ml-1',
+                        'data-data' => '{"status": "' . Status::COMPLETED . '"}',
+                        'data-toggle' => 'tooltip',
+                        'title' => Yii::t('backend', 'Mark as {status}', ['status' => Status::COMPLETED]),
+                    ]);
+                    echo Html::a(FA::i('times') . Yii::t('backend', 'Cancel'), ['mark', 'id' => $model->id], [
+                        'class' => 'btn btn-danger btn-post pull-right',
+                        'data-data' => '{"status": "' . Status::CANCELED . '"}',
+                        'data-toggle' => 'tooltip',
+                        'title' => Yii::t('backend', 'Mark as {status}', ['status' => Status::CANCELED]),
+                    ]);
+                }
+            ?>
             </div>
             <div class="card-block m-t-35">
                 <div class="table-responsive">

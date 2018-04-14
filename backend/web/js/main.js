@@ -3,13 +3,15 @@ $('.btn-post').on('click', function(event) {
   var $this = $(this);
 
   $this.addClass('disabled');
-  var prevClassName = $this.find('i').attr('class');
   $this.find('i').attr('class', 'fa fa-circle-o-notch fa-spin');
 
-  $.post($this.attr('href'), function (data) {
-    if (data.status === 'success') {
-      $this.find('i').attr('class', prevClassName);
+  $.ajax({
+    type: 'POST',
+    url: $this.attr('href'),
+    data: $this.data('data') || null,
+    complete: function () {
       location.reload();
     }
   });
+
 });

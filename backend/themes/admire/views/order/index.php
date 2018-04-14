@@ -131,7 +131,7 @@ $dateRangePickerEvents = [
                             ],
                             [
                                 'class' => ActionColumn::class,
-                                'template' => '{view} &nbsp; {update}',
+                                //'template' => '{view} &nbsp; {update}',
                             ],
                         ],
                     ]);

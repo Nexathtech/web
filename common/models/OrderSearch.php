@@ -47,7 +47,7 @@ class OrderSearch extends Order
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['status' => SORT_DESC]],
+            'sort'=> ['defaultOrder' => ['status' => SORT_ASC]],
         ]);
 
         $this->load($params);

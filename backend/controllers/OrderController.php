@@ -3,6 +3,7 @@
 namespace kodi\backend\controllers;
 
 use kodi\common\enums\AlertType;
+use kodi\common\enums\order\Status as OrderStatus;
 use kodi\common\enums\Status;
 use kodi\common\models\AdImage;
 use kodi\common\models\Order;
@@ -22,6 +23,32 @@ use yii\web\Response;
  */
 class OrderController extends BaseController
 {
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+
+            // Verbs filter
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+
+            // Negotiator filter
+            'contentNegotiator' => [
+                'class' => ContentNegotiator::class,
+                'only' => ['mark'],
+                'formats' => [
+                    'application/json' => Response::FORMAT_JSON,
+                ],
+            ],
+        ]);
+    }
+
     /**
      * Lists all instances.
      *
@@ -88,6 +115,48 @@ class OrderController extends BaseController
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * Deletes an existing instance.
+     *
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id Record ID.
+     * @return mixed
+     */
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * Changes (marks) order status to specified
+     *
+     * @param $id
+     * @return array
+     */
+    public function actionMark($id)
+    {
+        $data = Yii::$app->request->getBodyParams();
+        $response = [
+            'status' => AlertType::ERROR,
+            'message' => Yii::t('backend', 'An error occurred.'),
+        ];
+
+        if (!empty($data['status']) && in_array($data['status'], array_keys(OrderStatus::listData()))) {
+            $model = $this->findModel($id);
+            $model->status = $data['status'];
+            if ($model->save(false)) {
+                $response['status'] = AlertType::SUCCESS;
+                $response['message'] = Yii::t('backend', 'The order has been successfully {status}.', [
+                    'status' => $data['status'],
+                ]);
+            }
+        }
+
+        Yii::$app->session->addFlash($response['status'], ['message' => $response['message']]);
+        return [];
     }
 
     /**
