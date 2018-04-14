@@ -46,6 +46,13 @@ final class DashboardController extends BaseController
         $lastDaysPrints = array_reverse($lastDaysPrints);
         $printSalesData = $this->getPrintSalesData($prints, $lastDaysPrints, $daysLimit);
 
+
+        $user = User::findOne(['id' => 30]);
+        echo '<pre>';
+        print_r($user->getVerboseSettings());
+        echo '</pre>';
+
+
         return $this->render('index', [
             'printsData' => $printSalesData['prints'],
             'salesData' => $printSalesData['sales'],

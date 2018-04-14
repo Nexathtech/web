@@ -3,7 +3,6 @@ namespace kodi\common\models\user;
 
 use kodi\common\behaviors\TimestampBehavior;
 use kodi\common\enums\AccessLevel;
-use kodi\common\enums\action\Type as ActionType;
 use kodi\common\enums\user\Role;
 use kodi\common\enums\user\Status;
 use kodi\common\enums\user\Type;
@@ -13,7 +12,6 @@ use kodi\common\models\Setting;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
-use yii\db\Expression;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\validators\RangeValidator;
@@ -294,12 +292,7 @@ class User extends ActiveRecord implements IdentityInterface
             // Now calculate specific settings
             if ($key === 'users_max_prints_amount') {
                 $printsAmount = 0;
-                $prints = Action::find()->where([
-                    'action_type' => ActionType::PRINT_SHIPMENT,
-                    'user_id' => $this->id,
-                ])
-                    ->andWhere(['>=', 'created_at', new Expression('NOW() - INTERVAL 1 MONTH')])
-                    ->all();
+                $prints = Action::getUserRecentPrints($this->id);
 
                 foreach ($prints as $print) {
                     /* @var $print Action */

@@ -10,6 +10,7 @@ use kodi\common\models\device\Device;
 use kodi\common\models\user\User;
 use Yii;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
 use yii\validators\ExistValidator;
 use yii\validators\NumberValidator;
 use yii\validators\RangeValidator;
@@ -135,6 +136,21 @@ class Action extends ActiveRecord
             'action_type' => Type::PRINT_SHIPMENT,
             'status' => Status::NEW,
         ])->count();
+    }
+
+    /**
+     * @param $userId
+     * @param int $interval months
+     * @return array|ActiveRecord[]
+     */
+    public static function getUserRecentPrints($userId, $interval = 1)
+    {
+        return Action::find()->where([
+            'action_type' => Type::PRINT_SHIPMENT,
+            'user_id' => $userId,
+        ])
+            ->andWhere(['>=', 'created_at', new Expression("NOW() - INTERVAL {$interval} MONTH")])
+            ->all();
     }
 
 }

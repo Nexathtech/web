@@ -15,7 +15,6 @@ use kodi\common\models\PromoCode;
 use kodi\common\models\user\Profile;
 use kodi\common\models\user\User;
 use Yii;
-use yii\db\Expression;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
@@ -75,12 +74,7 @@ class ActionController extends Controller
             // Limit free shipment to allowed per a user
             $printsLimit = $user->getSetting('users_max_prints_amount', 1);
             $printsAmount = 0;
-            $prints = Action::find()->where([
-                'action_type' => Type::PRINT_SHIPMENT,
-                'user_id' => $model->user_id,
-            ])
-                ->andWhere(['>=', 'created_at', new Expression('NOW() - INTERVAL 1 MONTH')])
-                ->all();
+            $prints = Action::getUserRecentPrints($model->user_id);
 
             foreach ($prints as $print) {
                 /* @var $print Action */
