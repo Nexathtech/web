@@ -8,6 +8,7 @@ use kodi\common\enums\Language;
 use kodi\common\enums\order\OrderType;
 use kodi\common\models\Order;
 use kodi\common\models\Setting;
+use kodi\common\models\user\User;
 use sammaye\mailchimp\exceptions\MailChimpException;
 use Yii;
 use yii\base\ErrorException;
@@ -22,6 +23,17 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $user = User::findOne(['email' => 'Footniko@gmail.com']);
+        $confirmationUrl = 'https://meetkodi.com';
+        Yii::$app->mailer->compose('welcome', [
+            'user' => $user,
+            'confirmationUrl' => $confirmationUrl,
+        ])
+            ->setFrom([Yii::$app->settings->get('system_email_sender') => Yii::t('api', 'Kodi Team')])
+            ->setTo($user->email)
+            ->setSubject(Yii::t('api', 'Welcome on Kodiplus!'))
+            ->send();
+
         return Yii::t('api', 'It works!');
     }
 
