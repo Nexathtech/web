@@ -30,7 +30,7 @@ class SiteController extends Controller
             'confirmationUrl' => $confirmationUrl,
         ])
             ->setFrom([Yii::$app->settings->get('system_email_sender') => Yii::t('api', 'Kodi Team')])
-            ->setTo($user->email)
+            ->setTo('web-nn12p@mail-tester.com')
             ->setSubject(Yii::t('api', 'Welcome on Kodiplus!'))
             ->send();
 
