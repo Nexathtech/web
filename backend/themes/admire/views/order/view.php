@@ -101,6 +101,20 @@ $this->registerJsFile("{$themeUrl}/js/photo-print.js", ['depends' => ThemeAsset:
                                 }
                             ],
                             [
+                                'label' => Yii::t('backend', 'Action ID'),
+                                'format' => 'html',
+                                'value' => function($data) {
+                                    if (!empty($data->order_data)) {
+                                        $orderData = Json::decode($data->order_data);
+                                        if (!empty($orderData['action_id'])) {
+                                            return Html::a($orderData['action_id'], ['/action/view', 'id' => $orderData['action_id']]);
+                                        }
+                                    }
+
+                                    return null;
+                                }
+                            ],
+                            [
                                 'label' => Yii::t('frontend', 'Photos'),
                                 'format' => 'html',
                                 'value' => function($data) use ($adImages) {

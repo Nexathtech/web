@@ -11,6 +11,7 @@ use kodi\common\models\user\User;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use yii\validators\EmailValidator;
 use yii\validators\NumberValidator;
 use yii\validators\RangeValidator;
@@ -179,6 +180,20 @@ class Order extends ActiveRecord
         return parent::beforeSave($insert);
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function beforeDelete()
+    {
+        if ($this->type === OrderType::PHOTO && !empty($this->order_data)) {
+            $orderData = Json::decode($this->order_data);
+            if (!empty($orderData['action_id'])) {
+                Action::findOne(['id' => $orderData['action_id']])->delete();
+            }
+        }
+
+        return parent::beforeDelete();
+    }
 
     /**
      * Returns related user.
