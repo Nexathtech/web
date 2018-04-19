@@ -56,20 +56,20 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
             <div class="iphone-mockup i-m-preview i-m-major"></div>
             <div class="iphone-mockup i-m-shipping i-m-major"></div>
             <div class="p-p-block">
-                <div class="p-p-title p-p-t-1">direct from<br>instagram</div>
+                <div class="p-p-title p-p-t-1"><?= Yii::t('frontend', 'direct from{br}instagram', ['br' => '<br>']); ?></div>
                 <div class="p-p-line p-p-l-1"></div>
                 <div class="p-p-desc p-p-d-1">
-                    <?= Yii::t('frontend', 'KODI PLUS is the first application which gives you the power to freely print from instagram. Now you can print the photos of the people you love or give them a token of your affection - right from the sofa in your sitting room!'); ?>
+                    <?= Yii::t('frontend', 'KodiPlus is the first application which gives you the power to freely print from instagram. Now you can print the photos of the people you love or give them a token of your affection - right from the sofa in your sitting room!'); ?>
                 </div>
-                <div class="p-p-title p-p-t-2">you look<br>awesome</div>
+                <div class="p-p-title p-p-t-2"><?= Yii::t('frontend', 'you look{br}awesome', ['br' => '<br>']); ?></div>
                 <div class="p-p-line p-p-l-2"></div>
                 <div class="p-p-desc p-p-d-2">
                     <?= Yii::t('frontend', 'Choose the photo and the format that you like best. Do you find yourself alone sometimes, smiling for a selfie? Don’t worry - we do it too. You’re not satisfied with the results? No problem - you can change it in an instant.'); ?>
                 </div>
-                <div class="p-p-title p-p-t-3">home sweet<br>home</div>
+                <div class="p-p-title p-p-t-3"><?= Yii::t('frontend', 'home sweet{br}home', ['br' => '<br>']) ?></div>
                 <div class="p-p-line p-p-l-3"></div>
                 <div class="p-p-desc p-p-d-3">
-                    <?= Yii::t('frontend', 'At home, at the office, at a restaurant, at a wedding: wherever you happen to be, you can now make a polaroid without even thinking about it. Now you’ve got something to look forward to in your mail.'); ?>
+                    <?= Yii::t('frontend', 'At home, at the office, at a restaurant, at a wedding: wherever you happen to be, you can now make a polaroid{trademark} without even thinking about it. Now you’ve got something to look forward to in your mail.', ['trademark' => '®*']); ?>
                 </div>
             </div>
         </div>
@@ -79,8 +79,7 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
                 <div class="m-m-desc">
                     <?= Yii::t('frontend', 'Memory, backup and cloud...{br}If the mere mention of these words{br}is enough to make you shiver{br}or worry about losing the photos{br}that matter to you, try Kodi.{br}Kodi Station and Kodi Plus{br}will allow you to keep your memories{br}in the best and safest way possible:{br}in your hand.', ['br' => '<br>']); ?>
                 </div>
-                <div class="m-m-title">moment matters
-                </div>
+                <div class="m-m-title"><?= Yii::t('frontend', 'moment matters'); ?></div>
             </div>
         </div>
         <div class="colored-lines c-l-2">
@@ -109,9 +108,9 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
         </div>
     </div>
     <div class="phone-key">
-        your phone<br>is the key
+        <?= Yii::t('frontend', 'your phone{br}is the key', ['br' => '<br>']); ?>
         <div class="p-k-desc">
-            <?= Yii::t('frontend', 'Kodi Plus is constantly evolving.{br}Stay up to date to see all the latest service innovations that we’ve got in store for you.', ['br' => '<br>']); ?>
+            <?= Yii::t('frontend', 'KodiPlus is constantly evolving.{br}Stay up to date to see all the latest service innovations that we’ve got in store for you.', ['br' => '<br>']); ?>
         </div>
     </div>
     <div class="p-p-bottom">

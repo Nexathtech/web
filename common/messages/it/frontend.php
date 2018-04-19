@@ -10,7 +10,13 @@ return [
     'minimum' => 'minimo',
     'You have been successfully subscribed to our newsletter.' => 'Congratulazioni, sei stato aggiunto alla nostra lista',
 
-    'KODI PLUS is the first application which gives you the power to freely print from instagram. Now you can print the photos of the people you love or give them a token of your affection - right from the sofa in your sitting room!' => 'KODI PLUS è la prima applicazione che permette di poter stampare liberamente da instagram.
+    'direct from{br}instagram' => 'direttamente{br}da instagram',
+    'you look{br}awesome' => 'non sei{br}niente male!',
+    'home sweet{br}home' => 'casa dolce{br}casa',
+    'moment matters' => 'i momenti che contano',
+    'your phone{br}is the key' => 'il tuo telefono{br}come passpartout',
+
+    'KodiPlus is the first application which gives you the power to freely print from instagram. Now you can print the photos of the people you love or give them a token of your affection - right from the sofa in your sitting room!' => 'KodiPlus è la prima applicazione che permette di poter stampare liberamente da instagram.
 Ora puoi stampare le foto delle persone che ami e sorprenderle facilmente, o farti un regalo.
 Dal tuo divano di casa.',
 
@@ -18,13 +24,13 @@ Dal tuo divano di casa.',
 Stai sorridendo da solo davanti al telefono? Tranquillo, capita anche a noi.
 Non sei soddisfatto? Puoi cambiarla quando vuoi tu, in un istante.',
 
-    'At home, at the office, at a restaurant, at a wedding: wherever you happen to be, you can now make a polaroid without even thinking about it. Now you’ve got something to look forward to in your mail.' => 'Casa, ufficio, ristorante, marte: dovunque ti trovi, avrai la tua polaroid senza troppi pensieri.
+    'At home, at the office, at a restaurant, at a wedding: wherever you happen to be, you can now make a polaroid{trademark} without even thinking about it. Now you’ve got something to look forward to in your mail.' => 'Casa, ufficio, ristorante, marte: dovunque ti trovi, avrai la tua polaroid{trademark} senza troppi pensieri.
 Controllare la posta sarà un piacere maggiore.',
 
-    'Memory, backup and cloud...{br}If the mere mention of these words{br}is enough to make you shiver{br}or worry about losing the photos{br}that matter to you, try Kodi.{br}Kodi Station and Kodi Plus{br}will allow you to keep your memories{br}in the best and safest way possible:{br}in your hand.' => 'Memoria, backup, giga, cloud.{br}Se tutte queste parole ti fanno venire i brividi, o semplicemente hai paura{br}di perdere le immagini che per te contano, prova Kodi. Kodi station e Kodi plus ti permetteranno di conservare le tue memorienel modo{br}migliore e sicuro che c’è:{br}tra le tue mani.
+    'Memory, backup and cloud...{br}If the mere mention of these words{br}is enough to make you shiver{br}or worry about losing the photos{br}that matter to you, try Kodi.{br}Kodi Station and Kodi Plus{br}will allow you to keep your memories{br}in the best and safest way possible:{br}in your hand.' => 'Memoria, backup, giga, cloud.{br}Se tutte queste parole ti fanno venire i brividi, o semplicemente hai paura{br}di perdere le immagini che per te contano, prova Kodi. KodiPlus ti permettera’ di conservare le tue memorie nel modo{br}migliore e sicuro che c’è:{br}tra le tue mani.
 ',
 
-    'Kodi Plus is constantly evolving.{br}Stay up to date to see all the latest service innovations that we’ve got in store for you.' => 'Kodi plus è in continua l’evoluzione.{br}Resta aggiornato per scoprire tutte le novità di kodi plus e i servizi innovativi che stiamo preparando per voi.',
+    'KodiPlus is constantly evolving.{br}Stay up to date to see all the latest service innovations that we’ve got in store for you.' => 'KodiPlus è in continua l’evoluzione.{br}Resta aggiornato per scoprire tutte le novità di KodiPlus e i servizi innovativi che stiamo preparando per voi.',
 
     'discover how is easy to reach real people{br}and show how beautiful you are' => 'scopri come raggiungere utenti veri in maniera semplice',
 
@@ -40,7 +46,7 @@ Controllare la posta sarà un piacere maggiore.',
     'let them explode in reality.' => 'lasciali esplodere nella realtà.',
     'Have we already said that it is' => 'L’abbiamo già detto che è',
     'totally free?' => 'totalmente gratis?',
-    'promote your brand{br}in few minutes' => 'promuovi il tuo brandi{br}in pochi istanti',
+    'promote your brand{br}in few minutes' => 'promuovi il tuo brand{br}in pochi istanti',
     'get your shop{br}to the next level' => 'porta il tuo negozio{br}al livello successivo',
     '' => '',
 ];
