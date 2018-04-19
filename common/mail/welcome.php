@@ -11,7 +11,7 @@ $homeUrl = str_replace('api.', '', Url::to(['/'], true));
 ?>
 
 <div class="thank-preset" style="margin-top: 50px;text-align: center;">
-    <img src="<?= $homeUrl ?>/styles/img/thanks-to-be.png" style="max-width: 100%;">
+    <img src="<?= $homeUrl ?>/styles/img/thanks-to-be.png" style="max-width: 100%;" alt="">
 </div>
 <div>
     <p>Hello <?= Html::encode($user->profile->name); ?>,</p>
