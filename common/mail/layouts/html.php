@@ -14,22 +14,38 @@ $homeUrl = str_replace('api.', '', Url::to(['/'], true));
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=<?= Yii::$app->charset ?>" />
     <title><?= Html::encode($this->title) ?></title>
+    <style type="text/css">
+      @font-face {
+        font-family: 'HKNova';
+        src: url('<?= $homeUrl ?>fonts/HKNova-Medium.eot');
+        src: url('<?= $homeUrl ?>fonts/HKNova-Medium.eot?#iefix') format('embedded-opentype'),
+          url('<?= $homeUrl ?>fonts/HKNova-Medium.woff2') format('woff2'),
+          url('<?= $homeUrl ?>fonts/HKNova-Medium.woff') format('woff'),
+          url('<?= $homeUrl ?>fonts/HKNova-Medium.ttf')  format('truetype');
+      }
+      @font-face {
+        font-family: 'Alte DIN';
+        src: url('<?= $homeUrl ?>fonts/AlteDIN.eot');
+        src: url('<?= $homeUrl ?>fonts/AlteDIN.eot?#iefix') format('embedded-opentype'),
+          url('<?= $homeUrl ?>fonts/AlteDIN.woff') format('woff'),
+          url('<?= $homeUrl ?>fonts/AlteDIN.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+      }
+      body {
+        background: #fff;
+        font-family: 'HKNova', 'sans-serif';
+      }
+    </style>
     <?php $this->head() ?>
 </head>
 <body>
     <?php $this->beginBody() ?>
-    <div style="padding: 20px;background: #ffce46;">
-        <a href="<?= $homeUrl; ?>" class="logo" style="display: block;width: 100px;height: 48px;margin: 0 auto;background: url(<?= $homeUrl; ?>/styles/img/logo-black.png) no-repeat;background-size: 100%;"></a>
-    </div>
+    <a href="<?= $homeUrl; ?>" class="logo" style="display: block;width: 80px;height: 40px;position: absolute;top: 30px;left: 50%;margin-left: -40px;background: url(<?= $homeUrl; ?>/styles/img/logo.png) no-repeat;background-size: 100%;"></a>
 
-    <div class="content" style="padding: 50px;font-size: 16px;color: #45433d;">
-        <div class="content-inner">
-            <?= $content ?>
-        </div>
-    </div>
+    <?= $content ?>
 
-    <?= $this->render('includes/_social_links', ['homeUrl' => $homeUrl]) ?>
-    <div class="footer" style="width: 100%;height: 110px;background: url(<?= $homeUrl ?>/styles/img/footer-waves2.png) repeat-x;"></div>
+    <div class="footer" style="width: 100%;height: 130px;background: url(<?= $homeUrl ?>/styles/img/footer-waves.png) repeat-x;"></div>
     <div style="margin-top: 20px; text-align: center; font-size: 11px; color: #606060;">
         You received this email because you have been registered on <a href="<?= $homeUrl ?>">meetkodi.com</a>
     </div>
