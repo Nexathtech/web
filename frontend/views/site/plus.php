@@ -118,13 +118,13 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
             <div class="b-i-title"><?= Yii::t('frontend', 'promote your brand{br}in few minutes', ['br' => '<br>']) ?></div>
             <?= Yii::t('frontend', 'discover how is easy to reach real people{br}and show how beautiful you are', ['br' => '<br>']); ?>
             <br>
-            <a class="btn" href="/ads">kodi ads</a>
+            <a class="btn" href="/brands">kodi ads</a>
         </div>
         <div class="b-i-block">
             <div class="b-i-title"><?= Yii::t('frontend', 'get your shop{br}to the next level', ['br' => '<br>']); ?></div>
             <?= Yii::t('frontend', 'your shop can become a smart shop.{br}Find out how', ['br' => '<br>']); ?>
             <br>
-            <a class="btn text-blue" href="/ads#point">kodi point</a>
+            <a class="btn text-blue" href="/brands#point">kodi point</a>
         </div>
     </div>
 </div>

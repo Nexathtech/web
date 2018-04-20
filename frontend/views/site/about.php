@@ -12,7 +12,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = 'About';
+$this->title = Yii::t('frontend', 'About');
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerJs("
@@ -68,11 +68,11 @@ function prepareContent(section) {
         <div class="contact-title">
             don't<br>be shy
             <div class="content-title-desc">
-                if you need some information, if you want just to say hi, or if you want to know our favourite pizza, just fill in the form on the left and submit your request
+                <?= Yii::t('frontend', 'if you need some information, If you want Just to say hi, or if you wish to to know our favorite pizza, just fill in the form on the left and submit your request.'); ?>
             </div>
         </div>
         <div class="contact-content">
-            Dear Kodi,
+            <?= Yii::t('frontend', 'Dear Kodi') ?>,
             <div class="contact-form">
                 <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
                 <div class="row">
@@ -87,7 +87,7 @@ function prepareContent(section) {
                     ])->label(false); ?>
                 </div>
                 <div class="row align-right">
-                    <?= Html::submitButton('send', ['class' => 'btn btn-submit']) ?>
+                    <?= Html::submitButton(Yii::t('frontend', 'send'), ['class' => 'btn btn-submit']) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
             </div>

@@ -11,7 +11,8 @@ use kodi\frontend\assets\SkrollrAsset;
  */
 
 
-$this->title = Yii::t('frontend', 'Ads');
+$this->title = Yii::t('frontend', 'Brands');
+$this->registerMetaTag(['content' => Yii::t('frontend', 'An innovative and advanced advertisement model, able to reach people in a new and surprising way. Discover all the opportunities to promote your brand easily.'), 'name' => 'description']);
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerCssFile('/styles/site/adsz.css', ['depends' => AppAsset::class]);
@@ -28,12 +29,13 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
     <div class="text">
         <h2>play different</h2>
         <div class="desc">
-            <p>porta il tuo business ad un livello completamente nuovo.</p>
-            <p>Kodiplus è il primo di stampa che permette di spedire l’immagine del</p>
-            <p>tuo brand in una busta esclusiva dove avrà la massima visibilità.</p>
-            <p>Kodi Advertisment è pensato per essere rapido , semplice e immediato,</p>
-            <p>senza intermedari, perdite di tempo o conoscenze pregresse.</p>
-            <p>La tua pubblicità assume un altro tono.</p>
+            <p>
+                <?= Yii::t('frontend', 'Send a representative image of yourself or what you do, spread special offers in a specific period, launch an advertising campaign, let everyone know about your event schedule, tell your customers how much you appreciate them and much more.'); ?>
+                <?= Yii::t('frontend', 'Too complicated? Naaaah.'); ?>
+                <?= Yii::t('frontend', 'Kodi Advertisement is designed to be quick, immediate and straightforward, without intermediaries, waste of time or previous knowledge.'); ?>
+            </p>
+            <p><?= Yii::t('frontend', 'KodiPlus allows you to reach the target you want accurately, people with interests similar to your business and with geolocation you have an innovative function at your disposal.'); ?></p>
+            <p><?= Yii::t('frontend', 'Your brand takes on another tone.'); ?></p>
         </div>
     </div>
 </div>
@@ -143,10 +145,10 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
         <div class="description">
             <h2>make your business easy <span>today</span></h2>
             <div class="started-p">
-                <p>ti servono solo 3 step</p>
-                <p>per raggiungere</p>
-                <p>milioni di persone</p>
-                <p>direttamete a casa loro</p>
+                <p><?= Yii::t('frontend', 'You only need 3 steps'); ?></p>
+                <p><?= Yii::t('frontend', 'to reach thousands'); ?></p>
+                <p><?= Yii::t('frontend', 'of people directly'); ?></p>
+                <p><?= Yii::t('frontend', 'at their home.'); ?></p>
             </div>
         </div>
     </section>
@@ -188,12 +190,13 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
              data-3600="left: -77%;"
     >
         <div class="description ">
-            <h2>login as brands</h2>
-            <p>seleziona un’immagine</p>
-            <p>che rappresenti il tuo </p>
-            <p>brand,</p>
-            <p>il tuo prodotto o qualsiasi</p>
-            <p>cosa tu voglia diffondere.</p>
+            <h2><?= Yii::t('frontend', 'Please login by brand'); ?></h2>
+            <p><?= Yii::t('frontend', 'Access your brand account{br}quickly and easily.', ['br' => '<br>']); ?></p>
+            <p><?= Yii::t('frontend', 'You can always switch to your personal Kodi account.'); ?></p>
+            <p><?= Yii::t('frontend', 'Do you want to go back to the brand account?'); ?></p>
+            <p><?= Yii::t('frontend', 'No problem.'); ?></p>
+            <p><?= Yii::t('frontend', 'Do you want to change again?'); ?></p>
+            <p><?= Yii::t('frontend', 'We do not seem confused for you ... no problem.'); ?></p>
         </div>
     </section>
 
@@ -204,12 +207,10 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
              data-4750="left: -77%; display: none; ;"
     >
         <div class="description">
-            <h2>select image</h2>
-            <p>seleziona un’immagine</p>
-            <p>che rappresenti il tuo </p>
-            <p>brand,</p>
-            <p>il tuo prodotto o qualsiasi</p>
-            <p>cosa tu voglia diffondere.</p>
+            <h2><?= Yii::t('frontend', 'Choose an image'); ?></h2>
+            <p><?= Yii::t('frontend', 'Select an image that represents your brand, your product or anything you want to spread.') ?></p>
+            <p><?= Yii::t('frontend', 'You do not have to be a company or a store; you can sponsor any business, an interest, an event campaign.') ?></p>
+            <p><?= Yii::t('frontend', 'You just have to .. create!') ?></p>
         </div>
     </section>
 
@@ -220,12 +221,11 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
              data-6250="left: -77%; display: none;"
     >
         <div class="description">
-            <h2>choose how</h2>
-            <p>seleziona un’immagine</p>
-            <p>che rappresenti il tuo </p>
-            <p>brand,</p>
-            <p>il tuo prodotto o qualsiasi</p>
-            <p>cosa tu voglia diffondere.</p>
+            <h2><?= Yii::t('frontend', 'The solution you prefer') ?></h2>
+            <p><?= Yii::t('frontend', 'Choose the quantity and the promotion period.') ?></p>
+            <p><?= Yii::t('frontend', 'Remember, your ads will arrive in exclusive Kodi cases, along with photos of users, receiving the utmost attention.') ?></p>
+            <p><?= Yii::t('frontend', 'No urban posters, social banners that fill sites or annoying pop-ups.') ?></p>
+            <p><?= Yii::t('frontend', 'Your publicity becomes true.') ?></p>
         </div>
     </section>
 
@@ -237,18 +237,17 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
             <img src="/images/faces.svg" alt="man">
 
         </figure>
-        <h2>become a member in just few click</h2>
+        <h2><?= Yii::t('frontend', 'Become a Koid Point today') ?></h2>
 
         <form action="">
-            <input type="email" placeholder="type your email">
+            <input type="email" placeholder="<?= Yii::t('frontend', 'type in your email') ?>">
             <div class="wrap">
-                <button>send</button>
+                <button><?= Yii::t('frontend', 'send') ?></button>
             </div>
         </form>
         <div class="desc">
-            <p>please inser your email and you will</p>
-            <p>know asap about when is possible</p>
-            <p>become a kodipoint</p>
+            <p><?= Yii::t('frontend', 'Enter your email address') ?>,</p>
+            <p><?= Yii::t('frontend', 'and we will contact as soon as possible.') ?></p>
         </div>
 
     </div>
@@ -260,47 +259,44 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
             <div class="text">a new shop</div>
         </div>
         <div class="desc">
-            <p>il tuo business si ampia diventando un </p>
-            <p>kodipoint autorizzato senza nessun costo </p>
-            <p>aggiuntivo alla quota di iscrizione, nessun </p>
-            <p>dispendio d’energia o manuale </p>
-            <p>incomprensibile.</p>
+            <p>
+                <?= Yii::t('frontend', 'You will be a point of reference for those who love to print their photos (and for those who do not yet know), for graphic designers, illustrators and creatives that will form the new community, but not only: photography at your fingertips is the true revolution of last decade, everyone loves to shoot but many do not know how to enhance and preserve their memories.', ['br' => '<br>']); ?>
+            </p>
+            <p>
+                <?= Yii::t('frontend', 'And besides, it is so simple that you will not have any additional energy or manual expenditure.'); ?>
+            </p>
         </div>
     </div>
 </div>
 <div class="superkit">
-    <div class="title">the superkit <span></span></div>
+    <div class="title"><?= Yii::t('frontend', 'the superkit') ?> <span></span></div>
     <div class="coupon">
         <h3>coupon cards</h3>
         <div class="block"></div>
-        <p>coupon card disign</p>
-        <p>collezionabili, illustrate da creativi</p>
-        <p>di tutto il mondo. un tocco diverso</p>
-        <p>nel tuo shop</p>
+        <p><?= Yii::t('frontend', 'Offer coupon cards with attention to the smallest detail.'); ?></p>
+        <p><?= Yii::t('frontend', 'The more you give it away, your smile grows, and your Brand grows.') ?></p>
+        <p><?= Yii::t('frontend', 'The promotional code is now worth double.') ?></p>
         <img src="/images/coupon.png" alt="coupon">
     </div>
     <div class="super">
         <img src="/images/Envelope.png" alt="">
         <h3>superpackaging</h3>
         <div class="block"></div>
-        <p>coupon card disign</p>
-        <p>collezionabili, illustrate da creativi</p>
-        <p>di tutto il mondo. un tocco diverso</p>
-        <p>nel tuo shop</p>
+        <p><?= Yii::t('frontend', 'Your advertising inside fun, unique and unmistakable cases.'); ?></p>
+        <p><?= Yii::t('frontend', 'Brown cardboard boxes?'); ?></p>
+        <p><?= Yii::t('frontend', 'Mmmmm.. we have seen..'); ?></p>
     </div>
 
     <div class="sticker">
         <h3>special sticker</h3>
         <div class="block"></div>
-        <p>coupon card disign</p>
-        <p>collezionabili, illustrate da creativi</p>
-        <p>di tutto il mondo. un tocco diverso</p>
-        <p>nel tuo shop</p>
+        <p><?= Yii::t('frontend', 'Being part of our family reserves a vital and straightforward distinctive sign.'); ?></p>
+        <p><?= Yii::t('frontend', 'Kodi Point stickers are available in two colors depending on your furniture and your shop and guarantee immediate recognition.'); ?></p>
         <img src="/images/sticker.png" alt="">
     </div>
 </div>
 
-<div class="damande">
+<div class="damande d-none">
     <div class="title">
         Domande frequenti
         <span></span>

@@ -19,7 +19,7 @@ $slug = Yii::$app->request->get('slug');
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
-    <title><?= Html::encode($this->title); ?></title>
+    <title><?= Html::encode($this->title); ?> | MeetKodi</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
@@ -83,7 +83,14 @@ $slug = Yii::$app->request->get('slug');
         <a href="/privacy-policy">Privacy policy</a>
         <a href="/terms-and-conditions">T&C</a><br>
     </div>
-    <div class="footer-copyright">&copy; <?= Carbon::now()->year; ?> Kodi LLC</div>
+    <div class="footer-copyright">
+        <? if (Yii::$app->controller->action->id === 'plus'): ?>
+            <div class="polaroid-trademark">
+                *<?= Yii::t('frontend', 'The POLAROID is trademark of PLR IP Holdings, LLC.') ?>
+            </div>
+        <? endif; ?>
+        &copy; <?= Carbon::now()->year; ?> Kodi LLC
+    </div>
 </div>
 
 <?php $this->endBody() ?>

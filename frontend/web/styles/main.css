@@ -298,6 +298,10 @@ button.full-width {
     font-size: 13px;
 }
 
+.d-none {
+    display: none !important;
+}
+
 /* Forms */
 .form-group {
     margin: 20px 0;
@@ -1411,8 +1415,8 @@ ul.about-menu a:hover, ul.about-menu a.active {
 }
 
 .content-title-desc {
-    padding: 10px 20px 0 0;
-    font-size: 11px;
+    padding: 10px 0 0 0;
+    font-size: 14px;
     line-height: 14px;
     letter-spacing: 2px;
     font-weight: normal;
@@ -2764,8 +2768,15 @@ a.s-i-md {
 }
 
 .footer-copyright {
+    position: relative;
     padding: 20px 0;
     font-size: 18px;
+}
+.polaroid-trademark {
+    position: absolute;
+    left: 10px;
+    top: 25px;
+    font-size: 12px;
 }
 
 /************
@@ -5221,6 +5232,13 @@ form.order-info .help-block {
 
     .o-agreement input[type="checkbox"] {
         float: none;
+    }
+
+    .polaroid-trademark {
+        position: relative;
+        left: auto;
+        top: auto;
+        margin-bottom: 10px;
     }
 }
 
