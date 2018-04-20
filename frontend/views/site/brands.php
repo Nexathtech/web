@@ -2,11 +2,14 @@
 
 use kodi\frontend\assets\AppAsset;
 use kodi\frontend\assets\SkrollrAsset;
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 /**
  * The view file for the "site/view" action.
  *
  * @var \yii\web\View $this Current view instance.
+ * @var $becomeBrandModel \kodi\frontend\models\forms\BecomeBrandForm
  * @see \kodi\frontend\controllers\SiteController::actionView()
  */
 
@@ -25,7 +28,7 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
 ?>
 
 <div class="play">
-    <img src="/images/child-piano.png" alt="">
+    <img src="/images/child-piano.jpg" alt="">
     <div class="text">
         <h2>play different</h2>
         <div class="desc">
@@ -233,18 +236,22 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
 
 <div class="member">
     <div class="send">
-        <figure>
+        <figure id="member">
             <img src="/images/faces.svg" alt="man">
 
         </figure>
         <h2><?= Yii::t('frontend', 'Become a Koid Point today') ?></h2>
 
-        <form action="">
-            <input type="email" placeholder="<?= Yii::t('frontend', 'type in your email') ?>">
-            <div class="wrap">
-                <button><?= Yii::t('frontend', 'send') ?></button>
-            </div>
-        </form>
+        <? $form = ActiveForm::begin(); ?>
+        <?= $form->field($becomeBrandModel, 'email')->textInput([
+            'placeholder' => Yii::t('frontend', 'type in your email'),
+            'class' => 'subscribe-email',
+        ])->label(false); ?>
+        <div class="wrap">
+            <?= Html::submitButton(Yii::t('frontend', 'send'), ['class' => 'btn text-black']); ?>
+        </div>
+        <? $form->end() ?>
+
         <div class="desc">
             <p><?= Yii::t('frontend', 'Enter your email address') ?>,</p>
             <p><?= Yii::t('frontend', 'and we will contact as soon as possible.') ?></p>

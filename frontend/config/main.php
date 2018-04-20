@@ -59,6 +59,7 @@ return [
                 'auth/activate/<token:[\w-=]+>' => 'auth/activate',
                 'auth/password-reset/<token:[\w-=]+>' => 'auth/password-reset',
                 'about' => 'site/about',
+                'brands' => 'site/brands',
                 'order' => 'order',
                 'sitemap.xml' => 'sitemap',
                 '<slug:[\w-]+>' => 'site/view',

@@ -458,7 +458,7 @@ input[type="checkbox"]:checked::after {
     display: none;
 }
 
-.pre-order-btn {
+.pre-order-btn, .become-brand-btn {
     display: inline-block;
     position: absolute;
     top: 10px;
@@ -470,12 +470,24 @@ input[type="checkbox"]:checked::after {
     color: #fcfcfc;
     transition: background .2s;
 }
+.become-brand-btn {
+    top: 8px;
+    padding: 5px 20px;
+    background: #eca7a7;
+    font-size: 14px;
+    line-height: 13px;
+    text-align: center;
+}
+.become-brand-btn:hover {
+    background: #fff;
+    color: #000;
+}
 
 .pre-order-btn:hover {
     background: #00c700;
 }
 
-.pre-order-btn:active {
+.pre-order-btn:active, .become-brand-btn:active {
     box-shadow: rgba(0, 0, 0, 0.8) 2px 2px 4px inset;
 }
 
@@ -3299,13 +3311,18 @@ img.m-sword {
 .btn.text-red {
     color: #ff0055;
 }
-
 .btn.text-blue {
     color: #1975d3;
+}
+.btn.text-black {
+    color: black;
 }
 
 .btn.text-red:hover, .btn.text-blue:hover {
     color: #000;
+}
+.btn.text-black:hover {
+    color: #fff;
 }
 
 .btn.text-red:active, .btn.text-blue:active {

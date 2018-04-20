@@ -338,7 +338,7 @@ section.numbers .third span:nth-child(5) {
 
 .play {
   margin-top: 24%;
-  padding: 10%;
+  padding: 12% 10% 2%;
   background-color: #FFCE46;
   font-family: "HKNova", sans-serif;
   text-align: center;
@@ -357,14 +357,12 @@ section.numbers .third span:nth-child(5) {
   -ms-flex-pack: center;
   justify-content: center; }
 .play img {
-  margin-top: -153.5px;
+  margin-top: -144px;
   position: absolute;
   left: 50%;
   top: 0%;
   -webkit-transform: translate(-50%, 0%);
-  transform: translate(-50%, 0%);
-  width: 847px;
-  height: 307px; }
+  transform: translate(-50%, 0%); }
 .play .text {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -382,7 +380,8 @@ section.numbers .third span:nth-child(5) {
 .play .text h2 {
   font-family: 'COCOGOOSE DemiBold', sans-serif;
   font-weight: lighter;
-  font-size: 80px; }
+  font-size: 80px;
+  margin-bottom: 0; }
 .play .text p {
   text-align: left;
   width: 100%;

@@ -58,6 +58,7 @@ $slug = Yii::$app->request->get('slug');
 <div class="header">
     <?= LanguageSwitcher::widget(); ?>
     <a class="logo" href="/"></a>
+    <a class="become-brand-btn" href="/brands#member"><?= Yii::t('frontend', 'become{br}a member', ['br' => '<br>']); ?></a>
 </div>
 
 <?= $content ?>

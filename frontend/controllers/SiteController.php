@@ -1,6 +1,7 @@
 <?php
 namespace kodi\frontend\controllers;
 
+use kodi\frontend\models\forms\BecomeBrandForm;
 use kodi\frontend\models\forms\ContactForm;
 use kodi\frontend\models\forms\SubscribeForm;
 use Yii;
@@ -74,6 +75,32 @@ class SiteController extends Controller
         return $this->render('plus', ['subscribeModel' => $model]);
     }
 
+    public function actionBrands()
+    {
+        $model = new BecomeBrandForm();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $alertType = 'error';
+            $alertMessage = Yii::t('frontend', 'An error occurred. Please try again later.');
+
+            if ($model->validate() && $model->sendEmail()) {
+                $alertType = 'success';
+                $alertMessage = Yii::t('frontend', 'Your request was successfully sent.');
+
+                // Send a message to admin
+                $contact = new ContactForm([
+                    'email' => $model->email,
+                    'body' => Yii::t('frontend', 'User {email} has requested to become a brand.', ['email' => $model->email]),
+                    'subject' => Yii::t('frontend', 'Request to become a brand'),
+                ]);
+                $contact->sendEmail();
+            }
+            Yii::$app->session->addFlash($alertType, ['message' => $alertMessage]);
+        }
+
+        return $this->render('brands', ['becomeBrandModel' => $model]);
+    }
+
     /**
      * Displays about page.
      *
@@ -87,7 +114,7 @@ class SiteController extends Controller
         if ($contactModel->load(Yii::$app->request->post())) {
             if ($contactModel->validate() && $contactModel->sendEmail()) {
                 $alertType = 'success';
-                $alertMessage = Yii::t('frontend', 'Thanks! Your message was successfully sent.');
+                $alertMessage = Yii::t('frontend', 'Your message was successfully sent.');
             }
             Yii::$app->session->addFlash($alertType, ['message' => $alertMessage]);
         }

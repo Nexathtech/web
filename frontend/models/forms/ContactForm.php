@@ -12,7 +12,7 @@ class ContactForm extends Model
 {
     public $email;
     public $body;
-
+    public $subject;
 
     /**
      * @inheritdoc
@@ -34,14 +34,16 @@ class ContactForm extends Model
      */
     public function sendEmail()
     {
-        $subject = Yii::t('frontend', 'Kodi Team') . ': ' . Yii::t('frontend', 'Contact form');
+        if (empty($this->subject)) {
+            $this->subject = Yii::t('frontend', 'Kodi Team') . ': ' . Yii::t('frontend', 'Contact form');
+        }
         $sender = Yii::$app->settings->get('system_email_sender');
 
         return Yii::$app->mailer->compose()
             ->setFrom([$sender => Yii::t('frontend', 'Kodi Contact Form')])
             ->setReplyTo($this->email)
             ->setTo(Yii::$app->settings->get('system_email_sender'))
-            ->setSubject($subject)
+            ->setSubject($this->subject)
             ->setTextBody($this->body)
             ->send();
     }
