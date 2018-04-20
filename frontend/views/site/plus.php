@@ -30,8 +30,8 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
 
 <div class="page-plus">
     <div class="p-pl-title">
-        <p><?= Yii::t('frontend', 'print photos for free') ?>,</p>
-        <p><?= Yii::t('frontend', 'directly from your social media') ?></p>
+        <p><?= Yii::t('frontend', '10 photo prints a month for free') ?>,</p>
+        <p><?= Yii::t('frontend', 'Really Simple, fast, fun, KodiPlus') ?></p>
     </div>
     <div class="people-jump"></div>
     <div class="p-p-heading">

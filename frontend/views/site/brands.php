@@ -253,7 +253,7 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
     </div>
 
     <div class="shop">
-        <div class="title">
+        <div class="title" id="point">
             <div class="text">your shop</div>
             <div class="text">become <span></span></div>
             <div class="text">a new shop</div>
