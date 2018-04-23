@@ -3,6 +3,7 @@
 namespace kodi\backend\controllers;
 
 use kodi\common\enums\AlertType;
+use kodi\common\enums\user\Role;
 use kodi\common\models\user\Profile;
 use kodi\common\models\user\search\User as UserSearch;
 use kodi\common\models\user\User;
@@ -13,8 +14,6 @@ use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
-use yii\web\ServerErrorHttpException;
-use yii\web\UploadedFile;
 
 /**
  * Class `UserController`
@@ -170,7 +169,27 @@ class UserController extends BaseController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        /* @var $user User */
+        $user = Yii::$app->user->identity;
+        $response = [
+            'status' => AlertType::ERROR,
+            'message' => Yii::t('backend', 'An error occurred.'),
+        ];
+
+        if ($user->id === (int)$id) {
+            $response['message'] = Yii::t('backend', 'You can\'t delete yourself.');
+        } elseif ($user->role === Role::ADMINISTRATOR) {
+            $response['message'] = Yii::t('backend', 'You can\'t delete admins.');
+        } else {
+            if ($this->findModel($id)->delete()) {
+                $response['status'] = AlertType::SUCCESS;
+                $response['message'] = Yii::t('backend', 'The user {id} has been successfully deleted.', [
+                    'id' => $id,
+                ]);
+            }
+        }
+
+        Yii::$app->session->addFlash($response['status'], ['message' => $response['message']]);
         return $this->redirect(['index']);
     }
 
