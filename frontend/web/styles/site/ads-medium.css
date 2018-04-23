@@ -115,7 +115,7 @@
   position: absolute;
   -webkit-transform: translate(-50%, 0%);
   transform: translate(-50%, 0%);
-  bottom: 12%;
+  bottom: 2%;
   top: auto;
   left: -45%;
   overflow: hidden;
@@ -125,6 +125,7 @@
   transition-delay: 0s;
   width: 100%; }
 .numbers-wrapper .ads-pages.desc .description {
+  max-width: 90%;
   margin: 0 auto; }
 .numbers-wrapper .ads-pages.desc h2 {
   width: 100%;

@@ -444,15 +444,15 @@ section.numbers .third span:nth-child(5) {
   text-align: center;
   font-family: 'Alte DIN', sans-serif;
   font-size: 30px;
-  color: #FFFFFF; }
+  color: #fff; }
 .member .send form input::-webkit-input-placeholder {
-  color: #FFFFFF; }
+  color: #fff; }
 .member .send form input:-ms-input-placeholder {
-  color: #FFFFFF; }
+  color: #fff; }
 .member .send form input::-ms-input-placeholder {
-  color: #FFFFFF; }
+  color: #fff; }
 .member .send form input::placeholder {
-  color: #FFFFFF; }
+  color: #fff; }
 .member .send form button {
   cursor: pointer;
   display: block;
@@ -835,6 +835,7 @@ MEDIA QUERIES
   footer .footer-copyright p {
     font-size: 15px; } }
 
+
 @media (max-width: 470px) {
   .play .text h2 {
     font-size: 7vh; }
@@ -873,4 +874,13 @@ MEDIA QUERIES
   .member .shop .title .text span {
     width: 25vh; }
   .member p {
-    font-size: 3vw; } }
+    font-size: 3vw; }
+
+  .member .send form input {
+    font-size: 20px; }
+
+  .member .shop .desc p {
+    font-size: 18px;
+  }
+
+}

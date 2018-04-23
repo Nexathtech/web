@@ -240,7 +240,7 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
             <img src="/images/faces.svg" alt="man">
 
         </figure>
-        <h2><?= Yii::t('frontend', 'Become a Koid Point today') ?></h2>
+        <h2><?= Yii::t('frontend', 'Become a Kodi Point today') ?></h2>
 
         <? $form = ActiveForm::begin(); ?>
         <?= $form->field($becomeBrandModel, 'email')->textInput([

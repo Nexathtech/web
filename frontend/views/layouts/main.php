@@ -13,6 +13,7 @@ use yii\web\View;
 AppAsset::register($this);
 
 $slug = Yii::$app->request->get('slug');
+$action = Yii::$app->controller->action->id;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -58,7 +59,18 @@ $slug = Yii::$app->request->get('slug');
 <div class="header">
     <?= LanguageSwitcher::widget(); ?>
     <a class="logo" href="/"></a>
-    <a class="become-brand-btn" href="/brands#member"><?= Yii::t('frontend', 'become{br}a member', ['br' => '<br>']); ?></a>
+    <div class="top-nav" id="top-nav">
+        <a href="/" class="<?= $action === 'plus' ? 'active' : '' ?>">kodi plus</a>
+        <a href="/brands" class="<?= $action === 'brands' ? 'active' : '' ?>">brand</a>
+        <a href="/brands#point">kodi point</a>
+        <a href="javascript:void(0);" class="top-nav-icon" onclick="openTopNav()">&#9776;</a>
+    </div>
+    <? if ($action === 'brands'): ?>
+        <a class="become-brand-btn" href="#member"><?= Yii::t('frontend', 'become{br}a member', ['br' => '<br>']); ?></a>
+    <? endif; ?>
+    <? if ($action === 'plus'): ?>
+        <a class="download-app-btn" href="#download"><?= Yii::t('frontend', 'download{br}app', ['br' => '<br>']); ?></a>
+    <? endif; ?>
 </div>
 
 <?= $content ?>
