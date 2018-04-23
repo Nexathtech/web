@@ -17,18 +17,18 @@ $homeUrl = str_replace('api.', '', Url::to(['/'], true));
     <style type="text/css">
       @font-face {
         font-family: 'HKNova';
-        src: url('<?= $homeUrl ?>fonts/HKNova-Medium.eot');
-        src: url('<?= $homeUrl ?>fonts/HKNova-Medium.eot?#iefix') format('embedded-opentype'),
-          url('<?= $homeUrl ?>fonts/HKNova-Medium.woff2') format('woff2'),
-          url('<?= $homeUrl ?>fonts/HKNova-Medium.woff') format('woff'),
-          url('<?= $homeUrl ?>fonts/HKNova-Medium.ttf')  format('truetype');
+        src: url('<?= $homeUrl ?>styles/fonts/HKNova-Medium.eot');
+        src: url('<?= $homeUrl ?>styles/fonts/HKNova-Medium.eot?#iefix') format('embedded-opentype'),
+          url('<?= $homeUrl ?>styles/fonts/HKNova-Medium.woff2') format('woff2'),
+          url('<?= $homeUrl ?>styles/fonts/HKNova-Medium.woff') format('woff'),
+          url('<?= $homeUrl ?>styles/fonts/HKNova-Medium.ttf')  format('truetype');
       }
       @font-face {
         font-family: 'Alte DIN';
-        src: url('<?= $homeUrl ?>fonts/AlteDIN.eot');
-        src: url('<?= $homeUrl ?>fonts/AlteDIN.eot?#iefix') format('embedded-opentype'),
-          url('<?= $homeUrl ?>fonts/AlteDIN.woff') format('woff'),
-          url('<?= $homeUrl ?>fonts/AlteDIN.ttf') format('truetype');
+        src: url('<?= $homeUrl ?>styles/fonts/AlteDIN.eot');
+        src: url('<?= $homeUrl ?>styles/fonts/AlteDIN.eot?#iefix') format('embedded-opentype'),
+          url('<?= $homeUrl ?>styles/fonts/AlteDIN.woff') format('woff'),
+          url('<?= $homeUrl ?>styles/fonts/AlteDIN.ttf') format('truetype');
         font-weight: normal;
         font-style: normal;
       }

@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /**
  * Email template for wire transfer order
@@ -9,6 +10,7 @@ use yii\helpers\Html;
  * @var $data array
  */
 
+$homeUrl = str_replace('backend.', '', Url::to(['/'], true));
 ?>
 
 <div>

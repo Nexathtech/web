@@ -164,6 +164,11 @@ class Order extends ActiveRecord
                 $template = 'payment/wire-success';
             }
 
+            if ($this->type === OrderType::PHOTO) {
+                $data = [];
+                $template = 'payment/photo-success';
+            }
+
             // Send email to the user
             $this->sendEmail($template, $data, $this->email);
             // Send email to admin
@@ -173,7 +178,11 @@ class Order extends ActiveRecord
         } else {
             // Send email to user if status of the order changed
             if ($this->status !== $this->getOldAttribute('status')) {
-                $this->sendEmail('payment/status-changed', $this->getAttributes(), $this->email);
+                $template = 'payment/status-changed';
+                if ($this->type === OrderType::PHOTO) {
+                    $template = 'payment/photo-status-changed';
+                }
+                $this->sendEmail($template, $this->getAttributes(), $this->email);
             }
         }
 
