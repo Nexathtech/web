@@ -35,6 +35,8 @@ class OrderController extends BaseController
                 'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
+                    'delete-cancelled' => ['POST'],
+                    'delete-selected' => ['POST'],
                 ],
             ],
 
@@ -135,6 +137,45 @@ class OrderController extends BaseController
             $response['message'] = Yii::t('backend', 'The order {id} has been successfully deleted.', [
                 'id' => $id,
             ]);
+        }
+
+        Yii::$app->session->addFlash($response['status'], ['message' => $response['message']]);
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * @return Response
+     */
+    public function actionDeleteCancelled()
+    {
+        $response = [
+            'status' => AlertType::ERROR,
+            'message' => Yii::t('backend', 'An error occurred.'),
+        ];
+
+        if (Order::deleteAll(['status' => OrderStatus::CANCELED])) {
+            $response['status'] = AlertType::SUCCESS;
+            $response['message'] = Yii::t('backend', 'Cancelled orders has been successfully deleted.');
+        }
+
+        Yii::$app->session->addFlash($response['status'], ['message' => $response['message']]);
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * @return Response
+     */
+    public function actionDeleteSelected()
+    {
+        $response = [
+            'status' => AlertType::ERROR,
+            'message' => Yii::t('backend', 'An error occurred.'),
+        ];
+
+        $orders = Yii::$app->request->getBodyParam('data');
+        if (Order::deleteAll(['id' => $orders])) {
+            $response['status'] = AlertType::SUCCESS;
+            $response['message'] = Yii::t('backend', 'Selected orders has been successfully deleted.');
         }
 
         Yii::$app->session->addFlash($response['status'], ['message' => $response['message']]);

@@ -2,6 +2,7 @@
 
 use kartik\daterange\DateRangePicker;
 use kodi\backend\themes\admire\widgets\grid\ActionColumn;
+use kodi\backend\themes\admire\widgets\grid\CheckboxColumn;
 use kodi\backend\themes\admire\widgets\grid\GridView;
 use kodi\common\enums\order\OrderType;
 use kodi\common\enums\order\PaymentType;
@@ -64,6 +65,21 @@ $dateRangePickerEvents = [
         <div class="card">
             <div class="card-header bg-white">
                 <?= Yii::t('backend', 'Orders list') ?>
+                <? if ($dataProvider->count > 0): ?>
+                    <?= Html::a(FA::i('trash') . ' ' . Yii::t('backend', 'Remove cancelled'), ['delete-cancelled'], [
+                        'class' => 'btn btn-warning pull-right',
+                        'title' => Yii::t('backend', 'Remove all canceled orders'),
+                        'data-toggle' => 'tooltip',
+                        'data-role' => 'alert',
+                    ]); ?>
+                    <?= Html::a(FA::i('trash') . ' ' . Yii::t('backend', 'Remove checked'), ['delete-selected'], [
+                        'id' => 'checked-action',
+                        'class' => 'btn btn-danger pull-right mx-1 disabled',
+                        'title' => Yii::t('backend', 'Remove all canceled orders'),
+                        'data-toggle' => 'tooltip',
+                        'data-role' => 'alert'
+                    ]); ?>
+                <? endif; ?>
             </div>
             <div class="card-block m-t-10">
                 <div class="table-responsive">
@@ -73,6 +89,11 @@ $dateRangePickerEvents = [
                         'filterModel' => $searchModel,
                         'tableOptions' => ['class' => 'table table-striped table-bordered table-hover dataTable no-footer'],
                         'columns' => [
+                            [
+                                'class' => CheckboxColumn::class,
+                                'headerOptions' => ['class' => 'col-tiny'],
+                                'contentOptions' => ['class' => 'col-tiny col-check'],
+                            ],
                             [
                                 'attribute' => 'id',
                                 'headerOptions' => ['class' => 'col-tiny'],

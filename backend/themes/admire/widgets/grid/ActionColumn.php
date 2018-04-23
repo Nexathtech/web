@@ -49,6 +49,8 @@ class ActionColumn extends \yii\grid\ActionColumn
                     return Html::a(FA::i('trash', ['class' => 'text-danger']), $url, [
                         'class' => 'grid-view-confirm',
                         'data-toggle' => 'tooltip',
+                        'data-role' => 'alert',
+                        'data-alert-confirm' => Yii::t('backend', 'Yes, delete it!'),
                         'title' => Yii::t('backend', 'Delete'),
                     ]);
                 },

@@ -1,28 +1,46 @@
-$(document).ready(function () {
+$('[data-role="alert"]').on('click', function(e) {
+  e.preventDefault();
+  var mode = $(this).data('alert-mode') || null;
+  var type = $(this).data('alert-type') || 'warning';
+  var title = $(this).data('alert-title') || 'Are you sure?';
+  var text = $(this).data('alert-text') || 'This action is permanent and cannot be undone.';
+  var confirmText = $(this).data('alert-confirm') || 'Yes, I\'m sure!';
+  var url = $(this).data('alert-url') || $(this).attr('href') || '';
+  var data = $(this).attr('data-alert');
+  if (typeof data !== 'object') { data = {data: data}; }
 
-  $('a.grid-view-confirm').on('click', function (event) {
+  if (mode === 'silent') {
+    // Means no need to show alert
+    sendRequest();
 
-    event.preventDefault();
-    var $this = $(this);
-
+  } else {
     swal({
-      type: 'warning',
-      title: 'Are you sure?',
-      text: 'This action is permanent and cannot be undone.',
+      type: type,
+      title: title,
+      text: text,
       allowOutsideClick: true,
       showCancelButton: true,
       showConfirmButton: true,
       confirmButtonColor: '#ed5565',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: confirmText,
       closeOnConfirm: false,
       showLoaderOnConfirm: true
     }, function () {
-      $.post($this.attr('href'), function (data, status) {
-        console.log(status);
-        if (status === 'success') {
-          location.reload();
-        }
-      });
+      sendRequest();
     });
-  })
+  }
+
+  /**
+   * Sends Ajax request to specified url
+   */
+  function sendRequest() {
+    $.ajax({
+      type: 'POST',
+      url: url,
+      data: data,
+      success: function (data) {
+        console.log(data);
+      }
+    });
+  }
 });
