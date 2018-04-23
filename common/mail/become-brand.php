@@ -13,7 +13,7 @@ $homeUrl = str_replace('api.', '', Url::to(['/'], true));
     <img src="<?= $homeUrl ?>styles/img/maestro.png" alt="" style="max-width: 100%;margin-bottom: -25px;">
 </div>
 
-<div class="content" style="max-width: 400px;margin: 20px auto 10px;font-family: 'HKNova', 'sans-serif';font-size: 20px;text-align: justify;color: #45433d;">
+<div class="content" style="max-width: 400px;margin: 20px auto 10px;font-family: 'HKNova', 'sans-serif';font-size: 16px;text-align: justify;color: #45433d;">
     <div class="title" style="margin: 40px 0 20px;text-align: center;font-family: 'Alte DIN', sans-serif;font-weight: bold;font-size: 40px;color: #e79b9f;">
         <?= Yii::t('common', 'Your sun{br}will shine', ['br' => '<br>']) ?>
     </div>
