@@ -8,7 +8,8 @@ use yii\helpers\Url;
 $homeUrl = str_replace('api.', '', Url::to(['/'], true));
 ?>
 
-<div class="thank-preset" style="padding-top: 150px;background: #412774;text-align: center;">
+<div class="thank-preset" style="padding-top: 20px;background: #412774;text-align: center;">
+    <a class="logo" href="<?= $homeUrl; ?>" style="display: block; width: 80px; height: 40px; margin: 0 auto 100px; background: url(<?= $homeUrl; ?>styles/img/logo.png); background-size: 100%;"></a>
     <img src="<?= $homeUrl ?>styles/img/maestro.png" alt="" style="max-width: 100%;margin-bottom: -25px;">
 </div>
 

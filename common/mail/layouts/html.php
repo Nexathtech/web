@@ -41,7 +41,6 @@ $homeUrl = str_replace('api.', '', Url::to(['/'], true));
 </head>
 <body>
     <?php $this->beginBody() ?>
-    <a href="<?= $homeUrl; ?>" style="display: block;width: 80px;height: 40px;position: absolute;top: 30px;left: 50%;margin-left: -40px;background: url(<?= $homeUrl; ?>styles/img/logo.png) no-repeat;background-size: 100%;"></a>
 
     <?= $content ?>
 
