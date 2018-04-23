@@ -172,7 +172,7 @@ class OrderController extends BaseController
             'message' => Yii::t('backend', 'An error occurred.'),
         ];
 
-        $orders = Yii::$app->request->getBodyParam('data');
+        $orders = explode(',', Yii::$app->request->getBodyParam('data'));
         if (Order::deleteAll(['id' => $orders])) {
             $response['status'] = AlertType::SUCCESS;
             $response['message'] = Yii::t('backend', 'Selected orders has been successfully deleted.');
