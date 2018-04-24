@@ -27,5 +27,5 @@ $homeUrl = str_replace('api.', '', Url::home(true));
     <br>
     <?= Yii::t('common', 'Thank you!') ?>
 
-    <?= $this->render('layouts/includes/_social_links', ['homeUrl' => $homeUrl]) ?>
+    <?= $this->render('../layouts/includes/_social_links', ['homeUrl' => $homeUrl]) ?>
 </div>

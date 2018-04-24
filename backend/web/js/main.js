@@ -14,4 +14,6 @@ $('.btn-post').on('click', function(event) {
     }
   });
 
+  return false;
+
 });
