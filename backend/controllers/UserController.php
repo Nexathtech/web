@@ -169,8 +169,7 @@ class UserController extends BaseController
      */
     public function actionDelete($id)
     {
-        /* @var $user User */
-        $user = Yii::$app->user->identity;
+        $user = $this->findModel($id);
         $response = [
             'status' => AlertType::ERROR,
             'message' => Yii::t('backend', 'An error occurred.'),
@@ -181,7 +180,7 @@ class UserController extends BaseController
         } elseif ($user->role === Role::ADMINISTRATOR) {
             $response['message'] = Yii::t('backend', 'You can\'t delete admins.');
         } else {
-            if ($this->findModel($id)->delete()) {
+            if ($user->delete()) {
                 $response['status'] = AlertType::SUCCESS;
                 $response['message'] = Yii::t('backend', 'The user {id} has been successfully deleted.', [
                     'id' => $id,
