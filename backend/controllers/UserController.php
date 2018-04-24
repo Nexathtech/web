@@ -175,7 +175,7 @@ class UserController extends BaseController
             'message' => Yii::t('backend', 'An error occurred.'),
         ];
 
-        if ($user->id === (int)$id) {
+        if (Yii::$app->user->id === (int)$id) {
             $response['message'] = Yii::t('backend', 'You can\'t delete yourself.');
         } elseif ($user->role === Role::ADMINISTRATOR) {
             $response['message'] = Yii::t('backend', 'You can\'t delete admins.');
