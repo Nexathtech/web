@@ -168,7 +168,8 @@ class AuthController extends Controller
                         // Send welcome email with confirmation
                         $token = Yii::$app->security->generateToken($user->id, TokenType::EMAIL_CONFIRMATION);
                         $token = base64_encode(Json::encode($token));
-                        $confirmationUrl = str_replace('api.', '', Url::to(["/auth/activate/$token"], true));
+                        $lang = Yii::$app->language;
+                        $confirmationUrl = str_replace('api.', '', Url::to(["/{$lang}/auth/activate/{$token}"], true));
 
                         Yii::$app->mailer->compose('welcome', [
                             'user' => $user,
