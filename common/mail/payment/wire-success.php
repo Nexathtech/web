@@ -11,6 +11,7 @@ use yii\helpers\Url;
  */
 
 $homeUrl = str_replace('api.', '', Url::home(true));
+$homeUrl = str_replace('backend.', '', Url::home(true));
 ?>
 
 <div>

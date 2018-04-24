@@ -149,6 +149,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @inheritdoc
      *
      * @var $includeDevice bool whether to include device (the initiator of action) to identity or not
+     * @return self
      */
     public static function findIdentityByAccessToken($tokenData, $type = null, $includeDevice = false)
     {

@@ -8,7 +8,6 @@ use kodi\common\enums\Language;
 use kodi\common\enums\order\OrderType;
 use kodi\common\models\Order;
 use kodi\common\models\Setting;
-use kodi\common\models\user\User;
 use sammaye\mailchimp\exceptions\MailChimpException;
 use Yii;
 use yii\base\ErrorException;

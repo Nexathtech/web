@@ -19,5 +19,6 @@ return [
 
     'You received this email because you have been registered on {meetkodi}' => 'Hai ricevuto questa email perché sei stato registrato su {meetkodi}',
     'Kodi Order' => 'Ordine Kodi',
+    'Good News' => 'Buone Notizie',
     '' => '',
 ];

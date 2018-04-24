@@ -23,13 +23,6 @@ class Controller extends \yii\rest\Controller
         $allowedLanguages = array_keys(Language::listData());
         if (!empty($language) && in_array($language, $allowedLanguages)) {
             Yii::$app->language = $language;
-        } else {
-            if (!Yii::$app->user->isGuest) {
-                /* @var $user User */
-                $user = Yii::$app->user->identity;
-                $language = $user->getSetting('users_language', Yii::$app->language);
-                Yii::$app->language = $language;
-            }
         }
 
         return parent::beforeAction($action);

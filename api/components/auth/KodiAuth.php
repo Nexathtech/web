@@ -25,6 +25,11 @@ class KodiAuth extends AuthMethod
             $identity = User::findIdentityByAccessToken($tokenData, null, true);
             if (!empty($identity)) {
                 $user->switchIdentity($identity);
+                // Change language to user's one if it's not set in headers
+                if (!Yii::$app->request->getHeaders()->get('Content-Language')) {
+                    Yii::$app->language = $identity->getSetting('users_language', Yii::$app->language);
+                }
+
                 return $identity;
             }
         }

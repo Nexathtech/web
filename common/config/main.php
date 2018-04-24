@@ -68,8 +68,8 @@ $config = [
             'traceLevel' => YII_ENV_LOCAL ? 3 : 0,
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
+                    'class' => \yii\log\FileTarget::class,
+                    'levels' => YII_ENV_LOCAL ? ['error', 'warning'] : ['error'],
                 ],
             ],
         ],

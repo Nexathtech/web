@@ -107,5 +107,9 @@ Controllare la posta sarà un piacere maggiore.',
     'Your wish is our priority' => 'Il tuo desiderio è la nostra priorità',
     'Order status update' => 'Aggiornamento dello stato dell\'ordine',
     'We’ve got your request' => 'Abbiamo ricevuto la tua richiesta',
+
+    'An error occurred. Please try again later.' => 'Si e\' verificato un errore.Per favore riprova più tardi',
+    'Your request was successfully sent.' => 'La tua richiesta e\' stata inviata correttamente ',
+    'Your message was successfully sent.' => 'Il tuo messaggio e\' stato inviato correttamente',
     '' => '',
 ];

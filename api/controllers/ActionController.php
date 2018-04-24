@@ -87,7 +87,7 @@ class ActionController extends Controller
             }
 
             if ($printsAmount >= $printsLimit) {
-                throw new ForbiddenHttpException(Yii::t('api', 'You have already been used maximum free prints this month. Find a coupon in one of our Kodi point or wait few days.'));
+                throw new ForbiddenHttpException(Yii::t('api', 'You have already been used maximum free prints this month. '));
             }
         }
 

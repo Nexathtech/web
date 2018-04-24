@@ -7,6 +7,7 @@ use yii\helpers\Url;
 /* @var $content string main view render result */
 
 $homeUrl = str_replace('api.', '', Url::home(true));
+$homeUrl = str_replace('backend.', '', Url::home(true));
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">

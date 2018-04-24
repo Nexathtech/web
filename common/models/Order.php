@@ -8,6 +8,7 @@ use kodi\common\enums\order\PaymentType;
 use kodi\common\enums\order\Status;
 use kodi\common\models\device\Device;
 use kodi\common\models\user\User;
+use kodi\frontend\models\forms\ContactForm;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
@@ -171,9 +172,14 @@ class Order extends ActiveRecord
 
             // Send email to the user
             $this->sendEmail($template, $data, $this->email);
+
             // Send email to admin
-            $adminEmail = Yii::$app->settings->get('system_email_sender');
-            $this->sendEmail($template, $data, $adminEmail, $this->email);
+            $contact = new ContactForm([
+                'email' => $this->email,
+                'body' => Yii::t('common', 'New order from {email}.', ['email' => $this->email]),
+                'subject' => Yii::t('common', 'Kodi Order'),
+            ]);
+            $contact->sendEmail();
 
         } else {
             // Send email to user if status of the order changed
@@ -223,21 +229,33 @@ class Order extends ActiveRecord
      */
     public function sendEmail($template, $data, $recipient, $sender = null)
     {
+        $lang = Yii::$app->language;
+        // Change language to receiver's one
+        Yii::$app->language = $this->user->getSetting('users_language', $lang);
+
         $subject = Yii::t('common', 'Kodi Order');
         if (!$this->isNewRecord) {
             $subject = Yii::t('common', 'Order status update');
+            if ($this->status === Status::COMPLETED) {
+                $subject = Yii::t('common', 'Good News');
+            }
         }
         if (!$sender) {
             $sender = [Yii::$app->settings->get('system_email_sender') => 'Kodi Team'];
         }
 
-        return Yii::$app->mailer->compose($template, [
+        $mail = Yii::$app->mailer->compose($template, [
             'data' => $data,
         ])
             ->setFrom($sender)
             ->setTo($recipient)
             ->setSubject($subject)
             ->send();
+
+        // Change language back
+        Yii::$app->language = $lang;
+
+        return $mail;
     }
 
     /**
