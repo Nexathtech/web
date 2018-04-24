@@ -3,7 +3,6 @@
 return [
     'New user account is successfully created. Please confirm your email address.' => 'Il nuovo account utente è stato creato correttamente. Per favore conferma il tuo indirizzo email.',
     'Thank you for your registration. Now you can sign in using your credentials.' => 'Grazie di esserti registrato. Ora puoi accedere utilizzando le tue credenziali.',
-    'Kodi Team' => 'Kodi Squadra',
     'Welcome on Kodiplus!' => 'Benvenuto in KodiPlus!',
     'We sent instructions to your email address.' => 'Ti abbiamo mandato le istruzioni al tuo indirizzo email.',
     'An error occurred while sending email.' => 'Errore durante l\'invio del messaggio',
