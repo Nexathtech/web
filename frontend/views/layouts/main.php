@@ -47,6 +47,11 @@ $action = Yii::$app->controller->action->id;
       })(window,document,'script','dataLayer','GTM-TJ57KWH');</script>
     <!-- End Google Tag Manager -->
 
+    <? if (YII_ENV_PROD): ?>
+        <!-- Live chat -->
+        <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="d684f91c-294b-4687-aff4-7fc36807e714";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+    <? endif; ?>
+
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
