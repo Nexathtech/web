@@ -51,7 +51,7 @@ Controllare la posta sarà un piacere maggiore.',
 
     'Send a representative image of yourself or what you do, spread special offers in a specific period, launch an advertising campaign, let everyone know about your event schedule, tell your customers how much you appreciate them and much more.' => 'Spedisci un’immagine rappresentativa di te o di quello che fai, diffondi offerte speciali in un periodo specifico, lancia una campagna pubblicitaria, fai conoscere a tutti il tuo programma di eventi, comunica ai tuoi clienti quanto li apprezzi e tanto altro.',
     'Too complicated? Naaaah.' => 'Troppo complesso? Naaaah.',
-    'Kodi Advertisement is designed to be quick, immediate and straightforward, without intermediaries, waste of time or previous knowledge.' => 'Kodi Advertisment è pensato per essere rapido, semplice e immediato, senza intermediari, perdite di tempo o conoscenze pregresse.',
+    'Kodi Advertisement is designed to be quick, immediate and straightforward, without intermediaries, waste of time or previous knowledge.' => 'Kodi Advertisement è pensato per essere rapido, semplice e immediato, senza intermediari, perdite di tempo o conoscenze pregresse.',
     'KodiPlus allows you to reach the target you want accurately, people with interests similar to your business and with geolocation you have an innovative function at your disposal.' => 'KodiPlus permette di raggiungere con precisione il target che desideri, le persone con interessi affini alla tua attività e con la geolocalizzazione hai una funzione totalmente innovativa a tua disposizione.',
     'Your brand takes on another tone.' => 'Il tuo brand assume un altro tono.',
 
