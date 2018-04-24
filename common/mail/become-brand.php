@@ -10,7 +10,7 @@ $homeUrl = str_replace('api.', '', Url::home(true));
 
 <div class="thank-preset" style="padding-top: 20px;background: #412774;text-align: center;">
     <a class="logo" href="<?= $homeUrl; ?>" style="display: block; width: 80px; height: 40px; margin: 0 auto 100px; background: url(<?= $homeUrl; ?>styles/img/logo.png); background-size: 100%;"></a>
-    <img src="<?= $homeUrl ?>styles/img/maestro.png" alt="" style="display: block; margin: 0 auto -25px;max-width: 100%;">
+    <img src="<?= $homeUrl ?>styles/img/maestro.png" alt="" style="display: block; margin: 0 auto;max-width: 100%;">
 </div>
 
 <div class="content" style="max-width: 400px;margin: 20px auto 10px;font-family: 'HKNova', 'sans-serif';font-size: 16px;text-align: justify;color: #3d3d3d;">
