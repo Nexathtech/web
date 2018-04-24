@@ -44,6 +44,7 @@ return [
 
     // Emails
     'emails' => [
-        'noreply' => 'no-reply@meetkodi.com'
+        'noreply' => 'no-reply@meetkodi.com',
+        'admin' => 'alex@kodiplus.io', // we use it for "inner" emails because meetkodi.com configured on Google
     ]
 ];

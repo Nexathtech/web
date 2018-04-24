@@ -43,7 +43,7 @@ class ContactForm extends Model
         return Yii::$app->mailer->compose('clear', ['content' => $this->body])
             ->setFrom([$sender => Yii::t('frontend', 'Kodi Team')])
             ->setReplyTo($this->email)
-            ->setTo('alex@kodiplus.io')
+            ->setTo(ArrayHelper::getValue(Yii::$app->params, 'emails.admin'))
             ->setSubject($this->subject)
             ->send();
     }
