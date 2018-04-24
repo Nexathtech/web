@@ -364,6 +364,7 @@ input[type="checkbox"]:checked::after {
     display: inline-block;
     margin: 15px 0 0 40px;
     color: #2e9cea;
+    z-index: 100;
 }
 
 .language-switcher:hover ul a {
@@ -379,7 +380,7 @@ input[type="checkbox"]:checked::after {
     height: 0;
     position: absolute;
     top: 0;
-    padding-top: 20px;
+    padding-top: 35px;
     padding-left: 0;
     -webkit-transition: all .5s ease;
     transition: all .5s ease;
@@ -4986,7 +4987,7 @@ form.order-info .help-block {
     }
 
     .language-switcher {
-        margin-left: 75px;
+        margin-left: 65px;
     }
 }
 

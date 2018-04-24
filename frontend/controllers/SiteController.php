@@ -75,6 +75,9 @@ class SiteController extends Controller
         return $this->render('plus', ['subscribeModel' => $model]);
     }
 
+    /**
+     * @return string
+     */
     public function actionBrands()
     {
         $model = new BecomeBrandForm();

@@ -41,4 +41,9 @@ return [
             'maxHeight' => 1000, // px
         ],
     ],
+
+    // Emails
+    'emails' => [
+        'noreply' => 'no-reply@meetkodi.com'
+    ]
 ];

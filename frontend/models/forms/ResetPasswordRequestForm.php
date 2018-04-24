@@ -69,7 +69,7 @@ class ResetPasswordRequestForm extends Model
         ])
             ->setFrom([Yii::$app->settings->get('system_email_sender') => Yii::t('frontend', 'Kodi Team')])
             ->setTo($this->email)
-            ->setSubject('Password reset')
+            ->setSubject(Yii::t('frontend', 'Password reset'))
             ->send();
     }
 }

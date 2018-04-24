@@ -63,7 +63,7 @@ class BecomeBrandForm extends Model
         return Yii::$app->mailer->compose('become-brand')
             ->setFrom([Yii::$app->settings->get('system_email_sender') => Yii::t('frontend', 'Kodi Team')])
             ->setTo($this->email)
-            ->setSubject(Yii::t('frontend', 'Become a brand member'))
+            ->setSubject(Yii::t('frontend', 'We’ve got your request'))
             ->send();
     }
 

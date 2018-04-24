@@ -6,7 +6,7 @@ use yii\helpers\Url;
 /* @var $message \yii\mail\MessageInterface the message being composed */
 /* @var $content string main view render result */
 
-$homeUrl = str_replace('api.', '', Url::to(['/'], true));
+$homeUrl = str_replace('api.', '', Url::home(true));
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -46,7 +46,9 @@ $homeUrl = str_replace('api.', '', Url::to(['/'], true));
 
     <div class="footer" style="width: 100%;height: 130px;background: url(<?= $homeUrl ?>/styles/img/footer-waves.png) repeat-x;"></div>
     <div style="margin-top: 20px; text-align: center; font-size: 11px; color: #606060;">
-        You received this email because you have been registered on <a href="<?= $homeUrl ?>">meetkodi.com</a>
+        <?= Yii::t('common', 'You received this email because you have been registered on {meetkodi}', [
+            'meetkodi' => Html::a('meetkodi.com', $homeUrl),
+        ]) ?>
     </div>
     <?php $this->endBody() ?>
 </body>

@@ -7,7 +7,7 @@ use yii\helpers\Url;
 /* @var $user \kodi\common\models\user\User */
 /* @var $resetLink string Absolute url */
 
-$homeUrl = str_replace('api.', '', Url::to(['/'], true));
+$homeUrl = str_replace('api.', '', Url::home(true));
 ?>
 
 <div class="thank-preset" style="padding-top: 20px;background: #e79b9f;text-align: center;">

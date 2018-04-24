@@ -223,7 +223,10 @@ class Order extends ActiveRecord
      */
     public function sendEmail($template, $data, $recipient, $sender = null)
     {
-        $subject = Yii::t('frontend', 'New Order');
+        $subject = Yii::t('common', 'Kodi Order');
+        if (!$this->isNewRecord) {
+            $subject = Yii::t('common', 'Order status update');
+        }
         if (!$sender) {
             $sender = [Yii::$app->settings->get('system_email_sender') => 'Kodi Team'];
         }

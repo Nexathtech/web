@@ -16,5 +16,8 @@ return [
     'Is coooooming{br}for you' => 'In aaaarrivo per te',
     'Get off the anchor, closed the little bridge, Captain Hernstz\'s ship was spotted in the ocean this morning while at full speed she rushed towards you to deliver you fantastic photos.' => 'Ritirata l’ancora, chiuso il ponticciolo, la nave del Capitan Hernstz è stata avvistata in oceano stamattina mentre a vele spiegate corre velocissima verso di te per consegnarti fantastiche foto.',
     '"See you soon!" - Captain Hernst' => '“A presto!” - Capitan Hernst',
+
+    'You received this email because you have been registered on {meetkodi}' => 'Hai ricevuto questa email perché sei stato registrato su {meetkodi}',
+    'Kodi Order' => 'Ordine Kodi',
     '' => '',
 ];

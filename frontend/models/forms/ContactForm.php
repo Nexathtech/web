@@ -4,6 +4,7 @@ namespace kodi\frontend\models\forms;
 
 use Yii;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
 
 /**
  * ContactForm is the model behind the contact form.
@@ -37,14 +38,13 @@ class ContactForm extends Model
         if (empty($this->subject)) {
             $this->subject = Yii::t('frontend', 'Kodi Team') . ': ' . Yii::t('frontend', 'Contact form');
         }
-        $sender = Yii::$app->settings->get('system_email_sender');
+        $sender = ArrayHelper::getValue(Yii::$app->params, 'emails.noreply');
 
-        return Yii::$app->mailer->compose()
-            ->setFrom([$sender => Yii::t('frontend', 'Kodi Contact Form')])
+        return Yii::$app->mailer->compose('clear', ['content' => $this->body])
+            ->setFrom([$sender => Yii::t('frontend', 'Kodi Team')])
             ->setReplyTo($this->email)
             ->setTo(Yii::$app->settings->get('system_email_sender'))
             ->setSubject($this->subject)
-            ->setTextBody($this->body)
             ->send();
     }
 }

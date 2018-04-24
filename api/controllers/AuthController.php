@@ -7,6 +7,7 @@ use kodi\api\components\Controller;
 use kodi\api\models\auth\SignIn;
 use kodi\api\models\auth\SignUp;
 use kodi\common\enums\DeviceType;
+use kodi\common\enums\Language;
 use kodi\common\enums\Status;
 use kodi\common\enums\user\Role;
 use kodi\common\enums\user\TokenType;
@@ -157,6 +158,13 @@ class AuthController extends Controller
                     $settings = ArrayHelper::getValue($data, 'settings', []);
                     $this->collectUserSettings($user->id, $settings);
 
+                    // Change language in order to correct response/email message
+                    $language = ArrayHelper::getValue($settings, 'users_language');
+                    $allowedLanguages = array_keys(Language::listData());
+                    if (!empty($language) && in_array($language, $allowedLanguages)) {
+                        Yii::$app->language = $language;
+                    }
+
                     if ($confirmationRequired) {
                         // Send welcome email with confirmation
                         $token = Yii::$app->security->generateToken($user->id, TokenType::EMAIL_CONFIRMATION);
@@ -169,7 +177,7 @@ class AuthController extends Controller
                         ])
                             ->setFrom([Yii::$app->settings->get('system_email_sender') => Yii::t('api', 'Kodi Team')])
                             ->setTo($user->email)
-                            ->setSubject(Yii::t('api', 'Welcome on Kodiplus!'))
+                            ->setSubject(Yii::t('api', 'Activate your Kodi account'))
                             ->send();
                     }
 

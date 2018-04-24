@@ -10,7 +10,7 @@ use yii\helpers\Url;
  * @var $data array
  */
 
-$homeUrl = str_replace('backend.', '', Url::to(['/'], true));
+$homeUrl = str_replace('backend.', '', Url::home(true));
 ?>
 
 <div>

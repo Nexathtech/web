@@ -102,5 +102,10 @@ Controllare la posta sarà un piacere maggiore.',
     'An innovative and advanced advertisement model, able to reach people in a new and surprising way. Discover all the opportunities to promote your brand easily.' => 'Un modello di pubblicità innovativo ed evoluto, che arriva direttamente al cliente in una maniera del tutto diversa e sorprendente. Diffondi il tuo brand facilmente,  e scopri tutte le opportunità.',
 
     'don\'t{br}be shy' => 'Non{br}essere timido',
+    'Your sun will shine' => 'Il tuo sole splenderà',
+    'Password reset' => 'Reimpostazione della password',
+    'Your wish is our priority' => 'Il tuo desiderio è la nostra priorità',
+    'Order status update' => 'Aggiornamento dello stato dell\'ordine',
+    'We’ve got your request' => 'Abbiamo ricevuto la tua richiesta',
     '' => '',
 ];
