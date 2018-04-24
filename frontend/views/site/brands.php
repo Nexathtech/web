@@ -283,7 +283,7 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
         <p><?= Yii::t('frontend', 'Offer coupon cards with attention to the smallest detail.'); ?></p>
         <p><?= Yii::t('frontend', 'The more you give it away, your smile grows, and your Brand grows.') ?></p>
         <p><?= Yii::t('frontend', 'The promotional code is now worth double.') ?></p>
-        <img src="/images/coupon.png" alt="coupon">
+        <img src="/images/coupon2.png" alt="coupon">
     </div>
     <div class="super">
         <img src="/images/Envelope.png" alt="">

@@ -551,9 +551,8 @@ section.numbers .third span:nth-child(5) {
 .superkit .coupon p {
   text-align: right; }
 .superkit .coupon img {
-  margin-top: 2rem;
-  width: 295px;
-  height: 373px; }
+  margin-top: 1rem;
+  width: 355px; }
 .superkit .super {
   max-width: 300px; }
 .superkit .super img {
