@@ -66,7 +66,7 @@ function prepareContent(section) {
     </div>
     <div class="section-block section-contact">
         <div class="contact-title">
-            don't<br>be shy
+            <?= Yii::t('frontend', 'don\'t{br}be shy', ['br' => '<br>']) ?>
             <div class="content-title-desc">
                 <?= Yii::t('frontend', 'if you need some information, If you want Just to say hi, or if you wish to to know our favorite pizza, just fill in the form on the left and submit your request.'); ?>
             </div>

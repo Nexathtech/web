@@ -140,7 +140,11 @@ $dateRangePickerEvents = [
                             ],
                             [
                                 'class' => ActionColumn::class,
-                                //'template' => '{view} &nbsp; {update}',
+                                'visibleButtons' => [
+                                    'delete' => function ($model) {
+                                        return $model->role !== Role::ADMINISTRATOR;
+                                    }
+                                ]
                             ],
                         ],
                     ]);
