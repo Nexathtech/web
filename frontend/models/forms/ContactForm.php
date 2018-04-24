@@ -38,13 +38,12 @@ class ContactForm extends Model
         if (empty($this->subject)) {
             $this->subject = Yii::t('frontend', 'Kodi Team') . ': ' . Yii::t('frontend', 'Contact form');
         }
-        $sender = ArrayHelper::getValue(Yii::$app->params, 'emails.noreply');
+        $sender = Yii::$app->settings->get('system_email_sender');
 
         return Yii::$app->mailer->compose('clear', ['content' => $this->body])
             ->setFrom([$sender => Yii::t('frontend', 'Kodi Team')])
             ->setReplyTo($this->email)
-            //->setTo(Yii::$app->settings->get('system_email_sender'))
-            ->setTo('alex@meetkodi.com')
+            ->setTo('alex@kodiplus.io')
             ->setSubject($this->subject)
             ->send();
     }
