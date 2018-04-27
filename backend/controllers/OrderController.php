@@ -37,6 +37,7 @@ class OrderController extends BaseController
                     'delete' => ['POST'],
                     'delete-cancelled' => ['POST'],
                     'delete-selected' => ['POST'],
+                    'mark-selected' => ['POST'],
                 ],
             ],
 
@@ -209,6 +210,29 @@ class OrderController extends BaseController
 
         Yii::$app->session->addFlash($response['status'], ['message' => $response['message']]);
         return [];
+    }
+
+    /**
+     * @param $status
+     * @return Response
+     */
+    public function actionMarkSelected($status)
+    {
+        $response = [
+            'status' => AlertType::ERROR,
+            'message' => Yii::t('backend', 'An error occurred.'),
+        ];
+
+        if (!empty($status) && in_array($status, array_keys(OrderStatus::listData()))) {
+            $orders = explode(',', Yii::$app->request->getBodyParam('data'));
+            if (Order::updateAll(['status' => $status], ['id' => $orders])) {
+                $response['status'] = AlertType::SUCCESS;
+                $response['message'] = Yii::t('backend', 'Selected orders has been successfully updated.');
+            }
+        }
+
+        Yii::$app->session->addFlash($response['status'], ['message' => $response['message']]);
+        return $this->redirect(['index']);
     }
 
     /**

@@ -16,6 +16,7 @@ $('[data-role="alert"]').on('click', function(e) {
   } else {
     swal({
       type: type,
+      html: true,
       title: title,
       text: text,
       allowOutsideClick: true,

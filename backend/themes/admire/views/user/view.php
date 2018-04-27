@@ -95,7 +95,7 @@ $this->params['breadcrumbs'] = [
                                     $result = '';
                                     foreach ($data->actions as $action) {
                                         $result .= Html::beginTag('div');
-                                        $result .= Html::a("{$action->id} ({$actionTypes[$action->action_type]})", ['/action/view', 'id' => $action->id]);
+                                        $result .= Html::a("#{$action->id} ({$actionTypes[$action->action_type]})", ['/action/view', 'id' => $action->id]);
                                         $result .= Html::endTag('div');
                                     }
 

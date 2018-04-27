@@ -71,13 +71,21 @@ $dateRangePickerEvents = [
                         'title' => Yii::t('backend', 'Remove all canceled orders'),
                         'data-toggle' => 'tooltip',
                         'data-role' => 'alert',
+                        'data-alert-text' => 'The action is permanent and cannot be undone.<br>Note, bulk operation will not affect related actions and do not send email notifications.',
                     ]); ?>
                     <?= Html::a(FA::i('trash') . ' ' . Yii::t('backend', 'Remove checked'), ['delete-selected'], [
-                        'id' => 'checked-action',
-                        'class' => 'btn btn-danger pull-right mx-1 disabled',
+                        'class' => 'btn btn-danger checked-action pull-right mx-1 disabled',
                         'title' => Yii::t('backend', 'Remove all canceled orders'),
                         'data-toggle' => 'tooltip',
-                        'data-role' => 'alert'
+                        'data-role' => 'alert',
+                        'data-alert-text' => 'The action is permanent and cannot be undone.<br>Note, bulk operation will not affect related actions and do not send email notifications.',
+                    ]); ?>
+                    <?= Html::a(FA::i('send') . ' ' . Yii::t('backend', 'Mark as shipped'), ['mark-selected', 'status' => Status::SHIPPED], [
+                        'class' => 'btn btn-primary checked-action pull-right disabled',
+                        'title' => Yii::t('backend', 'Mark checked as shipped'),
+                        'data-toggle' => 'tooltip',
+                        'data-role' => 'alert',
+                        'data-alert-text' => 'The action is permanent and cannot be undone.<br>Note, bulk operation will not affect related actions and do not send email notifications.',
                     ]); ?>
                 <? endif; ?>
             </div>
@@ -132,6 +140,9 @@ $dateRangePickerEvents = [
                                     }
                                     if ($data->status === Status::COMPLETED) {
                                         $className = 'label label-success';
+                                    }
+                                    if ($data->status === Status::SHIPPED) {
+                                        $className = 'label label-info';
                                     }
 
                                     return Html::tag('span', $data->status, ['class' => $className]);

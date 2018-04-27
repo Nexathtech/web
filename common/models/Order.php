@@ -231,7 +231,9 @@ class Order extends ActiveRecord
     {
         $lang = Yii::$app->language;
         // Change language to receiver's one
-        Yii::$app->language = $this->user->getSetting('users_language', $lang);
+        if (!empty($this->user)) {
+            Yii::$app->language = $this->user->getSetting('users_language', $lang);
+        }
 
         $subject = Yii::t('common', 'Kodi Order');
         if (!$this->isNewRecord) {

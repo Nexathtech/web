@@ -14,7 +14,7 @@ use yii\web\JqueryAsset;
  */
 class CheckboxColumn extends \yii\grid\CheckboxColumn
 {
-    public $buttonId = 'checked-action';
+    public $buttonClass = 'checked-action';
 
     /**
      * @inheritdoc
@@ -37,7 +37,7 @@ class CheckboxColumn extends \yii\grid\CheckboxColumn
             ]
         ]);
         $this->grid->view->registerJs("
-            initSelection('{$this->grid->options['id']}', '{$this->buttonId}', '{$this->name}');
+            initSelection('{$this->grid->options['id']}', '{$this->buttonClass}', '{$this->name}');
         ");
     }
 }

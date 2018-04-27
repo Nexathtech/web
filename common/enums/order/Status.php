@@ -19,6 +19,7 @@ class Status extends Enum implements EnumInterface
     const PENDING = 'Pending';
     const COMPLETED = 'Completed';
     const CANCELED = 'Canceled';
+    const SHIPPED = 'Shipped';
 
     /**
      * @inheritdoc
@@ -30,6 +31,7 @@ class Status extends Enum implements EnumInterface
             self::PENDING => Yii::t('common', 'Pending'),
             self::COMPLETED => Yii::t('common', 'Completed'),
             self::CANCELED => Yii::t('common', 'Canceled'),
+            self::SHIPPED => Yii::t('common', 'Shipped'),
         ];
     }
 }

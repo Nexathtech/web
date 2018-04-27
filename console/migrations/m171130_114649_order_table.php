@@ -22,7 +22,7 @@ class m171130_114649_order_table extends Migration
         $primaryKeyField = 'INT UNSIGNED NOT NULL AUTO_INCREMENT';
         $createdAtField = 'TIMESTAMP NULL';
         $updatedAtField = 'TIMESTAMP NULL';
-        $statusField = "ENUM('Waiting', 'Pending', 'Completed', 'Canceled') NOT NULL";
+        $statusField = "ENUM('Waiting', 'Pending', 'Shipped', 'Completed', 'Canceled') NOT NULL";
 
         $this->createTable('{{%order}}', [
             'id' => $primaryKeyField,

@@ -40,13 +40,21 @@ $this->registerJsFile("{$themeUrl}/js/photo-print.js", ['depends' => ThemeAsset:
         <div class="card">
             <div class="card-header bg-white">
             <?
+                $completeBtn = Html::a(FA::i('check') . Yii::t('backend', 'Complete'), ['mark', 'id' => $model->id], [
+                    'class' => 'btn btn-success btn-post pull-right ml-1',
+                    'data-data' => '{"status": "' . Status::COMPLETED . '"}',
+                    'data-toggle' => 'tooltip',
+                    'title' => Yii::t('backend', 'Mark as {status}', ['status' => Status::COMPLETED]),
+                ]);
+
                 echo Yii::t('backend', 'Order #{id}', ['id' => $model->id]);
                 if ($model->status === Status::PENDING || $model->status === Status::WAITING) {
-                    echo Html::a(FA::i('check') . Yii::t('backend', 'Complete'), ['mark', 'id' => $model->id], [
-                        'class' => 'btn btn-success btn-post pull-right ml-1',
-                        'data-data' => '{"status": "' . Status::COMPLETED . '"}',
+                    echo $completeBtn;
+                    echo Html::a(FA::i('send') . Yii::t('backend', 'Shipped'), ['mark', 'id' => $model->id], [
+                        'class' => 'btn btn-primary btn-post pull-right ml-1',
+                        'data-data' => '{"status": "' . Status::SHIPPED . '"}',
                         'data-toggle' => 'tooltip',
-                        'title' => Yii::t('backend', 'Mark as {status}', ['status' => Status::COMPLETED]),
+                        'title' => Yii::t('backend', 'Mark as {status}', ['status' => Status::SHIPPED]),
                     ]);
                     echo Html::a(FA::i('times') . Yii::t('backend', 'Cancel'), ['mark', 'id' => $model->id], [
                         'class' => 'btn btn-danger btn-post pull-right',
@@ -54,6 +62,10 @@ $this->registerJsFile("{$themeUrl}/js/photo-print.js", ['depends' => ThemeAsset:
                         'data-toggle' => 'tooltip',
                         'title' => Yii::t('backend', 'Mark as {status}', ['status' => Status::CANCELED]),
                     ]);
+                }
+
+                if ($model->status === Status::SHIPPED) {
+                    echo $completeBtn;
                 }
             ?>
             </div>
