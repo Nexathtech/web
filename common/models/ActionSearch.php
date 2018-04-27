@@ -96,7 +96,9 @@ class ActionSearch extends Action
 
         $query->andFilterWhere(['like', 'promo_code', $this->promo_code]);
         // filter by user's email
-        $query->andWhere('profile.name LIKE "%' . $this->getAttribute('user.profile.name') . '%" OR profile.surname LIKE "%' . $this->getAttribute('user.profile.name') . '%"');
+        if (!empty($this->getAttribute('user.profile.name'))) {
+            $query->andWhere("profile.name LIKE '%{$this->getAttribute('user.profile.name')}%' OR profile.surname LIKE '%{$this->getAttribute('user.profile.name')}%' OR profile.user_id = '{$this->getAttribute('user.profile.name')}'");
+        }
 
         // filter by expires date range
         if (!empty($this->created_at) && strpos($this->created_at, ' - ') !== false) {

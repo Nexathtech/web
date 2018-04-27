@@ -1,5 +1,6 @@
 <?php
 
+use kodi\common\enums\action\Type;
 use kodi\common\enums\user\Status;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
@@ -80,6 +81,21 @@ $this->params['breadcrumbs'] = [
                                         $result .= Html::beginTag('div');
                                         $result .= Html::tag('strong', $setting->title);
                                         $result .= ": {$setting->value}";
+                                        $result .= Html::endTag('div');
+                                    }
+
+                                    return $result;
+                                }
+                            ],
+                            [
+                                'label' => Yii::t('backend', 'Actions'),
+                                'format' => 'html',
+                                'value' => function($data) {
+                                    $actionTypes = Type::listData();
+                                    $result = '';
+                                    foreach ($data->actions as $action) {
+                                        $result .= Html::beginTag('div');
+                                        $result .= Html::a("{$action->id} ({$actionTypes[$action->action_type]})", ['/action/view', 'id' => $action->id]);
                                         $result .= Html::endTag('div');
                                     }
 

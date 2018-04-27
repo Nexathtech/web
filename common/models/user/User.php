@@ -39,6 +39,7 @@ use yii\web\IdentityInterface;
  * @property Profile $profile
  * @property Device[] $devices
  * @property Settings[] $settings
+ * @property Action[] $actions
  *
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -233,6 +234,15 @@ class User extends ActiveRecord implements IdentityInterface
     public function getSettings()
     {
         return $this->hasMany(Settings::class, ['user_id' => 'id'])
+            ->inverseOf('user');
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getActions()
+    {
+        return $this->hasMany(Action::class, ['user_id' => 'id'])
             ->inverseOf('user');
     }
 
