@@ -60,26 +60,26 @@ navButton.forEach(function (elem) {
         </div>
         <div class="facts hide">
             <div class="fact">
-                <div class="title">date</div>
+                <div class="title"><?= Yii::t('frontend', 'date') ?></div>
                 <div class="bottom-separator"></div>
                 <div class="description">
-                    <p>September 2017</p>
+                    <p><?= Yii::t('frontend', 'September') ?> 2017</p>
                 </div>
             </div>
             <div class="fact">
-                <div class="title">founders</div>
+                <div class="title"><?= Yii::t('frontend', 'founders') ?></div>
                 <div class="bottom-separator"></div>
                 <div class="description">
-                    <p>Alessandro Specchio - Director & Founder</p>
+                    <p>Alessandro Specchio - CEO & Founder</p>
                     <p>Ivan Specchio - Lead Design & Co-founder</p>
                 </div>
             </div>
             <div class="fact">
-                <div class="title">headquarters</div>
+                <div class="title"><?= Yii::t('frontend', 'headquarters') ?></div>
                 <div class="bottom-separator"></div>
                 <div class="description">
-                    <p>Rome, Italy</p>
-                    <p>Saint Petesburg, Russia</p>
+                    <p><?= Yii::t('frontend', 'Rome, Italy') ?></p>
+                    <p><?= Yii::t('frontend', 'Saint Petesburg, Russia') ?></p>
                 </div>
             </div>
             <div class="fact">
@@ -88,13 +88,14 @@ navButton.forEach(function (elem) {
                 <div class="description">
                     <p>Osvaldo Glatt</p>
                     <p>Clinton Donnelly</p>
+                    <p>Ren Moulton</p>
                 </div>
             </div>
             <div class="fact">
-                <div class="title">products</div>
+                <div class="title"><?= Yii::t('frontend', 'products') ?></div>
                 <div class="bottom-separator"></div>
                 <div class="description">
-                    <p>KodiPlus - Free</p>
+                    <p>KodiPlus - <?= Yii::t('frontend', 'Free') ?></p>
                 </div>
             </div>
         </div>
