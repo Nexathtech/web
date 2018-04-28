@@ -112,7 +112,7 @@ Controllare la posta sarà un piacere maggiore.',
     'Your request was successfully sent.' => 'La tua richiesta e\' stata inviata correttamente ',
     'Your message was successfully sent.' => 'Il tuo messaggio e\' stato inviato correttamente',
 
-    'date' => 'datta',
+    'date' => 'data',
     'September' => 'Settembre',
     'founders' => 'fondatori',
     'headquarters' => 'sedi',
