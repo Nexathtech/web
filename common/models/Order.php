@@ -184,11 +184,13 @@ class Order extends ActiveRecord
         } else {
             // Send email to user if status of the order changed
             if ($this->status !== $this->getOldAttribute('status')) {
-                $template = 'payment/status-changed';
-                if ($this->type === OrderType::PHOTO) {
-                    $template = 'payment/photo-status-changed';
+                if ($this->status === Status::SHIPPED) {
+                    $template = 'payment/status-changed';
+                    if ($this->type === OrderType::PHOTO) {
+                        $template = 'payment/photo-status-changed';
+                    }
+                    $this->sendEmail($template, $this->getAttributes(), $this->email);
                 }
-                $this->sendEmail($template, $this->getAttributes(), $this->email);
             }
         }
 

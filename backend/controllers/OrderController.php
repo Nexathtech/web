@@ -154,10 +154,12 @@ class OrderController extends BaseController
             'message' => Yii::t('backend', 'An error occurred.'),
         ];
 
-        if (Order::deleteAll(['status' => OrderStatus::CANCELED])) {
-            $response['status'] = AlertType::SUCCESS;
-            $response['message'] = Yii::t('backend', 'Cancelled orders has been successfully deleted.');
+        $orders = Order::findAll(['status' => OrderStatus::CANCELED]);
+        foreach ($orders as $order) {
+            Order::findOne(['id' => $order->id])->delete();
         }
+        $response['status'] = AlertType::SUCCESS;
+        $response['message'] = Yii::t('backend', 'Cancelled orders has been successfully deleted.');
 
         Yii::$app->session->addFlash($response['status'], ['message' => $response['message']]);
         return $this->redirect(['index']);
@@ -174,10 +176,11 @@ class OrderController extends BaseController
         ];
 
         $orders = explode(',', Yii::$app->request->getBodyParam('data'));
-        if (Order::deleteAll(['id' => $orders])) {
-            $response['status'] = AlertType::SUCCESS;
-            $response['message'] = Yii::t('backend', 'Selected orders has been successfully deleted.');
+        foreach ($orders as $id) {
+            Order::findOne(['id' => $id])->delete();
         }
+        $response['status'] = AlertType::SUCCESS;
+        $response['message'] = Yii::t('backend', 'Selected orders has been successfully deleted.');
 
         Yii::$app->session->addFlash($response['status'], ['message' => $response['message']]);
         return $this->redirect(['index']);
@@ -225,10 +228,17 @@ class OrderController extends BaseController
 
         if (!empty($status) && in_array($status, array_keys(OrderStatus::listData()))) {
             $orders = explode(',', Yii::$app->request->getBodyParam('data'));
-            if (Order::updateAll(['status' => $status], ['id' => $orders])) {
+            foreach ($orders as $id) {
+                $order = Order::findOne(['id' => $id]);
+                $order->status = $status;
+                $order->save(false);
+            }
+            $response['status'] = AlertType::SUCCESS;
+            $response['message'] = Yii::t('backend', 'Selected orders has been successfully updated.');
+            /*if (Order::updateAll(['status' => $status], ['id' => $orders])) {
                 $response['status'] = AlertType::SUCCESS;
                 $response['message'] = Yii::t('backend', 'Selected orders has been successfully updated.');
-            }
+            }*/
         }
 
         Yii::$app->session->addFlash($response['status'], ['message' => $response['message']]);
