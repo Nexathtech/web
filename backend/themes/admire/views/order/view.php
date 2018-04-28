@@ -129,6 +129,7 @@ $this->registerJsFile("{$themeUrl}/js/photo-print.js", ['depends' => ThemeAsset:
                             [
                                 'label' => Yii::t('frontend', 'Photos'),
                                 'format' => 'html',
+                                'contentOptions' => ['class' => 'photos-row'],
                                 'value' => function($data) use ($adImages) {
                                     /* @var $data \kodi\common\models\Order */
                                     $html = '';

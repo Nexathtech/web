@@ -13,3 +13,7 @@
 .has-error {
   color: #ff6666 !important;
 }
+
+.photos-row {
+  background: #eceeef;
+}
