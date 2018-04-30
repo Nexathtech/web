@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $confirmationUrl string Absolute url */
 
 $homeUrl = str_replace('api.', '', Url::home(true));
-$homeUrl = str_replace('backend.', '', Url::home(true));
+$homeUrl = str_replace('backend.', '', $homeUrl);
 ?>
 
 <div class="thank-preset" style="padding-top: 20px;background: #aeceed;text-align: center;">

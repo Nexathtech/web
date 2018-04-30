@@ -6,7 +6,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 
 $homeUrl = str_replace('api.', '', Url::home(true));
-$homeUrl = str_replace('backend.', '', Url::home(true));
+$homeUrl = str_replace('backend.', '', $homeUrl);
 ?>
 
 <div class="thank-preset" style="padding-top: 20px;background: #412774;text-align: center;">
