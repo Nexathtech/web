@@ -1,39 +1,20 @@
-var initWidgets = function(printsData, salesData) {
-  console.log(printsData);
-  console.log(salesData);
+var initWidgets = function(printsData, salesData, usersData, devicesData) {
 
   /* Prints chart */
-  var barParentdiv = $('#prints-chart').closest('div');
-  var barCount = printsData.latest.digits;
-  var barSpacing = 2;
-  $('#prints-chart').sparkline(barCount, {
-    type: 'bar',
-    width: '100%',
-    barWidth: (barParentdiv.width() - (barCount.length * barSpacing)) / barCount.length,
-    height: '50',
-    barSpacing: barSpacing,
-    barColor: '#9bd5ff',
-    tooltipFormat: '<strong>{{offset:offset}}</strong>: {{value}} prints',
-    tooltipValueLookups: {
-      'offset': printsData.latest.labels
-    }
-  });
+  var dataElement = $('#prints-chart').closest('div');
+  $('#prints-chart').sparkline(printsData.latest.digits, sparklineOptions(dataElement, printsData, 'prints'));
 
   /* Sales chart */
-  var salesParentdiv = $('#sales-chart').closest('div');
-  var salesCount = salesData.latest.digits;
-  $('#sales-chart').sparkline(salesCount, {
-    type: 'bar',
-    width: '100%',
-    barWidth: (salesParentdiv.width() - (salesCount.length * barSpacing)) / salesCount.length,
-    height: '50',
-    barSpacing: barSpacing,
-    barColor: '#9bd5ff',
-    tooltipFormat: '<strong>{{offset:offset}}</strong>: {{value}} sales',
-    tooltipValueLookups: {
-      'offset': salesData.latest.labels
-    }
-  });
+  dataElement = $('#sales-chart').closest('div');
+  $('#sales-chart').sparkline(salesData.latest.digits, sparklineOptions(dataElement, salesData, 'sales'));
+
+  /* Users chart */
+  dataElement = $('#users-chart').closest('div');
+  $('#users-chart').sparkline(usersData.latest.digits, sparklineOptions(dataElement, usersData, 'users'));
+
+  /* Devices chart */
+  dataElement = $('#devices-chart').closest('div');
+  $('#devices-chart').sparkline(devicesData.latest.digits, sparklineOptions(dataElement, devicesData, 'devices'));
 
   /* CountUp */
   var options = {
@@ -45,9 +26,11 @@ var initWidgets = function(printsData, salesData) {
   };
   new CountUp('widget_countup1', 0, printsData.total, 0, 4.0, options).start();
   new CountUp("widget_countup2", 0, salesData.total, 0, 4.0, options).start();
+  new CountUp("widget_countup3", 0, usersData.total, 0, 4.0, options).start();
+  new CountUp("widget_countup4", 0, devicesData.total, 0, 4.0, options).start();
 
   /* Flip top widgets on hover */
-  $("#top_widget1, #top_widget2").flip({
+  $("#top_widget1, #top_widget2, #top_widget3, #top_widget4").flip({
     axis: 'x',
     trigger: 'hover'
   });
@@ -128,3 +111,21 @@ var initWidgets = function(printsData, salesData) {
   });
 
 };
+
+function sparklineOptions(dataElement, data, label) {
+  var barSpacing = 2;
+  var salesCount = data.latest.digits;
+
+  return {
+    type: 'bar',
+    width: '100%',
+    barWidth: (dataElement.width() - (salesCount.length * barSpacing)) / salesCount.length,
+    height: '50',
+    barSpacing: barSpacing,
+    barColor: '#9bd5ff',
+    tooltipFormat: '<strong>{{offset:offset}}</strong>: {{value}} ' + label,
+    tooltipValueLookups: {
+      'offset': data.latest.labels
+    }
+  };
+}

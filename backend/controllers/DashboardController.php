@@ -4,7 +4,12 @@ namespace kodi\backend\controllers;
 
 use Carbon\Carbon;
 use kodi\common\enums\action\Type;
+use kodi\common\enums\user\Status;
 use kodi\common\models\Action;
+use kodi\common\models\device\Device;
+use kodi\common\models\Order;
+use kodi\common\models\user\User;
+use yii\db\Expression;
 use yii\helpers\Json;
 use yii\web\ErrorAction;
 
@@ -38,82 +43,139 @@ final class DashboardController extends BaseController
     public function actionIndex()
     {
         $daysLimit = 30;
-        $prints = Action::find()->where(['or', ['action_type' => Type::PRINT], ['action_type' => Type::PRINT_SHIPMENT]])->all();
-        $lastDaysPrints = Action::find()->select('DATE(created_at) created_at, COUNT(id) id, data')->where(['or', ['action_type' => Type::PRINT], ['action_type' => Type::PRINT_SHIPMENT]])->orderBy('created_at DESC')->groupBy('DATE(created_at), id')->limit($daysLimit)->all();
-        $lastDaysPrints = array_reverse($lastDaysPrints);
-        $printSalesData = $this->getPrintSalesData($prints, $lastDaysPrints, $daysLimit);
+        $ordersAmount = Order::find()->count();
+        $latestOrders = Order::find()->where(['>=', 'created_at', new Expression("NOW() - INTERVAL {$daysLimit} DAY")])->asArray()->all();
+        $usersAmount = User::find()->where(['status' => Status::ACTIVE])->count();
+        $latestUsers = User::find()->where(['status' => Status::ACTIVE])->andWhere(['>=', 'created_at', new Expression("NOW() - INTERVAL {$daysLimit} DAY")])->asArray()->all();
+        $devicesAmount = Device::find()->where(['status' => Status::ACTIVE])->count();
+        $latestDevices = Device::find()->where(['status' => Status::ACTIVE])->andWhere(['>=', 'created_at', new Expression("NOW() - INTERVAL {$daysLimit} DAY")])->asArray()->all();
 
         return $this->render('index', [
-            'printsData' => $printSalesData['prints'],
-            'salesData' => $printSalesData['sales'],
+            'printsData' => $this->getPrintsData(),
+            'salesData' => $this->getData($latestOrders, $ordersAmount, $daysLimit),
+            'usersData' => $this->getData($latestUsers, $usersAmount, $daysLimit),
+            'devicesData' => $this->getData($latestDevices, $devicesAmount, $daysLimit),
             'feedbacksData' => $this->getFeedbackData(),
         ]);
     }
 
     /**
-     * Returns all sales and prints info in prepared format for dashboard
+     * Prepares data in needed format for dashboard
      *
-     * @param $prints
-     * @param $lastDaysPrints
+     * @param $items
+     * @param $total
      * @param $daysLimit
+     * @param int $comparisonDays
      * @return array
      */
-    public function getPrintSalesData($prints, $lastDaysPrints, $daysLimit)
+    public function getData($items, $total, $daysLimit, $comparisonDays = 7)
     {
-        $sparkSales = [];
-        $sparkPrints = [];
-        $last7DaysPrintsAmount = 0;
-        $last7DaysSalesAmount = 0;
-        $prev7DaysPrintsAmount = 0;
-        $prev7DaysSalesAmount = 0;
+        $sparkData = [
+            'latest' => [
+                'digits' => [],
+                'labels' => [],
+            ],
+            'total' => $total,
+            'comparisonPercentage' => 0,
+        ];
+        $comparisonPrintsAmount = 0;
+        $comparisonLPrintsAmount = 0;
         $begin = new \DateTime(Carbon::now()->subDay($daysLimit - 1)->toDateTimeString());
         $end = new \DateTime(Carbon::now()->toDateTimeString());
-
         $n = 0;
+
         for ($i = $begin; $i <= $end; $i->modify('+1 day')) {
-            $sparkSales['digits'][$n] = 0;
-            $sparkSales['labels'][$n] = $i->format('Y-m-d');
-            $sparkPrints['digits'][$n] = 0;
-            $sparkPrints['labels'][$n] = $i->format('Y-m-d');
-            foreach ($lastDaysPrints as $print) {
-                $createdAt = (new \DateTime($print['created_at']))->format('Y-m-d');
-                $photos = Json::decode($print['data']);
-                if ($i->format('Y-m-d') == $createdAt) {
-                    $sparkSales['digits'][$n] += $print['id'];
-                    $sparkPrints['digits'][$n] += count($photos);
+            $sparkData['latest']['digits'][$n] = 0;
+            $sparkData['latest']['labels'][$n] = $i->format('Y-m-d');
+            foreach ($items as $item) {
+                $createdAt = (new \DateTime($item['created_at']))->format('Y-m-d');
+                if ($i->format('Y-m-d') === $createdAt) {
+                    $sparkData['latest']['digits'][$n]++;
                 }
             }
-            // Count total sales and prints per last 7 days
-            if ($daysLimit - $n <= 7) {
-                $last7DaysSalesAmount += $sparkSales['digits'][$n];
-                $last7DaysPrintsAmount += $sparkPrints['digits'][$n];
+            // Count total sales and prints per last n days
+            if ($daysLimit - $n <= $comparisonDays) {
+                $comparisonPrintsAmount += $sparkData['latest']['digits'][$n];
             }
-            // Count total sales and prints per prev 7 days
-            if ($daysLimit - $n > 7 && $daysLimit - $n <= 14) {
-                $prev7DaysSalesAmount += $sparkSales['digits'][$n];
-                $prev7DaysPrintsAmount += $sparkPrints['digits'][$n];
+            // Count total sales and prints per prev n days
+            if ($daysLimit - $n > $comparisonDays && $daysLimit - $n <= $comparisonDays * 2) {
+                $comparisonLPrintsAmount += $sparkData['latest']['digits'][$n];
             }
             $n++;
         }
+        $comparisonLPrintsAmount = $comparisonLPrintsAmount > 0 ? $comparisonLPrintsAmount : 1;
+        $sparkData['comparisonPercentage'] = intval(($comparisonPrintsAmount - $comparisonLPrintsAmount) / $comparisonLPrintsAmount * 100);
 
-        $totalPrints = 0;
+        return $sparkData;
+    }
+
+    /**
+     * @param int $daysLimit
+     * @param int $comparisonDays
+     * @return array
+     */
+    public function getPrintsData($daysLimit = 30, $comparisonDays = 7)
+    {
+        $sparkPrints = [
+            'latest' => [
+                'digits' => [],
+                'labels' => [],
+            ],
+            'total' => 0,
+            'comparisonPercentage' => 0,
+        ];
+        $comparisonPrintsAmount = 0;
+        $comparisonLPrintsAmount = 0;
+        $prints = Action::find()->where(['or', ['action_type' => Type::PRINT], ['action_type' => Type::PRINT_SHIPMENT]])->asArray()->all();
+        $lastDaysPrints = [];
+
         foreach ($prints as $print) {
+            // Calculate total prints
             $printData = Json::decode($print['data']);
-            $totalPrints += count($printData);
+            if (!empty($printData['images'])) {
+                foreach ($printData['images'] as $img) {
+                    $sparkPrints['total'] += $img['count'];
+                }
+            }
+
+            // Add to latest prints
+            $date = Carbon::createFromFormat('Y-m-d H:i:s', $print['created_at']);
+            if ($date->between(Carbon::now()->subDay($daysLimit), Carbon::now())) {
+                array_push($lastDaysPrints, $print);
+            }
         }
 
-        return [
-            'prints' => [
-                'total' => $totalPrints,
-                'latest' => $sparkPrints,
-                'weeklyPercentage' => ($last7DaysPrintsAmount == 0 || $prev7DaysPrintsAmount == 0) ? 0 : intval($last7DaysPrintsAmount / $prev7DaysPrintsAmount * 100),
-            ],
-            'sales' => [
-                'total' => count($prints),
-                'latest' => $sparkSales,
-                'weeklyPercentage' => ($last7DaysSalesAmount == 0 || $prev7DaysSalesAmount == 0) ? 0 : intval($last7DaysSalesAmount / $prev7DaysSalesAmount * 100),
-            ],
-        ];
+        $begin = new \DateTime(Carbon::now()->subDay($daysLimit - 1)->toDateTimeString());
+        $end = new \DateTime(Carbon::now()->toDateTimeString());
+        $n = 0;
+        for ($i = $begin; $i <= $end; $i->modify('+1 day')) {
+            $sparkPrints['latest']['digits'][$n] = 0;
+            $sparkPrints['latest']['labels'][$n] = $i->format('Y-m-d');
+            foreach ($lastDaysPrints as $print) {
+                $createdAt = (new \DateTime($print['created_at']))->format('Y-m-d');
+                if ($i->format('Y-m-d') === $createdAt) {
+                    $printData = Json::decode($print['data']);
+                    if (!empty($printData['images'])) {
+                        foreach ($printData['images'] as $img) {
+                            $sparkPrints['latest']['digits'][$n] += $img['count'];
+                        }
+                    }
+                }
+            }
+            // Count total sales and prints per last n days
+            if ($daysLimit - $n <= $comparisonDays) {
+                $comparisonPrintsAmount += $sparkPrints['latest']['digits'][$n];
+            }
+            // Count total sales and prints per prev n days
+            if ($daysLimit - $n > $comparisonDays && $daysLimit - $n <= $comparisonDays * 2) {
+                $comparisonLPrintsAmount += $sparkPrints['latest']['digits'][$n];
+            }
+            $n++;
+        }
+        $comparisonLPrintsAmount = $comparisonLPrintsAmount > 0 ? $comparisonLPrintsAmount : 1;
+        $sparkPrints['comparisonPercentage'] = intval(($comparisonPrintsAmount - $comparisonLPrintsAmount) / $comparisonLPrintsAmount * 100);
+
+        return $sparkPrints;
     }
 
     /**

@@ -16,6 +16,8 @@ use yii\helpers\Json;
  * @var array $printsData
  * @var array $salesData
  * @var array $feedbacksData
+ * @var array $usersData
+ * @var array $devicesData
  */
 
 
@@ -36,8 +38,10 @@ $this->registerCssFile("{$themeUrl}/css/pages/dashboard.css", [
 ]);
 $printsDataEncoded = Json::encode($printsData);
 $salesDataEncoded = Json::encode($salesData);
+$usersDataEncoded = Json::encode($usersData);
+$devicesDataEncoded = Json::encode($devicesData);
 $this->registerJs("
-  initWidgets({$printsDataEncoded}, {$salesDataEncoded});
+  initWidgets({$printsDataEncoded}, {$salesDataEncoded}, {$usersDataEncoded}, {$devicesDataEncoded});
 ");
 ?>
 
@@ -56,7 +60,7 @@ $this->registerJs("
                             <div class="user_font"><?= Yii::t('backend', 'Prints'); ?></div>
                             <div id="widget_countup1"><?= $printsData['total']; ?></div>
                             <div class="previous_font">
-                                <strong><?= $printsData['weeklyPercentage']; ?>%</strong>
+                                <strong><?= $printsData['comparisonPercentage']; ?>%</strong>
                                 <?= Yii::t('backend', 'Weekly Prints stats') ?>
                             </div>
                         </div>
@@ -92,7 +96,7 @@ $this->registerJs("
                             <div class="user_font"><?= Yii::t('backend', 'Sales'); ?></div>
                             <div id="widget_countup2"><?= $salesData['total']; ?></div>
                             <div class="previous_font">
-                                <strong><?= $salesData['weeklyPercentage'] ?>%</strong>
+                                <strong><?= $salesData['comparisonPercentage'] ?>%</strong>
                                 <?= Yii::t('backend', 'Sales per week') ?>
                             </div>
                         </div>
@@ -116,41 +120,80 @@ $this->registerJs("
                         </div>
                     </div>
                 </div>
-
             </div>
-            <div class="col-xs-12 col-sm-6 col-xl-3 media_max_1199">
+
+            <div class="col-xs-12 col-sm-6 col-xl-3 media_max_573">
                 <div id="top_widget3">
+                    <div class="front">
+                        <div class="bg-info p-d-15 b_r_5">
+                            <div class="float-xs-right m-t-5">
+                                <i class="fa fa-users"></i>
+                            </div>
+                            <div class="user_font"><?= Yii::t('backend', 'Users'); ?></div>
+                            <div id="widget_countup3"><?= $usersData['total']; ?></div>
+                            <div class="previous_font">
+                                <strong><?= $usersData['comparisonPercentage'] ?>%</strong>
+                                <?= Yii::t('backend', 'Users per week') ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="back">
+                        <div class="bg-white b_r_5 section_border">
+                            <div class="p-t-l-r-15">
+                                <div class="float-xs-right m-t-5 text-success">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                                <div id="widget_countup32"><?= $usersData['total']; ?></div>
+                                <div><?= Yii::t('backend', 'Total users'); ?></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <span id="users-chart"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-xl-3 media_max_573">
+                <div id="top_widget4">
                     <div class="front">
                         <div class="bg-warning p-d-15 b_r_5">
                             <div class="float-xs-right m-t-5">
-                                <i class="fa fa-comments-o"></i>
+                                <i class="fa fa-android"></i>
                             </div>
-                            <div class="user_font">Comments</div>
-                            <div id="widget_countup3">85</div>
-                            <div class="tag-white ">
-                                <span id="percent_count3">30</span>%
+                            <div class="user_font"><?= Yii::t('backend', 'Devices'); ?></div>
+                            <div id="widget_countup4"><?= $devicesData['total']; ?></div>
+                            <div class="previous_font">
+                                <strong><?= $devicesData['comparisonPercentage'] ?>%</strong>
+                                <?= Yii::t('backend', 'Devices per week') ?>
                             </div>
-                            <div class="previous_font">Monthly comments</div>
+                        </div>
+                    </div>
+
+                    <div class="back">
+                        <div class="bg-white b_r_5 section_border">
+                            <div class="p-t-l-r-15">
+                                <div class="float-xs-right m-t-5 text-success">
+                                    <i class="fa fa-android"></i>
+                                </div>
+                                <div id="widget_countup42"><?= $devicesData['total']; ?></div>
+                                <div><?= Yii::t('backend', 'Total devices'); ?></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <span id="devices-chart"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-            <div class="col-xs-12 col-sm-6 col-xl-3 media_max_1199">
-                <div id="top_widget4">
-                    <div class="front">
-                        <div class="bg-danger p-d-15 b_r_5">
-                            <div class="float-xs-right m-t-5">
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <div class="user_font"><?= Yii::t('backend', 'Rating'); ?></div>
-                            <div id="widget_countup4"><?= $feedbacksData['avg']; ?></div>
-                            <div><?= Yii::t('backend', 'Average value'); ?></div>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
         </div>
 
         <div class="row m-t-35">
