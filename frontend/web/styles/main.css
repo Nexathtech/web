@@ -3355,10 +3355,11 @@ img.m-sword {
 
 .p-pl-title p {
     margin: 0;
+    line-height: 40px;
 }
 .p-pl-title span {
     font-size: 20px;
-    color: #fff;
+    color: #ededed;
 }
 
 .people-jump {
