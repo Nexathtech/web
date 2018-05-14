@@ -77,7 +77,7 @@ function prepareContent(section) {
                 <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
                 <div class="row">
                     <?= $form->field($model, 'body')->textarea([
-                        'placeholder' => Yii::t('frontend', 'enter your text here'),
+                        'placeholder' => Yii::t('frontend', 'write your message'),
                     ])->label(false); ?>
                 </div>
                 <div class="row align-right">

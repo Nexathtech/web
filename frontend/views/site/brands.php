@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
  */
 
 
-$this->title = Yii::t('frontend', 'Brands');
+$this->title = Yii::t('frontend', 'Kodi Plus - Play Different');
 $this->registerMetaTag(['content' => Yii::t('frontend', 'An innovative and advanced advertisement model, able to reach people in a new and surprising way. Discover all the opportunities to promote your brand easily.'), 'name' => 'description']);
 $this->params['breadcrumbs'][] = $this->title;
 

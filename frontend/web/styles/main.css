@@ -3356,6 +3356,10 @@ img.m-sword {
 .p-pl-title p {
     margin: 0;
 }
+.p-pl-title span {
+    font-size: 20px;
+    color: #fff;
+}
 
 .people-jump {
     position: relative;

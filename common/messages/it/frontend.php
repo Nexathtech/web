@@ -37,8 +37,7 @@ Controllare la posta sarà un piacere maggiore.',
     'your shop can become a smart shop.{br}Find out how' => 'diventa un kodi point e scopri tutti i vantaggi che potrai avere.',
     'The only application that does not require any login to print your photos directly from the social media you prefer. Print an indelible moment or give a special memory making a surprise to your beloved and receive wherever you want. Oh I forgot: NO shipping costs, NO printing costs. Totally FREE.' => 'L’unica applicazione che non richiede alcun login per stampare le tue foto direttamente dai social media che preferisci. Stampa un momento indelebile o regala un ricordo speciale senza farti scoprire e ricevi ovunque tu vuoi. Ah dimenticavo: NO costi di spedizione, NO costi di stampa. Totalmente FREE.',
 
-    '10 photo prints a month for free, Really' => '10 foto al mese gratis, Davvero',
-    'Simple, fast, fun, KodiPlus' => 'Semplice, veloce, divertente, KodiPlus',
+    'print 10 photos for free a month with KodiPlus' => 'stampa gratis 10 foto al mese con l’app KodiPlus',
     'Print your photos' => 'Stampare le tue foto',
     'has become a game:' => 'è diventato un gioco:',
     'with kodiplus only a few clicks are enough.' => 'con kodiplus bastano solo pochi click.',
@@ -97,7 +96,7 @@ Controllare la posta sarà un piacere maggiore.',
     'if you need some information, If you want Just to say hi, or if you wish to to know our favorite pizza, just fill in the form on the left and submit your request.' => 'Se hai bisogno di qualsiasi informazione, vuoi sapere la nostra pizza preferita, o vuoi semplicemente mandarci un saluto, non esitare a riempire il modulo a sinistra e inviarci la tua richiesta.',
     'Dear Kodi' => 'Caro Kodi',
     'your email' => 'la tua email',
-    'enter your text here' => 'inserisci la tua testo',
+    'write your message' => 'inserisci il tuo messaggio',
 
     'An innovative and advanced advertisement model, able to reach people in a new and surprising way. Discover all the opportunities to promote your brand easily.' => 'Un modello di pubblicità innovativo ed evoluto, che arriva direttamente al cliente in una maniera del tutto diversa e sorprendente. Diffondi il tuo brand facilmente,  e scopri tutte le opportunità.',
 

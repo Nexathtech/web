@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
  * @see \kodi\frontend\controllers\SiteController::actionView()
  */
 
-$this->title = Yii::t('frontend', 'Kodi Plus - Play your memories');
+$this->title = Yii::t('frontend', 'Kodi Plus - Your memories are Plus');
 $this->params['breadcrumbs'][] = $this->title;
 $metaDesc = Yii::t('frontend', 'The only application that does not require any login to print your photos directly from the social media you prefer. Print an indelible moment or give a special memory making a surprise to your beloved and receive wherever you want. Oh I forgot: NO shipping costs, NO printing costs. Totally FREE.');
 $this->registerMetaTag(['content' => $metaDesc, 'name' => 'description']);
@@ -30,8 +30,8 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
 
 <div class="page-plus">
     <div class="p-pl-title">
-        <p><?= Yii::t('frontend', '10 photo prints a month for free, Really') ?></p>
-        <p><?= Yii::t('frontend', 'Simple, fast, fun, KodiPlus') ?></p>
+        <p><?= Yii::t('frontend', 'Your memories are Plus.') ?></p>
+        <span><?= Yii::t('frontend', 'print 10 photos for free a month with KodiPlus') ?></span>
     </div>
     <div class="people-jump"></div>
     <div class="p-p-heading">
