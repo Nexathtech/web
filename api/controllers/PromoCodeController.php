@@ -2,11 +2,10 @@
 namespace kodi\api\controllers;
 
 use app\components\auth\KodiAuth;
-use Carbon\Carbon;
 use kodi\api\components\Controller;
-use kodi\common\enums\PromoCodeStatus;
+use kodi\common\enums\promocode\Status as PromoCodeStatus;
 use kodi\common\enums\SocialUserType;
-use kodi\common\models\PromoCode;
+use kodi\common\models\promocode\PromoCode;
 use kodi\common\models\SocialUser;
 use Yii;
 use yii\base\ErrorException;
@@ -89,7 +88,7 @@ class PromoCodeController extends Controller
     }
 
     /**
-     * Verifies and use promo code
+     * Verifies und uses specified promo code
      *
      * @param $id
      * @return PromoCode
@@ -97,15 +96,10 @@ class PromoCodeController extends Controller
      */
     public function actionUse($id)
     {
-        $promoCode = PromoCode::findOne([
-            'code' => $id,
-            'status' => PromoCodeStatus::NEW,
-        ]);
+        $promoCode = PromoCode::findOne(['code' => $id]);
 
-        if (!empty($promoCode) && $promoCode->expires_at > Carbon::now()->toDateTimeString()) {
-            $promoCode->status = PromoCodeStatus::USED;
-            $promoCode->save(false);
-
+        if (!empty($promoCode) && $promoCode->isValid()) {
+            $promoCode->use();
             return $promoCode;
         } else {
             throw new NotFoundHttpException(Yii::t('api', 'Invalid promo code.'));

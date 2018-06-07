@@ -8,10 +8,8 @@ use kodi\common\enums\action\Type;
 use kodi\common\enums\order\OrderType;
 use kodi\common\enums\order\PaymentType;
 use kodi\common\enums\order\Status as PaymentStatus;
-use kodi\common\enums\PromoCodeStatus;
 use kodi\common\models\Action;
 use kodi\common\models\Order;
-use kodi\common\models\PromoCode;
 use kodi\common\models\user\Profile;
 use kodi\common\models\user\User;
 use Yii;
@@ -71,7 +69,7 @@ class ActionController extends Controller
         }
 
         if ($model->action_type === Type::PRINT_SHIPMENT) {
-            // Limit free shipment to allowed per a user
+            // Limit free shipment to allowed amount per the user
             $printsLimit = $user->getSetting('users_max_prints_amount', 1);
             $printsAmount = 0;
             $prints = Action::getUserRecentPrints($model->user_id);
@@ -87,20 +85,11 @@ class ActionController extends Controller
             }
 
             if ($printsAmount >= $printsLimit) {
-                throw new ForbiddenHttpException(Yii::t('api', 'You have already been used maximum free prints this month. '));
+                throw new ForbiddenHttpException(Yii::t('api', 'You have already been used maximum free prints this month.'));
             }
         }
 
         if ($model->save()) {
-            if ($code = ArrayHelper::getValue($params, 'promo_code')) {
-                // Update promo code in case the action was related with promo code
-                $promoCode = PromoCode::findOne(['code' => $code]);
-                if (!empty($promoCode) && $promoCode->status !== PromoCodeStatus::USED) {
-                    $promoCode->status = PromoCodeStatus::USED;
-                    $promoCode->save(false);
-                }
-            }
-
             // Now update profile info if empty
             $this->updateProfile($user->profile, $details);
 

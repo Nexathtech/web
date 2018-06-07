@@ -380,18 +380,21 @@ Response:
 
 - **/promo-code/use**
 Request `GET /promo-code/use/{promo_code}`:  
+Where `promo_code` param is case independent  
 Response:  
 ```
 {
     "success": true,
     "data": {
-        "id": 1,
-        "code": "66764",
-        "identity_id": null,
-        "description": "This is a test promocode",
-        "status": "Used",
-        "created_at": "2018-03-16 15:53:59",
-        "expires_at": "2018-03-17 15:53:59"
+        "id": 2,
+        "code": "ITSPLUS",
+        "identity_id": "",
+        "description": "A Promo code which allows additional prints",
+        "type": "Extended",
+        "data": "{'additional_prints':5}",
+        "status": "New",
+        "created_at": "2018-06-07 13:10:10",
+        "expires_at": "2018-06-30 00:00:00"
     }
 }
 ```

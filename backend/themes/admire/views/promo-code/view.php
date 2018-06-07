@@ -1,6 +1,6 @@
 <?php
 
-use kodi\common\enums\PromoCodeStatus;
+use kodi\common\enums\promocode\Status as PromoCodeStatus;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -9,7 +9,7 @@ use yii\widgets\DetailView;
  * The view file for the "List promo codes" page.
  *
  * @var \yii\web\View $this
- * @var \kodi\common\models\PromoCode $model
+ * @var \kodi\common\models\promocode\PromoCode $model
  *
  * @see \kodi\backend\controllers\PromoCodeController::actionView()
  */
@@ -40,10 +40,16 @@ $this->params['breadcrumbs'] = [
                                 'attribute' => 'identity_id',
                                 'label' => Yii::t('backend', 'Social user'),
                                 'format' => 'raw',
-                                'value' => Html::a($model->identity->name, $model->identity->profile_url, ['target' => '_blank']),
+                                'value' => function ($model) {
+                                    if (!empty($model->identity_id)) {
+                                        return Html::a($model->identity->name, $model->identity->profile_url, ['target' => '_blank']);
+                                    }
+                                }
                             ],
                             'code',
                             'description',
+                            'data',
+                            'type',
                             [
                                 'label' => $model->getAttributeLabel('status'),
                                 'format' => 'html',

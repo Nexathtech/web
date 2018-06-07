@@ -3,7 +3,8 @@
 use kartik\daterange\DateRangePicker;
 use kodi\backend\themes\admire\widgets\grid\ActionColumn;
 use kodi\backend\themes\admire\widgets\grid\GridView;
-use kodi\common\enums\PromoCodeStatus;
+use kodi\common\enums\promocode\Status as PromoCodeStatus;
+use kodi\common\enums\promocode\Type;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\FormatConverter;
 use yii\helpers\Html;
@@ -13,7 +14,7 @@ use yii\helpers\Url;
  * The view file for the "List promo codes" page.
  *
  * @var \yii\web\View $this
- * @var \kodi\common\models\PromoCodeSearch $searchModel
+ * @var \kodi\common\models\promocode\search\PromoCode $searchModel
  * @var \yii\data\ActiveDataProvider $dataProvider
  *
  * @see \kodi\backend\controllers\PromoCodeController::actionIndex()
@@ -94,6 +95,12 @@ $dateRangePickerEvents = [
                                 }
                             ],
                             'code',
+                            'description',
+                            [
+                                'attribute' => 'type',
+                                'format' => 'raw',
+                                'filter' => Type::listData(),
+                            ],
                             [
                                 'attribute' => 'status',
                                 'format' => 'raw',

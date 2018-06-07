@@ -1,7 +1,9 @@
 <?php
 
-namespace kodi\common\models;
+namespace kodi\common\models\promocode\search;
 
+use kodi\common\models\promocode\PromoCode as PromoCodeModel;
+use kodi\common\models\SocialUser;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
@@ -11,7 +13,7 @@ use yii\db\ActiveQuery;
  * =====================
  *
  */
-class PromoCodeSearch extends PromoCode
+class PromoCode extends PromoCodeModel
 {
     /**
      * @return mixed
@@ -31,7 +33,7 @@ class PromoCodeSearch extends PromoCode
     {
         return [
             [['id', 'code'], 'integer'],
-            [['identity_id', 'description', 'status', 'created_at', 'expires_at', 'identity.name'], 'safe'],
+            [['identity_id', 'description', 'status', 'type', 'expires_at', 'identity.name'], 'safe'],
         ];
     }
 
@@ -81,6 +83,7 @@ class PromoCodeSearch extends PromoCode
         $query->andFilterWhere([
             'promoCode.id' => $this->id,
             'promoCode.status' => $this->status,
+            'promoCode.type' => $this->type,
         ]);
 
         $query->andFilterWhere(['like', 'code', $this->code]);

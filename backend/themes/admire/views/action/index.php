@@ -6,11 +6,9 @@ use kodi\backend\themes\admire\widgets\grid\GridView;
 use kodi\common\enums\action\Status;
 use kodi\common\enums\action\Type;
 use kodi\common\enums\DeviceType;
-use kodi\common\enums\PromoCodeStatus;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\FormatConverter;
 use yii\helpers\Html;
-use yii\helpers\Url;
 
 /**
  * The view file for the "List actions" page.

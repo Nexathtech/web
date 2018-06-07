@@ -1,18 +1,18 @@
 <?php
 
-namespace kodi\common\enums;
+namespace kodi\common\enums\promocode;
 
 use kodi\common\enums\base\Enum;
 use kodi\common\enums\base\EnumInterface;
 use Yii;
 
 /**
- * Class `PromoCodeStatus`
- * =======================
+ * Class `Status`
+ * ==============
  *
  * This is a ENUM class that represents supported promo code statuses.
  */
-class PromoCodeStatus extends Enum implements EnumInterface
+class Status extends Enum implements EnumInterface
 {
     const NEW = 'New';
     const USED = 'Used';

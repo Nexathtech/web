@@ -3,8 +3,8 @@
 namespace kodi\backend\controllers;
 
 use kodi\common\enums\AlertType;
-use kodi\common\models\PromoCode;
-use kodi\common\models\PromoCodeSearch;
+use kodi\common\models\promocode\PromoCode;
+use kodi\common\models\promocode\search\PromoCode as PromoCodeSearch;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;

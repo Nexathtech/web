@@ -89,7 +89,7 @@ return [
                     'class' => \yii\rest\UrlRule::class,
                     'controller' => 'promo-code',
                     'pluralize' => false,
-                    'tokens' => ['{id}' => '<id:\\d+>'],
+                    'tokens' => ['{id}' => '<id:\\w+>'],
                     'patterns' => [
                         'GET use/{id}' => 'use',
                     ],

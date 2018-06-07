@@ -26,6 +26,7 @@
         "rmrevin/yii2-fontawesome": "^2.13.0",
         "omnilight/yii2-sweetalert": "^1.0",
         "lavrentiev/yii2-toastr": "^2.0",
+        "kartik-v/yii2-widget-datepicker": "^1.4.3",
         "kartik-v/yii2-date-range": "^1.6",
         "ramsey/uuid": "^3.6",
         "bower-asset/flip": "^1.1",

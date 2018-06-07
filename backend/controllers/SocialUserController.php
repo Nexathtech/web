@@ -2,7 +2,7 @@
 
 namespace kodi\backend\controllers;
 
-use kodi\common\models\PromoCode;
+use kodi\common\models\promocode\PromoCode;
 use kodi\common\models\SocialUserSearch;
 use Yii;
 use yii\filters\VerbFilter;
