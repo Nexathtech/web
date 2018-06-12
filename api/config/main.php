@@ -92,6 +92,7 @@ return [
                     'tokens' => ['{id}' => '<id:\\w+>'],
                     'patterns' => [
                         'GET use/{id}' => 'use',
+                        'POST use/{id}' => 'use',
                     ],
                 ],
             ],
