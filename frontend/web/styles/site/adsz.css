@@ -337,8 +337,7 @@ section.numbers .third span:nth-child(5) {
     transform: scale(0.8); } }
 
 .play {
-  margin-top: 24%;
-  padding: 12% 10% 2%;
+  padding: 36% 10% 2%;
   background-color: #FFCE46;
   font-family: "HKNova", sans-serif;
   text-align: center;
@@ -357,7 +356,7 @@ section.numbers .third span:nth-child(5) {
   -ms-flex-pack: center;
   justify-content: center; }
 .play img {
-  margin-top: -144px;
+  margin-top: 120px;
   position: absolute;
   left: 50%;
   top: 0%;

@@ -28,7 +28,7 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
 ?>
 
 <div class="play">
-    <img src="/images/child-piano.jpg" alt="">
+    <img src="/images/girl-piano.jpg" alt="">
     <div class="text">
         <h2>play different</h2>
         <div class="desc">
@@ -168,20 +168,20 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
         <figure class="type-name">
             <img src="/images/phone.svg">
             <div class="wrap">
-                <img class="screen" src="/images/group.png"
+                <img class="screen" src="/images/app-login.png"
                      data-2750="bottom: 0%"
                      data-3750="bottom: 100%"
                 >
             </div>
             <div class="wrap">
-                <img class="screen" src="/images/2phone.jpg"
+                <img class="screen" src="/images/app-select.png"
                      data-4250="bottom: 0%"
                      data-4750="bottom: 100%"
 
                 >
             </div>
             <div class="wrap">
-                <img class="screen" src="/images/3phone.jpg">
+                <img class="screen" src="/images/app-pack.png">
             </div>
 
         </figure>
