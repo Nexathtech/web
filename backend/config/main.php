@@ -31,7 +31,7 @@ $config = [
         'session' => [
             // this is the name of the session cookie used for login on the backend
             'name' => 'advanced-backend',
-            'timeout' => 60 * 60 * 2, // 2 hours
+            'timeout' => 60 * 60 * 6, // 6 hours
         ],
 
         // Asset manager
