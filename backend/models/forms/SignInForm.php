@@ -82,7 +82,8 @@ class SignInForm extends Model
         if (!$this->validate()) {
             return false;
         }
+        $duration = 60 * 60 * 6; // Session duration
 
-        return Yii::$app->user->login($this->_identity);
+        return Yii::$app->user->login($this->_identity, $duration);
     }
 }
