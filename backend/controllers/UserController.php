@@ -72,6 +72,7 @@ class UserController extends BaseController
      *
      * @param integer $id Record ID.
      * @return mixed
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {
@@ -88,6 +89,8 @@ class UserController extends BaseController
      * If update is successful, the browser will be redirected to the 'index' page.
      * @param integer $id Record ID.
      * @return mixed
+     * @throws NotFoundHttpException
+     * @throws \yii\web\ServerErrorHttpException
      */
     public function actionUpdate($id)
     {
@@ -131,6 +134,7 @@ class UserController extends BaseController
      * Creates new user
      *
      * @return string|\yii\web\Response
+     * @throws \yii\web\ServerErrorHttpException
      */
     public function actionCreate()
     {
@@ -141,9 +145,13 @@ class UserController extends BaseController
         $postData = Yii::$app->request->post();
         if ($model->load($postData) && $profileModel->load($postData)) {
             if ($model->save()) {
+                // Create user's profile
                 $profileModel->user_id = $model->id;
                 $profileModel->photo = $this->uploadFile($profileModel, 'photo');
                 $profileModel->save(false);
+
+                // Create user's settings
+                $model->collectUserSettings();
 
                 // Record saved
                 Yii::$app->session->addFlash(AlertType::SUCCESS, [
@@ -166,6 +174,9 @@ class UserController extends BaseController
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id Record ID.
      * @return mixed
+     * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function actionDelete($id)
     {
@@ -197,6 +208,7 @@ class UserController extends BaseController
      *
      * @param $id
      * @return array
+     * @throws NotFoundHttpException
      */
     public function actionDeletePhoto($id)
     {

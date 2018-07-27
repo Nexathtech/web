@@ -6,6 +6,7 @@ use Exception;
 use kodi\api\components\Controller;
 use kodi\api\models\auth\SignIn;
 use kodi\api\models\auth\SignUp;
+use kodi\common\enums\AccessLevel;
 use kodi\common\enums\DeviceType;
 use kodi\common\enums\Language;
 use kodi\common\enums\Status;
@@ -70,6 +71,8 @@ class AuthController extends Controller
      *
      * @return string|array
      * @throws ForbiddenHttpException
+     * @throws \yii\base\Exception
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionSignIn() {
         $data = Yii::$app->getRequest()->getBodyParams();
@@ -110,7 +113,8 @@ class AuthController extends Controller
              * When user logs in with different valid credentials he will succeed
              * but user info will be returned of original user that is bound to the device initially.
              */
-            return Yii::$app->security->generateToken($model->_identity->getId(), TokenType::ACCESS, $device->id, $expiresIn, true, true);
+            $extendInfoDepth = $device->type === DeviceType::KIOSK ? AccessLevel::CUSTOMER_KIOSK : AccessLevel::CUSTOMER;
+            return Yii::$app->security->generateToken($model->_identity->getId(), TokenType::ACCESS, $device->id, $expiresIn, true, $extendInfoDepth);
 
         } else {
             $response = Yii::$app->response;
@@ -126,6 +130,8 @@ class AuthController extends Controller
      * Devices are registering automatically with sign-in method
      *
      * @return string|\yii\console\Response|\yii\web\Response
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionSignUp() {
         $data = Yii::$app->getRequest()->getBodyParams();
@@ -155,7 +161,7 @@ class AuthController extends Controller
 
                     // User settings
                     $settings = ArrayHelper::getValue($data, 'settings', []);
-                    $this->collectUserSettings($user->id, $settings);
+                    $user->collectUserSettings($settings);
 
                     // Change language in order to correct response/email message
                     $language = ArrayHelper::getValue($settings, 'users_language');
@@ -209,6 +215,8 @@ class AuthController extends Controller
      * Basically uses when a third part logs out.
      * @return bool|null
      * @throws BadRequestHttpException
+     * @throws \yii\base\InvalidConfigException
+     * @throws \yii\web\NotFoundHttpException
      */
     public function actionSignOut() {
         $tokenData = Yii::$app->getRequest()->getBodyParams();
@@ -226,6 +234,8 @@ class AuthController extends Controller
      *
      * @return null|array
      * @throws BadRequestHttpException
+     * @throws \yii\base\InvalidConfigException
+     * @throws \yii\web\NotFoundHttpException
      */
     public function actionTokenRefresh() {
         $tokenData = Yii::$app->getRequest()->getBodyParams();
@@ -242,6 +252,7 @@ class AuthController extends Controller
      * @return string|\yii\console\Response|\yii\web\Response
      * @throws BadRequestHttpException
      * @throws ErrorException
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionPasswordReset() {
         $email = ArrayHelper::getValue(Yii::$app->getRequest()->getBodyParams(), 'email');

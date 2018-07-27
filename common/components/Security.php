@@ -27,10 +27,11 @@ class Security extends \yii\base\Security
      * @param null $deviceId
      * @param int $expiresIn 1 day by default
      * @param bool $genRefreshToken
-     * @param bool $extendInfo
+     * @param int $extendInfoDepth
      * @return array|null
+     * @throws \yii\base\Exception
      */
-    public function generateToken($userId, $type = TokenType::EMAIL_CONFIRMATION, $deviceId = null, $expiresIn = 86400, $genRefreshToken = false, $extendInfo = false)
+    public function generateToken($userId, $type = TokenType::EMAIL_CONFIRMATION, $deviceId = null, $expiresIn = 86400, $genRefreshToken = false, $extendInfoDepth = 0)
     {
         $token = $this->generateRandomString();
         $tokenRefresh = $this->generateRandomString();
@@ -43,7 +44,7 @@ class Security extends \yii\base\Security
             'expires_at' => Carbon::now()->addSeconds($expiresIn)->toDateTimeString(),
         ]);
         if ($model->save()) {
-            return $this->generateTokenContent($model, $token, $tokenRefresh, $expiresIn, $extendInfo);
+            return $this->generateTokenContent($model, $token, $tokenRefresh, $expiresIn, $extendInfoDepth);
         }
 
         return null;
@@ -83,6 +84,7 @@ class Security extends \yii\base\Security
      * @param bool $extendInfo
      * @return array|null New token data
      * @throws NotFoundHttpException
+     * @throws \yii\base\Exception
      */
     public function refreshToken($tokenData, $expiresIn = 86400, $extendInfo = false)
     {
@@ -121,6 +123,8 @@ class Security extends \yii\base\Security
      * @param $tokenData
      * @return bool
      * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function revokeToken($tokenData)
     {
@@ -148,10 +152,10 @@ class Security extends \yii\base\Security
      * @param $token
      * @param $tokenRefresh
      * @param $expiresIn
-     * @param $extendInfo
+     * @param $extendInfoDepth
      * @return array
      */
-    protected function generateTokenContent($model, $token, $tokenRefresh, $expiresIn, $extendInfo)
+    protected function generateTokenContent($model, $token, $tokenRefresh, $expiresIn, $extendInfoDepth)
     {
         $session = [
             'id' => $model->id,
@@ -159,11 +163,11 @@ class Security extends \yii\base\Security
             'token_refresh' => $tokenRefresh,
             'expires_in' => $expiresIn,
         ];
-        if ($extendInfo) {
+        if ($extendInfoDepth) {
             return [
                 'user' => [
                     'info' => $model->user->profile,
-                    'settings' => $model->user->getVerboseSettings(),
+                    'settings' => $model->user->getVerboseSettings($extendInfoDepth),
                 ],
                 'session' => $session,
             ];

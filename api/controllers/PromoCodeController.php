@@ -45,7 +45,9 @@ class PromoCodeController extends Controller
      * Creates promo code and social user if needed
      *
      * @return PromoCode|SocialUser
-     * @throws ErrorException|ForbiddenHttpException
+     * @throws ErrorException
+     * @throws ForbiddenHttpException
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionCreate()
     {
@@ -92,6 +94,7 @@ class PromoCodeController extends Controller
      *
      * @param $id
      * @return PromoCode
+     * @throws ForbiddenHttpException
      * @throws NotFoundHttpException
      */
     public function actionUse($id)

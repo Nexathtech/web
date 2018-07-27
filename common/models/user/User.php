@@ -113,6 +113,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * @inheritdoc
+     * @throws \yii\base\Exception
      */
     public function beforeSave($insert): bool
     {
@@ -149,8 +150,12 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      *
-     * @var $includeDevice bool whether to include device (the initiator of action) to identity or not
+     *
+     * @param $tokenData
+     * @param null $type
+     * @param bool $includeDevice
      * @return self
+     * @throws \yii\web\UnauthorizedHttpException
      */
     public static function findIdentityByAccessToken($tokenData, $type = null, $includeDevice = false)
     {
@@ -200,6 +205,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates "remember me" authentication key
+     * @throws \yii\base\Exception
      */
     public function generateAuthKey()
     {
@@ -277,11 +283,15 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Returns user-specific settings
      *
+     * @param null $accessLevel
      * @return array|ActiveRecord[]
      */
-    public function getVerboseSettings()
+    public function getVerboseSettings($accessLevel = null)
     {
-        $accessLevel = $this->getIsAdmin() ? AccessLevel::ADMIN : AccessLevel::CUSTOMER;
+        if ($this->getIsAdmin()) {
+            $accessLevel = AccessLevel::ADMIN;
+        }
+        $accessLevel = $accessLevel ?: AccessLevel::CUSTOMER;
         $externalSettings = Setting::find()->select(['name', 'value'])->where([
             '<=',
             'access_level',
@@ -321,5 +331,30 @@ class User extends ActiveRecord implements IdentityInterface
         }
 
         return $settings;
+    }
+
+    /**
+     * Creates additional settings records (when user registers)
+     *
+     * @param array $settings that are come from external
+     */
+    public function collectUserSettings($settings = []) {
+        $settingsFields = Settings::defaultFields();
+        foreach ($settingsFields as $field) {
+            $setting = new Settings();
+            $setting->isNewRecord = true;
+            $setting->user_id = $this->id;
+            $setting->title = $field['title'];
+            $setting->key = $field['key'];
+            if (isset($settings[$field['key']]) && $field['writable']) {
+                $setting->value = $settings[$setting->key];
+            } else {
+                $setting->value = $field['value'];
+            }
+            $setting->type = $field['type'];
+            $setting->options = !empty($field['options']) ? $field['options'] : null;
+            $setting->writable = $field['writable'];
+            $setting->save(false);
+        }
     }
 }
