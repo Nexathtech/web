@@ -27,7 +27,7 @@ $(document).on('click', '.btn-a-f', function(e) {
     title: $('.add-field-container input[name="title"]').val(),
     key: $('.add-field-container input[name="key"]').val(),
     value: $('.add-field-container input[name="value"]').val(),
-    type: $('.add-field-container input[name="type"]').val(),
+    type: $('.add-field-container select[name="type"]').val(),
     writable: $('.add-field-container input[name="writable"]').val()
   };
 

@@ -72,6 +72,9 @@ $this->registerJsFile(Yii::getAlias('@web/themes/admire/js/widgets/grid/action-c
                         if ($field->type === Type::INPUT) {
                             echo $form->field($field, "[{$field->key}]value")->label($label);
                         }
+                        if ($field->type === Type::PASSWORD) {
+                            echo $form->field($field, "[{$field->key}]value")->passwordInput()->label($label);
+                        }
                         if ($field->type === Type::SELECT) {
                             $options = Json::decode($field->options);
                             echo $form->field($field, "[{$field->key}]value")->dropDownList($options)->label($label);
