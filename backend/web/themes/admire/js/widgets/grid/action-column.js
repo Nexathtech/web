@@ -6,6 +6,8 @@ $('[data-role="alert"]').on('click', function(e) {
   var text = $(this).data('alert-text') || 'This action is permanent and cannot be undone.';
   var confirmText = $(this).data('alert-confirm') || 'Yes, I\'m sure!';
   var url = $(this).data('alert-url') || $(this).attr('href') || '';
+  var close = $(this).data('alert-close') || false;
+  var reloadPage = $(this).data('alert-reload') || false;
   var data = $(this).attr('data-alert');
   if (typeof data !== 'object') { data = {data: data}; }
 
@@ -24,7 +26,7 @@ $('[data-role="alert"]').on('click', function(e) {
       showConfirmButton: true,
       confirmButtonColor: '#ed5565',
       confirmButtonText: confirmText,
-      closeOnConfirm: false,
+      closeOnConfirm: close,
       showLoaderOnConfirm: true
     }, function () {
       sendRequest();
@@ -40,6 +42,9 @@ $('[data-role="alert"]').on('click', function(e) {
       url: url,
       data: data,
       success: function (data) {
+        if (reloadPage) {
+          window.location.reload();
+        }
         console.log(data);
       }
     });

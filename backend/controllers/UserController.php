@@ -3,9 +3,11 @@
 namespace kodi\backend\controllers;
 
 use kodi\common\enums\AlertType;
+use kodi\common\enums\setting\Type;
 use kodi\common\enums\user\Role;
 use kodi\common\models\user\Profile;
 use kodi\common\models\user\search\User as UserSearch;
+use kodi\common\models\user\Settings;
 use kodi\common\models\user\User;
 use Yii;
 use yii\base\Model;
@@ -42,7 +44,7 @@ class UserController extends BaseController
             // Negotiator filter
             'contentNegotiator' => [
                 'class' => ContentNegotiator::class,
-                'only' => ['delete-photo'],
+                'only' => ['delete-photo', 'add-setting-field', 'remove-setting-field'],
                 'formats' => [
                     'application/json' => Response::FORMAT_JSON,
                 ],
@@ -223,6 +225,56 @@ class UserController extends BaseController
         } else {
             $result['status'] = 'error';
             $result['description'] = Yii::t('backend', 'Unable to remove "{file}" from server', ['{file}' => $photoPAth]);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Creates setting field dynamically
+     *
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionAddSettingField()
+    {
+        $result = [];
+        $fieldData = Yii::$app->request->getBodyParams();
+        $userSetting = new Settings([
+            'user_id' => ArrayHelper::getValue($fieldData, 'user_id'),
+            'title' => ArrayHelper::getValue($fieldData, 'title'),
+            'key' => ArrayHelper::getValue($fieldData, 'key'),
+            'value' => ArrayHelper::getValue($fieldData, 'value'),
+            'type' => ArrayHelper::getValue($fieldData, 'type', Type::INPUT),
+            'options' => ArrayHelper::getValue($fieldData, 'options'),
+            'writable' => ArrayHelper::getValue($fieldData, 'writable', 0),
+        ]);
+        if ($userSetting->save()) {
+            $result['status'] = 'success';
+        } else {
+            $result['status'] = 'error';
+            $result['message'] = $userSetting->getErrorSummary(true);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Removes setting field dynamically
+     *
+     * @return array|Response
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     */
+    public function actionRemoveSettingField()
+    {
+        $result = [];
+        $id = Yii::$app->request->get('id');
+        $field = Settings::findOne(['id' => $id]);
+        if ($field && $field->delete()) {
+            $result['status'] = 'success';
+        } else {
+            $result['status'] = 'error';
+            $result['message'] = Yii::t('backend', 'Unable to delete the field.');
         }
 
         return $result;

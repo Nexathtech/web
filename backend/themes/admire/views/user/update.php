@@ -1,13 +1,16 @@
 <?php
 
+use kodi\backend\assets\AppAsset;
 use kodi\common\enums\setting\Type;
 use kodi\common\enums\user\Role;
 use kodi\common\enums\user\Status;
 use kodi\common\enums\user\Type as UserType;
+use omnilight\assets\SweetAlertAsset;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\helpers\Url;
+use yii\web\JqueryAsset;
 use yii\widgets\ActiveForm;
 
 /**
@@ -28,20 +31,8 @@ $this->params['breadcrumbs'] = [
     ],
     $this->title,
 ];
-$this->registerJs("
-    $(document).on('click', '.current-photo-delete', function(e) {
-        e.preventDefault();
-        $.ajax({
-            type: 'post',
-            url: '/user/delete-photo?id={$model->id}',
-            success: function(data) {
-                if (data.status === 'success') {
-                    $('.current-photo').remove();
-                }
-            }
-        });
-    });
-");
+$this->registerJsFile('/js/user.js', ['depends' => AppAsset::class]);
+$this->registerJsFile(Yii::getAlias('@web/themes/admire/js/widgets/grid/action-column.js'), ['depends' => [SweetAlertAsset::class, JqueryAsset::class]]);
 ?>
 
 <div class="outer">
@@ -76,15 +67,37 @@ $this->registerJs("
                     <h3><?= Yii::t('backend', 'Settings'); ?></h3>
                     <?
                     foreach ($model->settings as $field) {
+                        $label = $field->title . ' ' . Html::tag('span', 'x remove', ['class' => 'label label-danger', 'role' => 'button', 'data-role' => 'alert', 'data-alert-url' => "/user/remove-setting-field?id={$field->id}", 'data-alert-reload' => 'true']);
+
                         if ($field->type === Type::INPUT) {
-                            echo $form->field($field, "[{$field->key}]value")->label($field->title);
+                            echo $form->field($field, "[{$field->key}]value")->label($label);
                         }
                         if ($field->type === Type::SELECT) {
                             $options = Json::decode($field->options);
-                            echo $form->field($field, "[{$field->key}]value")->dropDownList($options)->label($field->title);
+                            echo $form->field($field, "[{$field->key}]value")->dropDownList($options)->label($label);
                         }
                     }
                     ?>
+                    <div class="form-group add-field-container p-2 d-none">
+                        <fieldset>
+                            <h5><?= Yii::t('backend', 'Adding a new field') ?></h5>
+                            <?= Html::hiddenInput('user_id', $model->id) ?>
+                            <?= Html::textInput('title', null, ['placeholder' => 'Title', 'class' => 'form-control mb-1']) ?>
+                            <?= Html::textInput('key', null, ['placeholder' => 'Key', 'class' => 'form-control mb-1']) ?>
+                            <?= Html::textInput('value', null, ['placeholder' => 'Value', 'class' => 'form-control mb-1']) ?>
+                            <?= Html::dropDownList('type', Type::INPUT, Type::listData(), ['class' => 'form-control mb-1']) ?>
+                            <?= Html::checkbox('writable', false, ['id' => 'f-writable']) ?>
+                            <?= Html::label('Writable', 'f-writable') ?>
+                            <br>
+                            <div class="error-summary alert alert-danger d-none"></div>
+                            <a class="btn btn-sm btn-info btn-a-f" href="#">+ Save the field</a>
+                            <a class="btn btn-sm btn-danger btn-a-d" href="#">x Cancel</a>
+                        </fieldset>
+                    </div>
+                    <a class="btn btn-warning btn-add-setting" href="#">
+                        <?= FA::icon('plus') ?>
+                        <?= Yii::t('backend', 'Add a setting field') ?>
+                    </a>
                 </fieldset>
             </div>
             <div class="card-footer">

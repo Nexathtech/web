@@ -17,3 +17,7 @@
 .photos-row {
   background: #eceeef;
 }
+
+.d-none {
+  display: none;
+}
