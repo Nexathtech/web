@@ -17,6 +17,7 @@ class Language extends Enum implements EnumInterface
 {
     const ENGLISH = 'en';
     const ITALIAN = 'it';
+    const PORTUGUESE = 'br';
 
     /**
      * @inheritdoc
@@ -26,6 +27,7 @@ class Language extends Enum implements EnumInterface
         return [
             self::ENGLISH => Yii::t('common', 'English'),
             self::ITALIAN => Yii::t('common', 'Italian'),
+            self::PORTUGUESE => Yii::t('common', 'Portuguese'),
         ];
     }
 }

@@ -30,7 +30,7 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
 <div class="play">
     <img src="/images/girl-piano.jpg" alt="">
     <div class="text">
-        <h2>play different</h2>
+        <h2><?= Yii::t('frontend', 'play different') ?></h2>
         <div class="desc">
             <p>
                 <?= Yii::t('frontend', 'Send a representative image of yourself or what you do, spread special offers in a specific period, launch an advertising campaign, let everyone know about your event schedule, tell your customers how much you appreciate them and much more.'); ?>
@@ -146,7 +146,10 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
              data-2500="display: flex"
              data-2600=" display:none;">
         <div class="description">
-            <h2>make your business easy <span>today</span></h2>
+            <h2><?= Yii::t('frontend', 'make your business easy {span}today{/span}', [
+                'span' => '<span>',
+                '/span' => '</span>',
+                ]) ?></h2>
             <div class="started-p">
                 <p><?= Yii::t('frontend', 'You only need 3 steps'); ?></p>
                 <p><?= Yii::t('frontend', 'to reach thousands'); ?></p>
@@ -261,9 +264,9 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
 
     <div class="shop">
         <div class="title" id="point">
-            <div class="text">your shop</div>
-            <div class="text">become <span></span></div>
-            <div class="text">a new shop</div>
+            <div class="text"><?= Yii::t('frontend', 'your shop') ?></div>
+            <div class="text"><?= Yii::t('frontend', 'become') ?> <span></span></div>
+            <div class="text"><?= Yii::t('frontend', 'a new shop') ?></div>
         </div>
         <div class="desc">
             <p>
@@ -278,7 +281,7 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
 <div class="superkit">
     <div class="title"><?= Yii::t('frontend', 'the superkit') ?> <span></span></div>
     <div class="coupon">
-        <h3>coupon cards</h3>
+        <h3><?= Yii::t('frontend', 'coupon cards') ?></h3>
         <div class="block"></div>
         <p><?= Yii::t('frontend', 'Offer coupon cards with attention to the smallest detail.'); ?></p>
         <p><?= Yii::t('frontend', 'The more you give it away, your smile grows, and your Brand grows.') ?></p>
@@ -287,7 +290,7 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
     </div>
     <div class="super">
         <img src="/images/Envelope.png" alt="">
-        <h3>superpackaging</h3>
+        <h3><?= Yii::t('frontend', 'superpackaging') ?></h3>
         <div class="block"></div>
         <p><?= Yii::t('frontend', 'Your advertising inside fun, unique and unmistakable cases.'); ?></p>
         <p><?= Yii::t('frontend', 'Brown cardboard boxes?'); ?></p>
@@ -295,7 +298,7 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
     </div>
 
     <div class="sticker">
-        <h3>special sticker</h3>
+        <h3><?= Yii::t('frontend', 'special sticker') ?></h3>
         <div class="block"></div>
         <p><?= Yii::t('frontend', 'Being part of our family reserves a vital and straightforward distinctive sign.'); ?></p>
         <p><?= Yii::t('frontend', 'Kodi Point stickers are available in two colors depending on your furniture and your shop and guarantee immediate recognition.'); ?></p>

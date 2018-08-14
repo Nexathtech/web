@@ -83,7 +83,7 @@ navButton.forEach(function (elem) {
                 </div>
             </div>
             <div class="fact">
-                <div class="title">advisors</div>
+                <div class="title"><?= Yii::t('frontend', 'advisors') ?></div>
                 <div class="bottom-separator"></div>
                 <div class="description">
                     <p>Osvaldo Glatt</p>
