@@ -27,7 +27,7 @@ class Language extends Enum implements EnumInterface
         return [
             self::ENGLISH => Yii::t('common', 'English'),
             self::ITALIAN => Yii::t('common', 'Italian'),
-            self::PORTUGUESE => Yii::t('common', 'Portuguese'),
+            self::PORTUGUESE => Yii::t('common', 'Pt'),
         ];
     }
 }
