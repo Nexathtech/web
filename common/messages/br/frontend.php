@@ -1,14 +1,14 @@
 <?php
 
 return [
-    'Notification' => 'Notifica',
-    'Information' => 'Informazione',
-    'Thank you!' => 'Grazie!',
-    'Warning!' => 'Avvertimento!',
-    'Failure!' => 'Fallimento!',
-    'is the' => 'è il',
-    'minimum' => 'minimo',
-    'You have been successfully subscribed to our newsletter.' => 'Congratulazioni, sei stato aggiunto alla nostra lista',
+    'Notification' => 'Notificação',
+    'Information' => 'Informação',
+    'Thank you!' => 'Obrigado!',
+    'Warning!' => 'Atenção!',
+    'Failure!' => 'Falha!',
+    'is the' => 'é o',
+    'minimum' => 'mínimo',
+    'You have been successfully subscribed to our newsletter.' => 'Você se inscreveu com sucesso em nossa newsletter.',
 
     'direct from{br}instagram' => 'direto{br}do instagram',
     'you look{br}awesome' => 'Você tá{br}incrível!',
@@ -89,21 +89,21 @@ return [
 
     'if you need some information, If you want Just to say hi, or if you wish to to know our favorite pizza, just fill in the form on the left and submit your request.' => 'se precisa de Informação, se quer só dizer oi, ou saber qual é nossa pizza favorita, preencha o formulário à esquerda e envie seu pedido',
     'Dear Kodi' => 'Caro Kodi',
-    'your email' => 'la tua email',
-    'write your message' => 'inserisci il tuo messaggio',
+    'your email' => 'seu email',
+    'write your message' => 'escreva sua mensagem',
 
     'An innovative and advanced advertisement model, able to reach people in a new and surprising way. Discover all the opportunities to promote your brand easily.' => 'Um modelo de publicidade avançado e inovador, capaz de alcançar pessoas de um modo novo e surpreendente. Descubra todas as oportunidades de promover sua marca facilmente.',
 
     'don\'t{br}be shy' => 'Não{br}seja tímido',
-    'Your sun will shine' => 'Il tuo sole splenderà',
-    'Password reset' => 'Reimpostazione della password',
-    'Your wish is our priority' => 'Il tuo desiderio è la nostra priorità',
-    'Order status update' => 'Aggiornamento dello stato dell\'ordine',
-    'We’ve got your request' => 'Abbiamo ricevuto la tua richiesta',
+    'Your sun will shine' => 'Seu sol irá brilhar',
+    'Password reset' => 'Redefinir senha',
+    'Your wish is our priority' => 'Seu desejo é nossa prioridade',
+    'Order status update' => 'Atualização de status do pedido',
+    'We’ve got your request' => 'Recebemos seu pedido',
 
-    'An error occurred. Please try again later.' => 'Si e\' verificato un errore.Per favore riprova più tardi',
-    'Your request was successfully sent.' => 'La tua richiesta e\' stata inviata correttamente ',
-    'Your message was successfully sent.' => 'Il tuo messaggio e\' stato inviato correttamente',
+    'An error occurred. Please try again later.' => 'Ocorreu um erro. Por favor, tente novamente mais tarde.',
+    'Your request was successfully sent.' => 'Pedido enviado com sucesso.',
+    'Your message was successfully sent.' => 'Mensagem enviada com sucesso.',
 
     'date' => 'data',
     'September' => 'Setembro',

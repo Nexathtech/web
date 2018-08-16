@@ -1,24 +1,24 @@
 <?php
 
 return [
-    'Thanks for your interest. Master Want-u has an old saying that reads "spaghetti ar sugo are better than ramen". It has nothing to do with it, but we will contact you as soon as possible.' => 'Grazie per il tuo interesse. Maestro Want-u ha un vecchio detto che recita “gli spaghetti ar sugo so meglio del ramen”. Non c’entra molto, ma ti ricontatteremo al più presto.',
-    'Your sun{br}will shine' => 'Il tuo{br}sole splenderà',
-    'Just another step' => 'Solo un altro passo',
-    'It looks grumpy, but our guard McKenny just wants to remind you to press yeah to activate your Kodi account.' => 'Sembra sgorbutica, ma la nostra guardia McKenny vuole solo ricordarti di premere su yeah per attivare il tuo account Kodi.',
+    'Thanks for your interest. Master Want-u has an old saying that reads "spaghetti ar sugo are better than ramen". It has nothing to do with it, but we will contact you as soon as possible.' => 'Obrigado pelo interesse. Mestre Want-u tem um velho ditado que diz “espaguete al sugo é melhor que miojo”. Não tem nada a ver com o assunto, mas vamos te contatar assim que possível.',
+    'Your sun{br}will shine' => 'Seu sol{br}irá brilhar.',
+    'Just another step' => 'Só mais um passo',
+    'It looks grumpy, but our guard McKenny just wants to remind you to press yeah to activate your Kodi account.' => 'Parece rabugento, mas nosso guarda McKenny só quer te lembrar de pressionar sim para ativar sua conta Kodi.',
 
-    'No, is not a dejà-vu' => 'No, non è un dejà-vu',
-    'Only 5 people in the world can remember their passwords. Do not despair, not even Culton remembers his, but he can be useful to recover yours.' => 'Solo 5 persone nel mondo riescono a ricordarsi le proprie passwords. Non disperare, nemmeno Culton ricorda la sua, ma può esserti utile per recuperare la tua.',
+    'No, is not a dejà-vu' => 'Não, não é um déjà-vu.',
+    'Only 5 people in the world can remember their passwords. Do not despair, not even Culton remembers his, but he can be useful to recover yours.' => 'Só 5 pessoas no mundo lembram suas senhas. Não se preocupe, nem o Culton lembra a dele, mas ele pode ser útil na recuperação da sua.',
 
-    'Your wish is our priority' => 'Il tuo desiderio è la nostra priorità',
-    'Wow! Your order is ... is ... it\'s awesome! Papanou has just reported your wish to us, and we are already working to make it better than you think. Relax, go out for a walk, we\'ll take care of it now. Soon you will receive the Kodi superpack.' => 'Wow! Il tuo ordine è..è..è..fantastico! Papanou ci ha appena comunicato il tuo desiderio, e noi siamo già all’opera per renderlo migliore di quanto credi. Rilassati, esci a fare una passeggiata, adesso ci pensiamo noi. A breve riceverai la superconfenzione targata Kodi.',
-    'Thank you!' => 'Grazie!',
+    'Your wish is our priority' => 'Seu desejo é nossa prioridade.',
+    'Wow! Your order is ... is ... it\'s awesome! Papanou has just reported your wish to us, and we are already working to make it better than you think. Relax, go out for a walk, we\'ll take care of it now. Soon you will receive the Kodi superpack.' => 'Uau! Seu pedido é… é… incrível! Papanou acabou de enviar seu pedido pra gente e já estamos trabalhando para deixá-lo melhor do que você espera. Relaxe, dê uma volta, cuidaremos de tudo a partir de agora. Logo você receberá o super pacote Kodi.',
+    'Thank you!' => 'Obrigado!',
 
-    'Is coooooming{br}for you' => 'In aaaarrivo per te',
-    'Get off the anchor, closed the little bridge, Captain Hernstz\'s ship was spotted in the ocean this morning while at full speed she rushed towards you to deliver you fantastic photos.' => 'Ritirata l’ancora, chiuso il ponticciolo, la nave del Capitan Hernstz è stata avvistata in oceano stamattina mentre a vele spiegate corre velocissima verso di te per consegnarti fantastiche foto.',
-    '"See you soon!" - Captain Hernst' => '“A presto!” - Capitan Hernst',
+    'Is coooooming{br}for you' => 'Está chegaaaaando{br} pra você.',
+    'Get off the anchor, closed the little bridge, Captain Hernstz\'s ship was spotted in the ocean this morning while at full speed she rushed towards you to deliver you fantastic photos.' => 'Subiu a âncora, fechou a escotilha. O navio da Capitã Hernstz foi visto hoje cedo indo a toda velocidade até você, para entregar suas fotos incríveis.',
+    '"See you soon!" - Captain Hernst' => '“Até breve!” - Capitã Hernstz',
 
-    'You received this email because you have been registered on {meetkodi}' => 'Hai ricevuto questa email perché sei stato registrato su {meetkodi}',
-    'Kodi Order' => 'Ordine Kodi',
-    'Good News' => 'Buone Notizie',
+    'You received this email because you have been registered on {meetkodi}' => 'Você recebeu esse email porque se registrou no {meetkodi}',
+    'Kodi Order' => 'Pedido Kodi',
+    'Good News' => 'Boas Notícias',
     '' => '',
 ];
