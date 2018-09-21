@@ -107,7 +107,7 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
                     <div class="a-ch-title">Order and download now!</div>
                     <table>
                         <tr>
-                            <th>Thumbnail</th>
+                            <th>&nbsp;</th>
                             <th>Item description</th>
                             <th>Price</th>
                             <th>Download</th>
