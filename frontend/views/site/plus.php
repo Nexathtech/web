@@ -1,5 +1,6 @@
 <?php
 
+use kodi\common\enums\Language;
 use kodi\frontend\assets\AppAsset;
 use kodi\frontend\assets\SkrollrAsset;
 use yii\helpers\Html;
@@ -89,14 +90,53 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
             <div class="c-l-red"></div>
             <div class="c-l-brown-light"></div>
         </div>
-        <div class="app-download">
-            <div class="iphone-mockup i-m-home"></div>
-            <div class="a-d-desc">
-                <div class="a-d-title">it's already in your hands</div>
-                <a href="#" id="download" class="a-d-ios disabled" title="Coming soon on App Store"></a>
-                <a href="#" class="a-d-android disabled" title="Coming soon on Play Store"></a>
+        <? if (Yii::$app->language === Language::ENGLISH): ?>
+            <div class="app-download" id="download">
+                <div class="a-d-description">
+                    The Kodi App
+                    let’s you curate,
+                    download, and
+                    even print
+                    images from you
+                    and your friends’
+                    social media
+                    accounts.
+                </div>
+                <div class="iphone-mockup i-m-home"></div>
+                <div class="app-checkout">
+                    <div class="a-ch-title">Order and download now!</div>
+                    <table>
+                        <tr>
+                            <th>Thumbnail</th>
+                            <th>Item description</th>
+                            <th>Price</th>
+                            <th>Download</th>
+                        </tr>
+                        <tr>
+                            <td><img src="/images/app-thumbnail.png"></td>
+                            <td class="a-ch-name">Kodi App <span>ios format</span></td>
+                            <td>$0.00</td>
+                            <td><a href="#" class="btn disabled" title="Coming soon on App Store">Checkout</a></td>
+                        </tr>
+                        <tr>
+                            <td><img src="/images/app-thumbnail.png"></td>
+                            <td class="a-ch-name">Kodi App <span>android format</span></td>
+                            <td>$0.00</td>
+                            <td><a href="#" class="btn disabled" title="Coming soon on Play Store">Checkout</a></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-        </div>
+        <? else: ?>
+            <div class="app-download">
+                <div class="iphone-mockup i-m-home"></div>
+                <div class="a-d-desc">
+                    <div class="a-d-title">it's already in your hands</div>
+                    <a href="#" id="download" class="a-d-ios disabled" title="Coming soon on App Store"></a>
+                    <a href="#" class="a-d-android disabled" title="Coming soon on Play Store"></a>
+                </div>
+            </div>
+        <? endif; ?>
         <div class="subscribe-container">
             <? $form = ActiveForm::begin(); ?>
             <?= $form->field($subscribeModel, 'email')->textInput([

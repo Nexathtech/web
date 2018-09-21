@@ -3740,6 +3740,64 @@ a.a-d-ios:hover, a.a-d-android:hover {
     opacity: .8;
 }
 
+/* Temporary app checkout block */
+.a-d-description {
+    width: 280px;
+    float: left;
+    margin-right: 50px;
+    font-size: 28px;
+}
+.iphone-mockup {
+    left: 250px;
+}
+.app-download {
+    width: 90%;
+}
+.app-checkout {
+    width: 48%;
+    float: right;
+    text-align: center;
+    font-size: 18px;
+}
+.app-checkout table {
+    width: 100%;
+    border: 2px solid #e5e5e5;
+    border-radius: 5px;
+    border-spacing: unset;
+}
+.app-checkout table th {
+    padding: 10px 25px;
+    border-bottom: 1px solid #e5e5e5;
+    background: #f5f5f5;
+    font-weight: normal;
+    font-size: 14px;
+    color: #585858;
+}
+.app-checkout table td {
+    padding: 10px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.app-checkout table tr:last-child td {
+    border: none;
+}
+.app-checkout table img {
+    max-height: 65px;
+}
+.a-ch-name {
+    font-size: 20px;
+}
+.a-ch-name span {
+    display: block;
+    font-size: 14px;
+}
+.a-ch-title {
+    margin-bottom: 10px;
+    font-size: 28px;
+    text-transform: uppercase;
+}
+
+/* ============================ */
+
 .phone-key {
     height: 570px;
     padding-top: 360px;
@@ -5271,6 +5329,19 @@ form.order-info .help-block {
         top: auto;
         margin-bottom: 10px;
     }
+
+    /* Temporary checkout */
+    .app-download {
+        height: 480px;
+    }
+    .app-checkout {
+        float: none;
+        width: auto;
+        clear: both;
+        position: relative;
+        top: 100px;
+    }
+    /* ================== */
 }
 
 /* ===== Portrait phones and smaller ===== */
@@ -6431,6 +6502,15 @@ form.order-info .help-block {
         padding-left: 0;
         padding-right: 0;
     }
+
+    /* Temporary checkout */
+    .a-d-description {
+        display: none;
+    }
+    .app-checkout {
+        top: 140px;
+    }
+    /* ================== */
 
 }
 @media screen and (max-width: 320px) {
