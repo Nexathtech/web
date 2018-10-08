@@ -30,9 +30,11 @@ class LanguageSwitcher extends Widget
         $currentUrl = $_SERVER['REQUEST_URI'];
 
         foreach ($supportedLanguages as $key => $lang) {
+            $title = strtolower(substr($lang, 0, 3));
+            $title = str_replace('por', 'pt', $title);
             array_push($this->languages, [
                 'alias' => $key,
-                'title' => strtolower(substr($lang, 0, 3)),
+                'title' => $title,
                 'active' => $key === $currentLang,
                 'url' => str_replace($currentLang, '', $currentUrl),
             ]);
