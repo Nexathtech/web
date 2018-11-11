@@ -122,7 +122,7 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
                             <td><img src="/images/app-thumbnail.png"></td>
                             <td class="a-ch-name">Kodi App <span>android format</span></td>
                             <td>$0.00</td>
-                            <td><a href="#" class="btn disabled" title="Coming soon on Play Store">Checkout</a></td>
+                            <td><a href="https://play.google.com/apps/testing/com.kodiapp" target="_blank" class="btn" title="Coming soon on Play Store">Checkout</a></td>
                         </tr>
                     </table>
                 </div>
