@@ -133,7 +133,7 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
                 <div class="a-d-desc">
                     <div class="a-d-title">it's already in your hands</div>
                     <a href="#" id="download" class="a-d-ios disabled" title="Coming soon on App Store"></a>
-                    <a href="#" class="a-d-android disabled" title="Coming soon on Play Store"></a>
+                    <a href="https://play.google.com/apps/testing/com.kodiapp" class="a-d-android" title="Download from Play Store"></a>
                 </div>
             </div>
         <? endif; ?>
