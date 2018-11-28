@@ -122,7 +122,7 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
                             <td><img src="/images/app-thumbnail.png"></td>
                             <td class="a-ch-name">Kodi App <span>android format</span></td>
                             <td>$0.00</td>
-                            <td><a href="https://play.google.com/apps/testing/com.kodiapp" target="_blank" class="btn" title="Coming soon on Play Store">Checkout</a></td>
+                            <td><a href="https://goo.gl/gqvrUF" target="_blank" class="btn" title="Coming soon on Play Store">Checkout</a></td>
                         </tr>
                     </table>
                 </div>
@@ -133,7 +133,7 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
                 <div class="a-d-desc">
                     <div class="a-d-title">it's already in your hands</div>
                     <a href="#" id="download" class="a-d-ios disabled" title="Coming soon on App Store"></a>
-                    <a href="https://play.google.com/apps/testing/com.kodiapp" target="_blank" class="a-d-android" title="Download from Play Store"></a>
+                    <a href="https://goo.gl/gqvrUF" target="_blank" class="a-d-android" title="Download from Play Store"></a>
                 </div>
             </div>
         <? endif; ?>
