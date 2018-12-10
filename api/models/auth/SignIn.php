@@ -11,6 +11,7 @@ use yii\base\Model;
 use yii\validators\EmailValidator;
 use yii\validators\RangeValidator;
 use yii\validators\RequiredValidator;
+use yii\validators\SafeValidator;
 use yii\validators\StringValidator;
 use yii\web\IdentityInterface;
 
@@ -78,6 +79,8 @@ class SignIn extends Model
             [['email'], EmailValidator::class],
             [['password', 'uuid'], StringValidator::class, 'max' => 64],
             ['type', RangeValidator::class, 'range' => array_keys(DeviceType::listData())],
+
+            ['login_type', SafeValidator::class],
 
             // Authenticate user
             [['password'], function () {
