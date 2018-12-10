@@ -17,6 +17,7 @@ class Type extends Enum implements EnumInterface
     const PRINT = 'Print';
     const PRINT_SHIPMENT = 'PrintShipment';
     const FEEDBACK = 'Feedback';
+    const ADD_ADVERTISEMENT = 'AddAdvertisement';
 
     /**
      * @inheritdoc
@@ -27,6 +28,7 @@ class Type extends Enum implements EnumInterface
             self::PRINT => Yii::t('common', 'Print'),
             self::PRINT_SHIPMENT => Yii::t('common', 'Print with shipment'),
             self::FEEDBACK => Yii::t('common', 'Feedback'),
+            self::ADD_ADVERTISEMENT => Yii::t('common', 'Add advertisement images'),
         ];
     }
 }

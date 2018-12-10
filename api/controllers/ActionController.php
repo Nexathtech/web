@@ -5,10 +5,12 @@ use app\components\auth\KodiAuth;
 use kodi\api\components\Controller;
 use kodi\common\enums\action\Status;
 use kodi\common\enums\action\Type;
+use kodi\common\enums\ImageType;
 use kodi\common\enums\order\OrderType;
 use kodi\common\enums\order\PaymentType;
 use kodi\common\enums\order\Status as PaymentStatus;
 use kodi\common\models\Action;
+use kodi\common\models\AdImage;
 use kodi\common\models\Order;
 use kodi\common\models\user\Profile;
 use kodi\common\models\user\User;
@@ -89,6 +91,15 @@ class ActionController extends Controller
             }
         }
 
+        if ($model->action_type === Type::ADD_ADVERTISEMENT) {
+            // Limit brand's ads to allowed amount per brand
+            $adsLimit = $user->getSetting('users_max_prints_amount_brands', 1);
+            $adsAmount = Action::getUserRecentPrintsAmount($model->user_id);
+            if ($adsAmount >= $adsLimit) {
+                throw new ForbiddenHttpException(Yii::t('api', 'You have already been used maximum free advertisement images this month.'));
+            }
+        }
+
         if ($model->save()) {
             // Now update profile info if empty
             $this->updateProfile($user->profile, $details);
@@ -116,6 +127,22 @@ class ActionController extends Controller
                     'status' => PaymentStatus::PENDING,
                 ]);
                 $order->save(false);
+            }
+
+            // If it's advertisement photos, need to save them
+            if ($model->action_type === Type::ADD_ADVERTISEMENT) {
+                foreach ($details['images'] as $image) {
+                    for ($i = 0; $i < $image['count']; $i++) {
+                        $adImage = new AdImage([
+                            'user_id' => $model->user_id,
+                            'image' => $image['path'],
+                            'type' => ImageType::ADVERTISEMENT,
+                            'location_latitude' => ArrayHelper::getValue($details, 'location.latitude', $user->profile->location_latitude),
+                            'location_longitude' => ArrayHelper::getValue($details, 'location.longitude', $user->profile->location_longitude),
+                        ]);
+                        $adImage->save(false);
+                    }
+                }
             }
         }
 

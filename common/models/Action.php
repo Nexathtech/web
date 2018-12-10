@@ -153,4 +153,16 @@ class Action extends ActiveRecord
             ->all();
     }
 
+    /**
+     * @param $userId
+     * @param int $interval
+     * @return int|string
+     */
+    public static function getUserRecentPrintsAmount($userId, $interval = 1)
+    {
+        return AdImage::find()->where(['user_id' => $userId])->andWhere([
+            '>=', 'created_at', new Expression("NOW() - INTERVAL {$interval} MONTH")
+        ])->count();
+    }
+
 }
