@@ -68,7 +68,7 @@ class Security extends \yii\base\Security
             ':id' => $tokenData['id'],
             ':now' => Carbon::now()->toDateTimeString(),
         ])->one();
-        
+
         if ($authToken && ($tokenData['token'] === $this->unmaskToken($authToken->token))) {
             return $authToken;
         }
@@ -166,6 +166,7 @@ class Security extends \yii\base\Security
         if ($extendInfoDepth) {
             return [
                 'user' => [
+                    'type' => $model->user->type,
                     'info' => $model->user->profile,
                     'settings' => $model->user->getVerboseSettings($extendInfoDepth),
                 ],
