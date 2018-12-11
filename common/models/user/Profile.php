@@ -23,6 +23,7 @@ use yii\validators\StringValidator;
  * @property integer $user_id
  * @property string $name
  * @property string $surname
+ * @property string $brand_name
  * @property string $photo
  * @property string $country
  * @property string $city
@@ -59,7 +60,7 @@ class Profile extends ActiveRecord
             [['user_id'], RequiredValidator::class],
 
             // Strings validation
-            [['name', 'surname', 'country', 'city', 'state', 'address', 'postcode', 'location_latitude', 'location_longitude'], StringValidator::class, 'max' => 64],
+            [['name', 'surname', 'brand_name', 'country', 'city', 'state', 'address', 'postcode', 'location_latitude', 'location_longitude'], StringValidator::class, 'max' => 64],
 
             // Image validation
             [['photo'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg'],
@@ -82,6 +83,7 @@ class Profile extends ActiveRecord
             'user_id' => Yii::t('common', 'User ID'),
             'name' => Yii::t('common', 'Name'),
             'surname' => Yii::t('common', 'Surname'),
+            'brand_name' => Yii::t('common', 'Brand Name'),
             'photo' => Yii::t('common', 'Photo'),
             'country' => Yii::t('common', 'Country'),
             'city' => Yii::t('common', 'City'),

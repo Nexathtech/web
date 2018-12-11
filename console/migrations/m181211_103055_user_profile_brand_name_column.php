@@ -3,12 +3,12 @@
 use yii\db\Migration;
 
 /**
- * Class m180317_110823_user_type_column
+ * Class m181211_103055_user_profile_brand_name_column
  */
-class m180317_110823_user_type_column extends Migration
+class m181211_103055_user_profile_brand_name_column extends Migration
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @throws Exception
      */
     public function safeUp()
@@ -19,15 +19,14 @@ class m180317_110823_user_type_column extends Migration
             throw new Exception('Selected database driver is not supported!');
         }
 
-        $typeField = "ENUM('Simple', 'Brand') NOT NULL AFTER role";
-        $this->addColumn('{{%user}}', 'type', $typeField);
+        $this->addColumn('{{%user_profile}}', 'brand_name', $this->string('64')->after('surname'));
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function safeDown()
     {
-        $this->dropColumn('{{%user}}', 'type');
+        $this->dropColumn('{{%user_profile}}', 'brand_name');
     }
 }

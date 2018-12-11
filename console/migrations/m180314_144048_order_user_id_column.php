@@ -9,6 +9,7 @@ class m180314_144048_order_user_id_column extends Migration
 {
     /**
      * @inheritdoc
+     * @throws Exception
      */
     public function safeUp()
     {
