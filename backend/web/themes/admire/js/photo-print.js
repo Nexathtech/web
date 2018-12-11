@@ -45,6 +45,20 @@ $('.more-photos img').on('click', function (e) {
     $(this).addClass('active');
   }
 
+  var actionId = $(this).data('action-id');
+  var adImages = [];
+  $('img.ad').each(function() {
+    adImages.push($(this).attr('src'));
+  });
+  // Send ad images
+  if (actionId) {
+    $.ajax({
+      type: 'POST',
+      url: '/order/update-action-ad-images',
+      dataType: 'json',
+      data: {actionId: actionId, images: adImages}
+    });
+  }
 });
 
 var img = $('.p-img img');

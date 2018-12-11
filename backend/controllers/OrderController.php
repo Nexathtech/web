@@ -5,6 +5,7 @@ namespace kodi\backend\controllers;
 use kodi\common\enums\AlertType;
 use kodi\common\enums\order\Status as OrderStatus;
 use kodi\common\enums\Status;
+use kodi\common\models\Action;
 use kodi\common\models\AdImage;
 use kodi\common\models\Order;
 use kodi\common\models\OrderSearch;
@@ -12,6 +13,7 @@ use Yii;
 use yii\filters\ContentNegotiator;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
@@ -44,7 +46,7 @@ class OrderController extends BaseController
             // Negotiator filter
             'contentNegotiator' => [
                 'class' => ContentNegotiator::class,
-                'only' => ['mark'],
+                'only' => ['mark', 'update-action-ad-images'],
                 'formats' => [
                     'application/json' => Response::FORMAT_JSON,
                 ],
@@ -191,6 +193,8 @@ class OrderController extends BaseController
      *
      * @param $id
      * @return array
+     * @throws \yii\base\InvalidConfigException
+     * @throws NotFoundHttpException
      */
     public function actionMark($id)
     {
@@ -212,6 +216,27 @@ class OrderController extends BaseController
         }
 
         Yii::$app->session->addFlash($response['status'], ['message' => $response['message']]);
+        return [];
+    }
+
+    /**
+     * Updates ad images that was chosen for the order
+     *
+     * @return array
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionUpdateActionAdImages()
+    {
+        $data = Yii::$app->request->getBodyParams();
+
+        if (!empty($data['actionId'])) {
+            $action = Action::findOne(['id' => $data['actionId']]);
+            $actionData = Json::decode($action->data);
+            $actionData['adImages'] = ArrayHelper::getValue($data, 'images', []);
+            $action->data = Json::encode($actionData);
+            $action->save(false);
+        }
+
         return [];
     }
 

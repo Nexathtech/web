@@ -21,3 +21,12 @@
 .d-none {
   display: none;
 }
+
+.btn-default {
+  background-color: #8a979f;
+  color: #fff;
+}
+.btn-default:hover {
+  background-color: #737e85;
+  color: #fff;
+}

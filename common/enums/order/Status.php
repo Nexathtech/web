@@ -17,9 +17,10 @@ class Status extends Enum implements EnumInterface
 {
     const WAITING = 'Waiting';
     const PENDING = 'Pending';
+    const REVIEWED = 'Reviewed';
+    const SHIPPED = 'Shipped';
     const COMPLETED = 'Completed';
     const CANCELED = 'Canceled';
-    const SHIPPED = 'Shipped';
 
     /**
      * @inheritdoc
@@ -29,9 +30,10 @@ class Status extends Enum implements EnumInterface
         return [
             self::WAITING => Yii::t('common', 'Waiting for payment'),
             self::PENDING => Yii::t('common', 'Pending'),
+            self::REVIEWED => Yii::t('common', 'Reviewed'),
+            self::SHIPPED => Yii::t('common', 'Shipped'),
             self::COMPLETED => Yii::t('common', 'Completed'),
             self::CANCELED => Yii::t('common', 'Canceled'),
-            self::SHIPPED => Yii::t('common', 'Shipped'),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 use kodi\backend\themes\admire\widgets\grid\ActionColumn;
 use kodi\backend\themes\admire\widgets\grid\GridView;
+use kodi\common\enums\ImageType;
 use kodi\common\enums\Status;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
@@ -65,6 +66,10 @@ $this->params['breadcrumbs'] = [
                                 'value' => function ($data) {
                                     return Html::a(Html::encode($data->user->email), ['view', 'id' => $data->id]);
                                 }
+                            ],
+                            [
+                                'attribute' => 'type',
+                                'filter' => ImageType::listData(),
                             ],
                             'location_latitude',
                             'location_longitude',

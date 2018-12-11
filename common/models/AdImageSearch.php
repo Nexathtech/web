@@ -34,7 +34,7 @@ class AdImageSearch extends AdImage
     {
         return [
             [['id', 'user_id'], 'integer'],
-            [['status', 'location_latitude', 'location_longitude', 'created_at', 'user.email'], 'safe'],
+            [['status', 'type', 'location_latitude', 'location_longitude', 'created_at', 'user.email'], 'safe'],
         ];
     }
 
@@ -79,6 +79,7 @@ class AdImageSearch extends AdImage
             'id' => $this->id,
             'user_id' => $this->user_id,
             'status' => $this->status,
+            'ad_image.type' => $this->type,
         ]);
 
         $query->andFilterWhere(['like', 'location_latitude', $this->location_latitude])
