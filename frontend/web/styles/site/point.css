@@ -75,7 +75,7 @@ a:hover {
   background: none;
   position: relative;
   bottom: -100px;
-  transition: all .5s ease .5s;
+  transition: bottom .5s ease .5s;
 }
 .point-bookmark-q.show .btn {
   bottom: 0;
