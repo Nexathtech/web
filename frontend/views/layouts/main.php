@@ -51,7 +51,7 @@ $action = Yii::$app->controller->action->id;
     <div class="top-nav" id="top-nav">
         <a href="/" class="<?= $action === 'plus' ? 'active' : '' ?>">kodi plus</a>
         <a href="/brands" class="<?= $action === 'brands' ? 'active' : '' ?>">kodi ads</a>
-        <a href="/point">kodi point</a>
+        <a href="/point" class="<?= $slug === 'point' ? 'active' : '' ?>">kodi point</a>
         <a href="javascript:void(0);" class="top-nav-icon" onclick="openTopNav()">&#9776;</a>
     </div>
     <? if ($action === 'brands'): ?>

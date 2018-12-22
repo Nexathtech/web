@@ -43,6 +43,7 @@ class PromoCodeController extends Controller
 
     /**
      * Creates promo code and social user if needed
+     * Uses when we create a promo code from the KIOSK APP and send it to the user's social account
      *
      * @return PromoCode|SocialUser
      * @throws ErrorException

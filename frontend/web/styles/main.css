@@ -440,7 +440,7 @@ input[type="checkbox"]:checked::after {
     display: inline-block;
     margin: 0 10px;
     float: left;
-    text-decoration: none;
+    text-decoration: none !important;
     background: #000;
     font-size: 16px;
     color: #ffcf46;

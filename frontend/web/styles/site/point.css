@@ -1,0 +1,617 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: #48affd;
+}
+a:hover {
+  color: #000;
+}
+
+.point-bookmark-q {
+  padding: 100px 10px 40px;
+  position: relative;
+  overflow: hidden;
+  height: 250px;
+  background: #ffcf46;
+  text-align: center;
+  font-size: 30px;
+  transition: all .4s ease;
+}
+.point-bookmark-q.show {
+  height: 330px;
+}
+.point-bookmark-q.hidden {
+  opacity: 0;
+  height: 0;
+  padding: 0;
+}
+.pbq-t1, .pbq-checks {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  transition: all .9s ease;
+}
+.pbq-t2 {
+  position: relative;
+  top: -200px;
+  transition: all .5s ease;
+}
+
+.point-bookmark-q.show .pbq-t1 {
+  left: -100%;
+}
+.point-bookmark-q.show .pbq-t2 {
+  top: 0;
+}
+.pbq-checks {
+  top: 160px;
+  transition-delay: .5s;
+}
+.point-bookmark-q.show .pbq-checks {
+  left: 100%;
+}
+
+.pbq-desc {
+  width: 420px;
+  margin: 10px auto 20px;
+  position: relative;
+  left: -150%;
+  font-size: 16px;
+  color: #fff;
+  transition: all .9s ease .5s;
+}
+.point-bookmark-q.show .pbq-desc {
+  left: 0;
+}
+
+.point-bookmark-q .btn {
+  background: none;
+  position: relative;
+  bottom: -100px;
+  transition: all .5s ease .5s;
+}
+.point-bookmark-q.show .btn {
+  bottom: 0;
+}
+
+.pbq-check {
+  display: inline-block;
+  margin: 10px 80px;
+  position: relative;
+  cursor: pointer;
+}
+.pbq-check::before {
+  content: "";
+  display: block;
+  width: 35px;
+  height: 30px;
+  position: absolute;
+  left: -45px;
+  top: 6px;
+  border: 1px solid #000;
+}
+.pbq-check.active::after {
+  content: "";
+  display: block;
+  width: 16px;
+  height: 17px;
+  position: absolute;
+  left: -34px;
+  top: 13px;
+  background: url("../img/point/pbq-check.png");
+}
+
+.point-men {
+  padding: 80px 10px;
+  background: #eca7a7;
+}
+.point-men-cont {
+  width: 900px;
+  margin: 0 auto;
+}
+.p-m-title {
+  min-height: 420px;
+  padding: 0 0 0 620px;
+  background: url("../img/point/point-men.png") no-repeat left 30px;
+  font-size: 72px;
+  font-weight: bold;
+}
+.p-m-desc {
+  padding-left: 50px;
+  font-size: 22px;
+  line-height: 36px;
+}
+
+.pd-find {
+  width: 900px;
+  margin: 50px auto;
+  position: relative;
+}
+.pd-find::before {
+  content: "";
+  display: block;
+  width: 45px;
+  height: 269px;
+  position: absolute;
+  left: -150px;
+  top: 250px;
+  background-image: url("../img/point/il-tuo-superkit.png");
+}
+.pd-find::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 60px;
+  margin-left: -4px;
+  width: 7px;
+  height: 110%;
+  border: 1px solid #808080;
+  background: #fff;
+}
+.pd-find-title {
+  text-align: center;
+  font-size: 40px;
+  text-transform: lowercase;
+}
+.pd-find-l {
+  width: 50%;
+  float: left;
+}
+.pd-find-r {
+  width: 50%;
+  float: right;
+}
+.pd-row {
+  margin: 60px 0 120px;
+}
+.pd-row::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.pd-find-l-1, .pd-find-r-2 {
+  text-align: center;
+}
+.pd-find-r-1 {
+  padding-left: 80px;
+}
+.pd-title {
+  padding-bottom: 50px;
+  position: relative;
+  font-size: 30px;
+  text-transform: lowercase;
+}
+.pd-title::after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 20px;
+  position: relative;
+  top: 20px;
+  left: -20px;
+  background: #e79b9f;
+}
+.pd-desc {
+  font-size: 14px;
+  color: #424242;
+}
+.pd-desc span {
+  color: #000;
+}
+
+.pd-btn {
+  min-width: 300px;
+  margin: 30px 0 20px -20px !important;
+  font-size: 22px;
+}
+.pd-find-l-2 {
+  padding-right: 60px;
+  text-align: right;
+}
+.pd-find-l-2 .pd-title::after {
+  position: absolute;
+  left: auto;
+  top: 50px;
+  right: 20px;
+  background-color: #ffcf46;
+}
+.pd-find-l-2 .pd-btn {
+  margin: 20px 20px 20px 0 !important;
+}
+.pd-find-r-1, .pd-find-r-2 {
+  position: relative;
+}
+.pd-find-r-1::after, .pd-find-r-2::after {
+  content: "";
+  display: block;
+  width: 330px;
+  height: 7px;
+  position: absolute;
+  bottom: -50px;
+  left: -140px;
+  border: 1px solid #808080;
+}
+
+.point-figures {
+  width: 900px;
+  margin: 200px auto 50px;
+  position: relative;
+}
+.point-figures::after {
+  content: "";
+  display: block;
+  width: 46px;
+  height: 205px;
+  position: absolute;
+  top: 100px;
+  right: -150px;
+  background: url("../img/point/i-vantaggi.png");
+}
+
+.pf-desc {
+  margin-bottom: 40px;
+}
+.pf-desc::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.pfd-text {
+  width: 50%;
+  float: left;
+  padding-right: 90px;
+  font-size: 20px;
+}
+.pf-desc-1 .pf-figure {
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin: 30px 0 0 -25px;
+  position: relative;
+  border-radius: 50%;
+  background: #000;
+}
+.pf-desc-1 .pf-figure::before, .pf-desc-1 .pf-figure::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  left: -15px;
+  top: -15px;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+.pf-desc-1 .pf-figure::after {
+  width: 120px;
+  height: 120px;
+  left: -35px;
+  top: -35px;
+}
+.pf-desc-2, .pf-desc-4 {
+  margin-bottom: 15px;
+}
+.pf-desc-2 {
+  padding-left: 150px;
+}
+.pf-desc-2 .pfd-text, .pf-desc-4 .pfd-text {
+  padding-right: 0;
+}
+.pf-desc-2 .pf-figure {
+  width: 50%;
+  height: 100px;
+  float: left;
+  background: url("../img/point/triangle-figures.png") no-repeat right center;
+}
+.pf-desc-2 .pfd-text {
+  padding-left: 55px;
+}
+
+.pf-desc-3 .pf-figure {
+  width: 50%;
+  float: left;
+  margin-left: -40px;
+  padding-top: 40px;
+}
+.pff-circle {
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin-right: 2px;
+  background: #000;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+.pff-circle::after {
+  content: "";
+  display: block;
+  width: 29px;
+  height: 29px;
+  position: absolute;
+  left: 20px;
+  top: -2px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.pf-desc-4 {
+  position: relative;
+  top: -75px;
+}
+.pf-desc-4 .pf-figure {
+  width: 45px;
+  height: 45px;
+  float: left;
+  position: relative;
+  margin: 55px 10px 0 395px;
+  border-radius: 50%;
+  background: #000;
+}
+.pf-desc-4 .pf-figure::before, .pf-desc-4 .pf-figure::after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: -25px;
+  top: 25px;
+  border-radius: 50%;
+  background: #000;
+}
+.pf-desc-4 .pf-figure::after {
+  width: 85px;
+  height: 85px;
+  left: 48px;
+  top: -42px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  background: #fff;
+}
+.pf-desc-4 .pfd-text {
+  padding-right: 0;
+  padding-left: 120px;
+}
+
+.point-order {
+  width: 680px;
+  min-height: 380px;
+  margin: 150px auto 160px;
+  position: relative;
+  border: 1px solid #000;
+  background: url("../img/point/jimmy.png") no-repeat 120px 30px;
+  text-align: center;
+}
+.point-order::before {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 250px;
+  position: absolute;
+  left: 50%;
+  top: -252px;
+  margin-left: -4px;
+  border: 1px solid #7e7e7e;
+  border-bottom-color: #fff;
+  background: #fff;
+}
+.point-order::after {
+  content: "";
+  display: block;
+  width: calc(100% - 65% + (100vw - 100%) / 2);
+  height: 15px;
+  position: absolute;
+  top: 135px;
+  left: 65%;
+  background: #eca7a7;
+}
+.p-o-title {
+  width: 280px;
+  margin: 50px 0 50px 320px;
+  text-align: left;
+  text-transform: lowercase;
+  font-size: 45px;
+  line-height: 35px;
+  font-weight: bold;
+}
+.p-o-desc {
+  width: 285px;
+  margin-left: 320px;
+  text-align: left;
+  font-size: 20px;
+}
+.point-order .btn {
+  width: 380px;
+  margin-top: 60px;
+  position: relative;
+  bottom: -40px;
+  background-color: #facb45;
+  border-color: #facb45;
+  color: #fff;
+  font-size: 20px;
+}
+.point-order .btn:hover {
+  text-decoration: none;
+  color: #000;
+}
+
+
+/* ==========================================================================
+   Responsive corrections
+   ========================================================================== */
+/* === Portrait tablets and small desktops === */
+@media screen and (max-width: 1024px) {
+  .pd-find::before {
+    left: -5%;
+  }
+  .point-figures::after {
+    right: -5%;
+  }
+}
+
+
+/* ===== Landscape phones and portrait tablets ===== */
+@media screen and (max-width: 800px) {
+  .point-men-cont {
+    width: auto;
+  }
+  .p-m-title {
+    padding-left: 55%;
+    margin-bottom: 40px;
+    min-height: auto;
+    background-size: 50%;
+    line-height: 90px;
+  }
+
+  .pd-find {
+    width: auto;
+  }
+  .pd-find::before {
+    left: 5px;
+  }
+  .pd-find-l-2 {
+    padding-left: 10px;
+    padding-right: 25px;
+  }
+  .pd-find-r-2 img {
+    max-width: 95%;
+  }
+
+  .point-figures {
+    width: auto;
+    padding: 0 10px;
+  }
+  .point-figures::after {
+    right: 5px;
+    top: -50px;
+  }
+  .pf-desc-4 .pf-figure {
+    margin-left: 305px;
+  }
+}
+
+
+/* ===== Portrait phones and smaller ===== */
+@media screen and (max-width: 480px) {
+  .point-bookmark-q {
+    height: 210px;
+    padding: 65px 10px 20px;
+    font-size: 24px;
+  }
+  .pbq-checks {
+    top: 120px;
+  }
+  .pbq-check {
+    margin: 20px 40px 10px;
+    padding-top: 5px;
+  }
+  .pbq-desc {
+    width: auto;
+  }
+
+  .point-men {
+    padding: 20px;
+  }
+  .p-m-title {
+    padding: 250px 0 0;
+    margin-bottom: 20px;
+    background-size: 100%;
+    font-size: 65px;
+    line-height: 70px;
+  }
+  .p-m-desc {
+    padding-left: 0;
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .pd-find::before, .pd-find::after {
+    display: none;
+  }
+  .pd-find-l, .pd-find-r {
+    width: auto;
+    float: none;
+  }
+  .pd-row {
+    margin: 40px 0 100px;
+  }
+  .pd-find-r-1::after, .pd-find-r-2::after {
+    left: 50%;
+    margin-left: -165px;
+  }
+  .pd-find-r-1 {
+    padding-left: 50px;
+  }
+
+  .point-figures::after {
+    display: none;
+  }
+  .pfd-text {
+    width: auto;
+    float: none;
+    padding: 0;
+    text-align: center;
+  }
+  .pf-desc-1 .pf-figure {
+    float: none;
+    margin: -240px auto 150px
+  }
+  .pf-desc-2 {
+    padding: 0;
+  }
+  .pf-desc-2 .pf-figure {
+    width: auto;
+    float: none;
+    background-position-x: center;
+  }
+  .pf-desc-2 .pfd-text {
+    padding: 0;
+    margin-bottom: 80px;
+  }
+  .pf-desc-3 .pf-figure {
+    width: auto;
+    float: none;
+    margin: -190px auto 300px;
+    padding: 0;
+    text-align: center;
+  }
+  .pf-desc-4 .pf-figure {
+    float: none;
+    margin: 30px auto;
+  }
+  .pf-desc-4 .pfd-text {
+    padding: 0;
+  }
+
+  .point-order {
+    width: auto;
+    margin: 200px 10px 100px;
+  }
+  .point-order::after {
+    top: 405px;
+  }
+  .p-o-title {
+    width: auto;
+    margin: 350px 0 50px;
+    text-align: center;
+  }
+  .p-o-desc {
+    width: auto;
+    margin: 0;
+    text-align: center;
+  }
+  .point-order .btn {
+    width: 80%;
+    margin-top: 10px;
+    bottom: -25px;
+  }
+}
