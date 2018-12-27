@@ -37,7 +37,7 @@ Controllare la posta sarà un piacere maggiore.',
     'your shop can become a smart shop.{br}Find out how' => 'diventa un kodi point e scopri tutti i vantaggi che potrai avere.',
     'The only application that does not require any login to print your photos directly from the social media you prefer. Print an indelible moment or give a special memory making a surprise to your beloved and receive wherever you want. Oh I forgot: NO shipping costs, NO printing costs. Totally FREE.' => 'L’unica applicazione che non richiede alcun login per stampare le tue foto direttamente dai social media che preferisci. Stampa un momento indelebile o regala un ricordo speciale senza farti scoprire e ricevi ovunque tu vuoi. Ah dimenticavo: NO costi di spedizione, NO costi di stampa. Totalmente FREE.',
 
-    'print 10 photos for free a month with KodiPlus' => 'stampa gratis 10 foto al mese con l’app KodiPlus',
+    'print 10 photos for free a month with KodiPlus' => 'stampa gratis 9 foto al mese con l’app KodiPlus',
     'Print your photos' => 'Stampare le tue foto',
     'has become a game:' => 'è diventato un gioco:',
     'with kodiplus only a few clicks are enough.' => 'con kodiplus bastano solo pochi click.',

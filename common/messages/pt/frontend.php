@@ -31,7 +31,7 @@ return [
     'your shop can become a smart shop.{br}Find out how' => 'sua loja pode ser uma smart loja.{br}Descubra como',
     'The only application that does not require any login to print your photos directly from the social media you prefer. Print an indelible moment or give a special memory making a surprise to your beloved and receive wherever you want. Oh I forgot: NO shipping costs, NO printing costs. Totally FREE.' => 'O único aplicativo que não exige login para imprimir suas fotos diretamente da sua rede social favorita. Imprima um momento eterno ou presenteie uma lembrança especial a quem você ama - e receba suas fotos impressas onde quiser. Ah, ia esquecendo: SEM custo de frete, SEM custo de impressão. Totalmente GRÁTIS. KodiPlus é o app da Kodi, uma plataforma inovadora e de código aberto.',
 
-    'print 10 photos for free a month with KodiPlus' => '10 fotos impressas grátis por mês, Sério Simples, rápido, divertido, KodiPlus',
+    'print 10 photos for free a month with KodiPlus' => '9 fotos impressas grátis por mês, Sério Simples, rápido, divertido, KodiPlus',
     'Print your photos' => 'Imprimir suas fotos',
     'has become a game:' => 'virou um jogo:',
     'with kodiplus only a few clicks are enough.' => 'com kodiplus, alguns cliques já bastam.',
