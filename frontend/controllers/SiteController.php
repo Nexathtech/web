@@ -124,4 +124,11 @@ class SiteController extends Controller
 
         return $this->render('about', ['model' => $contactModel]);
     }
+
+    public function actionDownloadapp()
+    {
+        $this->layout = 'downloadapp';
+
+        return $this->render('downloadapp');
+    }
 }

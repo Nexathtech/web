@@ -1,9 +1,6 @@
 <?php
 
 use kodi\frontend\assets\AppAsset;
-use kodi\frontend\assets\SkrollrAsset;
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 
 /**
  * The view file for the "site/view" action.
