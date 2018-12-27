@@ -22,7 +22,8 @@ $this->registerCssFile('/styles/site/downloadapp.css', ['depends' => AppAsset::c
     <h1>cosa aspetti?</h1>
     <div class="da-desc">
         ricevi gratuitamente a casa tua 9<br>
-        fantastiche polaroid dei tuoi momenti migliori
+        fantastiche polaroid dei tuoi momenti migliori<br>
+        ogni mese
     </div>
     <div class="da-picture">
         <img src="/images/da-picture.png" alt="Kodi Polaroid">
