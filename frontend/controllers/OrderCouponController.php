@@ -191,8 +191,8 @@ class OrderCouponController extends Controller
                     'bank_address',
                 ]);
 
-                // Remove the order from cookies
-                Yii::$app->request->cookies->remove('order');
+                // Remove the order from cookies. Note, it will remove shipping info as well
+                Yii::$app->response->cookies->remove('order');
 
                 return $this->render('payment-wire-success', [
                     'model' => $model,
@@ -219,10 +219,10 @@ class OrderCouponController extends Controller
                 $model->payment_type = PaymentType::STRIPE_CARD;
                 $model->status = Status::PENDING;
                 if ($model->save()) {
-                    // Remove the order from cookies
+                    // Remove the order from cookies. Note, it will remove shipping info as well
                     Yii::$app->response->cookies->remove('order');
 
-                    return $this->redirect('order-coupon/success');
+                    return $this->redirect('/order-coupon/success');
                 }
             }
             Yii::$app->session->addFlash(AlertType::ERROR, [

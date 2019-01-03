@@ -170,6 +170,10 @@ class Order extends ActiveRecord
                 $template = 'payment/photo-success';
             }
 
+            if ($this->type === OrderType::COUPON) {
+                $template = 'payment/coupon-success';
+            }
+
             // Send email to the user
             $this->sendEmail($template, $data, $this->email);
 
