@@ -17,6 +17,7 @@ class PaymentType extends Enum implements EnumInterface
 {
     const BITCOIN = 'Bitcoin';
     const WIRETRANSFER = 'Wire Transfer';
+    const STRIPE_CARD = 'Stripe Credit Card';
     const NONE = 'None';
 
     /**
@@ -27,6 +28,7 @@ class PaymentType extends Enum implements EnumInterface
         return [
             self::BITCOIN => Yii::t('common', 'Bitcoin'),
             self::WIRETRANSFER => Yii::t('common', 'Wire Transfer'),
+            self::STRIPE_CARD => Yii::t('common', 'Stripe Credit Card'),
             self::NONE => Yii::t('common', 'None'),
         ];
     }

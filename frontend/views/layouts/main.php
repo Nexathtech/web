@@ -55,7 +55,7 @@ $action = Yii::$app->controller->action->id;
         <a href="javascript:void(0);" class="top-nav-icon" onclick="openTopNav()">&#9776;</a>
     </div>
     <? if ($action === 'brands'): ?>
-        <a class="become-brand-btn" href="#member"><?= Yii::t('frontend', 'become{br}a member', ['br' => '<br>']); ?></a>
+        <a class="become-brand-btn" href="#member"><?= Yii::t('frontend', 'free trial'); ?></a>
     <? endif; ?>
     <? if ($action === 'plus'): ?>
         <a class="download-app-btn" href="#download"><?= Yii::t('frontend', 'download{br}app', ['br' => '<br>']); ?></a>

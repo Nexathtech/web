@@ -80,13 +80,13 @@ $color = $orderDetails['color'];
                 </div>
             </div>
             <?= Html::beginForm('', 'post', ['class' => 'o-submit-form']); ?>
-            <div class="o-agreement">
+            <div class="o-agreement checkbox-container">
                 <?= Html::input('checkbox', 'tac_agreement', null, ['id' => 'tac-agreement']); ?>
                 <?= Html::label(Yii::t('frontend', 'I have read and accept the {terms_and_conditions}', [
                     'terms_and_conditions' => Html::a(Yii::t('frontend', 'Terms and conditions'), ['/terms-and-conditions'], ['target' => '_blank']),
                 ]), 'tac-agreement'); ?>
             </div>
-            <div class="o-agreement">
+            <div class="o-agreement checkbox-container">
                 <?= Html::input('checkbox', 'p_agreement', null, ['id' => 'p-agreement']); ?>
                 <?= Html::label(Yii::t('frontend', 'I have read and accept the {purchase_agreement}', [
                     'purchase_agreement' => Html::a(Yii::t('frontend', 'Purchase agreement'), ['/purchase-agreement'], ['target' => '_blank']),

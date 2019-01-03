@@ -19,11 +19,12 @@ $this->registerCssFile('/styles/site/downloadapp.css', ['depends' => AppAsset::c
 
 <div class="d-app">
     <a href="/" class="da-logo"></a>
-    <h1>cosa aspetti?</h1>
+    <h1>cosa aspetti?<?//= Yii::t('frontend', 'what are you waiting for?') ?></h1>
     <div class="da-desc">
-        ricevi gratuitamente a casa tua 9<br>
-        fantastiche polaroid dei tuoi momenti migliori<br>
-        ogni mese
+        ricevi gratuitamente a casa tua 10
+        <?//= Yii::t('frontend', 'receive right to your home 10 free') ?><br>
+        fantastiche polaroid dei tuoi momenti migliori ogni mese
+        <?//= Yii::t('frontend', 'fantastic polaroids of your best moments every month') ?>
     </div>
     <div class="da-picture">
         <img src="/images/da-picture.png" alt="Kodi Polaroid">

@@ -102,9 +102,7 @@
              data-4000="display: flex"
              data-4100=" display:none;">
         <div class="description">
-            <h2>
-                cambia strategia in pochi click
-            </h2>
+            <h2><?= Yii::t('frontend', 'Change strategy in a few clicks') ?></h2>
             <!--<h2><?= Yii::t('frontend', 'make your business easy {span}today{/span}', [
                     'span' => '<span>',
                     '/span' => '</span>',
@@ -155,13 +153,11 @@
              data-5100="left: -77%;"
     >
         <div class="description ">
-            <h2><?= Yii::t('frontend', 'Please login by brand'); ?></h2>
-            <p><?= Yii::t('frontend', 'Access your brand account{br}quickly and easily.', ['br' => '<br>']); ?></p>
+            <h2><?= Yii::t('frontend', 'Login as brand'); ?></h2>
+            <p><?= Yii::t('frontend', 'Log in to your brand account{br}quickly and easily.', ['br' => '<br>']); ?></p>
             <p><?= Yii::t('frontend', 'You can always switch to your personal Kodi account.'); ?></p>
             <p><?= Yii::t('frontend', 'Do you want to go back to the brand account?'); ?></p>
             <p><?= Yii::t('frontend', 'No problem.'); ?></p>
-            <p><?= Yii::t('frontend', 'Do you want to change again?'); ?></p>
-            <p><?= Yii::t('frontend', 'We do not seem confused for you ... no problem.'); ?></p>
         </div>
     </section>
 
@@ -173,8 +169,7 @@
     >
         <div class="description">
             <h2><?= Yii::t('frontend', 'Choose an image'); ?></h2>
-            <p><?= Yii::t('frontend', 'Select an image that represents your brand, your product or anything you want to spread.') ?></p>
-            <p><?= Yii::t('frontend', 'You do not have to be a company or a store; you can sponsor any business, an interest, an event campaign.') ?></p>
+            <p><?= Yii::t('frontend', 'You do not have to be a company or a store; you can sponsor any kind of business, an interest, an event campaign.') ?></p>
             <p><?= Yii::t('frontend', 'You just have to .. create!') ?></p>
         </div>
     </section>
@@ -187,10 +182,9 @@
     >
         <div class="description">
             <h2><?= Yii::t('frontend', 'The solution you prefer') ?></h2>
-            <p><?= Yii::t('frontend', 'Choose the quantity and the promotion period.') ?></p>
-            <p><?= Yii::t('frontend', 'Remember, your ads will arrive in exclusive Kodi cases, along with photos of users, receiving the utmost attention.') ?></p>
+            <p><?= Yii::t('frontend', 'Remember, your ads will arrive in individual Kodi cases, along with photos of users, receiving the utmost attention.') ?></p>
             <p><?= Yii::t('frontend', 'No urban posters, social banners that fill sites or annoying pop-ups.') ?></p>
-            <p><?= Yii::t('frontend', 'Your publicity becomes true.') ?></p>
+            <p><?= Yii::t('frontend', 'Your advertising becomes true.') ?></p>
         </div>
     </section>
 

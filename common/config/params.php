@@ -32,6 +32,15 @@ return [
         ],
     ],
 
+    // Billing settings
+    'billing' => [
+        'stripe' => [
+            'publicKey' => getenv('KODI_BILLING_STRIPE_PUBLIC_KEY'),
+            'privateKey' => getenv('KODI_BILLING_STRIPE_PRIVATE_KEY'),
+            'currency' => 'eur',
+        ],
+    ],
+
     // Upload files params
     'files' => [
         'maxFiles' => 0, // 0 for unlimited (note, it might be lower in server configuration (php.ini))

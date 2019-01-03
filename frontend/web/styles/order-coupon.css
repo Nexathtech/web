@@ -1,0 +1,247 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+.page-content.order-content {
+  font-size: 14px;
+  overflow: hidden;
+}
+
+.oc-left, .oc-right {
+  width: 50%;
+  float: left;
+  position: relative;
+}
+.oc-left::after {
+  content: "";
+  display: block;
+  width: 2px;
+  height: 90%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #ffde7e;
+}
+.oc-right::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.ocl-name, .ocr-name {
+  padding: 15px 20px 4px;
+  position: relative;
+}
+.ocl-name::after, .ocr-name::after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 2px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #ffde7e;
+}
+.ocr-name {
+  text-align: right;
+}
+.ocr-name::after {
+  left: auto;
+  right: 0;
+}
+
+.oc-sticker {
+  margin: 10px 0;
+  text-align: center;
+}
+.oc-sticker img {
+  max-width: 50%;
+}
+.oc-sticker-info {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.oc-checkboxes {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 10px 20px;
+}
+
+.oc-coupon {
+  width: 150px;
+  float: left;
+  margin: 12px 10px;
+  text-align: center;
+}
+.oc-details {
+  width: calc(100% - 170px);
+  float: left;
+  margin: 25px 0;
+  text-transform: lowercase;
+}
+.oc-price {
+  margin-bottom: 10px;
+  padding-right: 20px;
+  text-align: right;
+  font-size: 28px;
+  color: #50b3fe;
+}
+
+.order-color-choose {
+  padding-right: 20px;
+  margin-bottom: 20px;
+  text-align: right;
+}
+.order-color-choose > div {
+  width: 20px;
+  height: 20px;
+}
+.order-color-choose > div.active::after {
+  width: 22px;
+}
+.order-color-choose .o-c-pink {
+  background-color: #e8999d;
+}
+.order-color-choose .o-c-blue {
+  background-color: #afcfee;
+}
+.order-color-choose .o-c-yellow {
+  background: #ffcd00;
+}
+
+.order-quantity-choose {
+  padding-right: 20px;
+  text-align: right;
+}
+.oc-q-item {
+  display: inline-block;
+  margin: 5px 0 10px 20px;
+  position: relative;
+  cursor: pointer;
+}
+.oc-q-item::before {
+  content: "";
+  display: block;
+  width: 7px;
+  height: 7px;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  margin-left: -5px;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+.oc-q-item:hover {
+  opacity: .8;
+}
+.oc-q-item.active::after {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 4px;
+  position: absolute;
+  left: 50%;
+  bottom: -20px;
+  margin-left: -11px;
+  background: #000;
+}
+
+.oc-proceed {
+  clear: both;
+  padding: 0 20px;
+  text-align: right;
+}
+.btn-next, .btn-back {
+  padding: 5px 32px 5px 0;
+  border: none;
+  background: url("img/arrow-next.png") no-repeat right center;
+  text-transform: lowercase;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0;
+  color: #000;
+  cursor: pointer;
+}
+.btn-back {
+  float: left;
+  padding: 5px 0 5px 32px;
+  background: url("img/arrow-back.png") no-repeat left center;
+}
+.btn-next:hover, .btn-back:hover {
+  opacity: .8;
+}
+
+.point-geo-info {
+  width: 100%;
+  height: 200%;
+  padding: 80px 50px 50px 40px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #afcfee;
+  letter-spacing: 0;
+  color: #fff;
+  display: none;
+}
+.point-geo-info span {
+  font-size: 21px;
+}
+.point-geo-info div {
+  line-height: 22px;
+}
+.pgi-close {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: url("img/close-blue-white.png");
+  cursor: pointer;
+}
+.pgi-close:hover {
+  opacity: .8;
+}
+
+
+.o-payment-check {
+  margin-bottom: 50px;
+}
+
+#stripe-elements {
+  padding: 0 20px 20px;
+  display: none;
+}
+
+.StripeElement {
+  background-color: #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}

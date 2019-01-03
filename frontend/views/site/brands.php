@@ -32,9 +32,9 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
     <div class="stamp">
         <div class="stamp-l">
             <div>
-                Stampiamo &nbsp;&nbsp;<br>
-                Consegnamo &nbsp;&nbsp;<br>
-                Connettiamo &nbsp;&nbsp;
+                <?= Yii::t('frontend', 'We print') ?> &nbsp;&nbsp;<br>
+                <?= Yii::t('frontend', 'Deliver') ?> &nbsp;&nbsp;<br>
+                <?= Yii::t('frontend', 'Connect') ?> &nbsp;&nbsp;
             </div>
             <div class="stamp-i stamp-i-3"></div>
             <div class="stamp-i stamp-i-4"></div>
@@ -43,9 +43,9 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
             <div class="stamp-i stamp-i-1"></div>
             <div class="stamp-i stamp-i-2"></div>
             <div>
-                &nbsp;&nbsp;Le tue<br>
-                &nbsp;&nbsp;pubblicità<br>
-                &nbsp;&nbsp;<span>ai tuoi clienti</span>
+                &nbsp;&nbsp;<?= Yii::t('frontend', 'Your') ?><br>
+                &nbsp;&nbsp;<?= Yii::t('frontend', 'ads') ?><br>
+                &nbsp;&nbsp;<span><?= Yii::t('frontend', 'to our users') ?></span>
             </div>
         </div>
     </div>
@@ -53,14 +53,11 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
 
 <div class="brands-intro">
     <div class="bi-title">
-        La tua pubblicita<br>
-        diventa reale
+        <?= Yii::t('frontend', 'Your advertising{br}becomes real', ['br' => '<br>']) ?>
     </div>
     <div class="bi-desc bi-desc-1">
-        Gli utenti kodiplus ricevono<br>
-        gratuitamente 10 foto ogni mese<br>
-        Non applichiamo stampiamo nessun<br>
-        tipo di pubblicità sulle foto
+        <?= Yii::t('frontend', 'Kodiplus users receive 10 photos{br}for free every month{br}
+We do not print any kind{br}of advertising in the photos', ['br' => '<br>']) ?>
         <div class="bi-square-lines"></div>
     </div>
     <div class="bi-equation">
@@ -71,37 +68,31 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
         <div class="bi-envelope"></div>
     </div>
     <div class="bi-desc bi-desc-2">
-        Pubblicizza ciò che desideri:<br>
-        un coupon, un nuovo corso in palestra, un evento,<br>
-        un nuovo prodotto. O diffondi un tuo artwork,<br>
-        invia un ringraziamento ai tuoi clienti.
+        <?= Yii::t('frontend', 'Advertise what you want:{br}a coupon, a new course in the gym, an event,{br}a new product. Or spread your artwork,{br}thanks to your customers or anything else{br}you think can grow your business.', ['br' => '<br>']) ?>
     </div>
 </div>
 
 <div class="brands-desc">
-    <div class="bd-title">scopri come funziona</div>
+    <div class="bd-title"><?= Yii::t('frontend', 'find out how it works') ?></div>
     <div class="bd-containers">
         <div class="bd-left">
             <div class="bd-dots-1"></div>
             <p>
-                Scarica l’app <a href="/plus">KodiPlus</a> e switcha l’account in brand: un’interfaccia semplice che ti consentirà di creare il tuo messaggio in pochi click
+                <?= Yii::t('frontend', 'Download the {KodiPlus} app and switch the account in brand: a simple interface that will allow you to create your message in a few clicks', ['KodiPlus' => Html::a('KodiPlus', '/plus')]) ?>
             </p>
             <div class="bd-dots-3"></div>
             <p>
-                Ottieni sempre una comunicazione 1:1, ricevendo il massimo dell’attenzione dal cliente.
-                La tua pubblicità stampata ha un valore totalmente diverso.
+                <?= Yii::t('frontend', 'Always get a 1: 1 communication, getting the most attention from the customer.{br}Your printed advertising has an entirely different value.', ['br' => '<br>']) ?>
             </p>
         </div>
         <div class="bd-right">
             <div class="bd-dots-2"></div>
             <p>
-                Con Kodi Ads raggiungerai sempre persone reali
-                Configura Reinventa la tua pubblicità in maniera nuova a seconda delle tue esigenze.
+                <?= Yii::t('frontend', 'With Kodi Ads, you will always reach real people.{br}Reinvent your advertising in a new way according to your needs.', ['br' => '<br>']) ?>
             </p>
             <div class="bd-dots-4"></div>
             <p>
-                0 rischi clickbait, 0 bot, 0 spam.
-                La tua pubblicità avrà un’efficacia del cento per cento.
+                <?= Yii::t('frontend', '0 risks clickbait, 0 bots, 0 spam.{br}Your advertising will be 100% effective.', ['br' => '<br>']) ?>
             </p>
         </div>
     </div>
@@ -113,7 +104,7 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
             'class' => 'subscribe-email',
         ])->label(false); ?>
         <div class="wrap">
-            <?= Html::submitButton(Yii::t('frontend', 'richiedi prova gratuila'), ['class' => 'btn btn-block']); ?>
+            <?= Html::submitButton(Yii::t('frontend', 'request free trial'), ['class' => 'btn btn-block']); ?>
         </div>
         <? $form->end() ?>
     </div>
@@ -123,10 +114,10 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
 
 <div class="brands-subscribe" id="member">
     <div class="b-s-title">
-        Noi siamo pronti, tu?
+        <?= Yii::t('frontend', 'We are ready, you?') ?>
     </div>
     <div class="b-s-desc">
-        Cambia forma alla tua pubblicità già da oggi con Kodi Ads.
+        <?= Yii::t('frontend', 'Change your advertising from today with Kodi Ads.') ?>
     </div>
     <div class="bs-subscribe">
         <? $form = ActiveForm::begin(); ?>
@@ -135,7 +126,7 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
             'class' => 'subscribe-email',
         ])->label(false); ?>
         <div class="wrap">
-            <?= Html::submitButton(Yii::t('frontend', 'richiedi prova gratuila'), ['class' => 'btn btn-block']); ?>
+            <?= Html::submitButton(Yii::t('frontend', 'request free trial'), ['class' => 'btn btn-block']); ?>
         </div>
         <? $form->end() ?>
     </div>
@@ -143,17 +134,17 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
 
 <div class="b-i-block">
     <div class="b-i-title">
-        cambia le regole<br>del tuo negozio
+        <?= Yii::t('frontend', 'Change the rules{br}of your store', ['br' => '<br>']) ?>
     </div>
-    aggiungi nuove funzioni e ottieni<br>una comunicazione diversa
+    <?= Yii::t('frontend', 'add new features and get different communication.') ?>
     <br>
     <a class="btn text-blue" href="/point">kodi point</a>
 </div>
 <div class="b-i-block">
     <div class="b-i-title">
-        stampa gratuitamente<br>le foto che ami
+        <?= Yii::t('frontend', 'Print the photos{br}you love for free', ['br' => '<br>']) ?>
     </div>
-    scopri kodiplus, l’applicazione più facile del<br>al mondo per stampare i tuoi ricordi
+    <?= Yii::t('frontend', 'discover kodiplus, the easiest application in the world to print your memories.') ?>
     <br>
     <a class="btn" href="/">kodi plus</a>
 </div>

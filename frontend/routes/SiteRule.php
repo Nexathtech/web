@@ -15,6 +15,7 @@ class SiteRule extends UrlRule
      * @param \yii\web\UrlManager $manager
      * @param \yii\web\Request $request
      * @return array|bool
+     * @throws \yii\base\InvalidConfigException
      */
     public function parseRequest($manager, $request)
     {

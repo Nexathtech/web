@@ -87,7 +87,7 @@ class Order extends ActiveRecord
             ['email', EmailValidator::class],
 
             // number fields
-            [['quantity'], NumberValidator::class, 'min' => 1, 'max' => 5],
+            [['quantity'], NumberValidator::class, 'min' => 1, 'max' => 1000],
             [['user_id', 'total'], NumberValidator::class],
 
             // Range validation

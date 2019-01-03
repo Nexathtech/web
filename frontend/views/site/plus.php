@@ -32,7 +32,7 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
 <div class="page-plus">
     <div class="p-pl-title">
         <p><?= Yii::t('frontend', 'Your memories are Plus.') ?></p>
-        <span><?= Yii::t('frontend', 'print 9 photos for free a month with KodiPlus') ?></span>
+        <span><?= Yii::t('frontend', 'print 10 photos for free a month with KodiPlus') ?></span>
     </div>
     <div class="people-jump"></div>
     <div class="p-p-heading">

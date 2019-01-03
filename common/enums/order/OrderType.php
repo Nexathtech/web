@@ -17,6 +17,7 @@ class OrderType extends Enum implements EnumInterface
 {
     const KIOSK = 'Kiosk';
     const PHOTO = 'Photo';
+    const COUPON = 'Coupon';
 
     /**
      * @inheritdoc
@@ -26,6 +27,7 @@ class OrderType extends Enum implements EnumInterface
         return [
             self::KIOSK => Yii::t('common', 'Kiosk'),
             self::PHOTO => Yii::t('common', 'Photo'),
+            self::COUPON => Yii::t('common', 'Coupon'),
         ];
     }
 }
