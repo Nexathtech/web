@@ -61,7 +61,7 @@ $this->registerJsFile('/js/point.js', ['depends' => [AppAsset::class]]);
                     <?= Yii::t('frontend', 'Position the sticker where you want and tell everyone quickly that you are an official partner of Kodi.') ?><br>
                     <span><?= Yii::t('frontend', 'Request it now, it\'s free!') ?></span>
                 </div>
-                <a href="/order" class="btn pd-btn text-black"><?= Yii::t('frontend', 'request now') ?></a>
+                <a href="/order-coupon" class="btn pd-btn text-black"><?= Yii::t('frontend', 'request now') ?></a>
             </div>
         </div>
         <div class="pd-row">
@@ -74,7 +74,7 @@ $this->registerJsFile('/js/point.js', ['depends' => [AppAsset::class]]);
                     <span><?= Yii::t('frontend', 'The more you print, the more it works.') ?></span><br>
                     <?= Yii::t('frontend', 'Do not forget about the {KodiAds} service.', ['KodiAds' => Html::a('Kodi Ads', '/brands')]) ?>
                 </div>
-                <a href="/order" class="btn pd-btn text-black"><?= Yii::t('frontend', 'request now') ?></a>
+                <a href="/order-coupon" class="btn pd-btn text-black"><?= Yii::t('frontend', 'request now') ?></a>
             </div>
             <div class="pd-find-r pd-find-r-2">
                 <img src="/images/couponcards.png">
