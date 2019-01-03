@@ -8,6 +8,7 @@ use kodi\common\enums\order\PaymentType;
 use kodi\common\enums\order\Status;
 use kodi\common\models\Order;
 use Stripe\Charge;
+use Stripe\Error\Base;
 use Stripe\Stripe;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -208,26 +209,35 @@ class OrderCouponController extends Controller
         // Handle Credit card choice (Stripe)
         if (Yii::$app->request->post('payment_card') && $token = Yii::$app->request->post('stripe_token')) {
             Stripe::setApiKey(ArrayHelper::getValue(Yii::$app->params, 'billing.stripe.privateKey'));
-            $charge = Charge::create([
-                'amount' => (int)($model->total . '00'), // last 2 characters required as cents
-                'currency' => ArrayHelper::getValue(Yii::$app->params, 'billing.stripe.currency'),
-                'description' => 'Kodi Sticker and Coupons order',
-                'source' => $token,
-            ]);
 
-            if ($charge->id && $charge->paid) {
-                $model->payment_type = PaymentType::STRIPE_CARD;
-                $model->status = Status::PENDING;
-                if ($model->save()) {
-                    // Remove the order from cookies. Note, it will remove shipping info as well
-                    Yii::$app->response->cookies->remove('order');
+            try {
+                $charge = Charge::create([
+                    'amount' => (int)($model->total . '00'), // last 2 characters required as cents
+                    'currency' => ArrayHelper::getValue(Yii::$app->params, 'billing.stripe.currency'),
+                    'description' => 'Kodi Sticker and Coupons order',
+                    'source' => $token,
+                ]);
 
-                    return $this->redirect('/order-coupon/success');
+                if ($charge->id && $charge->paid) {
+                    $model->payment_type = PaymentType::STRIPE_CARD;
+                    $model->status = Status::PENDING;
+                    if ($model->save()) {
+                        // Remove the order from cookies. Note, it will remove shipping info as well
+                        Yii::$app->response->cookies->remove('order');
+
+                        return $this->redirect('/order-coupon/success');
+                    }
                 }
+
+                Yii::$app->session->addFlash(AlertType::ERROR, [
+                    'message' => Yii::t('frontend', 'An error occurred. Please, try again later.')
+                ]);
+
+            } catch (Base $e) {
+                Yii::$app->session->addFlash(AlertType::ERROR, [
+                    'message' => Yii::t('frontend', $e->getMessage())
+                ]);
             }
-            Yii::$app->session->addFlash(AlertType::ERROR, [
-                'message' => Yii::t('frontend', 'An error occurred. Please, try again later.')
-            ]);
         }
 
         // Handle Bitcoin choice
