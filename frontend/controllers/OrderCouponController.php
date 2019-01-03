@@ -220,7 +220,7 @@ class OrderCouponController extends Controller
                 $model->status = Status::PENDING;
                 if ($model->save()) {
                     // Remove the order from cookies
-                    Yii::$app->request->cookies->remove('order');
+                    Yii::$app->response->cookies->remove('order');
 
                     return $this->redirect('order-coupon/success');
                 }
