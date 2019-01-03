@@ -60,5 +60,5 @@ $this->title = Yii::t('frontend', 'Kodi Order payment');
 
     </div>
 
-    <a class="page-close" href="/order"></a>
+    <a class="page-close" href="/order-coupon"></a>
 </div>
