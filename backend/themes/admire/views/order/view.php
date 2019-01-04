@@ -1,6 +1,5 @@
 <?php
 
-use kdn\yii2\JsonEditor;
 use kodi\backend\themes\admire\assets\ThemeAsset;
 use kodi\common\enums\order\OrderType;
 use kodi\common\enums\order\Status;
@@ -165,15 +164,6 @@ $theme = $this;
                                 'attribute' => 'order_data',
                                 'format' => 'raw',
                                 'value' => Order::transformDataWording(Json::decode($model->order_data)),
-                                /*'value' => JsonEditor::widget(
-                                    [
-                                        'clientOptions' => ['mode' => 'view'],
-                                        'expandAll' => ['view'],
-                                        'containerOptions' => ['style' => null],
-                                        'name' => 'viewer',
-                                        'value' => $model->order_data,
-                                    ]
-                                ),*/
                             ],
                             'created_at:datetime',
                             'updated_at:datetime',
