@@ -12,6 +12,7 @@ use kodi\frontend\models\forms\ContactForm;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\validators\EmailValidator;
 use yii\validators\NumberValidator;
@@ -278,6 +279,22 @@ class Order extends ActiveRecord
             ['status' => Status::WAITING],
             ['status' => Status::PENDING],
         ])->count();
+    }
+
+    public static function transformDataWording($data = [])
+    {
+        if (empty($data)) {
+            return Yii::t('common', 'Not set');
+        }
+
+        $result = '';
+        foreach ($data as $key => $value) {
+            $result .= Html::tag('strong', Yii::$app->wording->t($key, 'order')) . ': ';
+            $result .= Yii::$app->wording->t($value, 'order') ?: Yii::t('common', 'No');
+            $result .= Html::tag('br');
+        }
+
+        return $result;
     }
 
 }

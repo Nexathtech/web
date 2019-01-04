@@ -63,6 +63,11 @@ $config = [
             ]
         ],
 
+        // Keys wording helper
+        'wording' => [
+            'class' => \kodi\common\components\wording\Wording::class,
+        ],
+
         // Logging
         'log' => [
             'traceLevel' => YII_ENV_LOCAL ? 3 : 0,

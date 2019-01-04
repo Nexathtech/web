@@ -1,8 +1,10 @@
 <?php
 
+use kdn\yii2\JsonEditor;
 use kodi\backend\themes\admire\assets\ThemeAsset;
 use kodi\common\enums\order\OrderType;
 use kodi\common\enums\order\Status;
+use kodi\common\models\Order;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
 use yii\helpers\Json;
@@ -12,7 +14,7 @@ use yii\widgets\DetailView;
  * The view file for the "List orders" page.
  *
  * @var \yii\web\View $this
- * @var \kodi\common\models\Order $model
+ * @var Order $model
  * @var array $adImages
  *
  * @see \kodi\backend\controllers\OrderController::actionView()
@@ -158,6 +160,20 @@ $theme = $this;
                                     ]);
                                 },
                                 'visible' => ($model->type === OrderType::PHOTO),
+                            ],
+                            [
+                                'attribute' => 'order_data',
+                                'format' => 'raw',
+                                'value' => Order::transformDataWording(Json::decode($model->order_data)),
+                                /*'value' => JsonEditor::widget(
+                                    [
+                                        'clientOptions' => ['mode' => 'view'],
+                                        'expandAll' => ['view'],
+                                        'containerOptions' => ['style' => null],
+                                        'name' => 'viewer',
+                                        'value' => $model->order_data,
+                                    ]
+                                ),*/
                             ],
                             'created_at:datetime',
                             'updated_at:datetime',
