@@ -9,49 +9,22 @@
  */
 
 
+use kodi\frontend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 $this->title = Yii::t('frontend', 'About');
 $this->params['breadcrumbs'][] = $this->title;
 
-$this->registerJs("
-$(document).ready(function() {
-    //checkHash();
-    prepareContent('contact');
-});
-
-$(document).on('click', '.about-menu a', function() {
-    if (!$(this).hasClass('active')) {
-        var section = $(this).attr('href').replace('#', '');
-        prepareContent(section);
-    }
-
-    return false;
-});
-
-function checkHash() {
-    var target = location.hash.replace('#', '');
-    if (target) {
-        prepareContent(target);
-    }
-}
-
-function prepareContent(section) {
-    $('.about-menu a').removeClass('active');
-    $('.about-menu a[data-section=\"'+section+'\"]').addClass('active');
-    $('.section-block').hide();
-    $('.section-' + section).fadeIn(500);
-}
-");
+$this->registerJsFile('/js/about.js', ['depends' => AppAsset::class]);
 ?>
 
 <div class="page-about">
-    <!--<ul class="about-menu">
+    <ul class="about-menu">
         <li><a href="#about" data-section="about" class="active">.about kodi</a></li>
         <li><a href="#contact" data-section="contact">.contact</a></li>
         <li><a href="#team" data-section="team">.the team</a></li>
-    </ul>-->
+    </ul>
     <div class="section-block section-about">
         <div class="about-title">
             connecting<br>everything you<br>love
@@ -94,6 +67,15 @@ function prepareContent(section) {
         </div>
     </div>
     <div class="section-block section-team">
+        <div class="team-desc">
+            <?= Yii::t('frontend', 'We are young') ?><br>
+            (<?= Yii::t('frontend', 'Some younger than others') ?>)<br>
+            <?= Yii::t('frontend', 'Good-looking') ?><br>
+            (<?= Yii::t('frontend', 'This one is disputable') ?>)<br>
+            <?= Yii::t('frontend', 'Diverse') ?><br>
+            (<?= Yii::t('frontend', 'To the extreme') ?>)<br>
+            <span><?= Yii::t('frontend', 'But we all love pizza') ?></span>
+        </div>
         <div class="team-member">
             <div class="member-photo"><img src="/styles/img/member-photo-1.jpg">
             </div>
@@ -138,12 +120,12 @@ function prepareContent(section) {
                 mykola<br>popko// <span>developer</span>
             </div>
         </div>
-        <div class="team-description">
+        <!--<div class="team-description">
             We are young (some younger than others)<br>
             good-looking (this one is disputable)<br>
             diverse (to the extreme)<br>
             and<br>
             <strong>we all love pizza</strong>
-        </div>
+        </div>-->
     </div>
 </div>

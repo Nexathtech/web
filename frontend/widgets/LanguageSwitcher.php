@@ -36,7 +36,7 @@ class LanguageSwitcher extends Widget
                 'alias' => $key,
                 'title' => $title,
                 'active' => $key === $currentLang,
-                'url' => str_replace($currentLang, '', $currentUrl),
+                'url' => str_replace("/{$currentLang}", '/', $currentUrl),
             ]);
         }
 

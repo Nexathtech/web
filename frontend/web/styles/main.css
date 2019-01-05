@@ -1541,6 +1541,18 @@ input.contact-email {
     color: #fff !important;
 }
 
+.team-desc {
+    width: 50%;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: lowercase;
+    font-size: 15px;
+    line-height: 18px;
+}
+.team-desc span {
+    color: #48affd;
+}
+
 .team-description {
     position: relative;
     padding-top: 15px;

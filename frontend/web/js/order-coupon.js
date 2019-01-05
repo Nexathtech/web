@@ -63,7 +63,7 @@ function updatePrice() {
   }
 
   if ($('input#sticker').is(':checked')) {
-    price += 10;
+    price += 0;
   }
   if ($('input#sticker-geo').is(':checked')) {
     price += 50;

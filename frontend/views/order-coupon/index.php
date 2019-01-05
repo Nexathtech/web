@@ -80,8 +80,8 @@ if ($color === 'pink') {
             <div class="point-geo-info">
                 <span class="pgi-close"></span>
                 <span>Oltre lo sticker gratuito, ottieni il servizio di geolocalizzazione.</span>
-                <div>Gli utenti di kodiplus potranno risevere notifiche quando si trovano in prossimita della tua attivita che li invitera ad entrage per richiederti le kodi coupon card.<br>
-                    Un motivo in piu per far conoscere il tuo negozio.</div>
+                <div>Gli utenti KodiPlus potranno ricevere notifiche quando si trovano in prossimità della tua attività che li inviterà ad entrare per richiederti le Kodi Cards.<br>
+                    Un motivo in più per far conoscere il tuo negozio.</div>
             </div>
         </div>
         <div class="oc-proceed">

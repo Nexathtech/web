@@ -41,7 +41,7 @@ class OrderCouponController extends Controller
     /**
      * @var int $priceSticker Price per default sticker
      */
-    public $priceSticker = 10;
+    public $priceSticker = 0;
     /**
      * @var int $priceStickerGeo Price per sticker with geo location
      */

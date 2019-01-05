@@ -1,5 +1,6 @@
 <?
 
+use kodi\common\enums\Language;
 use kodi\frontend\assets\AppAsset;
 use kodi\frontend\assets\StripeAsset;
 use yii\helpers\Html;
@@ -67,6 +68,10 @@ $this->registerJs("stripeInit('{$stripe['key']}');");
             <div class="o-payment-check">
                 <?= Html::checkbox('payment_card', false, ['id' => 'payment-card']); ?>
                 <?= Html::label(Yii::t('frontend', 'Credit card'), 'payment-card'); ?>
+                <? if (Yii::$app->language === Language::ITALIAN): ?>
+                    <br>
+                    <br>
+                <? endif; ?>
                 <?= Html::checkbox('payment_wiretransfer', false, ['id' => 'payment-wiretransfer']); ?>
                 <?= Html::label(Yii::t('frontend', 'Wire Transfer'), 'payment-wiretransfer'); ?>
             </div>
