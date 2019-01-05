@@ -19,10 +19,7 @@ $this->registerJsFile('@web/js/order-coupon.js', ['depends' => AppAsset::class])
 $quantity = $orderDetails['quantity'];
 $color = $orderDetails['color'];
 $price = $orderDetails['price'];
-$imageSrc = '/images/coupon-blue.png';
-if ($color === 'pink') {
-    $imageSrc = '/images/coupon-pink.png';
-}
+$imageSrc = "/images/coupon-{$color}.png";
 ?>
 
 <div class="page-order page-regular">
