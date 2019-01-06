@@ -17,7 +17,7 @@ $this->title = Yii::t('frontend', 'Kodi Order information details');
 $this->registerCssFile('/styles/order-coupon.css', ['depends' => AppAsset::class]);
 
 $labelName = Yii::t('frontend', 'first name');
-$labelSurname = Yii::t('frontend', 'last name');
+$labelSurname = Yii::t('frontend', 'surname');
 $labelEmail = Yii::t('frontend', 'email');
 $labelCompany = Yii::t('frontend', 'company');
 $labelCountry = Yii::t('frontend', 'country');
@@ -32,7 +32,7 @@ $labelPostcode = Yii::t('frontend', 'postcode');
     <div class="page-title">
         <a href="/order-coupon" class="passive"><?= Yii::t('frontend', 'Order details'); ?></a>
         <div class="title-delimiter"></div>
-        <div class="active"><?= Yii::t('frontend', 'Information details'); ?></div>
+        <div class="active"><?= Yii::t('frontend', 'Personal information'); ?></div>
         <div class="title-delimiter"></div>
         <div class="passive"><?= Yii::t('frontend', 'Payment'); ?></div>
     </div>

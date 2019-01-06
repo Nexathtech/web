@@ -46,13 +46,14 @@ $action = Yii::$app->controller->action->id;
 <?= $this->render('includes/_flash_messages') ?>
 
 <div class="header">
-    <a class="btn-plus " href="/about" title="About us"></a>
+    <a class="btn-plus <?= $action === 'about' ? 'active' : '' ?>" href="<?= $action === 'about' ? '/' : '/about' ?>" title="About us"></a>
     <?= LanguageSwitcher::widget(); ?>
     <a class="logo" href="/"></a>
     <div class="top-nav" id="top-nav">
         <a href="/" class="<?= $action === 'plus' ? 'active' : '' ?>">kodi plus</a>
         <a href="/brands" class="<?= $action === 'brands' ? 'active' : '' ?>">kodi ads</a>
         <a href="/point" class="<?= $slug === 'point' ? 'active' : '' ?>">kodi point</a>
+        <a href="/about" class="nav-about <?= $slug === 'about' ? 'active' : '' ?>">about us</a>
         <a href="javascript:void(0);" class="top-nav-icon" onclick="openTopNav()">&#9776;</a>
     </div>
     <? if ($action === 'brands'): ?>

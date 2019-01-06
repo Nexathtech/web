@@ -27,7 +27,7 @@ $this->registerJs("stripeInit('{$stripe['key']}');");
     <div class="page-title">
         <a href="/order-coupon" class="passive"><?= Yii::t('frontend', 'Order details'); ?></a>
         <div class="title-delimiter"></div>
-        <a href="/order-coupon/info" class="passive"><?= Yii::t('frontend', 'Information details'); ?></a>
+        <a href="/order-coupon/info" class="passive"><?= Yii::t('frontend', 'Personal information'); ?></a>
         <div class="title-delimiter"></div>
         <div class="active"><?= Yii::t('frontend', 'Payment'); ?></div>
     </div>
@@ -35,7 +35,7 @@ $this->registerJs("stripeInit('{$stripe['key']}');");
     <div class="page-content order-content">
         <div class="o-c-medium">
             <div class="o-c-m-content">
-                <div class="o-p-title"><?= Yii::t('frontend', 'Information details'); ?></div>
+                <div class="o-p-title"><?= Yii::t('frontend', 'Personal info'); ?></div>
                 <div class="o-p-details">
                     <?= $model->name ?> <?= $model->surname ?><br>
                     <?= $model->address ?> <?= $model->address2 ?><br>
@@ -43,7 +43,7 @@ $this->registerJs("stripeInit('{$stripe['key']}');");
                     <?= $model->country ?><br>
                     <?= $model->email ?>
                     <div class="order-mark text-right">
-                        <a href="/order-coupon/info"><?= Yii::t('frontend', 'modify?') ?></a>
+                        <a href="/order-coupon/info"><?= Yii::t('frontend', 'change?') ?></a>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@ $this->registerJs("stripeInit('{$stripe['key']}');");
             </div>
         </div>
         <div class="o-c-wide">
-            <div class="o-p-question"><?= Yii::t('frontend', 'how would you like to pay?'); ?></div>
+            <div class="o-p-question"><?= Yii::t('frontend', 'how do you prefer to pay?'); ?></div>
             <?= Html::beginForm('', 'post', ['class' => 'o-submit-form', 'id' => 'payment-form']); ?>
             <div class="o-payment-check">
                 <?= Html::checkbox('payment_card', false, ['id' => 'payment-card']); ?>
@@ -73,7 +73,7 @@ $this->registerJs("stripeInit('{$stripe['key']}');");
                     <br>
                 <? endif; ?>
                 <?= Html::checkbox('payment_wiretransfer', false, ['id' => 'payment-wiretransfer']); ?>
-                <?= Html::label(Yii::t('frontend', 'Wire Transfer'), 'payment-wiretransfer'); ?>
+                <?= Html::label(Yii::t('frontend', 'Bank Transfer'), 'payment-wiretransfer'); ?>
             </div>
             <!-- Credit card -->
             <div id="stripe-elements">

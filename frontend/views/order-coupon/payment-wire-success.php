@@ -15,16 +15,16 @@ use yii\helpers\Html;
 $this->title = Yii::t('frontend', 'Kodi Order payment');
 ?>
 
-<div class="order-thank-page page-regular">
+<div class="order-thank-page-wire page-regular">
     <div class="page-title">
-        <?= Yii::t('frontend', 'Wire Transfer Details'); ?>
+        <?= Yii::t('frontend', 'Bank Transfer Details'); ?>
     </div>
 
     <div class="page-content">
-        <h1 class="text-center"><?= Yii::t('frontend', 'Thanks for ordering!'); ?></h1>
+        <h1 class="text-center"><?= Yii::t('frontend', 'Thanks for your order!'); ?></h1>
         <p>
-            <?= Yii::t('frontend', 'Below is our bank requisites to proceed with the payment'); ?><br>
-            <?= Yii::t('frontend', 'Please provide your Kodi order number in the bank wire comments.'); ?>
+            <?= Yii::t('frontend', 'Below you will find the details for the transfer.'); ?><br>
+            <?= Yii::t('frontend', 'As the reason for the transfer, indicate the order number shown below.'); ?>
         </p>
 
         <table class="table-order table-striped">
@@ -33,7 +33,7 @@ $this->title = Yii::t('frontend', 'Kodi Order payment');
                 <td>#<?= $model->id; ?></td>
             </tr>
             <tr>
-                <th><?= Yii::t('frontend', 'Order total'); ?></th>
+                <th><?= Yii::t('frontend', 'Total order'); ?></th>
                 <td><span class="amount">$<?= number_format($model->total); ?></span></td>
             </tr>
             <tr>

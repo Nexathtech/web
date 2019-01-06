@@ -26,7 +26,7 @@ $imageSrc = "/images/coupon-{$color}.png";
     <div class="page-title">
         <div class="active"><?= Yii::t('frontend', 'Order details'); ?></div>
         <div class="title-delimiter"></div>
-        <div class="passive"><?= Yii::t('frontend', 'Information details'); ?></div>
+        <div class="passive"><?= Yii::t('frontend', 'Personal information'); ?></div>
         <div class="title-delimiter"></div>
         <div class="passive"><?= Yii::t('frontend', 'Payment'); ?></div>
     </div>
@@ -39,11 +39,11 @@ $imageSrc = "/images/coupon-{$color}.png";
             <div class="oc-checkboxes">
                 <div class="checkbox-container">
                     <?= Html::input('checkbox', 'sticker', null, ['id' => 'sticker', 'checked' => ArrayHelper::getValue($orderDetails, 'data.sticker')]); ?>
-                    <?= Html::label(Yii::t('frontend', 'include standard kodi point sticker'), 'sticker') ?>
+                    <?= Html::label(Yii::t('frontend', 'kodi point standard sticker'), 'sticker') ?>
                 </div>
                 <div class="checkbox-container">
                     <?= Html::input('checkbox', 'sticker_geo', null, ['id' => 'sticker-geo', 'checked' => ArrayHelper::getValue($orderDetails, 'data.sticker_geo')]); ?>
-                    <?= Html::label(Yii::t('frontend', 'include kodi point sticker with geolocation'), 'sticker-geo') ?>
+                    <?= Html::label(Yii::t('frontend', 'premium kodi point sticker with geolocation'), 'sticker-geo') ?>
                     <span class="oc-sticker-info">i</span>
                 </div>
             </div>
@@ -60,7 +60,7 @@ $imageSrc = "/images/coupon-{$color}.png";
                         <?= number_format($price, 2); ?>
                     </span>
                 </div>
-                <?= Yii::t('frontend', 'Select a color') ?>
+                <?= Yii::t('frontend', 'Choose your color') ?>
                 <div class="order-color-choose">
                     <div class="o-c-blue<?= ($color === 'blue') ? ' active' : ''; ?>" data-color="blue" data-image="/images/coupon-blue.png"></div>
                     <div class="o-c-pink<?= ($color === 'pink') ? ' active' : ''; ?>" data-color="pink" data-image="/images/coupon-pink.png"></div>
@@ -76,9 +76,8 @@ $imageSrc = "/images/coupon-{$color}.png";
             </div>
             <div class="point-geo-info">
                 <span class="pgi-close"></span>
-                <span>Oltre lo sticker gratuito, ottieni il servizio di geolocalizzazione.</span>
-                <div>Gli utenti KodiPlus potranno ricevere notifiche quando si trovano in prossimità della tua attività che li inviterà ad entrare per richiederti le Kodi Cards.<br>
-                    Un motivo in più per far conoscere il tuo negozio.</div>
+                <span><?= Yii::t('frontend', 'Besides the free sticker, you get the geolocation service.') ?></span>
+                <div><?= Yii::t('frontend', 'KodiPlus users will be able to receive notifications when they are nearby your business inviting them to enter and request the Kodi Cards.{br}One more reason to make your store known.', ['br' => '<br>']) ?></div>
             </div>
         </div>
         <div class="oc-proceed">
