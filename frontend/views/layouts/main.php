@@ -46,6 +46,7 @@ $action = Yii::$app->controller->action->id;
 <?= $this->render('includes/_flash_messages') ?>
 
 <div class="header">
+    <a class="btn-plus " href="/about" title="About us"></a>
     <?= LanguageSwitcher::widget(); ?>
     <a class="logo" href="/"></a>
     <div class="top-nav" id="top-nav">
