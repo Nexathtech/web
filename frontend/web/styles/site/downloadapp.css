@@ -98,4 +98,10 @@ h1 {
   .da-logo {
     margin-bottom: 0;
   }
+  .da-picture {
+    margin-top: 10px;
+  }
+  .d-buttons {
+    margin: 50px 0 40px;
+  }
 }
