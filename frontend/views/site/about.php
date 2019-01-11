@@ -70,10 +70,10 @@ $this->registerJsFile('/js/about.js', ['depends' => AppAsset::class]);
     <div class="section-block section-team">
         <div class="team-desc">
             <?= Yii::t('frontend', 'We are young') ?><br>
-            (<?= Yii::t('frontend', 'Some younger than others') ?>)<br>
+            (<?= Yii::t('frontend', 'Somebody more than others') ?>)<br>
             <?= Yii::t('frontend', 'Good-looking') ?><br>
             (<?= Yii::t('frontend', 'This one is disputable') ?>)<br>
-            <?= Yii::t('frontend', 'Diverse') ?><br>
+            <?= Yii::t('frontend', 'Different') ?><br>
             (<?= Yii::t('frontend', 'To the extreme') ?>)<br>
             <span><?= Yii::t('frontend', 'But we all love pizza') ?></span>
         </div>
@@ -92,7 +92,7 @@ $this->registerJsFile('/js/about.js', ['depends' => AppAsset::class]);
             </div>
             <div class="member-info">
                 alex specchio
-                <br>// <span>co-founder</span>
+                <br>// <span><?= Yii::t('frontend', 'co-founder') ?></span>
             </div>
             <a class="member-contact" href="https://www.linkedin.com/in/alex-specchio-bb012611/" target="_blank" title="<?= Yii::t('frontend', 'Connect') ?>"></a>
         </div>
@@ -111,7 +111,7 @@ $this->registerJsFile('/js/about.js', ['depends' => AppAsset::class]);
             </div>
             <div class="member-info">
                 ivan specchio<br>
-                // <span>co-founder</span>
+                // <span><?= Yii::t('frontend', 'co-founder') ?></span>
             </div>
             <a class="member-contact" href="https://www.linkedin.com/in/ivan-specchio-34661a12a/" target="_blank" title="<?= Yii::t('frontend', 'Connect') ?>"></a>
         </div>
@@ -129,7 +129,7 @@ $this->registerJsFile('/js/about.js', ['depends' => AppAsset::class]);
                 <img src="/images/team/mykola/3-1.png">
             </div>
             <div class="member-info">
-                mykola popko<br>// <span>cto</span>
+                mykola popko<br>// <span><?= Yii::t('frontend', 'cto') ?></span>
             </div>
             <a class="member-contact" href="https://www.linkedin.com/in/mykola-popko/" target="_blank" title="<?= Yii::t('frontend', 'Connect') ?>"></a>
         </div>
@@ -148,7 +148,7 @@ $this->registerJsFile('/js/about.js', ['depends' => AppAsset::class]);
             </div>
             <div class="member-info">
                 dmitry nartov<br>
-                // <span>mobile developer</span>
+                // <span><?= Yii::t('frontend', 'mobile developer') ?></span>
             </div>
             <a class="member-contact" href="https://www.linkedin.com/in/nartich/" target="_blank" title="<?= Yii::t('frontend', 'Connect') ?>"></a>
         </div>
@@ -167,7 +167,7 @@ $this->registerJsFile('/js/about.js', ['depends' => AppAsset::class]);
             </div>
             <div class="member-info">
                 jorge arrigo<br>
-                // <span>kodi ambassador</span>
+                // <span><?= Yii::t('frontend', 'community manager') ?></span>
             </div>
             <a class="member-contact" href="https://www.linkedin.com/in/jorgearrigo/" target="_blank" title="<?= Yii::t('frontend', 'Connect') ?>"></a>
         </div>
@@ -186,7 +186,7 @@ $this->registerJsFile('/js/about.js', ['depends' => AppAsset::class]);
             </div>
             <div class="member-info">
                 alisa sozonik<br>
-                // <span>graphic designer</span>
+                // <span><?= Yii::t('frontend', 'industrial designer') ?></span>
             </div>
             <a class="member-contact" href="https://www.linkedin.com" target="_blank" title="<?= Yii::t('frontend', 'Connect') ?>"></a>
         </div>
@@ -205,7 +205,7 @@ $this->registerJsFile('/js/about.js', ['depends' => AppAsset::class]);
             </div>
             <div class="member-info">
                 andrea ravalli<br>
-                // <span>graphic designer</span>
+                // <span><?= Yii::t('frontend', 'illustrator') ?></span>
             </div>
             <a class="member-contact" href="https://www.linkedin.com" target="_blank" title="<?= Yii::t('frontend', 'Connect') ?>"></a>
         </div>
@@ -215,14 +215,14 @@ $this->registerJsFile('/js/about.js', ['depends' => AppAsset::class]);
             <img src="/images/advisors/1.png">
             <div class="advisor-info">
                 <div class="am-title">Osvaldo Glatt</div>
-                mechanical<br>engineer<br>advisor
+                <?= Yii::t('frontend', 'World{br}acclaimed{br}Inventor', ['br' => '<br>']) ?>
             </div>
         </div>
         <div class="advisor-member am-2">
             <img src="/images/advisors/2.png">
             <div class="advisor-info">
                 <div class="am-title">Clinton Donnely</div>
-                mechanical<br>engineer<br>advisor
+                <?= Yii::t('frontend', 'Financial{br}Planner', ['br' => '<br>']) ?>
             </div>
         </div>
         <br>
@@ -230,14 +230,14 @@ $this->registerJsFile('/js/about.js', ['depends' => AppAsset::class]);
             <img src="/images/advisors/3.png">
             <div class="advisor-info">
                 <div class="am-title">Ren Moulton</div>
-                mechanical<br>engineer<br>advisor
+                <?= Yii::t('frontend', 'Business{br}Development', ['br' => '<br>']) ?>
             </div>
         </div>
         <div class="advisor-member am-4">
             <img src="/images/advisors/4.png">
             <div class="advisor-info">
                 <div class="am-title">Nikita Bezlepkin</div>
-                mechanical<br>engineer<br>advisor
+                <?= Yii::t('frontend', 'Mechanical{br}Engineer', ['br' => '<br>']) ?>
             </div>
         </div>
     </div>

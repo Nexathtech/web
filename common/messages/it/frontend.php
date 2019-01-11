@@ -223,5 +223,17 @@ riservate ai membri.
     'SWIFT code' => 'Codice Swift',
     'Bank name' => 'Nome banca',
     'Bank address' => 'Indirizzo banca',
+
+    'World{br}acclaimed{br}Inventor' => 'World{br}acclaimed{br}Inventor',
+    'Financial{br}Planner' => 'Financial{br}Planner',
+    'Business{br}Development' => 'Business{br}Development',
+    'Mechanical{br}Engineer' => 'Mechanical{br}Engineer',
+    'We are young' => 'Siamo giovani',
+    'Somebody more than others' => 'Qualcuno più di altri',
+    'Good-looking' => 'Di bell\'aspetto',
+    'This one is disputable' => 'Questo è discutibile',
+    'Different' => 'Diversi',
+    'To the extreme' => 'All\'estremo',
+    'But we all love pizza' => 'Ma tutti amiamo la pizza',
     '' => '',
 ];
