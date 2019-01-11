@@ -91,3 +91,11 @@ h1 {
   height: 105px;
   background: url("../img/downloadapp/d-bottom.png") repeat-x center top;
 }
+
+
+/* ===== Portrait phones and smaller ===== */
+@media screen and (max-width: 480px) {
+  .da-logo {
+    margin-bottom: 0;
+  }
+}
