@@ -75,10 +75,10 @@ class AdImageSearch extends AdImage
             return $dataProvider;
         }
 
-        /*$query->andFilterWhere([
-            'id' => $this->id,
+        $query->andFilterWhere([
+            'ad_image.id' => $this->id,
             'user_id' => $this->user_id,
-            'status' => $this->status,
+            'ad_image.status' => $this->status,
             'ad_image.type' => $this->type,
         ]);
 
@@ -86,7 +86,7 @@ class AdImageSearch extends AdImage
             ->andFilterWhere(['like', 'location_longitude', $this->location_longitude]);
 
         // filter by user's email
-        $query->andWhere('user.email LIKE "%' . $this->getAttribute('user.email') . '%"');
+        //$query->andWhere('user.email LIKE "%' . $this->getAttribute('user.email') . '%"');
 
         // filter by created date range
         if (!empty($this->created_at) && strpos($this->created_at, ' - ') !== false) {
@@ -95,7 +95,7 @@ class AdImageSearch extends AdImage
             $eDate = date('Y-m-d H:i:s', strtotime($end_date));
             $query->andFilterWhere(['between', 'ad_image.created_at', $sDate, $eDate]);
             $this->created_at = $start_date . ' - ' . $end_date;
-        }*/
+        }
 
         return $dataProvider;
     }
