@@ -56,7 +56,7 @@ class AdImageSearch extends AdImage
      */
     public function search($params)
     {
-        $query = AdImage::find();//->joinWith(['user user']);
+        $query = AdImage::find()->joinWith(['user user']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -75,7 +75,7 @@ class AdImageSearch extends AdImage
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
+        /*$query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,
             'status' => $this->status,
@@ -95,7 +95,7 @@ class AdImageSearch extends AdImage
             $eDate = date('Y-m-d H:i:s', strtotime($end_date));
             $query->andFilterWhere(['between', 'ad_image.created_at', $sDate, $eDate]);
             $this->created_at = $start_date . ' - ' . $end_date;
-        }
+        }*/
 
         return $dataProvider;
     }
