@@ -75,18 +75,18 @@ class AdImageSearch extends AdImage
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
+        /*$query->andFilterWhere([
             'ad_image.id' => $this->id,
             'user_id' => $this->user_id,
             'ad_image.status' => $this->status,
             'ad_image.type' => $this->type,
-        ]);
+        ]);*/
 
         $query->andFilterWhere(['like', 'location_latitude', $this->location_latitude])
             ->andFilterWhere(['like', 'location_longitude', $this->location_longitude]);
 
         // filter by user's email
-        //$query->andWhere('user.email LIKE "%' . $this->getAttribute('user.email') . '%"');
+        $query->andWhere('user.email LIKE "%' . $this->getAttribute('user.email') . '%"');
 
         // filter by created date range
         if (!empty($this->created_at) && strpos($this->created_at, ' - ') !== false) {
