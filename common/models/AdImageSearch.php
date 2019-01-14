@@ -75,12 +75,12 @@ class AdImageSearch extends AdImage
             return $dataProvider;
         }
 
-        /*$query->andFilterWhere([
+        $query->andFilterWhere([
             'ad_image.id' => $this->id,
-            'user_id' => $this->user_id,
+            //'user_id' => $this->user_id,
             'ad_image.status' => $this->status,
             'ad_image.type' => $this->type,
-        ]);*/
+        ]);
 
         $query->andFilterWhere(['like', 'location_latitude', $this->location_latitude])
             ->andFilterWhere(['like', 'location_longitude', $this->location_longitude]);
