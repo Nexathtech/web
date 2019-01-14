@@ -139,9 +139,7 @@ class ActionController extends Controller
                         'location_latitude' => ArrayHelper::getValue($details, 'location.latitude', $user->profile->location_latitude),
                         'location_longitude' => ArrayHelper::getValue($details, 'location.longitude', $user->profile->location_longitude),
                     ]);
-                    if (!$adImage->save(false)) {
-                        Yii::error($adImage->getErrorSummary(true));
-                    };
+                    $adImage->save(false);
                 }
             }
         }

@@ -56,7 +56,7 @@ class AdImageSearch extends AdImage
      */
     public function search($params)
     {
-        $query = AdImage::find()->joinWith(['user user']);
+        $query = AdImage::find();//->joinWith(['user user']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
