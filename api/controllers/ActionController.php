@@ -130,11 +130,8 @@ class ActionController extends Controller
             }
 
             // If it's advertisement photos, need to save them
-            Yii::error('Check for ad image data...');
             if ($model->action_type === Type::ADD_ADVERTISEMENT) {
-                Yii::warning('Trying to save ad image data...');
                 foreach ($details['images'] as $image) {
-                    Yii::error($image['path']);
                     $adImage = new AdImage([
                         'user_id' => $model->user_id,
                         'image' => $image['path'],
@@ -142,7 +139,9 @@ class ActionController extends Controller
                         'location_latitude' => ArrayHelper::getValue($details, 'location.latitude', $user->profile->location_latitude),
                         'location_longitude' => ArrayHelper::getValue($details, 'location.longitude', $user->profile->location_longitude),
                     ]);
-                    $adImage->save(false);
+                    if (!$adImage->save(false)) {
+                        Yii::error($adImage->getErrorSummary(true));
+                    };
                 }
             }
         }
