@@ -36,6 +36,7 @@ class SubscribeForm extends Model
         if (!$listId) {
             $listId = ArrayHelper::getValue(Yii::$app->params, 'services.mailChimp.lists.EARLY_ACCESS');
         }
+        $memberId = md5(strtolower($this->email));
         $params = [
             'email_address' => $this->email,
             'status' => 'subscribed',
@@ -46,7 +47,7 @@ class SubscribeForm extends Model
             'message' => Yii::t('frontend', 'You have been successfully subscribed to our newsletter.')
         ];
         try {
-            Yii::$app->mailchimp->post("/lists/{$listId}/members", $params);
+            Yii::$app->mailchimp->put("/lists/{$listId}/members/{$memberId}", $params);
         } catch (MailChimpException $exception) {
             $result['success'] = false;
             $result['message'] = $exception->getMessage();
