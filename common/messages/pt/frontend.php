@@ -67,7 +67,7 @@ return [
     'Choose the quantity and the promotion period.' => 'Escolha a quantidade e o período da promoção.',
     'Remember, your ads will arrive in individual Kodi cases, along with photos of users, receiving the utmost attention.' => 'Lembre-se, seus anúncios vão chegar em pacotes Kodi individuais, junto das fotos dos usuários, recebendo o máximo de atenção.',
     'No urban posters, social banners that fill sites or annoying pop-ups.' => 'Sem posteres urbanos, banners digitais abarrotando sites ou pop-ups irritantes.',
-    'Your advertising{br}becomes real' => 'Seu anúncio vira realidade',
+    'Your advertising{br}becomes real' => 'Seu anúncio{br}vira realidade',
     'We are ready, you?' => 'Estamos prontos, e você?',
     'Change your advertising from today with Kodi Ads.' => 'Mude seus anúncios a partir de hoje com Kodi Ads.',
     'Change the rules{br}of your store' => 'Mude as regras{br}da sua loja',
