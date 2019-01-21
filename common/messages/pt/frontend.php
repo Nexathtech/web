@@ -183,10 +183,9 @@ return [
     'KodiPlus users will receive push notifications having the possibility to know your store and get something unique.' => 'Usuários KodiPlus vão receber notificações push, tendo a possibilidade de conhecer a sua loja e obter algo único.',
     'The more you print, the more it works.' => 'Quanto mais você imprime, mais funciona.',
     'Do not forget about the {KodiAds} service.' => 'E não esqueça do serviço {KodiAds}.',
-    'Thanks to geolocation, KodiPlus users will be able to receive notifications when they are near your business.' => 'Torne-se parte de uma rede que está sempre evoluindo, com metas elevadas.
-Sua loja não tem limites.',
-    'Become part of a continually evolving network with high goals. Your shop has no boundaries.' => 'Crie um ponto de encontro reconhecível para usuários de qualquer lugar do mundo. Cada usuário KodiPlus saberá que sua loja é o lugar certo.',
-    'Create a recognizable meeting place for users from anywhere in the world. Every KodiPlus user will know that your store is the right place.' => '',
+    'Thanks to geolocation, KodiPlus users will be able to receive notifications when they are near your business.' => 'Graças à geolocalização, usuários KodiPlus poderão receber notificações quando estiverem perto do seu negócio.',
+    'Become part of a continually evolving network with high goals. Your shop has no boundaries.' => 'Torne-se parte de uma rede que está sempre evoluindo, com metas elevadas. Sua loja não tem limites.',
+    'Create a recognizable meeting place for users from anywhere in the world. Every KodiPlus user will know that your store is the right place.' => 'Crie um ponto de encontro reconhecível para usuários de qualquer lugar do mundo. Cada usuário KodiPlus saberá que sua loja é o lugar certo.',
     'This is just the beginning!' => 'Isso é só o começo!',
     'Become a Kodi Point today to grow with us and follow all Kodi projects in the pipeline.' => 'Torne-se um Kodi Point hoje, para crescer com a gente e seguir todos os projetos Kodi que estão por vir.',
     'Do not miss this opportunity.' => 'Não perca essa oportunidade.',
