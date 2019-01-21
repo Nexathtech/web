@@ -132,7 +132,7 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
                 <div class="iphone-mockup i-m-home"></div>
                 <div class="a-d-desc">
                     <div class="a-d-title">it's already in your hands</div>
-                    <a href="#" id="download" class="a-d-ios disabled" title="Coming soon on App Store"></a>
+                    <a href="/apple-wait" id="download" class="a-d-ios" title="Coming soon on App Store"></a>
                     <a href="https://goo.gl/gqvrUF" target="_blank" class="a-d-android" title="Download from Play Store"></a>
                 </div>
             </div>
