@@ -61,6 +61,7 @@ return [
                 'about' => 'site/about',
                 'brands' => 'site/brands',
                 'downloadapp' => 'site/downloadapp',
+                'apple-wait' => 'site/apple-wait',
                 //'order' => 'order',
                 'order-coupon' => 'order-coupon',
                 'sitemap.xml' => 'sitemap',

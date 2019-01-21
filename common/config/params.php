@@ -28,7 +28,10 @@ return [
 
     'services' => [
         'mailChimp' => [
-            'listId' => 'af6368bc4b',
+            'lists' => [
+                'EARLY_ACCESS' => 'af6368bc4b',
+                'WAITING_LIST_APPLE' => 'baa1279fda',
+            ],
         ],
     ],
 

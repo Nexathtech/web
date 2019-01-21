@@ -33,7 +33,7 @@ $this->registerCssFile('/styles/site/downloadapp.css', ['depends' => AppAsset::c
 
 <div class="d-buttons">
     <a href="https://goo.gl/gqvrUF" target="_blank" title="Download from Play Store"></a>
-    <a href="#" title="Download from App Store"></a>
+    <a href="/apple-wait" title="Download from App Store"></a>
 </div>
 
 <div class="d-bottom"></div>

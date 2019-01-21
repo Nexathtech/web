@@ -116,7 +116,7 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
                             <td><img src="/images/app-thumbnail.png"></td>
                             <td class="a-ch-name">Kodi App <span>ios format</span></td>
                             <td>$0.00</td>
-                            <td><a href="#" class="btn disabled" title="Coming soon on App Store">Checkout</a></td>
+                            <td><a href="/apple-wait" class="btn" title="Coming soon on App Store">Checkout</a></td>
                         </tr>
                         <tr>
                             <td><img src="/images/app-thumbnail.png"></td>
@@ -137,15 +137,6 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
                 </div>
             </div>
         <? endif; ?>
-        <div class="subscribe-container">
-            <? $form = ActiveForm::begin(); ?>
-            <?= $form->field($subscribeModel, 'email')->textInput([
-                'placeholder' => Yii::t('frontend', 'Enter your email'),
-                'class' => 'subscribe-email',
-            ])->label(false); ?>
-            <?= Html::submitButton('Get Early Access', ['class' => 'btn btn-block btn-green']); ?>
-            <? $form->end() ?>
-        </div>
     </div>
     <div class="phone-key">
         <?= Yii::t('frontend', 'your phone{br}is the key', ['br' => '<br>']); ?>

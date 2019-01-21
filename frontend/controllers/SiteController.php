@@ -6,6 +6,7 @@ use kodi\frontend\models\forms\ContactForm;
 use kodi\frontend\models\forms\SubscribeForm;
 use Yii;
 use yii\base\ViewNotFoundException;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -125,10 +126,31 @@ class SiteController extends Controller
         return $this->render('about', ['model' => $contactModel]);
     }
 
+    /**
+     * @return string
+     */
     public function actionDownloadapp()
     {
-        $this->layout = 'downloadapp';
+        $this->layout = 'mobile';
 
         return $this->render('downloadapp');
+    }
+
+    public function actionAppleWait()
+    {
+        $this->layout = 'mobile';
+        $model = new SubscribeForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $listId = ArrayHelper::getValue(Yii::$app->params, 'services.mailChimp.lists.WAITING_LIST_APPLE');
+            $subscriptionRes = $model->subscribe($listId);
+            $alertType = 'error';
+            if ($subscriptionRes['success']) {
+                $alertType = 'success';
+            }
+            Yii::$app->session->addFlash($alertType, ['message' => $subscriptionRes['message']]);
+        }
+
+        return $this->render('applewait', ['subscribeModel' => $model]);
     }
 }

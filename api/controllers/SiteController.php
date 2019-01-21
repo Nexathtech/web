@@ -76,7 +76,7 @@ class SiteController extends Controller
     /**
      * Adds obtained email to MailChimp list
      *
-     * @throws ErrorException
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionWaitingList()
     {

@@ -235,5 +235,6 @@ riservate ai membri.
     'Different' => 'Diversi',
     'To the extreme' => 'All\'estremo',
     'But we all love pizza' => 'Ma tutti amiamo la pizza',
-    '' => '',
+
+    'We speak your language' => 'Parliamo la tua lingua',
 ];

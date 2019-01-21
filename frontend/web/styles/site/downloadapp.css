@@ -13,6 +13,14 @@ h1 {
   font-weight: bold;
   color: #48affd;
 }
+h4 {
+  margin: -5px 0 10px;
+  text-align: center;
+  text-transform: lowercase;
+  font-size: 20px;
+  font-weight: normal;
+  color: #e79b9f;
+}
 
 .d-app {
   padding: 10px;
@@ -31,6 +39,14 @@ h1 {
   background: url("../img/downloadapp/wave-bottom.png") repeat-x;
 }
 
+.d-app.wl {
+  padding-bottom: 0;
+  margin-bottom: 10px;
+}
+.d-app.wl::after {
+  display: none;
+}
+
 .da-logo {
   display: block;
   width: 70px;
@@ -41,6 +57,29 @@ h1 {
 
 .da-desc {
   color: #fff;
+}
+.wl-desc {
+  width: 360px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: justify;
+  color: #3d3d3d;
+}
+.wl-subscribe {
+  width: 280px;
+  margin: 20px auto 30px;
+  text-align: center;
+}
+.wl-subscribe input {
+  padding-bottom: 2px;
+  border-color: #000;
+  text-align: center;
+  font-size: 22px;
+  letter-spacing: 0;
+}
+.wl-subscribe .btn {
+  width: 125px;
+  text-transform: lowercase;
 }
 
 .da-picture {
@@ -97,6 +136,9 @@ h1 {
 @media screen and (max-width: 480px) {
   .da-logo {
     margin-bottom: 0;
+  }
+  .wl .da-logo {
+    margin-bottom: 10px;
   }
   .da-picture {
     margin-top: 10px;

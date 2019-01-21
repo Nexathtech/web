@@ -26,13 +26,16 @@ class SubscribeForm extends Model
     }
 
     /**
-     * Sends an email with a link, for resetting the password.
+     * Subscribes to MailChimp list
      *
+     * @param null $listId
      * @return array
      */
-    public function subscribe()
+    public function subscribe($listId = null)
     {
-        $listId = ArrayHelper::getValue(Yii::$app->params, 'services.mailChimp.listId');
+        if (!$listId) {
+            $listId = ArrayHelper::getValue(Yii::$app->params, 'services.mailChimp.lists.EARLY_ACCESS');
+        }
         $params = [
             'email_address' => $this->email,
             'status' => 'subscribed',
