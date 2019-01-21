@@ -40,6 +40,7 @@ class SubscribeForm extends Model
         $params = [
             'email_address' => $this->email,
             'status' => 'subscribed',
+            'status_if_new' => 'subscribed',
             'language' => Yii::$app->language,
         ];
         $result = [
