@@ -139,8 +139,7 @@ Controllare la posta sarà un piacere maggiore.',
     'ads' => 'pubblicità',
     'to our users' => 'ai nostri utenti',
     'Your advertising{br}becomes real' => 'La tua pubblicità{br}diventa reale',
-    'Kodiplus users receive 10 photos{br}for free every month{br}
-We do not print any kind{br}of advertising in the photos' => 'Gli utenti kodiplus ricevono{br}gratuitamente 10 foto ogni mese{br}Non stampiamo nessun{br}tipo di pubblicità sulle foto',
+    'Kodiplus users receive 10 photos{br}for free every month{br}We do not print any kind{br}of advertising in the photos' => 'Gli utenti kodiplus ricevono{br}gratuitamente 10 foto ogni mese{br}Non stampiamo nessun{br}tipo di pubblicità sulle foto',
     'Advertise what you want:{br}a coupon, a new course in the gym, an event,{br}a new product. Or spread your artwork,{br}thanks to your customers or anything else{br}you think can grow your business.' => 'Pubblicizza ciò che desideri:{br}un coupon, un nuovo corso in palestra, un evento, un nuovo prodotto. Oppure diffondi un tuo artwork, un ringraziamento ai tuoi clienti o qualsiasi altra cosa pensi possa far crescere il tuo business.',
     'find out how it works' => 'scopri come funziona',
     'Download the {KodiPlus} app and switch the account in brand: a simple interface that will allow you to create your message in a few clicks' => 'Scarica l’app {KodiPlus} e switcha l’account in brand: un’interfaccia semplice che ti consentirà di creare il tuo messaggio in pochi click',
@@ -195,6 +194,7 @@ riservate ai membri.
     'what are you waiting for?' => 'cosa aspetti?',
     'receive right to your home 10 free' => 'ricevi gratuitamente a casa tua 10',
     'fantastic polaroids of your best moments every month' => 'fantastiche polaroid dei tuoi momenti migliori ogni mese',
+
     'Order details' => 'Dettagli Ordine',
     'Personal information' => 'Informazioni personali',
     'Personal info' => 'Informazioni personali',
