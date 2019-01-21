@@ -56,8 +56,7 @@ $this->registerJsFile('/js/adsz.js', ['depends' => [AppAsset::class, SkrollrAsse
         <?= Yii::t('frontend', 'Your advertising{br}becomes real', ['br' => '<br>']) ?>
     </div>
     <div class="bi-desc bi-desc-1">
-        <?= Yii::t('frontend', 'Kodiplus users receive 10 photos{br}for free every month{br}
-We do not print any kind{br}of advertising in the photos', ['br' => '<br>']) ?>
+        <?= Yii::t('frontend', 'Kodiplus users receive 10 photos{br}for free every month{br}We do not print any kind{br}of advertising in the photos', ['br' => '<br>']) ?>
         <div class="bi-square-lines"></div>
     </div>
     <div class="bi-equation">

@@ -29,7 +29,7 @@ $this->registerCssFile('/styles/site/downloadapp.css', ['depends' => AppAsset::c
 <h4><?= Yii::t('frontend', 'We speak your language') ?></h4>
 <div class="wl-desc">
     V"Z38 si scusa per il disagio e vi invita a inserire la vostra email per essere
-    aggiornati appena KodiPlus sara disponibile per iOS. V"Z38 ha ui iphone.
+    aggiornati appena KodiPlus sara disponibile per iOS. V"Z38 ha un iphone.
 </div>
 
 <div class="wl-subscribe">

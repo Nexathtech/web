@@ -155,7 +155,7 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
             <div class="b-i-title"><?= Yii::t('frontend', 'get your shop{br}to the next level', ['br' => '<br>']); ?></div>
             <?= Yii::t('frontend', 'your shop can become a smart shop.{br}Find out how', ['br' => '<br>']); ?>
             <br>
-            <a class="btn text-blue" href="/brands#point">kodi point</a>
+            <a class="btn text-blue" href="/point">kodi point</a>
         </div>
     </div>
 </div>
