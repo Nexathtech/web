@@ -25,11 +25,10 @@ $this->registerCssFile('/styles/site/downloadapp.css', ['depends' => AppAsset::c
     <img src="/images/waiting-list-alien.png" alt="Kodi Alien">
 </div>
 
-<h1>hello! ciao! hola!</h1>
+<h1><?= Yii::t('frontend', 'hello! ciao! hola!') ?></h1>
 <h4><?= Yii::t('frontend', 'We speak your language') ?></h4>
 <div class="wl-desc">
-    V"Z38 si scusa per il disagio e vi invita a inserire la vostra email per essere
-    aggiornati appena KodiPlus sara disponibile per iOS. V"Z38 ha un iphone.
+    <?= Yii::t('frontend', 'V"Z38 apologizes for the inconvenience and invites you to enter your email to be updated as soon as KodiPlus will be available for iOS. V"Z38 has an iphone.') ?>
 </div>
 
 <div class="wl-subscribe">

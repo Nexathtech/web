@@ -238,4 +238,6 @@ riservate ai membri.
     'But we all love pizza' => 'Ma tutti amiamo la pizza',
 
     'We speak your language' => 'Parliamo la tua lingua',
+    'V"Z38 apologizes for the inconvenience and invites you to enter your email to be updated as soon as KodiPlus will be available for iOS. V"Z38 has an iphone.' => 'V"Z38 si scusa per il disagio e vi invita a inserire la vostra email per essere aggiornati appena KodiPlus sara disponibile per iOS. V"Z38 ha un iphone.',
+    '' => '',
 ];

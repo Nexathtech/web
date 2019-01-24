@@ -161,7 +161,7 @@ return [
     'Always get a 1: 1 communication, getting the most attention from the customer.{br}Your printed advertising has an entirely different value.' => 'Sempre obtenha comunicação 1:1, recebendo o máximo de atenção do cliente.{br}Seu anúncio impresso tem um valor inteiramente diferente.
 ',
     '0 risks clickbait, 0 bots, 0 spam.{br}Your advertising will be 100% effective.' => '0 clickbaits arriscados, 0 robôs, 0 spam.{br}Seus anúncios serão 100% efetivos.',
-    'request free trial' => 'request free trial',
+    'request free trial' => 'solicitar teste grátis',
     'Change strategy in a few clicks' => 'Mude de estratégia em poucos cliques',
 
     'Did you receive our bookmark?' => 'Nós te favoritamos?',
@@ -232,5 +232,12 @@ return [
     'SWIFT code' => 'Código Swift',
     'Bank name' => 'Nome do banco',
     'Bank address' => 'Endereço do banco',
+
+    'hello! ciao! hola!' => 'hello! ciao! olá!',
+    'We speak your language' => 'Falamos sua língua',
+    'V"Z38 apologizes for the inconvenience and invites you to enter your email to be updated as soon as KodiPlus will be available for iOS. V"Z38 has an iphone.' => 'V"Z38 pede desculpas pelo transtorno e te convida a inserir seu e-mail para ser atualizado assim que o KodiPlus estiver disponível para iOS. V"Z38 tem um iPhone.',
+    'get coupon card' => 'receber cupom',
+    'request now' => 'solicitar agora',
+    'become a kodi point' => 'torne-se um kodi point',
     '' => '',
 ];
