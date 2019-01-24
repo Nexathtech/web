@@ -3457,10 +3457,12 @@ img.m-sword {
     text-align: center;
     height: auto;
     padding: 3.5vw;
+    position: relative;
     background-color: #e8b0b2;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    z-index: 2;
 }
 
 .p-pl-title p {
@@ -3790,7 +3792,7 @@ div.c-l-pink {
 .app-download {
     position: relative;
     width: 48%;
-    height: 200px;
+    /*height: 200px;*/
     margin: 0 auto;
     z-index: 2;
 }
@@ -3866,6 +3868,7 @@ a.a-d-ios:hover, a.a-d-android:hover {
 .app-checkout {
     width: 48%;
     float: right;
+    padding-bottom: 180px;
     text-align: center;
     font-size: 18px;
 }
@@ -5032,6 +5035,12 @@ form.order-info .help-block {
         margin-right: 100px;
     }
 
+    .iphone-mockup {
+        left: 0;
+    }
+    .iphone-mockup.i-m-eng {
+        left: 250px;
+    }
     .iphone-mockup.i-m-search, .iphone-mockup.i-m-preview, .iphone-mockup.i-m-shipping {
         transform: scale(1);
     }
@@ -5489,9 +5498,16 @@ form.order-info .help-block {
         margin-bottom: 10px;
     }
 
+    .people-jump {
+        margin-top: 420px;
+    }
+    .p-p-heading {
+        padding-top: 300px;
+    }
+
     /* Temporary checkout */
     .app-download {
-        height: 480px;
+        /*height: 480px;*/
     }
     .app-checkout {
         float: none;
@@ -6680,7 +6696,7 @@ form.order-info .help-block {
         display: none;
     }
     .app-checkout {
-        top: 140px;
+        top: 160px;
     }
     /* ================== */
 

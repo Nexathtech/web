@@ -102,7 +102,7 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
                     social media
                     accounts.
                 </div>
-                <div class="iphone-mockup i-m-home"></div>
+                <div class="iphone-mockup i-m-home i-m-eng"></div>
                 <div class="app-checkout">
                     <div class="a-ch-title">Order and download now!</div>
                     <table>
@@ -129,10 +129,10 @@ $this->registerJsFile('/js/plus.js', ['depends' => [AppAsset::class, SkrollrAsse
             </div>
         <? else: ?>
             <div class="app-download">
-                <div class="iphone-mockup i-m-home"></div>
+                <div class="iphone-mockup i-m-home" id="download"></div>
                 <div class="a-d-desc">
                     <div class="a-d-title">it's already in your hands</div>
-                    <a href="/apple-wait" id="download" class="a-d-ios" title="Coming soon on App Store"></a>
+                    <a href="/apple-wait" class="a-d-ios" title="Coming soon on App Store"></a>
                     <a href="https://goo.gl/gqvrUF" target="_blank" class="a-d-android" title="Download from Play Store"></a>
                 </div>
             </div>

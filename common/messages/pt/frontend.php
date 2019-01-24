@@ -41,6 +41,7 @@ return [
     'totally free?' => 'totalmente grátis?',
     'promote your brand{br}in few minutes' => 'promova sua marca{br}em poucos minutos',
     'get your shop{br}to the next level' => 'leve sua loja{br}ao próximo nível',
+    'download{br}app' => 'baixe{br}app',
 
     'Send a representative image of yourself or what you do, spread special offers in a specific period, launch an advertising campaign, let everyone know about your event schedule, tell your customers how much you appreciate them and much more.' => 'Envie uma imagem representativa sua ou do que você faz, promova ofertas especiais num período específico, lance uma campanha de anúncios, avise a todos de seu cronograma de eventos, diga a seus clientes o quanto gosta deles e muito mais.',
     'Too complicated? Naaaah.' => 'Muito complicado? Naaaada.',

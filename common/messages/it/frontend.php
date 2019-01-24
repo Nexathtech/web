@@ -78,6 +78,7 @@ Controllare la posta sarà un piacere maggiore.',
     'send' => 'invia',
     'Enter your email address' => 'Inserisci la tua email',
     'and we will contact as soon as possible.' => 'e verrai ricontattato quanto prima.',
+    'download{br}app' => 'scarica{br}app',
 
     'You will be a point of reference for those who love to print their photos (and for those who do not yet know), for graphic designers, illustrators and creatives that will form the new community, but not only: photography at your fingertips is the true revolution of last decade, everyone loves to shoot but many do not know how to enhance and preserve their memories.' => 'La fotografia a portata di mano è la vera nuova rivoluzione dell’ultimo decennio, tutti amano scattare ma in molti non sanno come valorizzare e conservare i propri ricordi. Offri l’opportunità di stampare i momenti, le esperienze, i ricordi che preferiscono in maniera semplice e veloce: riceverai coupon cards da distribuire gratuitamente ai tuoi clienti.{br}Cosa ne ricavi? Semplice.{br}Con i servizi  di geomarketing, KodiPlus è in grado di inviare notifiche push a tutti coloro che passano nella tua zona, invitandoli ad entrare per ottenere il loro coupon.{br}Loro avranno più stampe gratis, e tu nuovi clienti!
 ',
