@@ -152,8 +152,19 @@ class Order extends ActiveRecord
     {
         if ($insert) {
             $template = 'payment/none-success';
-            $data = [];
+            $data = [
+                'is_wire_payment' => false
+            ];
 
+            if ($this->type === OrderType::PHOTO) {
+                $template = 'payment/photo-success';
+            }
+
+            if ($this->type === OrderType::COUPON) {
+                $template = 'payment/coupon-success';
+            }
+
+            // We would need to attach Bank details in the template in case it's a Wire transfer
             if ($this->payment_type === PaymentType::WIRETRANSFER) {
                 $bankDetails = Yii::$app->settings->get([
                     'bank_beneficiary',
@@ -163,16 +174,7 @@ class Order extends ActiveRecord
                     'bank_address',
                 ]);
                 $data = ArrayHelper::merge($this->getAttributes(), $bankDetails);
-                $template = 'payment/wire-success';
-            }
-
-            if ($this->type === OrderType::PHOTO) {
-                $data = [];
-                $template = 'payment/photo-success';
-            }
-
-            if ($this->type === OrderType::COUPON) {
-                $template = 'payment/coupon-success';
+                $data['is_wire_payment'] = true;
             }
 
             // Send email to the user

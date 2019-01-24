@@ -15,7 +15,6 @@ $homeUrl = str_replace('backend.', '', $homeUrl);
 ?>
 
 <div>
-    <h1 class="text-center"><?= Yii::t('frontend', 'Thanks for ordering Kodi station!'); ?></h1>
     <p>
         <?= Yii::t('frontend', 'Below is our bank requisites to proceed with the payment'); ?><br>
         <?= Yii::t('frontend', 'Please provide your Kodi order number in the bank wire comments.'); ?>
