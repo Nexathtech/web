@@ -2,6 +2,7 @@
 
 use kodi\common\enums\action\Type;
 use kodi\common\enums\user\Status;
+use kodi\common\enums\user\Type as UserType;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -43,6 +44,10 @@ $this->params['breadcrumbs'] = [
                             ],
                             'profile.name',
                             'profile.surname',
+                            [
+                                'attribute' => 'profile.brand_name',
+                                'visible' => $model->type === UserType::BRAND,
+                            ],
                             'email:email',
                             'role',
                             'type',

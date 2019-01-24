@@ -99,9 +99,13 @@ class User extends UserModel
         $query->andFilterWhere(['like', 'email', $this->email]);
 
         // filter by person full name
-        $query->andWhere('profile.name LIKE "%' . $this->getAttribute('profile.name') . '%"');
+        if (!empty($this->getAttribute('profile.name'))) {
+            $query->andWhere('profile.name LIKE "%' . $this->getAttribute('profile.name') . '%"');
+        }
         // filter by profile brand
-        //$query->andWhere('profile.brand_name LIKE "%' . $this->getAttribute('profile.brand_name') . '%"');
+        if (!empty($this->getAttribute('profile.brand_name'))) {
+            $query->andWhere('profile.brand_name LIKE "%' . $this->getAttribute('profile.brand_name') . '%"');
+        }
 
         // filter by created date range
         if (!empty($this->created_at) && strpos($this->created_at, ' - ') !== false) {
