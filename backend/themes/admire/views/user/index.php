@@ -98,6 +98,7 @@ $dateRangePickerEvents = [
                                     return Html::a(Html::encode($data->profile->getFullName()), ['view', 'id' => $data->id]);
                                 }
                             ],
+                            'profile.brand_name',
                             'email:email',
                             [
                                 'attribute' => 'role',

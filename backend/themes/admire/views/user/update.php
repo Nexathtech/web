@@ -43,6 +43,9 @@ $this->registerJsFile(Yii::getAlias('@web/themes/admire/js/widgets/grid/action-c
             <div class="card-block m-t-35">
                 <?= $form->field($model->profile, 'name')->textInput() ?>
                 <?= $form->field($model->profile, 'surname')->textInput() ?>
+                <? if ($model->type === UserType::BRAND): ?>
+                    <?= $form->field($model->profile, 'brand_name')->textInput() ?>
+                <? endif; ?>
                 <? if (!empty($model->profile->photo)): ?>
                     <div class="current-photo">
                         <img src="<?= $model->profile->photo; ?>">

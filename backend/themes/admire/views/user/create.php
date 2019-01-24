@@ -2,6 +2,7 @@
 
 use kodi\common\enums\user\Role;
 use kodi\common\enums\user\Status;
+use kodi\common\enums\user\Type;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -37,6 +38,9 @@ $this->params['breadcrumbs'] = [
             <div class="card-block m-t-35">
                 <?= $form->field($profileModel, 'name')->textInput() ?>
                 <?= $form->field($profileModel, 'surname')->textInput() ?>
+                <? if ($model->type === Type::BRAND): ?>
+                    <?= $form->field($profileModel, 'brand_name')->textInput() ?>
+                <? endif; ?>
                 <?= $form->field($profileModel, 'photo')->fileInput() ?>
                 <?= $form->field($model, 'email')->textInput() ?>
                 <?= $form->field($model, 'password')->passwordInput() ?>

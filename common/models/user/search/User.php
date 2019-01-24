@@ -24,6 +24,7 @@ class User extends UserModel
     {
         $attributes = [
             'profile.name',
+            'profile.brand_name',
             'photo',
             'subscription',
         ];
@@ -37,7 +38,7 @@ class User extends UserModel
     {
         return [
             [['id'], 'integer'],
-            [['role', 'type', 'email', 'created_at', 'updated_at', 'profile.name', 'status'], 'safe'],
+            [['role', 'type', 'email', 'created_at', 'updated_at', 'profile.name', 'profile.brand_name', 'status'], 'safe'],
         ];
     }
 
@@ -74,6 +75,10 @@ class User extends UserModel
             'asc' => [Profile::tableName() . '.name' => SORT_ASC],
             'desc' => [Profile::tableName() . '.name' => SORT_DESC],
         ];
+        $dataProvider->sort->attributes['profile.brand_name'] = [
+            'asc' => [Profile::tableName() . '.brand_name' => SORT_ASC],
+            'desc' => [Profile::tableName() . '.brand_name' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -95,6 +100,8 @@ class User extends UserModel
 
         // filter by person full name
         $query->andWhere('profile.name LIKE "%' . $this->getAttribute('profile.name') . '%"');
+        // filter by profile brand
+        //$query->andWhere('profile.brand_name LIKE "%' . $this->getAttribute('profile.brand_name') . '%"');
 
         // filter by created date range
         if (!empty($this->created_at) && strpos($this->created_at, ' - ') !== false) {
