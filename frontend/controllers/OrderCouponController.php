@@ -30,7 +30,7 @@ class OrderCouponController extends Controller
      * @TODO: store this data in DB
      */
     public $priceQuantityData = [
-        250 => 1,
+        250 => 50,
         500 => 80,
         1000 => 100
     ];

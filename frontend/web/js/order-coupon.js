@@ -55,8 +55,7 @@ function updatePrice() {
   var price = 0;
   var quantity = $('input[name="quantity"]').val();
   if (quantity < 500) {
-    price = 1;
-    // price = 50;
+    price = 50;
   } else if (quantity >= 500 && quantity < 1000) {
     price = 80;
   } else {
