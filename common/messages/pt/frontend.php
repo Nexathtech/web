@@ -155,7 +155,7 @@ return [
     'to our users' => 'pros nossos usuários',
     'Kodiplus users receive 10 photos{br}for free every month{br}We do not print any kind{br}of advertising in the photos' => 'Usuários do KodiPlus ganham{br}10 fotos grátis todo mês{br}Não colocamos qualquer{br}tipo de propaganda nas fotos',
     'Advertise what you want:{br}a coupon, a new course in the gym, an event,{br}a new product. Or spread your artwork,{br}thanks to your customers or anything else{br}you think can grow your business.' => 'Anuncie o que quiser:{br}um cupom, uma nova aula na academia, um evento,{br}um produto novo. Ou espalhe sua arte,{br}agradeça a seus clientes ou qualquer coisa{br}que você acredite que vai ajudar seu negócio a crescer.',
-    'find out how it works' => 'find out how it works',
+    'find out how it works' => 'como funciona',
     'Download the {KodiPlus} app and switch the account in brand: a simple interface that will allow you to create your message in a few clicks' => 'Baixe o app {KodiPlus} e crie sua conta profissional: uma interface simples para você criar sua mensagem em poucos cliques.',
     'With Kodi Ads, you will always reach real people.{br}Reinvent your advertising in a new way according to your needs.' => 'Com Kodi Ads, você sempre vai alcançar pessoas reais.{br}Reinvente seus anúncios de um modo novo, alinhado com suas necessidades.',
     'Always get a 1: 1 communication, getting the most attention from the customer.{br}Your printed advertising has an entirely different value.' => 'Sempre obtenha comunicação 1:1, recebendo o máximo de atenção do cliente.{br}Seu anúncio impresso tem um valor inteiramente diferente.
