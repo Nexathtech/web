@@ -24,6 +24,9 @@ final class AuthController extends Controller
      *
      * @param $token
      * @return \yii\web\Response
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     * @throws \yii\web\UnauthorizedHttpException
      */
     public function actionActivate($token)
     {
@@ -53,6 +56,10 @@ final class AuthController extends Controller
      * Requests user to enter email in order to reset their password
      *
      * @return string
+     * @throws \Throwable
+     * @throws \yii\base\Exception
+     * @throws \yii\db\StaleObjectException
+     * @throws \yii\web\UnauthorizedHttpException
      */
     public function actionPasswordReset()
     {
