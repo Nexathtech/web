@@ -245,3 +245,45 @@ html, body {
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
 }
+
+
+/* ===== Portrait phones and smaller ===== */
+@media screen and (max-width: 480px) {
+  .oc-left, .oc-right {
+    float: none;
+    width: auto;
+  }
+
+  .oc-sticker-info {
+    top: -5px;
+  }
+
+  .order-color-choose {
+    text-align: left;
+  }
+  .order-color-choose > div {
+    display: inline-block;
+    margin: 5px 25px 5px 0;
+  }
+  .order-quantity-choose {
+    text-align: left;
+  }
+  .oc-q-item {
+    margin: 10px 15px 10px 0;
+  }
+
+  form.order-info .o-c-wide {
+    width: 100%;
+  }
+
+  .o-payment-check {
+    padding: 0 20px;
+    margin-bottom: 0;
+    text-align: left;
+  }
+  .o-payment-check label {
+    margin: 0 0 20px;
+    width: 90%;
+    padding-left: 15px;
+  }
+}
