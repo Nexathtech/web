@@ -183,7 +183,7 @@ class AuthController extends Controller
                         ])
                             ->setFrom([Yii::$app->settings->get('system_email_sender') => Yii::t('api', 'Kodi Team')])
                             ->setTo($user->email)
-                            ->setTo('Footniko@gmail.com')
+                            //->setTo('Footniko@gmail.com')
                             ->setSubject(Yii::t('api', 'Activate your Kodi account'))
                             ->send();
                     }
