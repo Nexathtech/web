@@ -51,6 +51,7 @@ class ActionController extends Controller
      * Registers new action
      * @return Action
      * @throws ForbiddenHttpException
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionRegister()
     {

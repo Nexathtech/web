@@ -28,11 +28,16 @@ class Security extends \yii\base\Security
      * @param int $expiresIn 1 day by default
      * @param bool $genRefreshToken
      * @param int $extendInfoDepth
+     * @param bool $autoLogin Indicates whether to auto login user after token use
+     * @param null $redrectUrl Where to redirect user after token use
      * @return array|null
      * @throws \yii\base\Exception
      */
-    public function generateToken($userId, $type = TokenType::EMAIL_CONFIRMATION, $deviceId = null, $expiresIn = 86400, $genRefreshToken = false, $extendInfoDepth = 0)
+    public function generateToken($userId, $type = TokenType::EMAIL_CONFIRMATION, $deviceId = null, $expiresIn = 86400, $genRefreshToken = false, $extendInfoDepth = 0, $autoLogin = false, $redrectUrl = null)
     {
+        if (!$expiresIn) {
+            $expiresIn = 86400;
+        }
         $token = $this->generateRandomString();
         $tokenRefresh = $this->generateRandomString();
         $model = new AuthToken([
@@ -41,6 +46,8 @@ class Security extends \yii\base\Security
             'type' => $type,
             'token' => $this->maskToken($token), // store encrypted tokens in DB
             'token_refresh' => $genRefreshToken ? $this->maskToken($tokenRefresh) : null,
+            'log_user_in' => $autoLogin,
+            'redirect_url' => $redrectUrl,
             'expires_at' => Carbon::now()->addSeconds($expiresIn)->toDateTimeString(),
         ]);
         if ($model->save()) {

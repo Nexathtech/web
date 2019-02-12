@@ -49,6 +49,7 @@ class AccountController extends Controller
      *
      * @return array
      * @throws ErrorException
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionSaveProfile()
     {

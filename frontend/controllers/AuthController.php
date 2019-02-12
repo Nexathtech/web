@@ -2,8 +2,10 @@
 
 namespace kodi\frontend\controllers;
 
+use kodi\common\enums\AccessLevel;
 use kodi\common\enums\AlertType;
 use kodi\common\enums\user\Status;
+use kodi\common\enums\user\TokenType;
 use kodi\common\models\user\User;
 use kodi\frontend\models\forms\ResetPasswordRequestForm;
 use kodi\frontend\models\forms\ResetPasswordForm;
@@ -33,14 +35,33 @@ final class AuthController extends Controller
         $tokenDecoded = Json::decode(base64_decode($token));
         $authToken = Yii::$app->security->findToken($tokenDecoded);
         if ($authToken) {
-            $user = User::findOne(['id' => $authToken->user_id]);
+            $token = $authToken;
+            $user = User::findOne(['id' => $token->user_id]);
             if ($user) {
                 $user->status = Status::ACTIVE;
                 $user->save(false);
                 $authToken->delete();
+                // Now we need to auto login user if it's anticipated by the token
+                if ($token->log_user_in) {
+                    // This will not work for third-party apps, since they use tokens
+                    Yii::$app->user->login($user);
+                }
                 Yii::$app->session->addFlash(AlertType::SUCCESS, [
                     'message' => Yii::t('frontend', 'Your account was successfully activated! You can now login using your credentials.')
                 ]);
+
+                if (!empty($token->redirect_url)) {
+                    $redirectUrl = $token->redirect_url;
+                    // For mobile apps we need to append the url with access token
+                    // including auth data if auto login requested by the auth token
+                    if ($token->log_user_in) {
+                        $authData = Yii::$app->security->generateToken($user->id, TokenType::ACCESS, null, null, true, AccessLevel::CUSTOMER);
+                        $authDataEnc = base64_encode(Json::encode($authData));
+                        $redirectUrl .= "/{$authDataEnc}";
+                    }
+
+                    return $this->redirect($redirectUrl);
+                }
             }
         } else {
             Yii::$app->session->addFlash(AlertType::ERROR, [

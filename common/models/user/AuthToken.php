@@ -8,6 +8,7 @@ use kodi\common\models\device\Device;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use yii\validators\BooleanValidator;
 use yii\validators\ExistValidator;
 use yii\validators\NumberValidator;
 use yii\validators\RangeValidator;
@@ -29,6 +30,8 @@ use yii\validators\StringValidator;
  * @property integer $device_id
  * @property string $token
  * @property string $token_refresh
+ * @property boolean $log_user_in
+ * @property string $redirect_url
  * @property string $type
  * @property string $created_at
  * @property string $expires_at
@@ -80,11 +83,14 @@ class AuthToken extends ActiveRecord
             [['user_id', 'token', 'type'], RequiredValidator::class],
 
             // Strings validation
-            [['token'], StringValidator::class],
+            [['token', 'redirect_url'], StringValidator::class],
             [['type'], RangeValidator::class, 'range' => array_keys(TokenType::listData())],
 
             // Numbers validation
             [['user_id', 'device_id'], NumberValidator::class, 'integerOnly' => true],
+
+            // Boolean validation
+            ['log_user_in', BooleanValidator::class],
 
             // Existence validation
             [['user_id'], ExistValidator::class, 'targetClass' => User::class, 'targetAttribute' => 'id'],

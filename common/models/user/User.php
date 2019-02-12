@@ -150,7 +150,6 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      *
-     *
      * @param $tokenData
      * @param null $type
      * @param bool $includeDevice

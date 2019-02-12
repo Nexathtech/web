@@ -171,8 +171,10 @@ class AuthController extends Controller
                     }
 
                     if ($confirmationRequired) {
+                        $redirectUrl = ArrayHelper::getValue($data, 'auth.redirect_url');
+                        $autoLogin = ArrayHelper::getValue($data, 'auth.autologin');
                         // Send welcome email with confirmation
-                        $token = Yii::$app->security->generateToken($user->id, TokenType::EMAIL_CONFIRMATION);
+                        $token = Yii::$app->security->generateToken($user->id, TokenType::EMAIL_CONFIRMATION, null, null, false, 0, $autoLogin, $redirectUrl);
                         $token = base64_encode(Json::encode($token));
                         $lang = Yii::$app->language;
                         $confirmationUrl = str_replace('api.', '', Url::to(["/{$lang}/auth/activate/{$token}"], true));
@@ -214,9 +216,12 @@ class AuthController extends Controller
     /**
      * Removes existing access token.
      * Basically uses when a third part logs out.
+     *
      * @return bool|null
      * @throws BadRequestHttpException
+     * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
+     * @throws \yii\db\StaleObjectException
      * @throws \yii\web\NotFoundHttpException
      */
     public function actionSignOut() {
@@ -235,6 +240,7 @@ class AuthController extends Controller
      *
      * @return null|array
      * @throws BadRequestHttpException
+     * @throws \yii\base\Exception
      * @throws \yii\base\InvalidConfigException
      * @throws \yii\web\NotFoundHttpException
      */

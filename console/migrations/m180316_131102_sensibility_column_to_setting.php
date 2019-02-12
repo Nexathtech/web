@@ -9,6 +9,7 @@ class m180316_131102_sensibility_column_to_setting extends Migration
 {
     /**
      * @inheritdoc
+     * @throws Exception
      */
     public function safeUp()
     {
