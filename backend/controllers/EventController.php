@@ -10,6 +10,7 @@ use Yii;
 use yii\filters\ContentNegotiator;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
@@ -88,6 +89,7 @@ class EventController extends BaseController
      * @return mixed
      * @throws NotFoundHttpException
      * @throws \yii\web\ServerErrorHttpException
+     * @throws \yii\base\Exception
      */
     public function actionUpdate($id)
     {
@@ -103,7 +105,8 @@ class EventController extends BaseController
             $model->starts_at = $tRange[0];
             $model->ends_at = $tRange[1];
             // new logo could be uploaded
-            $model->logo = $this->uploadFile($model, 'logo', $currentLogo);
+            $logo = $this->uploadFile($model, 'logo', $currentLogo);
+            $model->logo = $logo ? Url::base(true) . $logo : null;
 
             if ($model->save()) {
                 // Record saved
@@ -127,6 +130,7 @@ class EventController extends BaseController
      *
      * @return string|\yii\web\Response
      * @throws \yii\web\ServerErrorHttpException
+     * @throws \yii\base\Exception
      */
     public function actionCreate()
     {
@@ -139,7 +143,8 @@ class EventController extends BaseController
             $tRange = explode(' - ', $model->starts_at);
             $model->starts_at = $tRange[0];
             $model->ends_at = $tRange[1];
-            $model->logo = $this->uploadFile($model, 'logo');
+            $logo = $this->uploadFile($model, 'logo');
+            $model->logo = $logo ? Url::base(true) . $logo : null;
 
             if ($model->save()) {
                 // Record saved

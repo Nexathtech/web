@@ -84,6 +84,7 @@ final class SettingsController extends BaseController
      *
      * @param $id
      * @return array
+     * @throws NotFoundHttpException
      */
     public function actionDeletePhoto($id)
     {

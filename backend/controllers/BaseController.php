@@ -57,6 +57,7 @@ abstract class BaseController extends Controller
      * @param string $subPath
      * @return string uploaded file url
      * @throws ServerErrorHttpException
+     * @throws \yii\base\Exception
      */
     public function uploadFile($model, $field, $currentPhoto = null, $subPath = '')
     {
