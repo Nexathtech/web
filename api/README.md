@@ -69,6 +69,31 @@ Response:
 }
 ```
 
+- **/site/events/{latitude}/{longitude}**
+Returns actual events depending on the user's location (latitude, longitude).  
+Note, it will only return those events and only when the user's location is within the event radius.    
+Request `GET /site/events/35.91948900/53.01339900`  
+Response:
+```
+{
+    "success": true,
+    "data": [
+        {
+            "title": "Some carnival",
+            "logo": null,
+            "location_latitude": "35.91129800",
+            "location_longitude": "53.01338800",
+            "location_radius": "1000",
+            "starts_at": "2019-03-29 10:00:00",
+            "ends_at": "2019-03-31 20:00:00",
+            "users_max_prints_amount": "5",
+            "distance": "-89.20181352664781"
+        }
+    ]
+}
+```
+
+
 
 Auth
 ----
