@@ -69,7 +69,7 @@ Response:
 }
 ```
 
-- **/site/events/{latitude}/{longitude}**
+- **/site/events/{latitude}/{longitude}**  
 Returns actual events depending on the user's location (latitude, longitude).  
 Note, it will only return those events and only when the user's location is within the event radius.    
 Request `GET /site/events/35.91948900/53.01339900`  
