@@ -59,6 +59,7 @@ class ActionController extends Controller
         /* @var $user User */
         $user = Yii::$app->user->identity;
         $model = new Action();
+        $order = null;
         $params = Yii::$app->getRequest()->getBodyParams();
         $details = $params['data'];
         if (!empty($params['data'])) {
@@ -160,7 +161,12 @@ class ActionController extends Controller
             }
         }
 
-        return $model;
+        $data = $model;
+        if ($order) {
+            $data['order_id'] = $order->id;
+        }
+
+        return $data;
     }
 
     /**
