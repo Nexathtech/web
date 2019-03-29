@@ -7,6 +7,7 @@ use kodi\common\enums\action\Status;
 use kodi\common\enums\action\Type;
 use kodi\common\enums\DeviceType;
 use kodi\common\models\device\Device;
+use kodi\common\models\event\Event;
 use kodi\common\models\user\User;
 use Yii;
 use yii\db\ActiveRecord;
@@ -30,6 +31,7 @@ use yii\validators\StringValidator;
  * @property integer $id
  * @property integer $user_id
  * @property integer $device_id
+ * @property integer $event_id
  * @property string $action_type
  * @property string $device_type
  * @property string $data
@@ -42,6 +44,7 @@ use yii\validators\StringValidator;
  * -----------------------
  * @property User $user
  * @property Device $device
+ * @property Event $event
  */
 class Action extends ActiveRecord
 {
@@ -127,6 +130,14 @@ class Action extends ActiveRecord
     }
 
     /**
+     * Returns related event (if set).
+     */
+    public function getEvent()
+    {
+        return $this->hasOne(Event::class, ['id' => 'event_id']);
+    }
+
+    /**
      * Returns amount with new actions with further shipment
      * @return int|string
      */
@@ -141,16 +152,21 @@ class Action extends ActiveRecord
     /**
      * @param $userId
      * @param int $interval months
+     * @param null $eventId
      * @return array|ActiveRecord[]
      */
-    public static function getUserRecentPrints($userId, $interval = 1)
+    public static function getUserRecentPrints($userId, $interval = 1, $eventId = null)
     {
-        return Action::find()->where([
+        $query = Action::find()->where([
             'action_type' => Type::PRINT_SHIPMENT,
             'user_id' => $userId,
         ])
-            ->andWhere(['>=', 'created_at', new Expression("NOW() - INTERVAL {$interval} MONTH")])
-            ->all();
+            ->andWhere(['>=', 'created_at', new Expression("NOW() - INTERVAL {$interval} MONTH")]);
+        if ($eventId) {
+            $query->andWhere(['event_id' => $eventId]);
+        }
+
+        return $query->all();
     }
 
     /**

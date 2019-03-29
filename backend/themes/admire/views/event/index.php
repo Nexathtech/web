@@ -3,25 +3,24 @@
 use kartik\daterange\DateRangePicker;
 use kodi\backend\themes\admire\widgets\grid\ActionColumn;
 use kodi\backend\themes\admire\widgets\grid\GridView;
-use kodi\common\enums\action\Status;
-use kodi\common\enums\action\Type;
-use kodi\common\enums\DeviceType;
+use kodi\common\enums\Status;
 use rmrevin\yii\fontawesome\FA;
 use yii\helpers\FormatConverter;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /**
- * The view file for the "List actions" page.
+ * The view file for the "List events" page.
  *
  * @var \yii\web\View $this
- * @var \kodi\common\models\ActionSearch $searchModel
+ * @var \kodi\common\models\event\search\Event $searchModel
  * @var \yii\data\ActiveDataProvider $dataProvider
  *
- * @see \kodi\backend\controllers\ActionController::actionIndex()
+ * @see \kodi\backend\controllers\UserController::actionIndex()
  */
 
-$this->title = Yii::t('backend', 'Actions management');
-$this->params['description'] = FA::i('bullseye') . ' ' . Yii::t('backend', 'Actions');
+$this->title = Yii::t('backend', 'Events management');
+$this->params['description'] = FA::i('flag') . ' ' . Yii::t('backend', 'Kodi events');
 $this->params['breadcrumbs'] = [
     $this->title,
 ];
@@ -63,7 +62,11 @@ $dateRangePickerEvents = [
     <div class="inner bg-container">
         <div class="card">
             <div class="card-header bg-white">
-                <?= Yii::t('backend', 'Actions') ?>
+                <?= Yii::t('backend', 'Events list') ?>
+                <a href="<?= Url::to(['/event/create']) ?>" id="editable_table_new" class="btn btn-default pull-right">
+                    <?= FA::i('plus'); ?>
+                    <?= Yii::t('backend', 'Add event'); ?>
+                </a>
             </div>
             <div class="card-block m-t-10">
                 <div class="table-responsive">
@@ -80,68 +83,44 @@ $dateRangePickerEvents = [
                                 'contentOptions' => ['class' => 'col-tiny'],
                             ],
                             [
-                                'attribute' => 'user.profile.name',
-                                'label' => Yii::t('backend', 'Initiator'),
+                                'attribute' => 'logo',
                                 'format' => 'raw',
                                 'value' => function ($data) {
-                                    $fullName = $data->user->profile->getFullName();
-                                    $name = (!empty($fullName)) ? $fullName : $data->user->email;
-                                    if (empty($data->user->profile->surname)) {
-                                        $name = "{$fullName} ({$data->user->email})";
-                                    }
-                                    $id = $data->user->id;
-                                    return Html::a(Html::encode($name), ['/user/view', 'id' => $id]);
-                                }
-                            ],
-                            [
-                                'attribute' => 'event.title',
-                                'label' => Yii::t('backend', 'Event'),
-                                'format' => 'raw',
-                                'value' => function($data) {
-                                    if (empty($data->event_id)) {
-                                        return null;
-                                    }
-
-                                    return Html::a($data->event->title, ['/event/view', 'id' => $data->event_id]);
-                                }
-                            ],
-                            [
-                                'attribute' => 'device_id',
-                                'format' => 'raw',
-                                'value' => function ($data) {
-                                    $id = $data->device_id;
-                                    return Html::a(Html::encode($id), ['/device/view', 'id' => $id]);
+                                    /* @var $data \kodi\common\models\event\Event */
+                                    return !empty($data->logo) ? Html::img($data->logo) : null;
                                 },
+                                'contentOptions' => ['class' => 'image-col']
                             ],
-                            [
-                                'attribute' => 'action_type',
-                                'format' => 'raw',
-                                'filter' => Type::listData(),
-                                'value' => function ($data) {
-                                    return Type::listData()[$data->action_type];
-                                }
-                            ],
-                            [
-                                'attribute' => 'device_type',
-                                'format' => 'raw',
-                                'filter' => DeviceType::listData(),
-                            ],
-                            'promo_code',
+                            'title',
+                            'users_max_prints_amount',
                             [
                                 'attribute' => 'status',
                                 'format' => 'raw',
                                 'filter' => Status::listData(),
                                 'value' => function ($data) {
                                     return Html::tag('span', $data->status, [
-                                        'class' => ($data->status == Status::NEW) ? 'label label-success' : 'label label-default'
+                                        'class' => ($data->status == Status::ACTIVE) ? 'label label-success' : 'label label-default'
                                     ]);
                                 }
                             ],
                             [
-                                'attribute' => 'created_at',
+                                'attribute' => 'starts_at',
                                 'filter' => DateRangePicker::widget([
                                     'model' => $searchModel,
-                                    'attribute' => 'created_at',
+                                    'attribute' => 'starts_at',
+                                    'convertFormat' => true,
+                                    'options' => [
+                                        'class' => 'form-control',
+                                    ],
+                                    'pluginOptions' => $dateRangePickerOptions,
+                                    'pluginEvents' => $dateRangePickerEvents,
+                                ])
+                            ],
+                            [
+                                'attribute' => 'ends_at',
+                                'filter' => DateRangePicker::widget([
+                                    'model' => $searchModel,
+                                    'attribute' => 'ends_at',
                                     'convertFormat' => true,
                                     'options' => [
                                         'class' => 'form-control',
@@ -152,7 +131,7 @@ $dateRangePickerEvents = [
                             ],
                             [
                                 'class' => ActionColumn::class,
-                                'template' => '<div class="text-center">{view} &nbsp; {delete}</div>',
+                                //'template' => '{view} &nbsp; {update}',
                             ],
                         ],
                     ]);

@@ -72,6 +72,7 @@ return [
             //'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
+                'GET site/events/<latitude:[\d-.]+>/<longitude:[\d-.]+>' => 'site/events',
                 [
                     'class' => \yii\rest\UrlRule::class,
                     'controller' => ['site'],

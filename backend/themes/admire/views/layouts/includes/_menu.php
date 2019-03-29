@@ -62,6 +62,12 @@ $controller = $this->context;
                 <span class="link-title menu_hide"><?= Yii::t('backend', 'Actions'); ?></span>
             </a>
         </li>
+        <li class="<?= ($controller->id === 'event') ? 'active' : '' ?>">
+            <a href="<?= Url::to(['/event']); ?>">
+                <?= FA::i('flag'); ?>
+                <span class="link-title menu_hide"><?= Yii::t('backend', 'Events'); ?></span>
+            </a>
+        </li>
 
         <li class="dropdown_menu <?= ($controller->id === 'page') ? 'active' : '' ?>">
             <a href="javascript:;">

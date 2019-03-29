@@ -2,15 +2,17 @@
 
 namespace kodi\api\controllers;
 
+use Carbon\Carbon;
 use kodi\api\components\Controller;
 use kodi\common\enums\AccessLevel;
 use kodi\common\enums\Language;
 use kodi\common\enums\order\OrderType;
+use kodi\common\enums\Status;
+use kodi\common\models\event\Event;
 use kodi\common\models\Order;
 use kodi\common\models\Setting;
 use sammaye\mailchimp\exceptions\MailChimpException;
 use Yii;
-use yii\base\ErrorException;
 use yii\helpers\ArrayHelper;
 
 class SiteController extends Controller
@@ -109,5 +111,28 @@ class SiteController extends Controller
 
         $response->data = ['message' => $message];
         return $response;
+    }
+
+    /**
+     * Returns near events based on user's location
+     *
+     * @param $latitude
+     * @param $longitude
+     * @return array|Event[]|Setting[]|\yii\db\ActiveRecord[]
+     */
+    public function actionEvents($latitude, $longitude)
+    {
+        $now = Carbon::now()->format('Y-m-d H:i:s');
+        $events = Event::find()
+            ->select("title, logo, location_latitude, location_longitude, location_radius, starts_at, ends_at, users_max_prints_amount, (6371000 * acos(cos(radians({$latitude})) * cos(radians(location_latitude)) * cos(radians(location_longitude) - radians({$longitude})) + sin(radians({$latitude})) * sin(radians(location_latitude))) - location_radius) AS distance")
+            ->where(['status' => Status::ACTIVE])
+            ->andWhere(['<', 'starts_at', $now])
+            ->andWhere(['>', 'ends_at', $now])
+            ->having(['<', 'distance', 0])
+            ->orderBy(['distance' => SORT_ASC])
+            ->asArray()
+            ->all();
+
+        return $events;
     }
 }

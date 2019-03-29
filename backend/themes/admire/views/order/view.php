@@ -149,6 +149,20 @@ $theme = $this;
                                 }
                             ],
                             [
+                                'label' => Yii::t('backend', 'Event ID'),
+                                'format' => 'html',
+                                'value' => function($data) {
+                                    if (!empty($data->order_data)) {
+                                        $orderData = Json::decode($data->order_data);
+                                        if (!empty($orderData['event_id'])) {
+                                            return Html::a($orderData['event_id'], ['/event/view', 'id' => $orderData['event_id']]);
+                                        }
+                                    }
+
+                                    return null;
+                                }
+                            ],
+                            [
                                 'label' => Yii::t('frontend', 'Photos'),
                                 'format' => 'raw',
                                 'contentOptions' => ['class' => 'photos-row'],

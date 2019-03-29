@@ -11,6 +11,7 @@ use kodi\common\enums\order\PaymentType;
 use kodi\common\enums\order\Status as PaymentStatus;
 use kodi\common\models\Action;
 use kodi\common\models\AdImage;
+use kodi\common\models\event\Event;
 use kodi\common\models\Order;
 use kodi\common\models\user\Profile;
 use kodi\common\models\user\User;
@@ -72,10 +73,19 @@ class ActionController extends Controller
         }
 
         if ($model->action_type === Type::PRINT_SHIPMENT) {
-            // Limit free shipment to allowed amount per the user
+            // Limit free shipment to allowed amount for the user
             $printsLimit = $user->getSetting('users_max_prints_amount', 1);
+            $limitInterval = 1; // in months
             $printsAmount = 0;
-            $prints = Action::getUserRecentPrints($model->user_id);
+            // For events we use separate limits
+            $eventId = ArrayHelper::getValue($params, 'event_id');
+            if ($eventId) {
+                $event = Event::findOne(['id' => $eventId]);
+                if (!empty($event)) {
+                    $printsLimit = $event->users_max_prints_amount;
+                }
+            }
+            $prints = Action::getUserRecentPrints($model->user_id, $limitInterval, $eventId);
 
             foreach ($prints as $print) {
                 /* @var $print Action */
@@ -108,6 +118,11 @@ class ActionController extends Controller
             // If photos to be printed, need to consider it as an order
             if ($model->action_type === Type::PRINT_SHIPMENT) {
                 $profile = $user->profile;
+                $orderData = ['action_id' => $model->id];
+                if (!empty($params['event_id'])) {
+                    $orderData['event_id'] = $params['event_id'];
+                }
+
                 $order = new Order([
                     'type' => OrderType::PHOTO,
                     'user_id' => $model->user_id,
@@ -124,7 +139,7 @@ class ActionController extends Controller
                     'color' => 'yellow',
                     'quantity' => 1,
                     'payment_type' => PaymentType::NONE,
-                    'order_data' => Json::encode(['action_id' => $model->id]),
+                    'order_data' => Json::encode($orderData),
                     'status' => PaymentStatus::PENDING,
                 ]);
                 $order->save(false);

@@ -52,6 +52,11 @@ $this->params['breadcrumbs'] = [
                                 'value' => Html::a("{$model->user->profile->name} ({$model->user->email})", ['/user/view', 'id' => $model->user_id]),
                             ],
                             [
+                                'label' => Yii::t('backend', 'Event'),
+                                'format' => 'raw',
+                                'value' => Html::a($model->event->title, ['/event/view', 'id' => $model->event_id]),
+                            ],
+                            [
                                 'label' => Yii::t('backend', 'Device'),
                                 'format' => 'raw',
                                 'value' => Html::a($model->device->uuid, ['/device/view', 'id' => $model->device_id]),

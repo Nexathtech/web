@@ -2,6 +2,7 @@
 
 namespace kodi\common\models;
 
+use kodi\common\models\event\Event;
 use kodi\common\models\user\Profile;
 use kodi\common\models\user\User;
 use yii\base\Model;
@@ -24,6 +25,7 @@ class ActionSearch extends Action
     {
         $attributes = [
             'user.profile.name',
+            'event.title'
         ];
         return array_merge(parent::attributes(), $attributes);
     }
@@ -35,7 +37,7 @@ class ActionSearch extends Action
     {
         return [
             [['id'], NumberValidator::class, 'integerOnly' => true],
-            [['action_type', 'device_type', 'promo_code', 'status', 'user.profile.name'], SafeValidator::class],
+            [['action_type', 'device_type', 'promo_code', 'status', 'user.profile.name', 'event.title'], SafeValidator::class],
         ];
     }
 
@@ -59,12 +61,17 @@ class ActionSearch extends Action
     {
         $query = Action::find()
             ->from(['action' => Action::tableName()])
-            ->joinWith(['user' => function(ActiveQuery $query) {
-                $query->from(['user' => User::tableName()])
-                ->joinWith(['profile' => function(ActiveQuery $query) {
-                    $query->from(['profile' => Profile::tableName()]);
-                }]);
-            }]);
+            ->joinWith([
+                'user' => function(ActiveQuery $query) {
+                    $query->from(['user' => User::tableName()])
+                    ->joinWith(['profile' => function(ActiveQuery $query) {
+                        $query->from(['profile' => Profile::tableName()]);
+                    }]);
+                },
+                'event' => function(ActiveQuery $query) {
+                    $query->from(['event' => Event::tableName()]);
+                }
+            ]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -75,6 +82,10 @@ class ActionSearch extends Action
         $dataProvider->sort->attributes['user.profile.name'] = [
             'asc' => ['profile.name' => SORT_ASC],
             'desc' => ['profile.name' => SORT_DESC],
+        ];
+        $dataProvider->sort->attributes['event.title'] = [
+            'asc' => ['event.title' => SORT_ASC],
+            'desc' => ['event.title' => SORT_DESC],
         ];
 
         $this->load($params);
@@ -98,6 +109,10 @@ class ActionSearch extends Action
         // filter by user's email
         if (!empty($this->getAttribute('user.profile.name'))) {
             $query->andWhere("profile.name LIKE '%{$this->getAttribute('user.profile.name')}%' OR profile.surname LIKE '%{$this->getAttribute('user.profile.name')}%' OR profile.user_id = '{$this->getAttribute('user.profile.name')}'");
+        }
+        // filter by event's title
+        if (!empty($this->getAttribute('event.title'))) {
+            $query->andWhere("event.title LIKE '{$this->getAttribute('event.title')}%' OR event_id = '{$this->getAttribute('event.title')}'");
         }
 
         // filter by expires date range
