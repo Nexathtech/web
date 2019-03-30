@@ -50,7 +50,7 @@ class ActionController extends Controller
 
     /**
      * Registers new action
-     * @return Action
+     * @return array
      * @throws ForbiddenHttpException
      * @throws \yii\base\InvalidConfigException
      */
@@ -161,7 +161,7 @@ class ActionController extends Controller
             }
         }
 
-        $data = $model;
+        $data = $model->toArray();
         if ($order) {
             $data['order_id'] = $order->id;
         }
