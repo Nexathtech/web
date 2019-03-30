@@ -2,7 +2,6 @@
 
 namespace kodi\backend\controllers;
 
-use Carbon\Carbon;
 use kodi\common\enums\AlertType;
 use kodi\common\models\event\search\Event as EventSearch;
 use kodi\common\models\event\Event;
@@ -188,7 +187,7 @@ class EventController extends BaseController
     {
         $result = [];
         $event = $this->findModel($id);
-        $logoPAth = $event->logo;
+        $logoPAth = str_replace(Url::base(true), '', $event->logo);
         $event->logo = null;
         if ($this->removeFile($logoPAth)) {
             // The file from server has been successfully removed
