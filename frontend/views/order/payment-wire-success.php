@@ -42,7 +42,9 @@ $this->title = Yii::t('frontend', 'Kodi Order payment');
             </tr>
             <tr>
                 <th><?= Yii::t('frontend', 'Account number'); ?></th>
-                <td><span class="amount"><?= $bankDetails['bank_account_number']; ?></span></td>
+                <td style="word-break: break-word">
+                    <span class="amount"><?= $bankDetails['bank_account_number']; ?></span>
+                </td>
             </tr>
             <tr>
                 <th><?= Yii::t('frontend', 'SWIFT code'); ?></th>
