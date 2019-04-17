@@ -74,7 +74,7 @@ $config = [
             'targets' => [
                 [
                     'class' => \yii\log\FileTarget::class,
-                    'levels' => YII_ENV_LOCAL ? ['error', 'warning', 'info'] : ['error'],
+                    'levels' => YII_ENV_LOCAL ? ['error', 'warning', 'info'] : ['error', 'info'],
                 ],
             ],
         ],
