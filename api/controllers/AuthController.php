@@ -159,10 +159,10 @@ class AuthController extends Controller
                     ]);
                     $profile->link('user', $user);
 
-                    if (ArrayHelper::getValue($data, 'info.uuid')) {
+                    if (ArrayHelper::getValue($data, 'uuid')) {
                         $device = new Device([
-                            'uuid' => ArrayHelper::getValue($data, 'info.uuid'),
-                            'type' => ArrayHelper::getValue($data, 'info.type'),
+                            'uuid' => ArrayHelper::getValue($data, 'uuid'),
+                            'type' => ArrayHelper::getValue($data, 'type'),
                             'name' => ArrayHelper::getValue($data, 'info.name'),
                         ]);
                         $device->link('user', $user);

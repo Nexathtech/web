@@ -167,10 +167,7 @@ Request `POST /auth/sign-up`:
     "password": "some_password",
     "info": { // Optional
         "latitude": "52.1256",
-        "longitude": "49.2549",
-        "uuid": "unique_devie_id", // In case device needs to be registered (optional)
-        "type": "device_type", // Mobile or Kiosk or Browser (optional)
-        "name": "device_name", // Optional
+        "longitude": "49.2549"
     },
     "settings": { // Optional
         "users_language": "it"
