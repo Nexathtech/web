@@ -5,6 +5,7 @@ use app\components\auth\KodiAuth;
 use kodi\api\components\Controller;
 use kodi\common\enums\action\Status;
 use kodi\common\enums\action\Type;
+use kodi\common\enums\DeviceType;
 use kodi\common\enums\ImageType;
 use kodi\common\enums\order\OrderType;
 use kodi\common\enums\order\PaymentType;
@@ -15,6 +16,7 @@ use kodi\common\models\event\Event;
 use kodi\common\models\Order;
 use kodi\common\models\user\Profile;
 use kodi\common\models\user\User;
+use sammaye\mailchimp\exceptions\InternalServerErrorException;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -53,6 +55,7 @@ class ActionController extends Controller
      * @return array
      * @throws ForbiddenHttpException
      * @throws \yii\base\InvalidConfigException
+     * @throws InternalServerErrorException
      */
     public function actionRegister()
     {
@@ -68,6 +71,7 @@ class ActionController extends Controller
         $model->load($params, '');
         $model->user_id = $user->getId();
         $model->status = ArrayHelper::getValue($params, 'status', Status::NEW);
+        $model->device_type = DeviceType::BROWSER;
         if ($user->device) {
             $model->device_id = $user->device->id;
             $model->device_type = $user->device->type;
@@ -159,6 +163,10 @@ class ActionController extends Controller
                     $adImage->save(false);
                 }
             }
+        } else {
+            Yii::warning('Unable to register action.');
+            Yii::warning($model->errors);
+            throw new InternalServerErrorException('Unable to register action.');
         }
 
         $data = $model->toArray();

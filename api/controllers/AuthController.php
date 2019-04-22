@@ -159,6 +159,15 @@ class AuthController extends Controller
                     ]);
                     $profile->link('user', $user);
 
+                    if (ArrayHelper::getValue($data, 'info.uuid')) {
+                        $device = new Device([
+                            'uuid' => ArrayHelper::getValue($data, 'info.uuid'),
+                            'type' => ArrayHelper::getValue($data, 'info.type'),
+                            'name' => ArrayHelper::getValue($data, 'info.name'),
+                        ]);
+                        $device->link('user', $user);
+                    }
+
                     // User settings
                     $settings = ArrayHelper::getValue($data, 'settings', []);
                     $user->collectUserSettings($settings);
