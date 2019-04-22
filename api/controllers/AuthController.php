@@ -164,6 +164,7 @@ class AuthController extends Controller
                             'uuid' => ArrayHelper::getValue($data, 'uuid'),
                             'type' => ArrayHelper::getValue($data, 'type'),
                             'name' => ArrayHelper::getValue($data, 'info.name'),
+                            'status' => Status::ACTIVE,
                         ]);
                         $device->link('user', $user);
                     }
