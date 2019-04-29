@@ -54,7 +54,13 @@ $this->params['breadcrumbs'] = [
                             [
                                 'label' => Yii::t('backend', 'Event'),
                                 'format' => 'raw',
-                                'value' => Html::a($model->event->title, ['/event/view', 'id' => $model->event_id]),
+                                'value' => function($data) {
+                                    if ($data->event) {
+                                        return Html::a($data->event->title, ['/event/view', 'id' => $data->event_id]);
+                                    }
+
+                                    return null;
+                                }
                             ],
                             [
                                 'label' => Yii::t('backend', 'Device'),
