@@ -74,7 +74,7 @@ class Action extends ActiveRecord
             ['status', RangeValidator::class, 'range' => array_keys(Status::listData())],
 
             // Numbers validation
-            [['user_id', 'device_id'], NumberValidator::class, 'integerOnly' => true],
+            [['user_id', 'device_id', 'event_id'], NumberValidator::class, 'integerOnly' => true],
 
             // Existence validation
             [['user_id'], ExistValidator::class, 'targetClass' => User::class, 'targetAttribute' => 'id'],
