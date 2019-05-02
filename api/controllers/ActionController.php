@@ -101,17 +101,11 @@ class ActionController extends Controller
                 }
             }
 
-            if (!empty($model->event_id)) {
-                $printsLimit = $printsLimit - $printsAmount;
-            }
+            // Count current prints user trying to register as well
+            $printsAmount += count(ArrayHelper::getValue($details, 'images', []));
 
             if ($printsAmount > $printsLimit) {
                 throw new ForbiddenHttpException(Yii::t('api', 'You have already been used maximum free prints this month.'));
-            }
-
-            // Check if the user is trying to register more, than allowed prints
-            if (count(ArrayHelper::getValue($params, 'data.images', [])) > $printsLimit) {
-                throw new ForbiddenHttpException(Yii::t('api', 'You are trying to use too many prints.'));
             }
         }
 
