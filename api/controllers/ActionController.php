@@ -83,14 +83,13 @@ class ActionController extends Controller
             $limitInterval = 1; // in months
             $printsAmount = 0;
             // For events we use separate limits
-            $eventId = ArrayHelper::getValue($params, 'event_id');
-            if ($eventId) {
-                $event = Event::findOne(['id' => $eventId]);
+            if ($model->event_id) {
+                $event = Event::findOne(['id' => $model->event_id]);
                 if (!empty($event)) {
                     $printsLimit = $event->users_max_prints_amount;
                 }
             }
-            $prints = Action::getUserRecentPrints($model->user_id, $limitInterval, $eventId);
+            $prints = Action::getUserRecentPrints($model->user_id, $limitInterval, $model->event_id);
 
             foreach ($prints as $print) {
                 /* @var $print Action */
@@ -102,8 +101,17 @@ class ActionController extends Controller
                 }
             }
 
-            if ($printsAmount >= $printsLimit) {
+            if (!empty($model->event_id)) {
+                $printsLimit = $printsLimit - $printsAmount;
+            }
+
+            if ($printsAmount > $printsLimit) {
                 throw new ForbiddenHttpException(Yii::t('api', 'You have already been used maximum free prints this month.'));
+            }
+
+            // Check if the user is trying to register more, than allowed prints
+            if (count(ArrayHelper::getValue($params, 'data.images', [])) > $printsLimit) {
+                throw new ForbiddenHttpException(Yii::t('api', 'You are trying to use too many prints.'));
             }
         }
 
