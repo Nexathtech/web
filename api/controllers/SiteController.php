@@ -124,7 +124,7 @@ class SiteController extends Controller
     {
         $now = Carbon::now()->format('Y-m-d H:i:s');
         $events = Event::find()
-            ->select("title, logo, location_latitude, location_longitude, location_radius, starts_at, ends_at, users_max_prints_amount, (6371000 * acos(cos(radians({$latitude})) * cos(radians(location_latitude)) * cos(radians(location_longitude) - radians({$longitude})) + sin(radians({$latitude})) * sin(radians(location_latitude))) - location_radius) AS distance")
+            ->select("id, title, logo, location_latitude, location_longitude, location_radius, starts_at, ends_at, users_max_prints_amount, (6371000 * acos(cos(radians({$latitude})) * cos(radians(location_latitude)) * cos(radians(location_longitude) - radians({$longitude})) + sin(radians({$latitude})) * sin(radians(location_latitude))) - location_radius) AS distance")
             ->where(['status' => Status::ACTIVE])
             ->andWhere(['<', 'starts_at', $now])
             ->andWhere(['>', 'ends_at', $now])
