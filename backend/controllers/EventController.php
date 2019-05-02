@@ -105,6 +105,7 @@ class EventController extends BaseController
             $model->ends_at = $tRange[1];
             // new logo could be uploaded
             $logo = $this->uploadFile($model, 'logo', $currentLogo);
+            $model->logo = $logo;
             if ($logo !== $currentLogo) {
                 $model->logo = $logo ? Url::base(true) . $logo : null;
             }
