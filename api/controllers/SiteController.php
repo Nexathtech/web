@@ -26,6 +26,8 @@ class SiteController extends Controller
         $behaviors = parent::behaviors();
         $behaviors['authenticator'] = [
             'class' => KodiAuth::class,
+            'only' => ['events'],
+            'optional' => ['events']
         ];
 
         return $behaviors;
