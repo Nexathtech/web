@@ -133,6 +133,10 @@ class SiteController extends Controller
             ->asArray()
             ->all();
 
+        foreach ($events as $key => $event) {
+            $events[$key]['u_id'] = Yii::$app->user->id;
+        }
+
         return $events;
     }
 }
