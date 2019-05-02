@@ -9,12 +9,14 @@ use kodi\common\enums\AccessLevel;
 use kodi\common\enums\Language;
 use kodi\common\enums\order\OrderType;
 use kodi\common\enums\Status;
+use kodi\common\models\Action;
 use kodi\common\models\event\Event;
 use kodi\common\models\Order;
 use kodi\common\models\Setting;
 use sammaye\mailchimp\exceptions\MailChimpException;
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 
 class SiteController extends Controller
 {
@@ -138,6 +140,7 @@ class SiteController extends Controller
      */
     public function actionEvents($latitude, $longitude)
     {
+        $userId = Yii::$app->getUser()->id;
         $now = Carbon::now()->format('Y-m-d H:i:s');
         $events = Event::find()
             ->select("id, title, logo, location_latitude, location_longitude, location_radius, starts_at, ends_at, users_max_prints_amount, (6371000 * acos(cos(radians({$latitude})) * cos(radians(location_latitude)) * cos(radians(location_longitude) - radians({$longitude})) + sin(radians({$latitude})) * sin(radians(location_latitude))) - location_radius) AS distance")
@@ -149,8 +152,25 @@ class SiteController extends Controller
             ->asArray()
             ->all();
 
-        foreach ($events as $key => $event) {
-            $events[$key]['u_id'] = Yii::$app->user->id;
+        if ($userId) {
+            $printsAmount = 0;
+            foreach ($events as $key => $event) {
+                $prints = Action::getUserRecentPrints($userId, 1, $event['id']);
+
+                foreach ($prints as $print) {
+                    /* @var $print Action */
+                    $printData = Json::decode($print->data);
+                    if (!empty($printData['images'])) {
+                        foreach ($printData['images'] as $image) {
+                            $printsAmount += $image['count'];
+                        }
+                    }
+                }
+
+                $printsRemain = $event['users_max_prints_amount'] - $printsAmount;
+                $events[$key]['users_max_prints_amount'] = $printsRemain;
+                $events[$key]['user_id'] = $userId;
+            }
         }
 
         return $events;
