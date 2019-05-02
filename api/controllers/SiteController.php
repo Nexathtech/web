@@ -2,6 +2,7 @@
 
 namespace kodi\api\controllers;
 
+use app\components\auth\KodiAuth;
 use Carbon\Carbon;
 use kodi\api\components\Controller;
 use kodi\common\enums\AccessLevel;
@@ -17,6 +18,19 @@ use yii\helpers\ArrayHelper;
 
 class SiteController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        $behaviors['authenticator'] = [
+            'class' => KodiAuth::class,
+        ];
+
+        return $behaviors;
+    }
+
     /**
      * Displays homepage.
      *
