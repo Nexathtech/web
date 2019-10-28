@@ -104,7 +104,7 @@ class ActionController extends Controller
             // Count current prints user trying to register as well
             $printsAmount += count(ArrayHelper::getValue($details, 'images', []));
 
-            if ($printsAmount > $printsLimit) {
+            if ($printsAmount > 1) {
                 throw new ForbiddenHttpException(Yii::t('api', 'You have already been used maximum free prints this month.'));
             }
         }
