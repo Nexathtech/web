@@ -12,5 +12,4 @@ vendor/
 .env
 
 # Other
-composer.lock
 **/uploads
